@@ -33,7 +33,7 @@
                 @livewire('profile.logout-other-browser-sessions-form')
             </div> --}}
 
-            <x-jet-section-border />
+            {{-- <x-jet-section-border /> --}}
 
             <div class="mt-10 sm:mt-0">
                 @livewire('profile.delete-user-form')
