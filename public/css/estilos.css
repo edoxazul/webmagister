@@ -344,7 +344,7 @@ video {
     }
 }
 
-@media (prefers-color-scheme:dark) {
+/* @media (prefers-color-scheme:dark) {
     .dark\:bg-gray-800 {
         --bg-opacity: 1;
         background-color: #2d3748;
@@ -374,4 +374,4 @@ video {
         color: #cbd5e0;
         color: rgba(203, 213, 224, var(--text-opacity))
     }
-}
+} */
