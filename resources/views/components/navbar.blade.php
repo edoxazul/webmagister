@@ -1,4 +1,4 @@
-<nav class="bg-gray-800">
+<nav class="bg-gray-900">
 
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
@@ -26,10 +26,10 @@
             </svg>
             </button>
         </div>
-        <div  class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
             <div class="flex-shrink-0 flex items-center">
-            <img class="block lg:hidden h-10 w-auto" src="https://www.ucn.cl/wp-content/uploads/2018/05/Escudo-UCN-Full-Color.png" alt="UCN">
-            <img class="hidden lg:block h-10 w-auto" src="https://www.ucn.cl/wp-content/uploads/2018/05/Escudo-UCN-Full-Color.png" alt="UCN">
+            {{-- <img class="block lg:hidden h-10 w-auto" src="https://www.ucn.cl/wp-content/uploads/2018/05/Escudo-UCN-Full-Color.png" alt="UCN"> --}}
+            {{-- <img class="hidden lg:block h-10 w-auto" src="https://www.ucn.cl/wp-content/uploads/2018/05/Escudo-UCN-Full-Color.png" alt="UCN"> --}}
             </div>
             <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
@@ -42,7 +42,7 @@
         <div class= "ml-3 relative">
             <div class="min-h-screen bg-gray-100 ">
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="hidden fixed top-16 right-0 px-6 py-4 sm:block">
                     @auth
                         <a class="ml-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-700 hover:bg-gray-900" href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
 
@@ -51,45 +51,22 @@
                             Registrar Usuario
                         </a>
                     @endif
-
-
                     @else
-
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <a class="ml-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-700 hover:bg-gray-900" href="{{ route('login') }}" :active="request()->routeIs('login')">
-                        {{ __('Login') }}
-                    </a>
-
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex bg-gray-900">
+                        <a class="ml-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-700 hover:bg-gray-900" href="{{ route('login') }}" :active="request()->routeIs('login')">
+                            {{ __('Login') }}
+                        </a>
                     </div>
-
                 @endif
                 </div>
             @endif
 
 
             </div>
-
-
         </div>
 
         </div>
 
-
-
-
-
-
-    </div>
-
-
-
-    <div id="nav-content" class="hidden sm:hidden">
-        <div class="px-2 pt-2 pb-3 space-y-1">
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900">Inicio</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Cuerpo Academico</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projects</a>
-        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Calendar</a>
-        </div>
     </div>
 
     <!--
@@ -97,9 +74,51 @@
 
         Menu open: "block", Menu closed: "hidden"
     -->
+    <!-- Responsive Navigation Menu -->
 
-{{-- <!-- Responsive Navigation Menu -->
-<div x-show="open" @click="open = ! open" :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div id="nav-content" class="hidden sm:hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900">Inicio</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Cuerpo Academico</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projects</a>
+        <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Calendar</a>
+
+        @if (Route::has('login'))
+
+            @auth
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900" href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+
+            @if (Route::has('register'))
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900" href="{{ route('register') }}" :active="request()->routeIs('register')">
+                    Registrar Usuario
+                </a>
+            @endif
+            @else
+
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900" href="{{ route('login') }}" :active="request()->routeIs('login')">
+                    {{ __('Login') }}
+                </a>
+
+        @endif
+
+    @endif
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+{{-- <div x-show="open" @click="open = ! open" :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
     <div class="pt-2 pb-3 space-y-1">
         <a href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
             {{ __('Dashboard') }}
