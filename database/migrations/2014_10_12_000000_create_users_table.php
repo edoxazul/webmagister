@@ -16,6 +16,8 @@ class CreateUsersTable extends Migration
         Schema::connection('mysqlLogin')->create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('rut');
+            $table->enum('rol', ['Administrador', 'Profesor','Secretaria'])->default('Administrador');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

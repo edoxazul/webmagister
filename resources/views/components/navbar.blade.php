@@ -35,14 +35,12 @@
             <div class="flex space-x-4">
                 <a href="/" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Inicio</a>
                 <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Cuerpo Academico</a>
-
             </div>
             </div>
         </div>
-        <div class= "ml-3 relative">
-            <div class="min-h-screen bg-gray-100 ">
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             @if (Route::has('login'))
-                <div class="hidden fixed top-16 right-0 px-6 py-4 sm:block">
+                <div class="absolute flex sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     @auth
                         <a class="ml-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-700 hover:bg-gray-900" href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
 
@@ -52,19 +50,16 @@
                         </a>
                     @endif
                     @else
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex bg-gray-900">
+                    <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex bg-gray-900">
                         <a class="ml-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-700 hover:bg-gray-900" href="{{ route('login') }}" :active="request()->routeIs('login')">
                             {{ __('Login') }}
                         </a>
                     </div>
-                @endif
-                </div>
+                    @endif
+
             @endif
-
-
-            </div>
+                </div>
         </div>
-
         </div>
 
     </div>
