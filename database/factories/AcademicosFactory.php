@@ -30,7 +30,7 @@ class AcademicosFactory extends Factory
             'proyecto'=>$this->faker->title,
             'publicaciones'=>$this->faker->title,
             'estatus'=>$this->faker->randomElement(['Claustro','Colaborador','Visitante']),
-            'user_id'=>$this->faker->numberBetween(1,4),
+            'user_id'=>rand(10,10),
             'linkedin'=>$this->faker->url,
         ];
     }

@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\ListaAcademicos;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +31,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/academicos', function () {
     return view('academicos');
 })->name('academicos');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/academicos', ListaAcademicos::class)
+    ->name('academicos');
