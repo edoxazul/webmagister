@@ -22,9 +22,7 @@
 
             <div class="mt-4">
                 <x-jet-label for="rol" value="{{ __('Rol de Usuario') }}" />
-                <select id="rol" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <option id="rol" type="rol" name="rol" :value="old('rol')">Administrador</option>
-                </select>
+                <x-jet-input id="rol" class="block mt-1 w-full" type="rol" name="rol" :value="old('rol')" required />
             </div>
 
             <div class="mt-4">
