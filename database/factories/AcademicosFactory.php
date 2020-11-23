@@ -24,13 +24,14 @@ class AcademicosFactory extends Factory
     {
         return [
             'nombre_academico'=>$this->faker->name,
-            'rut_academico'=>$this->faker->Str::random(10),
-            'fecha_nacimiento'=>$this->faker->date('d-m-Y'),
+            'rut_academico'=>$this->faker->numberBetween(100000000,200000000),
+            'fecha_nacimiento'=>$this->faker->dateTime,
             'correo'=>$this->faker->unique()->safeEmail,
             'proyecto'=>$this->faker->title,
             'publicaciones'=>$this->faker->title,
             'estatus'=>$this->faker->randomElement(['Claustro','Colaborador','Visitante']),
-            'linkedin'=>$this->faker->link,
+            'user_id'=>$this->faker->numberBetween(1,4),
+            'linkedin'=>$this->faker->url,
         ];
     }
 }

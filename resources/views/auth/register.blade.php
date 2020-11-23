@@ -15,6 +15,19 @@
             </div>
 
             <div class="mt-4">
+                <x-jet-label for="rut" value="{{ __('Rut') }}" />
+                <x-jet-input id="rut" class="block mt-1 w-full" type="rut" name="rut" :value="old('rut')" required />
+            </div>
+
+
+            <div class="mt-4">
+                <x-jet-label for="rol" value="{{ __('Rol de Usuario') }}" />
+                <select id="rol" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option id="rol" type="rol" name="rol" :value="old('rol')">Administrador</option>
+                </select>
+            </div>
+
+            <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
