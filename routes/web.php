@@ -28,9 +28,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('auth.register');
 // })->name('register');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/academicos', function () {
-    return view('academicos');
-})->name('academicos');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/academicos', function () {
+//     return view('academicos');
+// })->name('academicos');
 
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/academicos', ListaAcademicos::class)

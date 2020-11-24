@@ -23,6 +23,7 @@ class CreateAcademicosTable extends Migration
             $table->string('publicaciones');
             $table->enum('estatus', ['Claustro', 'Colaborador','Visitante'])->default('Claustro');
             $table->foreignId('user_id')->nullable()->index();
+            $table->string('profile_photo_path')->nullable();
             // $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             // $table->foreignId('alumno_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('linkedin');

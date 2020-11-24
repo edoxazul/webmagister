@@ -6,6 +6,9 @@
         </h2>
     </x-slot>
 
+    <x-lightbox/>
+
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -32,10 +35,6 @@
                         <button wire:click="clear" class="form-input shadow-sm mt-1 ml-6 rounded-md block"> X </button>
                         @endif
                     </div>
-
-
-
-
 
 
                 </div>
@@ -74,8 +73,16 @@
                         <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
-                            <div class="flex-shrink-0 h-10 w-10">
-                                <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
+                            <div x-data={} class="flex-shrink-0 h-10 w-10">
+                                <div class="bg-gray-400 ">
+                                    <a @click="$dispatch('img-modal', {  imgModalSrc: '{{$academico->profile_photo_path}}' })" class="cursor-pointer">
+                                    <img class="h-10 w-10 rounded-full"alt="Placeholder" class="object-fit w-full" src="{{$academico->profile_photo_path}}">
+                                    </a>
+                                </div>
+                                {{-- <img class="h-10 w-10 rounded-full" src="{{$academico->profile_photo_path}}" alt=""> --}}
+
+
+                                {{-- <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt=""> --}}
                             </div>
                             <div class="ml-4">
                                 <div class="text-sm font-medium text-gray-900">

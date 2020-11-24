@@ -6,6 +6,8 @@ use App\Models\Academicos;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
+
+
 class AcademicosFactory extends Factory
 {
     /**
@@ -31,6 +33,7 @@ class AcademicosFactory extends Factory
             'publicaciones'=>$this->faker->title,
             'estatus'=>$this->faker->randomElement(['Claustro','Colaborador','Visitante']),
             'user_id'=>rand(10,10),
+            'profile_photo_path'=>$this->faker->imageUrl($width = 640, $height = 480),
             'linkedin'=>$this->faker->url,
         ];
     }
