@@ -27,6 +27,7 @@ class CreateAcademicosTable extends Migration
             // $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             // $table->foreignId('alumno_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('linkedin');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
