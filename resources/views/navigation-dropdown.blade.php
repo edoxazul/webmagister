@@ -17,6 +17,11 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('noticias') }}" :active="request()->routeIs('noticias')">
+                        {{ __('Noticias') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('academicos') }}" :active="request()->routeIs('academicos')">
                         {{ __('Academicos') }}
                     </x-jet-nav-link>
@@ -127,6 +132,9 @@
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('academicos') }}" :active="request()->routeIs('academicos')">
                 {{ __('Academicos') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('noticias') }}" :active="request()->routeIs('noticias')">
+                {{ __('Noticias') }}
             </x-jet-responsive-nav-link>
         </div>
 

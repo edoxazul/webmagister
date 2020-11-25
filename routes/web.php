@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\ListaAcademicos;
+use App\Http\Livewire\ListaNoticias;
 
 
 
@@ -35,3 +36,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/academicos', ListaAcademicos::class)
     ->name('academicos');
+//Noticias
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/noticias', ListaNoticias::class)
+    ->name('noticias');
+
