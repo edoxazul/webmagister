@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Alumno;
+use App\Models\Alumnos;
 
 class AlumnosTableSeeder extends Seeder
 {
@@ -14,6 +14,6 @@ class AlumnosTableSeeder extends Seeder
      */
     public function run()
     {
-        Alumno::factory(30)->create();
+        Alumnos::factory(30)->create();
     }
 }

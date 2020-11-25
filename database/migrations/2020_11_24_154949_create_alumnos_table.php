@@ -20,10 +20,10 @@ class CreateAlumnosTable extends Migration
             $table->string('nombre_pregrado_alumno');
             $table->string('nombre_institucion_alumno');
             $table->string('contacto_alumno',128)->unique();
-            $table->string('estatus_alumno', ['Regular', 'Graduado','Egresado','Retiro Voluntario','Eliminado'])->default('Regular');
+            $table->enum('estatus_alumno', ['Regular', 'Graduado','Egresado','Retiro Voluntario','Eliminado'])->default('Regular');
             $table->string('razon_eliminacion')->nullable();
-            $table->integer('año_ingreso');
-            $table->integer('año_graduacion');
+            $table->date('anio_ingreso');
+            $table->date('anio_graduacion');
             $table->string('trabajo_tesis');
             $table->string('linkedin');
             $table->timestamps();
