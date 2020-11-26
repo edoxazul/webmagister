@@ -98,9 +98,6 @@ class ListaAcademicos extends Component
             'rut_academico' => 'required',
             'fecha_nacimiento' => 'required',
             'correo' => 'required',
-            'proyecto' => 'required',
-            'publicaciones' => 'required',
-            'linkedin'=> 'required',
 
         ];
     }
@@ -112,9 +109,6 @@ class ListaAcademicos extends Component
             'rut_academico' => $this->rut_academico,
             'fecha_nacimiento'=>$this->fecha_nacimiento,
             'correo'=>$this->correo,
-            'proyecto' =>$this->proyecto,
-            'publicaciones' =>$this->publicaciones,
-            'linkedin' =>$this->linkedin,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
         ];
@@ -218,10 +212,6 @@ class ListaAcademicos extends Component
             ]);
         }
     }
-
-
-
-
 
 
 }
