@@ -22,8 +22,11 @@ class ListaAcademicos extends Component
     public $search= '';
     public $perPage= '5';
     public $page='1';
+    public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
     public $modelId;
+    public $isSetToDefaultHomePage;
+    public $isSetToDefaultNotFoundPage;
 
     public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$proyecto,$publicaciones,$user_id,$linkedin;
 
@@ -82,9 +85,71 @@ class ListaAcademicos extends Component
 
     }
 
+    /**
+     * The create function.
+     *
+     * @return void
+     */
+    public function create()
+    {
+        $this->validate();
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        Academicos::create($this->modelData());
+        $this->modalFormVisible = false;
+        $this->reset();
+    }
 
 
+    /**
+     * Shows the form modal
+     * of the create function.
+     *
+     * @return void
+     */
+    public function createShowModal()
+    {
+        $this->resetValidation();
+        $this->reset();
+        $this->modalFormVisible = true;
+    }
 
+    /**
+     * The update function.
+     *
+     * @return void
+     */
+    public function update()
+    {
+        $this->validate();
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        Academicos::find($this->modelId)->update($this->modelData());
+        $this->modalFormVisible = false;
+    }
+
+
+    /**
+     * Runs everytime the isSetToDefaultHomePage
+     * variable is updated.
+     *
+     * @return void
+     */
+    public function updatedIsSetToDefaultHomePage()
+    {
+        $this->isSetToDefaultNotFoundPage = null;
+    }
+
+    /**
+     * Runs everytime the isSetToDefaultNotFoundPage
+     * variable is updated.
+     *
+     * @return void
+     */
+    public function updatedIsSetToDefaultNotFoundPage()
+    {
+        $this->isSetToDefaultHomePage = null;
+    }
 
 
     public function deleteShowModal($id)
