@@ -4,7 +4,8 @@ namespace App\Http\Livewire;
 
 
 use App\Models\Academicos;
-
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -86,6 +87,41 @@ class ListaAcademicos extends Component
     }
 
     /**
+     * The validation rules
+     *
+     * @return void
+     */
+    public function rules()
+    {
+        return [
+            'nombre_academico' => 'required',
+            'rut_academico' => 'required',
+            'fecha_nacimiento' => 'required',
+            'correo' => 'required',
+            'proyecto' => 'required',
+            'publicaciones' => 'required',
+            'linkedin'=> 'required',
+
+        ];
+    }
+
+    public function modelData()
+    {
+        return [
+            'nombre_academico' => $this->nombre_academico,
+            'rut_academico' => $this->rut_academico,
+            'fecha_nacimiento'=>$this->fecha_nacimiento,
+            'correo'=>$this->correo,
+            'proyecto' =>$this->proyecto,
+            'publicaciones' =>$this->publicaciones,
+            'linkedin' =>$this->linkedin,
+            'is_default_home' => $this->isSetToDefaultHomePage,
+            'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+        ];
+    }
+
+
+    /**
      * The create function.
      *
      * @return void
@@ -163,6 +199,29 @@ class ListaAcademicos extends Component
         Academicos::destroy($this->modelId);
         $this->modalConfirmDeleteVisible = false;
     }
+
+
+    private function unassignDefaultHomePage()
+    {
+        if ($this->isSetToDefaultHomePage != null) {
+            Academicos::where('is_default_home', true)->update([
+                'is_default_home' => false,
+            ]);
+        }
+    }
+
+    private function unassignDefaultNotFoundPage()
+    {
+        if ($this->isSetToDefaultNotFoundPage != null) {
+            Page::where('is_default_not_found', true)->update([
+                'is_default_not_found' => false,
+            ]);
+        }
+    }
+
+
+
+
 
 
 }

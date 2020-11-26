@@ -19,8 +19,8 @@ class CreateAcademicosTable extends Migration
             $table->integer('rut_academico');
             $table->date('fecha_nacimiento');
             $table->string('correo', 128)->unique();
-            $table->string('proyecto');
-            $table->string('publicaciones');
+            $table->string('proyecto')->nullable();
+            $table->string('publicaciones')->nullable();
             $table->enum('estatus', ['Claustro', 'Colaborador','Visitante'])->default('Claustro');
             $table->foreignId('user_id')->nullable()->index();
             $table->string('profile_photo_path')->nullable();
