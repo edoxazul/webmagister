@@ -85,12 +85,20 @@
             {{ __('Cancelar') }}
         </x-jet-secondary-button>
 
+        @if($modelId)
+        <button type="submit"
+            class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+            wire:click="update" wire:loading.attr="disabled">
+            {{ __('Actualizar') }}
+        </button>
+        @else
 
         <button type="submit"
             class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
             wire:click="create" wire:loading.attr="disabled">
             {{ __('Crear') }}
         </button>
+        @endif
 
 
     </x-slot>

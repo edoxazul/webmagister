@@ -158,6 +158,32 @@ class ListaAcademicos extends Component
         $this->modalFormVisible = false;
     }
 
+    public function updateShowModal($id)
+    {
+        $this->resetValidation();
+        $this->reset();
+        $this->modelId = $id;
+        $this->modalFormVisible = true;
+        $this->loadModel();
+    }
+
+
+    public function loadModel()
+    {
+        $data = Academicos::find($this->modelId);
+        $this->nombre_academico = $data->nombre_academico;
+        $this->rut_academico = $data->rut_academico;
+        $this->fecha_nacimiento = $data->fecha_nacimiento;
+        $this->correo = $data->correo;
+        $this->proyecto = $data->proyecto;
+        $this->publicaciones = $data->publicaciones;
+        $this->estatus = $data->estatus;
+        $this->linkedin = $data->linkedin;
+        $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
+        $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
+    }
+
+
 
     /**
      * Runs everytime the isSetToDefaultHomePage
@@ -188,6 +214,7 @@ class ListaAcademicos extends Component
         $this->modalConfirmDeleteVisible = true;
     }
 
+
     public function delete()
     {
         Academicos::destroy($this->modelId);
@@ -207,7 +234,7 @@ class ListaAcademicos extends Component
     private function unassignDefaultNotFoundPage()
     {
         if ($this->isSetToDefaultNotFoundPage != null) {
-            Page::where('is_default_not_found', true)->update([
+            Academicos::where('is_default_not_found', true)->update([
                 'is_default_not_found' => false,
             ]);
         }
