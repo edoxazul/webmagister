@@ -18,9 +18,11 @@ class Academicos extends Model
         'nombre_academico',
         'rut_academico',
         'fecha_nacimiento',
+        'grado_academico',
         'correo',
         'proyecto',
         'publicaciones',
+        'estatus',
         'user_id',
         'linkedin',
     ];
