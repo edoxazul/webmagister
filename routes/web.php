@@ -42,3 +42,6 @@ Route::middleware(['auth:sanctum', 'verified'])
     ->get('/noticias', ListaNoticias::class)
     ->name('noticias');
 
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/alumnos', ListaAlumnos::class)
+    ->name('alumnos');
