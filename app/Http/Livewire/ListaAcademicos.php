@@ -29,7 +29,7 @@ class ListaAcademicos extends Component
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
 
-    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$grado_academico,$proyecto,$publicaciones,$user_id,$linkedin;
+    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$grado_academico,$estatus,$proyecto,$publicaciones,$user_id,$linkedin;
 
     // /**
     //  * The livewire mount function
@@ -99,7 +99,7 @@ class ListaAcademicos extends Component
             'fecha_nacimiento' => 'required',
             'grado_academico' => 'required',
             'correo' => 'required',
-            'estatus' => 'required',
+            'estatus' => 'required'
 
         ];
     }
