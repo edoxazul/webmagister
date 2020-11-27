@@ -292,6 +292,12 @@
                                             @enderror
                                         </div>
                                         <div class="col-span-6 mt-2 sm:col-span-3">
+                                            <x-jet-label for="grado_academico" value="Grado Academico" />
+                                            <x-jet-input id="grado_academico" class="block w-full mt-1" type="text"
+                                                wire:model.debounce.800ms="grado_academico" />
+                                            @error('grado_academico') <span class="error">{{ $message }}</span> @enderror
+                                        </div>
+                                        <div class="col-span-6 mt-2 sm:col-span-3">
                                             <x-jet-label for="correo" value="Correo" />
                                             <x-jet-input id="correo" class="block w-full mt-1" type="text"
                                                 wire:model.debounce.800ms="correo" />
