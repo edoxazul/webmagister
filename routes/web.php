@@ -45,3 +45,7 @@ Route::middleware(['auth:sanctum', 'verified'])
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/alumnos', ListaAlumnos::class)
     ->name('alumnos');
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
