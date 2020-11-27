@@ -24,26 +24,26 @@
                 </button>
             </div>
         </div> --}}
-        <div class="grid grid-cols-6 gap-6">
-            <div class="col-span-6 mt-4 sm:col-span-3">
+        <div class="grid grid-cols-6 gap-3">
+            <div class="col-span-6 mt-2 sm:col-span-3">
                 <x-jet-label for="titulo_noticia" value="Título" />
                 <x-jet-input id="titulo_noticia" class="block w-full mt-1" type="text"
                     wire:model.debounce.800ms="titulo_noticia" />
                 @error('titulo_noticia') <span class="error">{{ $message }}</span> @enderror
             </div>
-            <div class="col-span-6 mt-4 sm:col-span-3">
+            <div class="col-span-6 mt-2 sm:col-span-3">
                 <x-jet-label for="autor_noticia" value="Autor (Opcional)" />
                 <x-jet-input id="autor_noticia" class="block w-full mt-1" type="text"
                     wire:model.debounce.800ms="rut_academico" />
                 @error('autor_noticia') <span class="error">{{ $message }}</span> @enderror
             </div>
 
-            <div class="col-span-6 mt-4 sm:col-span-3">
+            <div class="col-span-6 mt-2 sm:col-span-3">
                 <x-jet-label for="enlace_noticia" value="Enlace Noticia (Opcional)" />
                 <x-jet-input id="enlace_noticia" class="block w-full mt-1" type="text" wire:model.debounce.800ms="enlace_noticia" />
             </div>
 
-            <div class="col-span-6 mt-4 sm:col-span-3">
+            <div class="col-span-6 mt-2 sm:col-span-3">
                 <label for="country" class="block text-sm font-medium text-gray-700">Estatus</label>
                 <select id="country"
                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -60,7 +60,7 @@
               Descripción Noticia
             </label>
             <div class="mt-4">
-              <textarea id="about" rows="3" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Cuerpo de la noticia"></textarea>
+              <textarea id="about" rows="3" class="block w-full mt-1 border-blue-900 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Cuerpo de la noticia"></textarea>
             </div>
           </div>
         </div>
