@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\ListaAcademicos;
+use App\Http\Livewire\ListaAlumnos;
 use App\Http\Livewire\ListaNoticias;
 
 
