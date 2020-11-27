@@ -67,8 +67,12 @@
                                                 Nombre Academico
                                             </th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                                                class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                                                 Rut Academico
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                                                Grado Academico
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
@@ -83,16 +87,16 @@
                                                 Tipo de profesor
                                             </th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                                                class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                                                 LinkedIn
                                             </th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                                                class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                                                 Opciones
-                                            <th scope="col" class="px-6 py-3 bg-gray-50">
+                                            <th scope="col" class="px-2 py-3 bg-gray-50">
                                                 <span class="sr-only">Editar</span>
                                             </th>
-                                            <th scope="col" class="px-6 py-3 bg-gray-50">
+                                            <th scope="col" class="px-2 py-3 bg-gray-50">
                                                 <span class="sr-only">Eliminar</span>
                                             </th>
                                             </th>
@@ -144,6 +148,11 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">
+                                                        {{ $academico->grado_academico }}
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">
                                                         {{ $academico->proyecto }}
                                                     </div>
                                                 </td>
@@ -154,14 +163,10 @@
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-nowrap">
-
                                                     <div class="text-sm text-gray-900">
                                                         {{ $academico->estatus }}
                                                     </div>
-
                                                 </td>
-
-
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">
                                                         <a href=" {{ $academico->linkedin }}">
@@ -265,53 +270,53 @@
                                         </div>
                                     </div> --}}
                                     <div class="grid grid-cols-6 gap-6">
-                                        <div class="col-span-6 mt-4 sm:col-span-3">
+                                        <div class="col-span-6 mt-2 sm:col-span-3">
                                             <x-jet-label for="nombre_academico" value="Nombre" />
                                             <x-jet-input id="nombre_academico" class="block w-full mt-1" type="text"
                                                 wire:model.debounce.800ms="nombre_academico" />
                                             @error('nombre_academico') <span class="error">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-span-6 mt-4 sm:col-span-3">
+                                        <div class="col-span-6 mt-2 sm:col-span-3">
                                             <x-jet-label for="rut_academico" value="Rut" />
                                             <x-jet-input id="rut_academico" class="block w-full mt-1" type="text"
                                                 wire:model.debounce.800ms="rut_academico" />
                                             @error('rut_academico') <span class="error">{{ $message }}</span> @enderror
                                         </div>
 
-                                        <div class="col-span-6 mt-4 sm:col-span-3">
+                                        <div class="col-span-6 mt-2 sm:col-span-3">
                                             <x-jet-label for="fecha_nacimiento" value="Fecha de Nacimiento" />
                                             <x-jet-input id="fecha_nacimiento" class="block w-full mt-1" type="text"
                                                 wire:model.debounce.800ms="fecha_nacimiento" />
                                             @error('fecha_nacimiento') <span class="error">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                        <div class="col-span-6 mt-4 sm:col-span-3">
+                                        <div class="col-span-6 mt-2 sm:col-span-3">
                                             <x-jet-label for="correo" value="Correo" />
                                             <x-jet-input id="correo" class="block w-full mt-1" type="text"
                                                 wire:model.debounce.800ms="correo" />
                                             @error('correo') <span class="error">{{ $message }}</span> @enderror
                                         </div>
 
-                                        <div class="col-span-6 mt-4 sm:col-span-3">
+                                        <div class="col-span-6 mt-2 sm:col-span-3">
                                             <x-jet-label for="proyecto" value="Proyecto" />
                                             <x-jet-input id="proyecto" class="block w-full mt-1" type="text"
                                                 wire:model.debounce.800ms="proyecto" />
                                             @error('proyecto') <span class="error">{{ $message }}</span> @enderror
                                         </div>
-                                        <div class="col-span-6 mt-4 sm:col-span-3">
+                                        <div class="col-span-6 mt-2 sm:col-span-3">
                                             <x-jet-label for="publicaciones" value="Publicaciones" />
                                             <x-jet-input id="publicaciones" class="block w-full mt-1" type="text"
                                                 wire:model.debounce.800ms="publicaciones" />
 
                                         </div>
-                                        <div class="col-span-6 mt-4 sm:col-span-3">
+                                        <div class="col-span-6 mt-2 sm:col-span-3">
                                             <x-jet-label for="linkedin" value="LinkedIn" />
                                             <x-jet-input id="linkedin" class="block w-full mt-1" type="text"
                                                 wire:model.debounce.800ms="linkedin" />
 
                                         </div>
-                                        <div class="col-span-6 mt-4 sm:col-span-3">
+                                        <div class="col-span-6 mt-2 sm:col-span-3">
                                             <label for="country"
                                                 class="block text-sm font-medium text-gray-700">Estatus</label>
                                             <select id="country"

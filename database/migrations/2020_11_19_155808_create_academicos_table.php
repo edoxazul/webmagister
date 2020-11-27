@@ -16,8 +16,9 @@ class CreateAcademicosTable extends Migration
         Schema::create('academicos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_academico');
-            $table->integer('rut_academico');
+            $table->integer('rut_academico')->unique();
             $table->date('fecha_nacimiento');
+            $table->string('grado_academico');
             $table->string('correo', 128)->unique();
             $table->string('proyecto')->nullable();
             $table->string('publicaciones')->nullable();
