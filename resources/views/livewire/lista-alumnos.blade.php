@@ -38,7 +38,7 @@
 
 
                         <span class="hidden sm:block">
-                            <button
+                            <button wire:click="createShowModal"
                             {{-- wire:click="crearAlumno()" --}}
                             type="button"
                             class="px-4 py-2 border mt-1 ml-6 border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-green-200 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -183,6 +183,126 @@
                         No hay resultados para la busqueda "{{$search}}" en la página {{$page}} al mostrar {{$perPage}} alumnos por página
                     </div>
                     @endif
+
+                    {{-- Modal Form --}}
+                    <x-jet-dialog-modal wire:model="modalFormVisible">
+                        <x-slot name="title">
+                            <div class="mx-auto text-center rounded-md">
+                                @if($modelId)
+                                    Actualizar Alumno
+                                @else
+                                    Agregar Alumno
+                                @endif
+                            </div>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            {{-- <div>
+                                <label class="block text-sm font-medium text-gray-700">
+                                    Foto
+                                </label>
+                                <div class="flex items-center mt-2">
+                                    <span
+                                        class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
+                                        <svg class="w-full h-full text-gray-300" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                        </svg>
+                                    </span>
+                                    <button type="button"
+                                        class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Cambiar
+                                    </button>
+                                </div>
+                            </div> --}}
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 mt-4 sm:col-span-3">
+                                    <x-jet-label for="nombre_alumno" value="Nombre" />
+                                    <x-jet-input id="nombre_alumno" class="block w-full mt-1" type="text"
+                                        wire:model.debounce.800ms="nombre_alumno" />
+                                    @error('nombre_alumno') <span class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-span-6 mt-4 sm:col-span-3">
+                                    <x-jet-label for="rut_alumno" value="Rut" />
+                                    <x-jet-input id="rut_alumno" class="block w-full mt-1" type="text"
+                                        wire:model.debounce.800ms="rut_alumno" />
+                                    @error('rut_alumno') <span class="error">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="col-span-6 mt-4 sm:col-span-3">
+                                    <x-jet-label for="nombre_pregrado_alumno" value="Carrera" />
+                                    <x-jet-input id="nombre_pregrado_alumno" class="block w-full mt-1" type="text"
+                                        wire:model.debounce.800ms="nombre_pregrado_alumno" />
+                                    @error('nombre_pregrado_alumno') <span class="error">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-span-6 mt-4 sm:col-span-3">
+                                    <x-jet-label for="nombre_institucion_alumno" value="Institucion" />
+                                    <x-jet-input id="nombre_institucion_alumno" class="block w-full mt-1" type="text"
+                                        wire:model.debounce.800ms="nombre_institucion_alumno" />
+                                    @error('nombre_institucion_alumno') <span class="error">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="col-span-6 mt-4 sm:col-span-3">
+                                    <x-jet-label for="contacto_alumno" value="Correo" />
+                                    <x-jet-input id="contacto_alumno" class="block w-full mt-1" type="text"
+                                        wire:model.debounce.800ms="contacto_alumno" />
+                                    @error('contacto_alumno') <span class="error">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="col-span-6 mt-4 sm:col-span-3">
+                                    <x-jet-label for="anio_ingreso" value="Año de Ingreso" />
+                                    <x-jet-input id="anio_ingreso" class="block w-full mt-1" type="text"
+                                        wire:model.debounce.800ms="anio_ingreso" />
+
+                                </div>
+                                <div class="col-span-6 mt-4 sm:col-span-3">
+                                    <x-jet-label for="linkedin" value="LinkedIn" />
+                                    <x-jet-input id="linkedin" class="block w-full mt-1" type="text"
+                                        wire:model.debounce.800ms="linkedin" />
+
+                                </div>
+                                <div class="col-span-6 mt-4 sm:col-span-3">
+                                    <label for="estatus_alumno"
+                                        class="block text-sm font-medium text-gray-700">Estatus</label>
+                                    <select id="estatus_alumno"
+                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        <option>Regular</option>
+                                        <option>Retiro Voluntario</option>
+                                        <option>Egresado</option>
+                                        <option>Eliminado</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </x-slot>
+
+                        <x-slot name="footer">
+                            <x-jet-secondary-button wire:click="$toggle('modalFormVisible')"
+                                wire:loading.attr="disabled">
+                                {{ __('Cancelar') }}
+                            </x-jet-secondary-button>
+
+                            @if ($modelId)
+                                <button type="submit"
+                                    class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                    wire:click="update" wire:loading.attr="disabled">
+                                    {{ __('Actualizar') }}
+                                </button>
+                            @else
+
+                                <button type="submit"
+                                    class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                    wire:click="create" wire:loading.attr="disabled">
+                                    {{ __('Crear') }}
+                                </button>
+                            @endif
+
+
+                        </x-slot>
+                    </x-jet-dialog-modal>
 
                     <x-delete-alumno/>
 

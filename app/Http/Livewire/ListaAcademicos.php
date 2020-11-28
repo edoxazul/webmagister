@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-
 use App\Models\Academicos;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;

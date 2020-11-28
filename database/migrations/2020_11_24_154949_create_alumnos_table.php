@@ -23,9 +23,9 @@ class CreateAlumnosTable extends Migration
             $table->enum('estatus_alumno', ['Regular', 'Graduado','Egresado','Retiro Voluntario','Eliminado'])->default('Regular');
             $table->string('razon_eliminacion')->nullable();
             $table->date('anio_ingreso');
-            $table->date('anio_graduacion');
-            $table->string('trabajo_tesis');
-            $table->string('linkedin');
+            $table->date('anio_graduacion')->nullable();
+            $table->string('trabajo_tesis')->nullable();
+            $table->string('linkedin')->nullable();
             $table->timestamps();
         });
     }
