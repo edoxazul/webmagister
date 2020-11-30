@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\ListaAcademicos;
 use App\Http\Livewire\ListaAlumnos;
 use App\Http\Livewire\ListaNoticias;
-use App\Http\Livewire\InfoMagister;
+use App\Http\Livewire\InfoMag;
 
 
 /*
@@ -47,5 +47,6 @@ Route::middleware(['auth:sanctum', 'verified'])
     ->name('alumnos');
 
 Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/informacion-general', InfoMagister::class)
+    ->get('/informacion-general', InfoMag::class)
     ->name('informacion');
+
