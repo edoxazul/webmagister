@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Alumnos;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use Livewire\Component;
 
@@ -22,7 +24,7 @@ class ListaAlumnos extends Component
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
 
-    public $nombre_alumno,$rut_alumno,$nombre_pregrado_alumno,$nombre_institucion_alumno,$contacto_alumno,$estatus_alumno,$anio_ingreso,$user_id,$linkedin;
+    public $nombre_alumno,$rut_alumno,$nombre_pregrado_alumno,$nombre_institucion_alumno,$contacto_alumno,$estatus_alumno,$anio_ingreso,$user_id,$linkedin,$razon_eliminacion,$anio_graduacion,$trabajo_tesis;
 
     public function render()
     {

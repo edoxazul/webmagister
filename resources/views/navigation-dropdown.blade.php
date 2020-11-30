@@ -17,7 +17,7 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('informacion') }}" :active="request()->routeIs('noticias')">
+                    <x-jet-nav-link href="{{ route('informacion') }}" :active="request()->routeIs('informacion')">
                         {{ __('Información General') }}
                     </x-jet-nav-link>
                 </div>
@@ -70,6 +70,7 @@
                         <div class="block px-4 py-2 text-xs text-gray-400">
                             {{ __('Manage Account') }}
                         </div>
+
 
                         <x-jet-dropdown-link href="{{ route('profile.show') }}">
                             {{ __('Profile') }}
@@ -125,7 +126,18 @@
                         </form>
                     </x-slot>
                 </x-jet-dropdown>
+                <div class="mt-1 ml-6 rounded-md shadow-sm form-input">
+                    <label>
+                        <select class="text-sm text-gray-500 outline-none">
+                            <option>Sistema Magister</option>
+                            <option>Sistema de Actas</option>
+                            <option>Vinculación con el medio</option>
+                            <option value="https://www.google.cl">Disc</option>
+                        </select>
+                    </label>
+                </div>
             </div>
+
 
             <!-- Hamburger -->
             <div class="flex items-center -mr-2 sm:hidden">
