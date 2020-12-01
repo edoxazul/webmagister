@@ -264,16 +264,12 @@
 
                                 </div>
                                 <div class="col-span-6 mt-4 sm:col-span-3">
-                                    <label for="estatus_alumno"
-                                        class="block text-sm font-medium text-gray-700">Estatus</label>
-                                    <select id="estatus_alumno"
-                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        <option>Regular</option>
-                                        <option>Retiro Voluntario</option>
-                                        <option>Egresado</option>
-                                        <option>Eliminado</option>
-                                    </select>
+                                    <x-jet-label for="estatus_alumno" value="Estado" />
+                                    <x-jet-input id="estatus_alumno" class="block w-full mt-1" type="text"
+                                        wire:model.debounce.800ms="estatus_alumno" />
+
                                 </div>
+
 
                             </div>
 
