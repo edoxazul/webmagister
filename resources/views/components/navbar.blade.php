@@ -51,6 +51,8 @@
                         <a href="{{route('listaacademicospublico')}}"
                             class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Cuerpo
                             Academico</a>
+                            <a href="{{route('listaalumnospublico')}}"
+                            class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Alumnos</a>
                     </div>
                 </div>
             </div>
