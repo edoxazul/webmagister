@@ -5,6 +5,7 @@ use App\Http\Livewire\ListaAcademicos;
 use App\Http\Livewire\ListaAlumnos;
 use App\Http\Livewire\ListaNoticias;
 use App\Http\Livewire\InfoMag;
+use App\Http\Livewire\InfoMagisterPublico;
 use App\Http\Livewire\ListaAcademicosPublico;
 
 
@@ -26,7 +27,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/informacion',InfoMagisterPublico::class )->name('infomagisterpublico');
 Route::get('/academic',ListaAcademicosPublico::class )->name('listaacademicospublico');
 
 //Administrador
