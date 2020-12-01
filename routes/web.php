@@ -27,9 +27,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/academic', function () {
-    return view('lista-academicos-publico',ListaAcademicosPublico::class);
-})->name('listaacademicospublico');
+Route::get('/academic',ListaAcademicosPublico::class )->name('listaacademicospublico');
 
 //Administrador
 
