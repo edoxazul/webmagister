@@ -218,43 +218,44 @@
                             </div> --}}
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 mt-4 sm:col-span-3">
-                                    <x-jet-label for="nombre_alumno" value="Nombre" />
+                                    <x-jet-label for="nombre_alumno" value="Nombre *" />
                                     <x-jet-input id="nombre_alumno" class="block w-full mt-1" type="text"
                                         wire:model.debounce.800ms="nombre_alumno" />
                                     @error('nombre_alumno') <span class="error">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="col-span-6 mt-4 sm:col-span-3">
-                                    <x-jet-label for="rut_alumno" value="Rut" />
+                                    <x-jet-label for="rut_alumno" value="Rut *" />
                                     <x-jet-input id="rut_alumno" class="block w-full mt-1" type="text"
                                         wire:model.debounce.800ms="rut_alumno" />
                                     @error('rut_alumno') <span class="error">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-6 mt-4 sm:col-span-3">
-                                    <x-jet-label for="nombre_pregrado_alumno" value="Carrera" />
+                                    <x-jet-label for="nombre_pregrado_alumno" value="Carrera *" />
                                     <x-jet-input id="nombre_pregrado_alumno" class="block w-full mt-1" type="text"
                                         wire:model.debounce.800ms="nombre_pregrado_alumno" />
                                     @error('nombre_pregrado_alumno') <span class="error">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="col-span-6 mt-4 sm:col-span-3">
-                                    <x-jet-label for="nombre_institucion_alumno" value="Institucion" />
+                                    <x-jet-label for="nombre_institucion_alumno" value="Institucion *" />
                                     <x-jet-input id="nombre_institucion_alumno" class="block w-full mt-1" type="text"
                                         wire:model.debounce.800ms="nombre_institucion_alumno" />
                                     @error('nombre_institucion_alumno') <span class="error">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-6 mt-4 sm:col-span-3">
-                                    <x-jet-label for="contacto_alumno" value="Correo" />
+                                    <x-jet-label for="contacto_alumno" value="Correo *" />
                                     <x-jet-input id="contacto_alumno" class="block w-full mt-1" type="text"
                                         wire:model.debounce.800ms="contacto_alumno" />
                                     @error('contacto_alumno') <span class="error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-span-6 mt-4 sm:col-span-3">
-                                    <x-jet-label for="anio_ingreso" value="Año de Ingreso" />
+                                    <x-jet-label for="anio_ingreso" value="Año de Ingreso *" />
                                     <x-jet-input id="anio_ingreso" class="block w-full mt-1" type="text"
                                         wire:model.debounce.800ms="anio_ingreso" />
+                                    @error('anio_ingreso') <span class="error">{{ $message }}</span> @enderror
 
                                 </div>
                                 <div class="col-span-6 mt-4 sm:col-span-3">
@@ -264,9 +265,10 @@
 
                                 </div>
                                 <div class="col-span-6 mt-4 sm:col-span-3">
-                                    <x-jet-label for="estatus_alumno" value="Estado" />
+                                    <x-jet-label for="estatus_alumno" value="Estado *" />
                                     <x-jet-input id="estatus_alumno" class="block w-full mt-1" type="text"
                                         wire:model.debounce.800ms="estatus_alumno" />
+                                    @error('estatus_alumno') <span class="error">{{ $message }}</span> @enderror
 
                                 </div>
 

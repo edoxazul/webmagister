@@ -232,4 +232,14 @@ class ListaAlumnos extends Component
         }
     }
 
+    protected  $messages =[
+        'nombre_alumno.required'  => 'El campo nombre es obligatorio',
+        'rut_alumno.required'  => 'El campo rut es obligatorio',
+        'nombre_pregrado_alumno.required'  => 'El campo carrera es obligatorio',
+        'nombre_institucion_alumno.required'  => 'El campo institucion es obligatorio',
+        'contacto_alumno.required'  => 'El campo correo es obligatorio',
+        'anio_ingreso.required'  => 'El campo año de ingreso es obligatorio',
+        'estatus_alumno.required'  => 'El campo estado es obligatorio',
+    ];
+
 }
