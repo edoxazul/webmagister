@@ -30,18 +30,6 @@ class InfoMag extends Component
             'beneficios_magister' => 'required',
             'arancel_magister' => 'required'
         ]);
-        // InfoMagister::create([
-        //     'proposito_magister' => 'required',
-        //     'objetivo_magister' => 'required',
-        //     'descripcion_magister' => 'required',
-        //     'perfil_entrada_magister' => 'required',
-        //     'regimen_magister' => 'required',
-        //     'contacto_magister' => 'required',
-        //     'costo_magister' => 'required',
-        //     'metodos_pagos_magister' => 'required',
-        //     'beneficios_magister' => 'required',
-        //     'arancel_magister' => 'required'
-        // ]);
         InfoMagister::create($this->modelData());
         $this->success = '¡Información agregada!';
         $this->unassignDefaultHomePage();
@@ -91,9 +79,7 @@ class InfoMag extends Component
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         InfoMagister::create($this->modelData());
-       // $this->modalFormVisible = false;
         $this->success = '¡Información agregada!';
-        //$this->reset();
     }
 
     public function modelData()
@@ -113,6 +99,65 @@ class InfoMag extends Component
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
         ];
     }
+
+    private function unassignDefaultNotFoundPage()
+    {
+        if ($this->isSetToDefaultNotFoundPage != null) {
+            InfoMagister::where('is_default_not_found', true)->update([
+                'is_default_not_found' => false,
+            ]);
+        }
+    }
+
+    public function update()
+    {
+        $this->validate();
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        InfoMagister::find($this->modelId)->update($this->modelData());
+        $this->modalFormVisible = false;
+    }
+
+    public function updateShowModal($id)
+    {
+        $this->resetValidation();
+        $this->reset();
+        $this->modelId = $id;
+        $this->modalFormVisible = true;
+        $this->loadModel();
+    }
+
+    public function loadModel()
+    {
+        $data = InfoMagister::find($this->modelId);
+        $this->proposito_magister = $data->proposito_magister;
+        $this->objetivo_magister = $data->objetivo_magister;
+        $this->descripcion_magister = $data->descripcion_magister;
+        $this->perfil_entrada_magister = $data->perfil_entrada_magister;
+        $this->regimen_magister = $data->regimen_magister;
+        $this->contacto_magister = $data->contacto_magister;
+        $this->costo_magister = $data->costo_magister;
+        $this->metodos_pagos_magister = $data->metodos_pagos_magister;
+        $this->beneficios_magister = $data->beneficios_magister;
+        $this->arancel_magister = $data->arancel_magister;
+
+        $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
+        $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
+    }
+
+    protected  $messages =[
+        'proposito_magister.required' => 'El campo propósito es obligatorio',
+        'objetivo_magister.required' => 'El campo objetivo es obligatorio',
+        'descripcion_magister.required' => 'El campo descripción es obligatorio',
+        'perfil_entrada_magister.required' => 'El campo perfil de entrada es obligatorio',
+        'regimen_magister.required' => 'El campo régimen es obligatorio',
+        'contacto_magister.required' => 'El campo contacto es obligatorio',
+        'costo_magister.required' => 'El campo costo es obligatorio',
+        'metodos_pagos_magister.required' => 'El campo métodos de pago es obligatorio',
+        'beneficios_magister.required' => 'El campo beneficios y facilidades es obligatorio',
+        'arancel_magister.required' => 'El campo aranceles es obligatorio',
+    ];
+
 /**
     * Runs everytime the isSetToDefaultHomePage
     * variable is updated.
@@ -144,36 +189,6 @@ class InfoMag extends Component
             ]);
         }
     }
-
-    private function unassignDefaultNotFoundPage()
-    {
-        if ($this->isSetToDefaultNotFoundPage != null) {
-            InfoMagister::where('is_default_not_found', true)->update([
-                'is_default_not_found' => false,
-            ]);
-        }
-    }
-
-
-    public function loadModel()
-    {
-        $data = InfoMagister::find($this->modelId);
-        $this->proposito_magister = $data->proposito_magister;
-        $this->objetivo_magister = $data->objetivo_magister;
-        $this->descripcion_magister = $data->descripcion_magister;
-        $this->perfil_entrada_magister = $data->perfil_entrada_magister;
-        $this->regimen_magister = $data->regimen_magister;
-        $this->contacto_magister = $data->contacto_magister;
-        $this->costo_magister = $data->costo_magister;
-        $this->metodos_pagos_magister = $data->metodos_pagos_magister;
-        $this->beneficios_magister = $data->beneficios_magister;
-        $this->arancel_magister = $data->arancel_magister;
-
-        $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
-        $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
-    }
-
-
 
 
 
