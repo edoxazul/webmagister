@@ -286,7 +286,7 @@
                                                 <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
                                             <x-jet-input id="rut_academico" class="block w-full mt-1" type="text"
-                                                placeholder="Rut" wire:model="rut_academico" />
+                                                placeholder="12.345.678-9" wire:model="rut_academico" />
                                             @error('rut_academico') <span class="error">{{ $message }}</span> @enderror
 
                                         </div>

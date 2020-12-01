@@ -112,7 +112,9 @@ class InfoMag extends Component
     }
 
     public function update()
+
     {
+
         $this->validate();
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
