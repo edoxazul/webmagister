@@ -13,9 +13,8 @@ class CreateInfomagisterTable extends Migration
      */
     public function up()
     {
-        Schema::create('infomagister', function (Blueprint $table) {
+        Schema::create('info_magisters', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('proposito_magister')->require;
             $table->string('objetivo_magister')->require;
             $table->string('descripcion_magister')->require;
@@ -26,6 +25,7 @@ class CreateInfomagisterTable extends Migration
             $table->string('metodos_pagos_magister')->require;
             $table->string('beneficios_magister')->require;
             $table->string('arancel_magister')->require;
+            $table->timestamps();
         });
     }
 

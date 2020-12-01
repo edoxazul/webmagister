@@ -22,7 +22,6 @@
                                             wire:model="proposito_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
-                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="objetivo_magister"
@@ -33,7 +32,6 @@
                                             wire:model="objetivo_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
-                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="descripcion_magister"
@@ -44,7 +42,6 @@
                                             wire:model="descripcion_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
-                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="perfil_entrada_magister"
@@ -55,7 +52,6 @@
                                             wire:model="perfil_entrada_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
-                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="regimen_magister"
@@ -76,7 +72,6 @@
                                             wire:model="contacto_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
-                                </div>
 
                                <div class="col-span-6 sm:col-span-6">
                                     <label for="costo_magister"
@@ -86,7 +81,6 @@
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="costo_magister">
                                     </div>
-                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="metodos_pagos_magister"
@@ -97,7 +91,6 @@
                                             wire:model="metodos_pagos_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
-                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="beneficios_magister"
@@ -108,7 +101,6 @@
                                             wire:model="beneficios_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
-                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="arancel_magister"
@@ -119,7 +111,6 @@
                                             wire:model="arancel_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
-                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <div class="px-4 py-3 text-right bg-white sm:px-6">
@@ -132,7 +123,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

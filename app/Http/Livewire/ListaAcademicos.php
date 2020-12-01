@@ -51,6 +51,8 @@ class ListaAcademicos extends Component
         ]);
     }
 
+
+
     public function clear()
     {
         $this->search = '';
@@ -58,37 +60,12 @@ class ListaAcademicos extends Component
         $this->perPage = '5';
 
     }
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    public function crearAcademico()
-    {
-        $this->resetInputFields();
 
-    }
-
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    public function resetInputFields()
-    {
-
-
-        $this->nombre_academico = '';
-        $this->rut_academico = '';
-        $this->fecha_nacimiento = '';
-
-    }
 
     /**
      * The validation rules
      *
-     * @return void
+     * @return string[]
      */
     public function rules()
     {
@@ -98,7 +75,9 @@ class ListaAcademicos extends Component
             'fecha_nacimiento' => 'required',
             'grado_academico' => 'required',
             'correo' => 'required',
-            'estatus' => 'required'
+            'linkedin' => 'required'
+
+            // 'estatus' => 'required'
 
         ];
     }
@@ -129,6 +108,16 @@ class ListaAcademicos extends Component
     public function create()
     {
         $this->validate();
+            // 'nombre_academico' => 'required',
+            // 'rut_academico' => 'required',
+            // 'fecha_nacimiento' => 'required',
+            // 'grado_academico' => 'required',
+            // 'correo' => 'required',
+            // 'estatus' => 'required',
+            // 'likedin' => 'required'
+
+
+        // ]);
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         Academicos::create($this->modelData());

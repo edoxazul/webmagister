@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @method static create(array $modelData)
+ * @method static find($modelId)
+ * @method static where(string $string, bool $true)
+ */
 class Academicos extends Model
 {
     use HasFactory;
@@ -28,16 +33,6 @@ class Academicos extends Model
     ];
 
     //TODO:Se debe agregar las relaciones faltantes
-
-
-
-
-
-
-
-
-
-
 
 
 }

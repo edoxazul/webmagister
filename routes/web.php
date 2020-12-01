@@ -5,6 +5,8 @@ use App\Http\Livewire\ListaAcademicos;
 use App\Http\Livewire\ListaAlumnos;
 use App\Http\Livewire\ListaNoticias;
 use App\Http\Livewire\InfoMag;
+use App\Http\Livewire\ListaAcademicosPublico;
+
 
 
 /*
@@ -18,17 +20,26 @@ use App\Http\Livewire\InfoMag;
 |
 */
 
+
+//Publico
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/academic', function () {
+    return view('lista-academicos-publico',ListaAcademicosPublico::class);
+})->name('listaacademicospublico');
+
+//Administrador
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/register', function () {
-//     return view('auth.register');
-// })->name('register');
+Route::middleware(['auth:sanctum', 'verified'])->get('/register', function () {
+    return view('auth.register');
+})->name('register');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/academicos', function () {
 //     return view('academicos');
