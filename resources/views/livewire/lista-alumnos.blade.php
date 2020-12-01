@@ -258,7 +258,7 @@
 
                                 </div>
                                 <div class="col-span-6 mt-4 sm:col-span-3">
-                                    <x-jet-label for="linkedin" value="LinkedIn" />
+                                    <x-jet-label for="linkedin" value="LinkedIn (opcional)" />
                                     <x-jet-input id="linkedin" class="block w-full mt-1" type="text"
                                         wire:model.debounce.800ms="linkedin" />
 
