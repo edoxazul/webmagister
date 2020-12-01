@@ -54,7 +54,9 @@ class InfoMag extends Component
 
     public function render()
     {
-        return view('livewire.info-magister');
+        return view('livewire.info-magister',[
+            'infomag'=> InfoMagister::paginate()
+        ]);
     }
 
     public function rules()

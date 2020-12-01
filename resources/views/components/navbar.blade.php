@@ -45,6 +45,9 @@
                     <div class="flex space-x-4">
                         <a href="/"
                             class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Inicio</a>
+                            <a href="{{route('infomagisterpublico')}}"
+                            class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Información
+                            General</a>
                         <a href="{{route('listaacademicospublico')}}"
                             class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Cuerpo
                             Academico</a>
