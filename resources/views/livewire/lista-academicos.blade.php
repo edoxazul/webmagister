@@ -241,7 +241,7 @@
                             <x-jet-dialog-modal wire:model="modalFormVisible">
                                 <x-slot name="title">
                                     <div class="mx-auto text-center rounded-md">
-                                        @if($modelId)
+                                        @if ($modelId)
                                             Actualizar Academico
                                         @else
                                             Agregar Academico
@@ -272,98 +272,108 @@
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
-                                            <x-jet-label for="nombre_academico" value="Nombre" />
-                                            <label for="title" class="px-2 text-red-700">*</label>
+                                                <x-jet-label for="nombre_academico" value="Nombre" />
+                                                <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
-                                            <x-jet-input id="nombre_academico" class="block w-full mt-1" type="text" placeholder="Nombre del academico"
-                                                wire:model="nombre_academico"/>
-                                            @error('nombre_academico') <span class="error">{{ $message }}</span>@enderror
+                                            <x-jet-input id="nombre_academico" class="block w-full mt-1" type="text"
+                                                placeholder="Nombre del academico" wire:model="nombre_academico" />
+                                            @error('nombre_academico') <span
+                                                class="error">{{ $message }}</span>@enderror
                                         </div>
                                         <div class="col-span-6 mt-2 sm:col-span-3 form-group">
                                             <div class="flex">
-                                            <x-jet-label for="rut_academico" value="Rut"  />
-                                            <label for="title" class="px-2 text-red-700">*</label>
+                                                <x-jet-label for="rut_academico" value="Rut" />
+                                                <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
-                                            <x-jet-input id="rut_academico" class="block w-full mt-1" type="text" placeholder="Rut"
-                                                wire:model="rut_academico" />
+                                            <x-jet-input id="rut_academico" class="block w-full mt-1" type="text"
+                                                placeholder="Rut" wire:model="rut_academico" />
                                             @error('rut_academico') <span class="error">{{ $message }}</span> @enderror
 
                                         </div>
 
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
-                                            <x-jet-label for="fecha_nacimiento" value="Fecha de Nacimiento" />
-                                            <label for="title" class="px-2 text-red-700">*</label>
+                                                <x-jet-label for="fecha_nacimiento" value="Fecha de Nacimiento" />
+                                                <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
-                                            <x-jet-input id="fecha_nacimiento" class="block w-full mt-1" type="text" placeholder="2000/12/31"
-                                                wire:model="fecha_nacimiento" />
+                                            <x-jet-input id="fecha_nacimiento" class="block w-full mt-1 text-black" type="date" value="\Carbon\Carbon::now()"
+                                                placeholder="2000/12/31" wire:model="fecha_nacimiento" />
+                                                {{-- {{ Form::date('fecha_nacimiento', \Carbon\Carbon::now(), [''],null,['class' => 'wire:model="fecha_nacimiento"'])}} --}}
+
                                             @error('fecha_nacimiento') <span class="error">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
-                                            <x-jet-label for="grado_academico" value="Grado Academico" />
-                                            <label for="title" class="px-2 text-red-700">*</label>
+                                                <x-jet-label for="grado_academico" value="Grado Academico" />
+                                                <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
-                                            <x-jet-input id="grado_academico" class="block w-full mt-1" type="text" placeholder="Ej: Magister,Doctorado"
-                                                wire:models="grado_academico" />
-                                            @error('grado_academico') <span class="error">{{ $message }}</span> @enderror
+                                            <x-jet-input id="grado_academico" class="block w-full mt-1" type="text"
+                                                placeholder="Ej: Magister,Doctorado" wire:model="grado_academico" />
+                                            @error('grado_academico') <span class="error">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
-                                            <x-jet-label for="correo" value="Correo" />
-                                            <label for="title" class="px-2 text-red-700">*</label>
+                                                <x-jet-label for="correo" value="Correo" />
+                                                <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
-                                            <x-jet-input id="correo" class="block w-full mt-1" type="text" placeholder="Ej: user@email.com"
-                                                wire:model="correo" />
+                                            <x-jet-input id="correo" class="block w-full mt-1" type="text"
+                                                placeholder="Ej: user@email.com" wire:model="correo" />
                                             @error('correo') <span class="error">{{ $message }}</span> @enderror
                                         </div>
 
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
-                                            <x-jet-label for="proyecto" value="Proyecto" />
-                                            <label for="title" class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
+                                                <x-jet-label for="proyecto" value="Proyecto" />
+                                                <label for="title"
+                                                    class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
                                             </div>
-                                            <x-jet-input id="proyecto" class="block w-full mt-1" type="text" placeholder="Enlace al proyecto"
-                                                wire:model="proyecto" />
+                                            <x-jet-input id="proyecto" class="block w-full mt-1" type="text"
+                                                placeholder="Enlace al proyecto" wire:model="proyecto" />
                                             @error('proyecto') <span class="error">{{ $message }}</span> @enderror
                                         </div>
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
-                                            <x-jet-label for="publicaciones" value="Publicaciones"/>
-                                            <label for="title" class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
+                                                <x-jet-label for="publicaciones" value="Publicaciones" />
+                                                <label for="title"
+                                                    class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
                                             </div>
-                                            <x-jet-input id="publicaciones" class="block w-full mt-1" type="text" placeholder="Publicación"
-                                                wire:model="publicaciones" />
+                                            <x-jet-input id="publicaciones" class="block w-full mt-1" type="text"
+                                                placeholder="Publicación" wire:model="publicaciones" />
                                             @error('publicaciones') <span class="error">{{ $message }}</span> @enderror
 
 
                                         </div>
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
-                                            <x-jet-label for="linkedin" value="LinkedIn" />
-                                            <label for="title" class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
+                                                <x-jet-label for="linkedin" value="LinkedIn" />
+                                                <label for="title"
+                                                    class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
                                             </div>
-                                            <x-jet-input id="linkedin" class="block w-full mt-1" type="text" placeholder="LinkedIn"
-                                                wire:model="linkedin" />
-                                                @error('linkedin') <span class="error">{{ $message }}</span> @enderror
+                                            <x-jet-input id="linkedin" class="block w-full mt-1" type="text"
+                                                placeholder="LinkedIn" wire:model="linkedin" />
+                                            @error('linkedin') <span class="error">{{ $message }}</span> @enderror
 
                                         </div>
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
-                                            <label for="estatus" value="estatus" class="block text-sm font-medium text-gray-700">Estatus</label>
-                                            <label for="title" class="px-2 text-red-700">*</label>
+                                                <label for="estatus" value="estatus"
+                                                    class="block text-sm font-medium text-gray-700">Estatus</label>
+                                                <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
-                                                <x-jet-input id="estatus" class="block w-full mt-1" type="text" placeholder="Ej: Claustro,Colaborador,Visitante"
-                                                wire:model="estatus" />
+                                            <x-jet-input id="estatus" class="block w-full mt-1" type="text"
+                                                placeholder="Ej: Claustro,Colaborador,Visitante" wire:model="estatus" />
                                             @error('estatus') <span class="error">{{ $message }}</span> @enderror
 
 
-                                            {{-- <select id="estatus" type="text" wire:model="estatus"
+                                            {{-- <select id="estatus" type="text"
+                                                wire:model="estatus"
                                                 class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                 <option type="text" id="estatus" value="Claustro">Claustro</option>
                                                 <option type="text" id="estatus" value="Visitante">Visitante</option>
-                                                <option type="text" id="estatus" value="Colaborador">Colaborador</option>
+                                                <option type="text" id="estatus" value="Colaborador">Colaborador
+                                                </option>
                                             </select> --}}
                                         </div>
 
