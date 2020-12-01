@@ -8,8 +8,7 @@
 
     <div class="mt-10 sm:mt-5">
         <div class="mt-5 md:mt-0 md:col-span-2">
-            <form wire:submit.prevent="create" action="/create" method="POST" class="w-full">
-                @csrf
+            <form wire:submit.prevent="submitForm" class="w-full">
                 <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div class="overflow-hidden shadow sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
@@ -20,7 +19,7 @@
                                     <div class="mt-2">
                                         <textarea id="proposito_magister" name="proposito_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            wire:model.debounce.800ms="proposito_magister"
+                                            wire:model="proposito_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
                                 </div>
@@ -31,7 +30,7 @@
                                     <div class="mt-2">
                                         <textarea id="objetivo" name="objetivo" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            wire:model.debounce.800ms="objetivo_magister"
+                                            wire:model="objetivo_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
                                 </div>
@@ -42,7 +41,7 @@
                                     <div class="mt-2">
                                         <textarea id="descripcion_magister" name="descripcion_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            wire:model.debounce.800ms="descripcion_magister"
+                                            wire:model="descripcion_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
                                 </div>
@@ -53,19 +52,19 @@
                                     <div class="mt-2">
                                         <textarea id="perfil_entrada_magister" name="perfil_entrada_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            wire:model.debounce.800ms="perfil_entrada_magister"
+                                            wire:model="perfil_entrada_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
-                                    <label for="regimen_magister" class="block text-sm font-medium text-gray-700">Régimen magíster</label>
-                                    <select id="regimen_magister" name="regimen_magister" autocomplete="regimen_magister"
-                                        class="block px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                        wire:model.debounce.800ms="regimen_magister">
-                                        <option>Diurno</option>
-                                        <option>Vespertino</option>
-                                    </select>
+                                    <label for="regimen_magister"
+                                        class="block text-sm font-medium text-gray-700">Regimen magíster</label>
+                                    <div class="mt-2">
+                                        <input id="regimen_magister" name="regimen_magister" rows="3"
+                                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                            wire:model="regimen_magister">
+                                    </div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
@@ -74,7 +73,7 @@
                                     <div class="mt-2">
                                         <textarea id="contacto_magister" name="contacto_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            wire:model.debounce.800ms="contacto_magister"
+                                            wire:model="contacto_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
                                 </div>
@@ -85,7 +84,7 @@
                                     <div class="mt-2">
                                         <input id="costo_magister" name="costo_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            wire:model.debounce.800ms="costo_magister">
+                                            wire:model="costo_magister">
                                     </div>
                                 </div>
 
@@ -95,7 +94,7 @@
                                     <div class="mt-2">
                                         <textarea id="metodos_pagos_magister" name="metodos_pagos_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            wire:model.debounce.800ms="metodos_pagos_magister"
+                                            wire:model="metodos_pagos_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
                                 </div>
@@ -106,7 +105,7 @@
                                     <div class="mt-2">
                                         <textarea id="beneficios_magister" name="beneficios_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            wire:model.debounce.800ms="beneficios_magister"
+                                            wire:model="beneficios_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
                                 </div>
@@ -117,18 +116,17 @@
                                     <div class="mt-2">
                                         <textarea id="arancel_magister" name="arancel_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            wire:model.debounce.800ms="arancel_magister"
+                                            wire:model="arancel_magister"
                                             placeholder="you@example.com"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
-                                <div class="px-4 py-3 text-right bg-white sm:px-6">
-                                    <button type="submit"
-                                        class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        Guardar
-                                    </button>
-                                </div>
+                                    <div class="px-4 py-3 text-right bg-white sm:px-6">
+                                        <button wire:click.prevent="submitForm" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            Guardar
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -137,8 +135,4 @@
             </form>
         </div>
     </div>
-</div>
-</div>
-</div>
-
 </div>

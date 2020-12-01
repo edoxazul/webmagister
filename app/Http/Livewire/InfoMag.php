@@ -14,12 +14,41 @@ class InfoMag extends Component
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
 
-    public function render()
+    public function submitForm()
     {
-        return view('livewire.info-magister');
+        $this->validate([
+            'proposito_magister' => 'required',
+            'objetivo_magister' => 'required',
+            'descripcion_magister' => 'required',
+            'perfil_entrada_magister' => 'required',
+            'regimen_magister' => 'required',
+            'contacto_magister' => 'required',
+            'costo_magister' => 'required',
+            'metodos_pagos_magister' => 'required',
+            'beneficios_magister' => 'required',
+            'arancel_magister' => 'required'
+        ]);
+        InfoMagister::create([
+            'proposito_magister' => 'required',
+            'objetivo_magister' => 'required',
+            'descripcion_magister' => 'required',
+            'perfil_entrada_magister' => 'required',
+            'regimen_magister' => 'required',
+            'contacto_magister' => 'required',
+            'costo_magister' => 'required',
+            'metodos_pagos_magister' => 'required',
+            'beneficios_magister' => 'required',
+            'arancel_magister' => 'required'
+        ]);
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        $this->success = '¡Información agregada!';
     }
+/***
+ *
+ *
 
-    public function create()
+  public function create()
     {
         $this->validate();
         $this->unassignDefaultHomePage();
@@ -28,6 +57,12 @@ class InfoMag extends Component
        // $this->modalFormVisible = false;
         $this->success = '¡Información agregada!';
         //$this->reset();
+    }
+ */
+
+    public function render()
+    {
+        return view('livewire.info-magister');
     }
 
     public function rules()
