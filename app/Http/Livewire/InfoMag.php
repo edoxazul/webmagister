@@ -72,13 +72,6 @@ class InfoMag extends Component
             'metodos_pagos_magister' => 'required',
             'beneficios_magister' => 'required',
             'arancel_magister' => 'required',
-            'nombre_alumno'  => 'required',
-            'rut_alumno'  => 'required',
-            'nombre_pregrado_alumno'  => 'required',
-            'nombre_institucion_alumno'  => 'required',
-            'contacto_alumno'  => 'required',
-            'anio_ingreso'  => 'required',
-            'estatus_alumno'  => 'required',
         ];
     }
 
@@ -165,7 +158,6 @@ class InfoMag extends Component
         'metodos_pagos_magister.required' => 'El campo métodos de pago es obligatorio',
         'beneficios_magister.required' => 'El campo beneficios y facilidades es obligatorio',
         'arancel_magister.required' => 'El campo aranceles es obligatorio',
-        'nombre_alumno.required'  => 'El campo nombre es obligatorio',
     ];
 
 /**
