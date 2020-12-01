@@ -5,7 +5,6 @@
             {{ __('Información General') }}
         </h2>
     </x-slot>
-
     <div class="mt-10 sm:mt-5">
         <div class="mt-5 md:mt-0 md:col-span-2">
             <form wire:submit.prevent="submitForm" class="w-full">
@@ -20,7 +19,11 @@
                                         <textarea id="proposito_magister" name="proposito_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="proposito_magister"
-                                            placeholder="you@example.com"></textarea>
+                                            placeholder="Propósito del magíster."></textarea>
+                                            @error('proposito_magister') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+
+                                    <div class="mt-2">
                                     </div>
 
                                 <div class="col-span-6 sm:col-span-6">
@@ -30,87 +33,141 @@
                                         <textarea id="objetivo" name="objetivo" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="objetivo_magister"
-                                            placeholder="you@example.com"></textarea>
+                                            placeholder="Objetivo del magíster."></textarea>
+                                            @error('objetivo_magister') <span class="error">{{ $message }}</span> @enderror
+
+                                    </div>
+
+                                    <div class="mt-2">
                                     </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="descripcion_magister"
-                                        class="block text-sm font-medium text-gray-700">Descripción</label>
+                                        class="block font-medium text-gray-700 text-m">Descripción</label>
                                     <div class="mt-2">
                                         <textarea id="descripcion_magister" name="descripcion_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="descripcion_magister"
-                                            placeholder="you@example.com"></textarea>
+                                            placeholder="Descripción del magíster"></textarea>
+                                            @error('descripcion_magister') <span class="error">{{ $message }}</span> @enderror
+
                                     </div>
+
+                                </div>
+
+                                <div class="mt-2">
+                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="perfil_entrada_magister"
-                                        class="block text-sm font-medium text-gray-700">Perfil de entrada</label>
+                                        class="block font-medium text-gray-700 text-m">Perfil de entrada</label>
                                     <div class="mt-2">
                                         <textarea id="perfil_entrada_magister" name="perfil_entrada_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="perfil_entrada_magister"
-                                            placeholder="you@example.com"></textarea>
+                                            placeholder="Perfil de entrada del alumno para el magíster."></textarea>
+                                            @error('perfil_entrada_magister') <span class="error">{{ $message }}</span> @enderror
+
                                     </div>
+
+                                    <div class="mt-2">
+                                    </div>
+
+                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="regimen_magister"
-                                        class="block text-sm font-medium text-gray-700">Regimen magíster</label>
+                                        class="block font-medium text-gray-700 text-m">Regimen magíster</label>
                                     <div class="mt-2">
                                         <input id="regimen_magister" name="regimen_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            wire:model="regimen_magister">
+                                            wire:model="regimen_magister"
+                                            placeholder="Régimen del magíster: Diurno o Vespertino."></textarea>
+                                            @error('regimen_magister') <span class="error">{{ $message }}</span> @enderror
                                     </div>
+                                </div>
+
+                                <div class="mt-2">
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="contacto_magister"
-                                        class="block text-sm font-medium text-gray-700">Contacto magíster</label>
+                                        class="block font-medium text-gray-700 text-m">Información de contacto</label>
                                     <div class="mt-2">
                                         <textarea id="contacto_magister" name="contacto_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="contacto_magister"
-                                            placeholder="you@example.com"></textarea>
+                                            placeholder="Información de contacto del magíster"></textarea>
+                                            @error('contacto_magister') <span class="error">{{ $message }}</span> @enderror
                                     </div>
+
+                                </div>
+
+                                <div class="mt-2">
+                                </div>
 
                                <div class="col-span-6 sm:col-span-6">
                                     <label for="costo_magister"
-                                        class="block text-sm font-medium text-gray-700">Costo magíster</label>
+                                        class="block font-medium text-gray-700 text-m">Costo magíster</label>
                                     <div class="mt-2">
                                         <input id="costo_magister" name="costo_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            wire:model="costo_magister">
+                                            wire:model="costo_magister"
+                                            placeholder="Información referente a los costos del magíster"></textarea>
+                                            @error('costo_magister') <span class="error">{{ $message }}</span> @enderror
                                     </div>
+
+                               </div>
+
+                               <div class="mt-2">
+                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="metodos_pagos_magister"
-                                        class="block text-sm font-medium text-gray-700">Métodos de pago</label>
+                                        class="block font-medium text-gray-700 text-m">Métodos de pago</label>
                                     <div class="mt-2">
                                         <textarea id="metodos_pagos_magister" name="metodos_pagos_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="metodos_pagos_magister"
-                                            placeholder="you@example.com"></textarea>
+                                            placeholder="Información referente a los métodos de pagos"></textarea>
+                                            @error('metodos_pagos_magister') <span class="error">{{ $message }}</span> @enderror
                                     </div>
+
+                                </div>
+
+                                <div class="mt-2">
+                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="beneficios_magister"
-                                        class="block text-sm font-medium text-gray-700">Beneficios y facilidades</label>
+                                        class="block font-medium text-gray-700 text-m">Beneficios y facilidades</label>
                                     <div class="mt-2">
                                         <textarea id="beneficios_magister" name="beneficios_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="beneficios_magister"
-                                            placeholder="you@example.com"></textarea>
+                                            placeholder="Información referente a los beneficios y facilidades de pago"></textarea>
+                                            @error('beneficios_magister') <span class="error">{{ $message }}</span> @enderror
                                     </div>
+
+                                </div>
+                                <div class="mt-2">
+                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="arancel_magister"
-                                        class="block text-sm font-medium text-gray-700">Arancel</label>
+                                        class="block font-medium text-gray-700 text-m">Arancel</label>
                                     <div class="mt-2">
                                         <textarea id="arancel_magister" name="arancel_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="arancel_magister"
-                                            placeholder="you@example.com"></textarea>
+                                            placeholder="Información referente a los aranceles"></textarea>
+                                            @error('arancel_magister') <span class="error">{{ $message }}</span> @enderror
                                     </div>
+
+                                </div>
+
+                                <div class="mt-2">
+                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <div class="px-4 py-3 text-right bg-white sm:px-6">

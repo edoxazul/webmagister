@@ -26,17 +26,10 @@ class ListaAcademicosPublico extends Component
             'academicos' => Academicos::where('nombre_academico','like','%' . trim($this->search) . '%')
             ->paginate()
         ])
-
         ->layout('layouts.guest');
 
 
     }
-
-
-
-
-
-
 
 
 
