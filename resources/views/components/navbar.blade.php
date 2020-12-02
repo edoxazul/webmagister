@@ -44,15 +44,15 @@
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
                         <a href="/"
-                            class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Inicio</a>
-                            <a href="{{route('infomagisterpublico')}}"
-                            class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Información
+                            class="px-3 py-2 text-sm font-medium text-white rounded-md hover:text-white hover:bg-gray-700">Inicio</a>
+                        <a href="{{ route('infomagisterpublico') }}"
+                            class="px-3 py-2 text-sm font-medium text-white rounded-md hover:text-white hover:bg-gray-700">Información
                             General</a>
-                        <a href="{{route('listaacademicospublico')}}"
-                            class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Cuerpo
+                        <a href="{{ route('listaacademicospublico') }}"
+                            class="px-3 py-2 text-sm font-medium text-white rounded-md hover:text-white hover:bg-gray-700">Cuerpo
                             Academico</a>
-                            <a href="{{route('listaalumnospublico')}}"
-                            class="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Alumnos</a>
+                        <a href="{{ route('listaalumnospublico') }}"
+                            class="px-3 py-2 text-sm font-medium text-white rounded-md hover:text-white hover:bg-gray-700">Alumnos</a>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
 
                 <div class="absolute flex sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     @guest
-                        <div class="hidden space-x-4 bg-gray-900 sm:-my-px sm:ml-10 sm:flex">
+                        <div class="hidden space-x-4 bg-gray-900 sm:flex sm:-my-px sm:ml-10 ">
                             <a class="inline-flex items-center justify-center px-4 py-2 ml-4 text-base font-medium text-white bg-gray-700 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-gray-900"
                                 href="{{ route('login') }}" :active="request()->routeIs('login')">
                                 {{ __('Login') }}
@@ -68,15 +68,15 @@
                         </div>
                     @endguest
                     @auth
-                        <a class="inline-flex items-center justify-center px-4 py-2 ml-4 text-base font-medium text-white bg-gray-700 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-gray-900"
+                    <div class="hidden px-1 bg-gray-900 sm:flex sm:-my-px sm:ml-10 ">
+                        <a class="items-center justify-center px-4 py-2 ml-4 text-base font-medium text-white bg-gray-700 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-gray-900"
                             href="{{ url('/dashboard') }}">Dashboard</a>
-                    @endauth
 
-                    @auth
                         <a class="inline-flex items-center justify-center px-4 py-2 ml-4 text-base font-medium text-white bg-gray-700 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-gray-900"
                             href="{{ route('register') }}" :active="request()->routeIs('register')">
                             Registrar Usuario
                         </a>
+                    </div>
                     @endauth
 
                 </div>
@@ -93,14 +93,15 @@
 
     <div id="nav-content" class="hidden sm:hidden">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="#" class="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md">Inicio</a>
             <a href="#"
-                class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Cuerpo
-                Academico</a>
-            <a href="#"
-                class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Projects</a>
-            <a href="#"
-                class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Calendar</a>
+                class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Inicio</a>
+            <a href="{{ route('infomagisterpublico') }}"
+                class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Información
+                General</a>
+            <a href="{{ route('listaacademicospublico') }}"
+                class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Cuerpo Academico</a>
+            <a href="{{ route('listaalumnospublico') }}"
+                class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Alumnos</a>
             @auth
                 <a class="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md"
                     href="{{ url('/dashboard') }}">
