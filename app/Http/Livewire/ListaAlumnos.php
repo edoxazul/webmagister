@@ -87,10 +87,10 @@ class ListaAlumnos extends Component
     {
         return [
             'nombre_alumno' => 'required',
-            'rut_alumno' => 'required',
+            'rut_alumno' => 'required|unique:alumnos|cl_rut',
             'nombre_pregrado_alumno' => 'required',
             'nombre_institucion_alumno' => 'required',
-            'contacto_alumno' => 'required',
+            'contacto_alumno' => 'required|unique:alumnos',
             'estatus_alumno' => 'required',
             'anio_ingreso' => 'required',
 
@@ -155,7 +155,17 @@ class ListaAlumnos extends Component
      */
     public function update()
     {
-        $this->validate();
+        $this->validate(
+            [
+                'nombre_alumno' => 'required',
+                'rut_alumno' => 'required|unique:alumnos,rut_alumno,'.$this->modelId.'|cl_rut',
+                'nombre_pregrado_alumno' => 'required',
+                'nombre_institucion_alumno' => 'required',
+                'contacto_alumno' => 'required|unique:alumnos,contacto_alumno,'.$this->modelId.'',
+                'anio_ingreso' => 'required',
+                'estatus_alumno' => 'required'
+            ]
+        );
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         Alumnos::find($this->modelId)->update($this->modelData());
@@ -235,9 +245,12 @@ class ListaAlumnos extends Component
     protected  $messages =[
         'nombre_alumno.required'  => 'El campo nombre es obligatorio',
         'rut_alumno.required'  => 'El campo rut es obligatorio',
+        'rut_alumno.unique' => 'El rut ya existe',
+        'rut_alumno.cl_rut' => 'El campo del rut no es valido',
         'nombre_pregrado_alumno.required'  => 'El campo carrera es obligatorio',
         'nombre_institucion_alumno.required'  => 'El campo institucion es obligatorio',
         'contacto_alumno.required'  => 'El campo correo es obligatorio',
+        'contacto_alumno.unique' => 'El correo ya fue registrado anteriormente',
         'anio_ingreso.required'  => 'El campo año de ingreso es obligatorio',
         'estatus_alumno.required'  => 'El campo estado es obligatorio',
     ];

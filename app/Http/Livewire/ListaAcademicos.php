@@ -87,7 +87,7 @@ class ListaAcademicos extends Component
         'nombre_academico.required' => 'El campo del nombre es obligatorio',
         'rut_academico.required' => 'El campo del rut es obligatorio',
         'rut_academico.unique' => 'El rut ya existe',
-        'rut_academico.cl_rut' => 'El campo del rut es no es valido',
+        'rut_academico.cl_rut' => 'El campo del rut no es valido',
         'fecha_nacimiento.required' => 'La fecha de nacimiento es obligatoria',
         'grado_academico.required' => 'El campo de grado academico es obligatorio',
         'correo.required' => 'El campo de correo es obligatorio',
