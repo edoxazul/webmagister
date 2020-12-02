@@ -11,24 +11,24 @@ use Livewire\WithPagination;
 class ListaAcademicosPublico extends Component
 {
 
-    public $search= '';
-    public $page='1';
-    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$grado_academico,$estatus,$proyecto,$publicaciones,$user_id,$linkedin;
-
-
-
-
-
+    public $estatus= '';
+    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$grado_academico,$proyecto,$publicaciones,$user_id,$linkedin;
 
     public function render()
     {
-        return view('lista-academicos-publico',[
-            'academicos' => Academicos::where('nombre_academico','like','%' . trim($this->search) . '%')
+        return view('livewire.lista-academicos-publico',[
+            'academicos' => Academicos::where('estatus','LIKE',"%{$this->estatus}%")
             ->paginate()
         ])
         ->layout('layouts.guest');
 
 
+    }
+
+
+    public function clear()
+    {
+        $this->estatus='';
     }
 
 
