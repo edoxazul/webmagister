@@ -7,12 +7,12 @@
     </x-slot>
     <div class="mt-10 sm:mt-5">
         <div class="mt-5 md:mt-0 md:col-span-2">
-            <form wire:submit.prevent="submitForm" class="w-full">
+            {{-- <form wire:submit.prevent="submitForm" class="w-full"> --}}
                 <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div class="overflow-hidden shadow sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="grid grid-cols-6 gap-6">
-                                @foreach ($infomag as $infomag)
+                                {{-- @foreach ($infomag as $infomag) --}}
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="proposito_magister"
                                         class="block font-medium text-gray-700 text-m">Propósito</label>
@@ -173,16 +173,17 @@
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <div class="px-4 py-3 text-right bg-white sm:px-6">
-                                        <button wire:click="update({{ $infomag->id }})" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        <button wire:click="submitForm" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                             Guardar
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                        {{-- @endforeach --}}
                     </div>
                 </div>
+            {{-- </form> --}}
             </div>
         </div>
     </div>
