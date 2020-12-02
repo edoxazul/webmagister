@@ -71,7 +71,7 @@
                                                 Rut Academico
                                             </th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                                                class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                                                 Grado Academico
                                             </th>
                                             <th scope="col"
@@ -91,7 +91,7 @@
                                                 LinkedIn
                                             </th>
                                             <th scope="col"
-                                                class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                                                 Opciones
                                             <th scope="col" class="px-2 py-3 bg-gray-50">
                                                 <span class="sr-only">Editar</span>
@@ -142,7 +142,7 @@
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">
+                                                    <div class="block text-sm text-gray-900">
                                                         {{ $academico->rut_academico }}
                                                     </div>
                                                 </td>
@@ -314,10 +314,16 @@
                                                 <x-jet-label for="grado_academico" value="Grado Academico" />
                                                 <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
-                                            <x-jet-input id="grado_academico" class="block w-full mt-1" type="text"
-                                                placeholder="Ej: Magister,Doctorado" wire:model="grado_academico" />
-                                            @error('grado_academico') <span class="error">{{ $message }}</span>
-                                            @enderror
+                                            {{-- <x-jet-input id="grado_academico" class="block w-full mt-1" type="text"
+                                                placeholder="Ej: Magister,Doctorado" wire:model="grado_academico" /> --}}
+                                            <select id="grado_academico" type="text" wire:model="grado_academico"
+                                                class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
+                                                <option class="text-gray-700" value="Bachiller">Bachiller</option>
+                                                <option class="text-gray-700" value="Licenciado">Licenciado</option>
+                                                <option class="text-gray-700" value="Magíster">Magíster</option>
+                                                <option class="text-gray-700" value="Doctorado">Doctorado</option>
+                                            </select>
+                                            @error('grado_academico') <span class="error">{{ $message }}</span>@enderror
                                         </div>
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
@@ -368,19 +374,26 @@
                                                     class="block text-sm font-medium text-gray-700">Estatus</label>
                                                 <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
-                                            <x-jet-input id="estatus" class="block w-full mt-1" type="text"
-                                                placeholder="Ej: Claustro,Colaborador,Visitante" wire:model="estatus" />
+                                            {{-- <x-jet-input id="estatus" class="block w-full mt-1" type="text"
+                                                placeholder="Ej: Claustro,Colaborador,Visitante" wire:model="estatus" /> --}}
+
+                                            <select id="estatus" type="text" wire:model="estatus"
+                                                class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
+                                                <option class="text-gray-700" value="Claustro">Claustro</option>
+                                                <option class="text-gray-700" value="Visitante">Visitante</option>
+                                                <option class="text-gray-700" value="Colaborador">Colaborador</option>
+                                            </select>
                                             @error('estatus') <span class="error">{{ $message }}</span> @enderror
 
 
-                                            {{-- <select id="estatus" type="text"
-                                                wire:model="estatus"
-                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                <option type="text" id="estatus" value="Claustro">Claustro</option>
-                                                <option type="text" id="estatus" value="Visitante">Visitante</option>
-                                                <option type="text" id="estatus" value="Colaborador">Colaborador
-                                                </option>
-                                            </select> --}}
+                                            {{-- <div class="mt-1 ml-6 rounded-md shadow-sm form-input">
+                                                <select wire:model='perPage' class="text-sm text-gray-500 outline-none">
+                                                    <option value="5"> 5 por página</option>
+                                                    <option value="10"> 10 por página</option>
+                                                    <option value="15"> 15 por página</option>
+                                                </select>
+                                            </div> --}}
+
                                         </div>
 
                                     </div>
