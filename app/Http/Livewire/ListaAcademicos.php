@@ -71,23 +71,27 @@ class ListaAcademicos extends Component
     {
         return [
             'nombre_academico' => 'required',
-            'rut_academico' => 'required',
+            'rut_academico' => 'required|unique:academicos|cl_rut',
             'fecha_nacimiento' => 'required',
             'grado_academico' => 'required',
-            'correo' => 'required',
+            'correo' => 'required|unique:academicos',
             'estatus' => 'required'
 
             // 'estatus' => 'required'
 
         ];
+
     }
 
     protected  $messages =[
         'nombre_academico.required' => 'El campo del nombre es obligatorio',
         'rut_academico.required' => 'El campo del rut es obligatorio',
+        'rut_academico.unique' => 'El rut ya existe',
+        'rut_academico.cl_rut' => 'El campo del rut es no es valido',
         'fecha_nacimiento.required' => 'La fecha de nacimiento es obligatoria',
         'grado_academico.required' => 'El campo de grado academico es obligatorio',
         'correo.required' => 'El campo de correo es obligatorio',
+        'correo.unique' => 'El correo ya fue registrado anteriormente',
         'estatus.required' => 'El estatus es obligatorio'
     ];
 
@@ -155,7 +159,17 @@ class ListaAcademicos extends Component
      */
     public function update()
     {
-        $this->validate();
+        $this->validate(
+            [
+            'nombre_academico' => 'required',
+            'rut_academico' => 'required|unique:academicos,rut_academico,'.$this->modelId.'|cl_rut',
+            'fecha_nacimiento' => 'required',
+            'grado_academico' => 'required',
+            'correo' => 'required|unique:academicos,correo,'.$this->modelId.'',
+            'estatus' => 'required'
+            ]
+        );
+
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         Academicos::find($this->modelId)->update($this->modelData());

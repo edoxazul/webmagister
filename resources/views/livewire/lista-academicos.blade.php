@@ -67,7 +67,7 @@
                                                 Nombre Academico
                                             </th>
                                             <th scope="col"
-                                                class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                                                 Rut Academico
                                             </th>
                                             <th scope="col"
@@ -285,8 +285,11 @@
                                                 <x-jet-label for="rut_academico" value="Rut" />
                                                 <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
+                                            {{--
                                             <x-jet-input id="rut_academico" class="block w-full mt-1" type="text"
                                                 placeholder="12.345.678-9" wire:model="rut_academico" />
+                                            --}}
+                                            <x-jet-input class="block w-full mt-1 text-black" wire:model="rut_academico" placeholder="12345678-9" id="rut" oninput="checkRut(this)" required="" name="rut_academico" type="text"/>
                                             @error('rut_academico') <span class="error">{{ $message }}</span> @enderror
 
                                         </div>
@@ -296,9 +299,12 @@
                                                 <x-jet-label for="fecha_nacimiento" value="Fecha de Nacimiento" />
                                                 <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
-                                            <x-jet-input id="fecha_nacimiento" class="block w-full mt-1 text-black" type="date" value="\Carbon\Carbon::now()"
-                                                placeholder="2000/12/31" wire:model="fecha_nacimiento" />
-                                                {{-- {{ Form::date('fecha_nacimiento', \Carbon\Carbon::now(), [''],null,['class' => 'wire:model="fecha_nacimiento"'])}} --}}
+                                            <x-jet-input id="fecha_nacimiento" class="block w-full mt-1 text-black"
+                                                type="date" value="\Carbon\Carbon::now()" placeholder="2000/12/31"
+                                                wire:model="fecha_nacimiento" />
+                                            {{--
+                                            {{ Form::date('fecha_nacimiento', \Carbon\Carbon::now(), [''], null, ['class' => 'wire:model="fecha_nacimiento"']) }}
+                                            --}}
 
                                             @error('fecha_nacimiento') <span class="error">{{ $message }}</span>
                                             @enderror
@@ -423,3 +429,52 @@
 
 
 </div>
+
+
+<script>
+    function checkRut(rut) {
+        // Despejar Puntos
+        var valor = rut.value.replace('.', '');
+        // Despejar Guión
+        valor = valor.replace('-', '');
+        // Aislar Cuerpo y Dígito Verificador
+        cuerpo = valor.slice(0, -1);
+        dv = valor.slice(-1).toUpperCase();
+        // Formatear RUN
+        rut.value = cuerpo + '-' + dv
+        // Si no cumple con el mínimo ej. (n.nnn.nnn)
+        if (cuerpo.length < 7) {
+            rut.setCustomValidity("RUT Incompleto");
+            return false;
+        }
+        // Calcular Dígito Verificador
+        suma = 0;
+        multiplo = 2;
+        // Para cada dígito del Cuerpo
+        for (i = 1; i <= cuerpo.length; i++) {
+            // Obtener su Producto con el Múltiplo Correspondiente
+            index = multiplo * valor.charAt(cuerpo.length - i);
+            // Sumar al Contador General
+            suma = suma + index;
+            // Consolidar Múltiplo dentro del rango [2,7]
+            if (multiplo < 7) {
+                multiplo = multiplo + 1;
+            } else {
+                multiplo = 2;
+            }
+        }
+        // Calcular Dígito Verificador en base al Módulo 11
+        dvEsperado = 11 - (suma % 11);
+        // Casos Especiales (0 y K)
+        dv = (dv == 'K') ? 10 : dv;
+        dv = (dv == 0) ? 11 : dv;
+        // Validar que el Cuerpo coincide con su Dígito Verificador
+        if (dvEsperado != dv) {
+            rut.setCustomValidity("RUT Inválido");
+            return false;
+        }
+        // Si todo sale bien, eliminar errores (decretar que es válido)
+        rut.setCustomValidity('');
+    }
+
+</script>
