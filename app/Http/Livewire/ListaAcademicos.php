@@ -27,8 +27,10 @@ class ListaAcademicos extends Component
     public $modelId;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
+    public $estatus ='Claustro';
+    public $grado_academico='Magíster';
 
-    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$grado_academico,$estatus,$proyecto,$publicaciones,$user_id,$linkedin;
+    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$proyecto,$publicaciones,$user_id,$linkedin;
 
     // /**
     //  * The livewire mount function
@@ -128,8 +130,6 @@ class ListaAcademicos extends Component
             // 'correo' => 'required',
             // 'estatus' => 'required',
             // 'likedin' => 'required'
-
-
         // ]);
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();

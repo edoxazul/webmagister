@@ -4,6 +4,14 @@
 
 
         <div class="flex flex-wrap -mx-1 lg:-mx-4">
+            <div class="mt-1 ml-6 rounded-md shadow-sm form-input">
+                <select wire:model='estatus' class="text-sm text-gray-700 outline-none">
+                    <option value="Claustro">Claustro</option>
+                    <option value="Colaborador">Colaborador</option>
+                    <option value="Visitante">Visitante</option>
+                </select>
+            </div>
+            <button wire:click="clear" class="block mt-1 ml-3 rounded-md shadow-sm form-input"> X </button>
 
             <!-- Article -->
             <!-- Column -->
