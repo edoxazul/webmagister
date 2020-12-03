@@ -1,14 +1,21 @@
 <div>
+
+    <div class="flex w-full px-2 mx-auto bg-gray-300 rounded-md max-w-7xl sm:px-6 lg:px-8">
+        <div class="relative flex items-center justify-center w-full h-16">
+            <h2 class="justify-center w-full text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                Información General
+            </h2>
+
+        </div>
+    </div>
+
     <div class="container px-4 mx-auto my-12 md:px-12">
 
-        <div class="flex flex-wrap -mx-1 lg:-mx-4">
-            <h1 class="w-full">Información General</h1>
-        </div>
             <p>
             </p>
             <p>
             </p>
-                <h2 style="text-align: justify;">Propósito</h2>
+            <h1 class="w-full">Propósito</h1>
                 <p>
                 <h3 style="text-align: justify;">
                     El Programa de Magíster en Ingeniería Informática está dirigido a todos aquellos licenciados y/o ingenieros de la especialidad y profesiones afines que tengan inquietudes de perfeccionamiento en el área, y cuyo propósito sea desarrollar investigación básica y/o aplicada. Es también una alternativa para los actuales alumnos de las carreras de Ingeniería de Ejecución y Civil en Computación e Informática de la UCN, que deseen obtener el grado de magíster.
@@ -17,7 +24,7 @@
     </div>
 
     <div class="container px-4 mx-auto my-12 md:px-12">
-                <h2 style="text-align: justify;">Objetivo</h2>
+            <h1 class="w-full">Objetivo</h1>
                 <p>
                 <h3 style="text-align: justify;">
                     El objetivo del programa de Magíster en Ingeniería Informática es la formación de graduados de alto nivel,
@@ -28,7 +35,7 @@
     </div>
 
     <div class="container px-4 mx-auto my-12 md:px-12">
-                <h2 style="text-align: justify;">Descripción</h2>
+                <h1 class="w-full">Descripción</h1>
                 <p>
                 <h3 style="text-align: justify;">
                     El Magíster en Ingeniería Informática ofrece una sólida formación en tres áreas del conocimiento: Ingeniería de Software, Ingeniería de Datos y del Conocimiento y Automatización y Robótica, todas ligadas directamente a las líneas de investigación definidas en la unidad.
@@ -41,7 +48,7 @@
     </div>
 
     <div class="container px-4 mx-auto my-12 md:px-12">
-        <h2 style="text-align: justify;">Contacto</h2>
+        <h1 class="w-full">Contacto</h1>
         <p>
         <h3 style="text-align: justify;">
             Director: Claudio Meneses Villegas
