@@ -16,6 +16,8 @@ class InfoMag extends Component
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
 
+    public $first_row;
+
     public function submitForm()
     {
         $this->validate([
@@ -54,10 +56,22 @@ class InfoMag extends Component
 
     public function render()
     {
+        //funciona
+        // return view('livewire.info-magister',[
+        //     'infomag'=> InfoMagister::paginate()
+        // ]);
+
         return view('livewire.info-magister',[
             'infomag'=> InfoMagister::paginate()
         ]);
     }
+
+    // public function getfirstrow($id){
+    //     $first_row = InfoMagister::where('id', '1')
+    //                     ->latest('updated_at')
+    //                     ->first();
+    //     return $first_row;
+    // }
 
     public function rules()
     {
@@ -112,19 +126,26 @@ class InfoMag extends Component
     }
 
     public function update()
-
     {
-
-        $this->validate();
+        // $this->validate();
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         InfoMagister::find($this->modelId)->update($this->modelData());
         $this->modalFormVisible = false;
     }
 
+    // public function update($modelId)
+    // {
+    //     $this->validate();
+    //     $this->unassignDefaultHomePage();
+    //     $this->unassignDefaultNotFoundPage();
+    //     InfoMagister::find($this->modelId)->update($this->modelData()->first());
+    //     $this->modalFormVisible = false;
+    // }
+
     public function updateShowModal($id)
     {
-        $this->resetValidation();
+        // $this->resetValidation();
         $this->reset();
         $this->modelId = $id;
         $this->modalFormVisible = true;

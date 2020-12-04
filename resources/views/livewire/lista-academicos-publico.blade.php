@@ -3,7 +3,7 @@
     <div class="flex w-full px-2 mx-auto bg-gray-300 rounded-md max-w-7xl sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-center w-full h-16">
             <h2 class="justify-center w-full text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-                Cuerpo Academico
+                Cuerpo Académico
             </h2>
 
             <div class="flex flex-col mt-1 sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6">
