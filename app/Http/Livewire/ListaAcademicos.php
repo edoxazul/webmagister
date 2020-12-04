@@ -22,7 +22,7 @@ class ListaAcademicos extends Component
     ];
 
     public $search= '';
-    public $perPage= '5';
+    public $perPage= '10';
     public $page='1';
     public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
@@ -81,7 +81,7 @@ class ListaAcademicos extends Component
     {
         $this->search = '';
         $this->page = '1';
-        $this->perPage = '5';
+        $this->perPage = '10';
 
     }
 
@@ -100,7 +100,7 @@ class ListaAcademicos extends Component
             'grado_academico' => 'required',
             'correo' => 'required|unique:academicos',
             'estatus' => 'required',
-            'photo' => 'image|max:1024',
+            'photo' => 'max:1024'
             // 'estatus' => 'required'
 
         ];
@@ -116,7 +116,8 @@ class ListaAcademicos extends Component
         'grado_academico.required' => 'El campo de grado academico es obligatorio',
         'correo.required' => 'El campo de correo es obligatorio',
         'correo.unique' => 'El correo ya fue registrado anteriormente',
-        'estatus.required' => 'El estatus es obligatorio'
+        'estatus.required' => 'El estatus es obligatorio',
+        'photo.max:1024' => 'La foto ingresada debe ser menor a 1MB'
     ];
 
     public function modelData()

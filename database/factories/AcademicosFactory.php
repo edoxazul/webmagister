@@ -28,7 +28,7 @@ class AcademicosFactory extends Factory
             'nombre_academico'=>$this->faker->name(),
             'rut_academico'=>$this->faker->numberBetween(100000000,200000000),
             'fecha_nacimiento'=>$this->faker->dateTime(),
-            'grado_academico'=>$this->faker->randomElement(['Bachiller','Licenciado','Magíster','Doctorado']),
+            'grado_academico'=>$this->faker->randomElement(['Bachiller','Licenciado','Magíster','Doctor']),
             'correo'=>$this->faker->unique()->safeEmail,
             'proyecto'=>$this->faker->title,
             'publicaciones'=>$this->faker->title,

@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Academicos') }}
+            {{ __('Académicos') }}
         </h2>
     </x-slot>
 
@@ -25,9 +25,9 @@
 
                                     <div class="mt-1 ml-6 rounded-md shadow-sm form-input">
                                         <select wire:model='perPage' class="text-sm text-gray-500 outline-none">
-                                            <option value="5"> 5 por página</option>
+                                            {{-- <option value="5"> 5 por página</option> --}}
                                             <option value="10"> 10 por página</option>
-                                            <option value="15"> 15 por página</option>
+                                            <option value="20"> 20 por página</option>
                                         </select>
                                     </div>
                                     @if ($search !== '')
@@ -64,15 +64,15 @@
                                         <tr>
                                             <th scope="col"
                                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                                                Nombre Academico
+                                                Nombre Académico
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                                                Rut Academico
+                                                Rut Académico
                                             </th>
                                             <th scope="col"
                                                 class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                                                Grado Academico
+                                                Grado Académico
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
@@ -110,7 +110,7 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="flex items-center">
                                                         <div x-data={} class="flex-shrink-0 w-10 h-10">
-                                                            <div class="bg-gray-400 ">
+                                                            <div>
                                                                 <a {{--
                                                                     @click="$dispatch('img-modal', {imgModalSrc: {{ $academico->profile_photo_path }}'})"
                                                                     --}}
@@ -230,7 +230,7 @@
                             @else
                                 <div class="px-4 py-3 text-gray-500 bg-white border-t border-gray-200 sm:px-6">
                                     No hay resultados para la busqueda "{{ $search }}" en la página {{ $page }} al
-                                    mostrar {{ $perPage }} academicos por página
+                                    mostrar {{ $perPage }} académicos por página
                                 </div>
                             @endif
 
@@ -240,9 +240,9 @@
                                 <x-slot name="title">
                                     <div class="mx-auto text-center rounded-md">
                                         @if ($modelId)
-                                            Actualizar Academico
+                                            Actualizar Académico
                                         @else
-                                            Agregar Academico
+                                            Agregar Académico
                                         @endif
                                     </div>
                                 </x-slot>
@@ -255,30 +255,31 @@
                                         <div class="flex items-center mt-2">
 
                                             <span class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
-                                                {{-- <img class="w-full h-full" src="{{ asset($academico->profile_photo_path) }}"> --}}
+                                                <img class="w-full h-full" id="profile_photo_path" wire:model="profile_photo_path" src="{{ asset($academico->profile_photo_path) }}">
 
                                                 @if($photo)
                                                 <img class="w-full h-full" src="{{$photo->temporaryUrl() }}">
                                                 @else
                                                 {{-- <img class="w-full h-full" wire:model="profile_photo_path" src="{{$academico->profile_photo_path}}"> --}}
-                                                <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                {{-- <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                                                     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                                </svg>
+                                                </svg> --}}
+                                                {{-- <img class="w-full h-full" wire:model="photo" src="{{$academico->profile_photo_path }}"> --}}
                                                 @endif
                                             </span>
-                                            <div
+                                            {{-- <div
                                                 x-data="{ isUploading: false, progress: 0 }"
                                                 x-on:livewire-upload-start="isUploading = true"
                                                 x-on:livewire-upload-finish="isUploading = false"
                                                 x-on:livewire-upload-error="isUploading = false"
                                                 x-on:livewire-upload-progress="progress = $event.detail.progress"
-                                                >
+                                                > --}}
                                             <input type="file" wire:model="photo" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                             @error('photo') <span class="error">{{ $message }}</span> @enderror
                                             <!-- Progress Bar -->
-                                            <div x-show="isUploading">
+                                            {{-- <div x-show="isUploading">
                                                 <progress max="100" x-bind:value="progress"></progress>
-                                            </div>
+                                            </div> --}}
 
                                             {{-- <button type="button" wire:click.prevent="upload" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                 Cambiar
@@ -292,7 +293,7 @@
                                                 <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
                                             <x-jet-input id="nombre_academico" class="block w-full mt-1" type="text"
-                                                placeholder="Nombre del academico" wire:model="nombre_academico" />
+                                                placeholder="Nombre del académico" wire:model="nombre_academico" />
                                             @error('nombre_academico') <span
                                                 class="error">{{ $message }}</span>@enderror
                                         </div>
@@ -329,7 +330,7 @@
                                         </div>
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
-                                                <x-jet-label for="grado_academico" value="Grado Academico" />
+                                                <x-jet-label for="grado_academico" value="Grado Académico" />
                                                 <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
                                             {{--
@@ -341,7 +342,7 @@
                                                 <option class="text-gray-700" value="Bachiller">Bachiller</option>
                                                 <option class="text-gray-700" value="Licenciado">Licenciado</option>
                                                 <option class="text-gray-700" value="Magíster">Magíster</option>
-                                                <option class="text-gray-700" value="Doctorado">Doctorado</option>
+                                                <option class="text-gray-700" value="Doctor">Doctor</option>
                                             </select>
                                             @error('grado_academico') <span class="error">{{ $message }}</span>@enderror
                                         </div>
@@ -391,7 +392,7 @@
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
                                                 <label for="estatus" value="estatus"
-                                                    class="block text-sm font-medium text-gray-700">Estatus</label>
+                                                    class="block text-sm font-medium text-gray-700">Estado</label>
                                                 <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
                                             {{--
@@ -432,14 +433,14 @@
                                     @if ($modelId)
                                         <button type="submit"
                                             class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
-                                            wire:click="update" wire:loading.attr="disabled">
+                                            wire:click.prefetch="update" wire:loading.attr="disabled">
                                             {{ __('Actualizar') }}
                                         </button>
                                     @else
 
                                         <button type="submit"
                                             class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
-                                            wire:click="create" wire:loading.attr="disabled">
+                                            wire:click.prefetch="create" wire:loading.attr="disabled">
                                             {{ __('Crear') }}
                                         </button>
                                     @endif
