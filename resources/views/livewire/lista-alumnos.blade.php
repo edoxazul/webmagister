@@ -288,16 +288,21 @@
                                         wire:model.debounce.800ms="linkedin" />
 
                                 </div>
-                                <div class="col-span-6 mt-4 sm:col-span-3">
+                                <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
-                                        <x-jet-label for="estatus_alumno" value="Estado" />
+                                        <label for="estatus_alumno" value="estatus_alumno"
+                                            class="block text-sm font-medium text-gray-700">Estado</label>
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
-                                    <x-jet-input id="estatus_alumno" class="block w-full mt-1" type="text"
-                                        placeholder="Regular, Graduado, Egresado, Retiro Voluntario"
-                                        wire:model.debounce.800ms="estatus_alumno" />
+                                    <select id="estatus_alumno" type="text" wire:model="estatus_alumno"
+                                        class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
+                                        <option class="text-gray-700" value="Regular">Regular</option>
+                                        <option class="text-gray-700" value="Graduado">Graduado</option>
+                                        <option class="text-gray-700" value="Egresado">Egresado</option>
+                                        <option class="text-gray-700" value="Eliminado">Eliminado</option>
+                                        <option class="text-gray-700" value="Retiro Voluntario">Retiro Voluntario</option>
+                                    </select>
                                     @error('estatus_alumno') <span class="error">{{ $message }}</span> @enderror
-
                                 </div>
 
 

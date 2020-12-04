@@ -255,4 +255,13 @@ class ListaAlumnos extends Component
         'estatus_alumno.required'  => 'El campo estado es obligatorio',
     ];
 
+    public function eliminado(){
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        $alumnos=Alumnos::find($this->modelId);
+        $alumnos->estatus_alumno = 'Eliminado';
+        $alumnos->save();
+        $this->modalConfirmDeleteVisible = false;
+    }
+
 }
