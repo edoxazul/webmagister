@@ -54,7 +54,7 @@
 
                                 <a href="#">
                                     <img alt="Placeholder" class="block w-full h-auto"
-                                        src="https://picsum.photos/600/400/?random">
+                                        src="https://picsum.photos/600/500/?random">
                                 </a>
 
                                 <header class="flex items-center justify-between p-2 leading-tight md:p-4">
@@ -70,8 +70,10 @@
 
                                 <footer class="flex items-center justify-between p-2 leading-none md:p-4">
                                     <a class="flex items-center text-black no-underline hover:underline" href="#">
-                                        <img alt="Placeholder" class="block rounded-full"
-                                            src="https://picsum.photos/32/32/?random">
+                                        {{-- <img alt="Placeholder" class="block rounded-full"
+                                            src="https://picsum.photos/32/32/?random"> --}}
+
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                                         <p class="ml-2 text-sm">
 
                                             {{ $academico->correo }}
@@ -103,8 +105,10 @@
                             <article class="overflow-hidden rounded-lg shadow-lg">
 
                                 <a href="#">
-                                    <img alt="Placeholder" class="block w-full h-auto"
-                                        src="https://picsum.photos/600/400/?random">
+                                    <img alt="Placeholder" class="block object-cover w-full h-auto"
+                                        {{-- src="https://picsum.photos/600/400/?random"> --}}
+                                        src="{{$academico->profile_photo_path }}">
+
                                 </a>
 
                                 <header class="flex items-center justify-between p-2 leading-tight md:p-4">
@@ -154,7 +158,7 @@
 
                                 <a href="#">
                                     <img alt="Placeholder" class="block w-full h-auto"
-                                        src="https://picsum.photos/600/400/?random">
+                                        src="https://picsum.photos/600/500/?random">
                                 </a>
 
                                 <header class="flex items-center justify-between p-2 leading-tight md:p-4">

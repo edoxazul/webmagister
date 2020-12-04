@@ -7,11 +7,13 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 
 
 class ListaAcademicos extends Component
 {
 
+    use WithFileUploads;
     // use WithPagination;
 
     protected $queryString = [
@@ -29,6 +31,9 @@ class ListaAcademicos extends Component
     public $isSetToDefaultNotFoundPage;
     public $estatus ='Claustro';
     public $grado_academico='Magíster';
+    public $profile_photo_path;
+    public $photo;
+
 
     public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$proyecto,$publicaciones,$user_id,$linkedin;
 
@@ -53,6 +58,23 @@ class ListaAcademicos extends Component
         ]);
     }
 
+    public function upload()
+    {
+        $this->validate([
+            'photo' => 'image|max:1024', // 1MB Max
+        ]);
+
+        $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
+
+        $this->photo->storeAs('photos', $name);
+
+
+        Academicos::create(['profile_photo_path' => $name]);
+        // $profile_photo_path = $this->photo->store('photos','public');
+              // dd($url);
+
+
+    }
 
 
     public function clear()
@@ -77,8 +99,8 @@ class ListaAcademicos extends Component
             'fecha_nacimiento' => 'required',
             'grado_academico' => 'required',
             'correo' => 'required|unique:academicos',
-            'estatus' => 'required'
-
+            'estatus' => 'required',
+            'photo' => 'image|max:1024',
             // 'estatus' => 'required'
 
         ];
@@ -99,6 +121,13 @@ class ListaAcademicos extends Component
 
     public function modelData()
     {
+        $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
+
+
+        $url = $this->photo->storeAs('photos', $name,'public');
+
+        $photopath = 'storage/'.$url;
+
         return [
             'nombre_academico' => $this->nombre_academico,
             'rut_academico' => $this->rut_academico,
@@ -108,6 +137,7 @@ class ListaAcademicos extends Component
             'proyecto'=>$this->proyecto,
             'publicaciones'=>$this->publicaciones,
             'estatus'=>$this->estatus,
+            'profile_photo_path'=>$photopath,
             'linkedin'=>$this->linkedin,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
@@ -131,6 +161,7 @@ class ListaAcademicos extends Component
             // 'estatus' => 'required',
             // 'likedin' => 'required'
         // ]);
+
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         Academicos::create($this->modelData());
@@ -166,7 +197,9 @@ class ListaAcademicos extends Component
             'fecha_nacimiento' => 'required',
             'grado_academico' => 'required',
             'correo' => 'required|unique:academicos,correo,'.$this->modelId.'',
-            'estatus' => 'required'
+            'estatus' => 'required',
+            'photo' => 'image|max:1024',
+
             ]
         );
 
@@ -191,6 +224,7 @@ class ListaAcademicos extends Component
         $data = Academicos::find($this->modelId);
         $this->nombre_academico = $data->nombre_academico;
         $this->rut_academico = $data->rut_academico;
+        $this->profile_photo_path = $data->profile_photo_path;
         $this->fecha_nacimiento = $data->fecha_nacimiento;
         $this->grado_academico = $data->grado_academico;
         $this->correo = $data->correo;

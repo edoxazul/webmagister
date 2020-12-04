@@ -27,6 +27,7 @@ class Academicos extends Model
         'correo',
         'proyecto',
         'publicaciones',
+        'profile_photo_path',
         'estatus',
         'user_id',
         'linkedin',

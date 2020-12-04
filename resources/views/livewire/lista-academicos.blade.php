@@ -117,17 +117,15 @@
                                                                     class="cursor-pointer">
                                                                     <img class="w-10 h-10 rounded-full"
                                                                         alt="Placeholder" class="w-full object-fit"
-                                                                        src="{{ $academico->profile_photo_path }}">
+                                                                        src="{{($academico->profile_photo_path)}}"/>
                                                                 </a>
                                                             </div>
-                                                            {{-- <img
-                                                                class="w-10 h-10 rounded-full"
-                                                                src="{{ $academico->profile_photo_path }}" alt="">
-                                                            --}}
+                                                            {{-- <img class="w-10 h-10 rounded-full"
+                                                                src="{{ $academico->profile_photo_path }}" alt=""> --}}
 
 
-                                                            {{-- <img
-                                                                class="w-10 h-10 rounded-full"
+
+                                                            {{-- <img class="w-10 h-10 rounded-full"
                                                                 src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60"
                                                                 alt=""> --}}
                                                         </div>
@@ -250,25 +248,43 @@
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    {{-- <div>
+                                    <div>
                                         <label class="block text-sm font-medium text-gray-700">
                                             Foto
                                         </label>
                                         <div class="flex items-center mt-2">
-                                            <span
-                                                class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
-                                                <svg class="w-full h-full text-gray-300" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+
+                                            <span class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
+                                                {{-- <img class="w-full h-full" src="{{ asset($academico->profile_photo_path) }}"> --}}
+
+                                                @if($photo)
+                                                <img class="w-full h-full" src="{{$photo->temporaryUrl() }}">
+                                                @else
+                                                {{-- <img class="w-full h-full" wire:model="profile_photo_path" src="{{$academico->profile_photo_path}}"> --}}
+                                                <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                                                 </svg>
+                                                @endif
                                             </span>
-                                            <button type="button"
-                                                class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            <div
+                                                x-data="{ isUploading: false, progress: 0 }"
+                                                x-on:livewire-upload-start="isUploading = true"
+                                                x-on:livewire-upload-finish="isUploading = false"
+                                                x-on:livewire-upload-error="isUploading = false"
+                                                x-on:livewire-upload-progress="progress = $event.detail.progress"
+                                                >
+                                            <input type="file" wire:model="photo" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            @error('photo') <span class="error">{{ $message }}</span> @enderror
+                                            <!-- Progress Bar -->
+                                            <div x-show="isUploading">
+                                                <progress max="100" x-bind:value="progress"></progress>
+                                            </div>
+
+                                            {{-- <button type="button" wire:click.prevent="upload" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                 Cambiar
-                                            </button>
+                                            </button> --}}
                                         </div>
-                                    </div> --}}
+                                    </div>
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
@@ -289,7 +305,9 @@
                                             <x-jet-input id="rut_academico" class="block w-full mt-1" type="text"
                                                 placeholder="12.345.678-9" wire:model="rut_academico" />
                                             --}}
-                                            <x-jet-input class="block w-full mt-1 text-black" wire:model="rut_academico" placeholder="12345678-9" id="rut" oninput="checkRut(this)" required="" name="rut_academico" type="text"/>
+                                            <x-jet-input class="block w-full mt-1 text-black" wire:model="rut_academico"
+                                                placeholder="12345678-9" id="rut" oninput="checkRut(this)" required=""
+                                                name="rut_academico" type="text" />
                                             @error('rut_academico') <span class="error">{{ $message }}</span> @enderror
 
                                         </div>
@@ -314,8 +332,10 @@
                                                 <x-jet-label for="grado_academico" value="Grado Academico" />
                                                 <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
-                                            {{-- <x-jet-input id="grado_academico" class="block w-full mt-1" type="text"
-                                                placeholder="Ej: Magister,Doctorado" wire:model="grado_academico" /> --}}
+                                            {{--
+                                            <x-jet-input id="grado_academico" class="block w-full mt-1" type="text"
+                                                placeholder="Ej: Magister,Doctorado" wire:model="grado_academico" />
+                                            --}}
                                             <select id="grado_academico" type="text" wire:model="grado_academico"
                                                 class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
                                                 <option class="text-gray-700" value="Bachiller">Bachiller</option>
@@ -374,8 +394,10 @@
                                                     class="block text-sm font-medium text-gray-700">Estatus</label>
                                                 <label for="title" class="px-2 text-red-700">*</label>
                                             </div>
-                                            {{-- <x-jet-input id="estatus" class="block w-full mt-1" type="text"
-                                                placeholder="Ej: Claustro,Colaborador,Visitante" wire:model="estatus" /> --}}
+                                            {{--
+                                            <x-jet-input id="estatus" class="block w-full mt-1" type="text"
+                                                placeholder="Ej: Claustro,Colaborador,Visitante" wire:model="estatus" />
+                                            --}}
 
                                             <select id="estatus" type="text" wire:model="estatus"
                                                 class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
@@ -386,7 +408,8 @@
                                             @error('estatus') <span class="error">{{ $message }}</span> @enderror
 
 
-                                            {{-- <div class="mt-1 ml-6 rounded-md shadow-sm form-input">
+                                            {{-- <div
+                                                class="mt-1 ml-6 rounded-md shadow-sm form-input">
                                                 <select wire:model='perPage' class="text-sm text-gray-500 outline-none">
                                                     <option value="5"> 5 por página</option>
                                                     <option value="10"> 10 por página</option>
