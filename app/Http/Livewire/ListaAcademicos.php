@@ -18,7 +18,7 @@ class ListaAcademicos extends Component
 
     protected $queryString = [
         'search' => ['except' =>''],
-        'perPage'=> ['except' => '5']
+        'perPage'=> ['except' => '10']
     ];
 
     public $search= '';
@@ -100,7 +100,7 @@ class ListaAcademicos extends Component
             'grado_academico' => 'required',
             'correo' => 'required|unique:academicos',
             'estatus' => 'required',
-            'photo' => 'max:1024'
+            'photo' => 'image|max:1024'
             // 'estatus' => 'required'
 
         ];
@@ -113,10 +113,11 @@ class ListaAcademicos extends Component
         'rut_academico.unique' => 'El rut ya existe',
         'rut_academico.cl_rut' => 'El campo del rut no es valido',
         'fecha_nacimiento.required' => 'La fecha de nacimiento es obligatoria',
-        'grado_academico.required' => 'El campo de grado academico es obligatorio',
-        'correo.required' => 'El campo de correo es obligatorio',
+        'grado_academico.required' => 'El campo del grado academico es obligatorio',
+        'correo.required' => 'El campo del correo es obligatorio',
         'correo.unique' => 'El correo ya fue registrado anteriormente',
         'estatus.required' => 'El estatus es obligatorio',
+        'photo.image' => 'Debe ingresar una foto',
         'photo.max:1024' => 'La foto ingresada debe ser menor a 1MB'
     ];
 
@@ -124,10 +125,11 @@ class ListaAcademicos extends Component
     {
         $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
 
-
         $url = $this->photo->storeAs('photos', $name,'public');
 
         $photopath = 'storage/'.$url;
+
+
 
         return [
             'nombre_academico' => $this->nombre_academico,
@@ -199,7 +201,7 @@ class ListaAcademicos extends Component
             'grado_academico' => 'required',
             'correo' => 'required|unique:academicos,correo,'.$this->modelId.'',
             'estatus' => 'required',
-            'photo' => 'image|max:1024',
+            'photo' => 'image:academicos,profile_photo_path,'.$this->modelId.'|max:1024'
 
             ]
         );
