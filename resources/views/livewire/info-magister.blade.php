@@ -12,7 +12,7 @@
                     <div class="overflow-hidden shadow sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="grid grid-cols-6 gap-6">
-                                {{-- @foreach ($infomag as $infomag) --}}
+                                @foreach ($infomag as $infomag)
                                 <div class="col-span-6 sm:col-span-6">
                                     <div class="flex">
                                     <label for="proposito_magister" class="block font-medium text-gray-700 text-m">Propósito</label>
@@ -204,14 +204,29 @@
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <div class="px-4 py-3 text-right bg-white sm:px-6">
-                                        <button wire:click="submitForm" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        {{-- <button wire:click="submitForm" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                             Guardar
-                                        </button>
+                                        </button> --}}
+                                        {{-- <button type="submit"
+                                        class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                        wire:click="submitForm" wire:loading.attr="disabled">
+                                        {{ __('Crear') }}
+                                    </button> --}}
+                                    <button type="submit"
+                                    class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                    wire:click="visualizar({{$infomag->id}})" wire:loading.attr="disabled">
+                                    {{ __('Visualizar') }}
+                                </button>
+                                        <button type="submit"
+                                        class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                        wire:click="update" wire:loading.attr="disabled">
+                                        {{ __('Actualizar') }}
+                                    </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    {{-- @endforeach --}}
+                    @endforeach
                     </div>
                 </div>
             {{-- </form> --}}

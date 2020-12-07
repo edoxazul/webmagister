@@ -5,11 +5,11 @@ namespace App\Http\Livewire;
 use App\Models\InfoMagister;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
 
 class InfoMag extends Component
 {
-
     public $modelId;
     public $proposito_magister, $objetivo_magister, $descripcion_magister, $perfil_entrada_magister, $regimen_magister, $contacto_magister, $costo_magister, $metodos_pagos_magister, $beneficios_magister, $arancel_magister;
     public $isSetToDefaultHomePage;
@@ -132,20 +132,28 @@ class InfoMag extends Component
         //     'estatus' => 'required'
         //     ]
         // );
-
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         InfoMagister::find($this->modelId)->update($this->modelData());
-        $this->modalFormVisible = false;
+        // $this->modalFormVisible = false;
+
     }
-    public function updateShowModal($id)
-    {
+
+    public function visualizar($id){
         $this->resetValidation();
         $this->reset();
         $this->modelId = $id;
-        $this->modalFormVisible = true;
         $this->loadModel();
     }
+
+    // public function updateShowModal($id)
+    // {
+    //     $this->resetValidation();
+    //     $this->reset();
+    //     $this->modelId = $id;
+    //     $this->modalFormVisible = true;
+    //     $this->loadModel();
+    // }
 
     public function loadModel()
     {
