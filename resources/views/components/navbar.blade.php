@@ -59,27 +59,32 @@
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
                 <div class="absolute flex sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    @guest
-                        <div class="hidden space-x-4 bg-gray-900 sm:flex sm:-my-px sm:ml-10 ">
-                            <a class="inline-flex items-center justify-center px-4 py-2 ml-4 text-base font-medium text-white bg-gray-700 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-gray-900"
-                                href="{{ route('login') }}" :active="request()->routeIs('login')">
-                                {{ __('Login') }}
-                            </a>
-                        </div>
-                    @endguest
+
+                @if (Route::has('login'))
                     @auth
-                    <div class="hidden px-1 bg-gray-900 sm:flex sm:-my-px sm:ml-10 ">
+                    {{-- <div class="hidden px-1 bg-gray-900 sm:flex sm:-my-px sm:ml-10 "> --}}
                         <a class="items-center justify-center px-4 py-2 ml-4 text-base font-medium text-white bg-gray-700 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-gray-900"
                             href="{{ url('/dashboard') }}">Dashboard</a>
 
+                            @if (Route::has('register'))
                         <a class="inline-flex items-center justify-center px-4 py-2 ml-4 text-base font-medium text-white bg-gray-700 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-gray-900"
                             href="{{ route('register') }}" :active="request()->routeIs('register')">
                             Registrar Usuario
                         </a>
+                        @endif
+                    @else
+                    <div class="hidden space-x-4 bg-gray-900 sm:flex sm:-my-px sm:ml-10 ">
+                        <a class="inline-flex items-center justify-center px-4 py-2 ml-4 text-base font-medium text-white bg-gray-700 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-gray-900"
+                            href="{{ route('login') }}" :active="request()->routeIs('login')">
+                            {{ __('Login') }}
+                        </a>
                     </div>
-                    @endauth
+
+                    @endif
+                    {{-- </div> --}}
 
                 </div>
+                @endif
             </div>
         </div>
     </div>

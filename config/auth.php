@@ -96,6 +96,7 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
+            'connection' => 'mysqlLogin',
             'expire' => 60,
             'throttle' => 60,
         ],

@@ -8,6 +8,7 @@ use App\Http\Livewire\InfoMag;
 use App\Http\Livewire\InfoMagisterPublico;
 use App\Http\Livewire\ListaAcademicosPublico;
 use App\Http\Livewire\ListaAlumnosPublico;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 
 
@@ -21,6 +22,7 @@ use App\Http\Livewire\ListaAlumnosPublico;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 
 //Publico
@@ -38,9 +40,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/register', function () {
+Route::middleware('auth')->get('/register', function () {
     return view('auth.register');
 })->name('register');
+
+Route::post('/register', [RegisteredUserController::class, 'store'])->middleware(['auth']);
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/academicos', function () {
 //     return view('academicos');
