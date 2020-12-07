@@ -34,6 +34,9 @@ class ListaAcademicos extends Component
     public $profile_photo_path;
     public $photo;
 
+    public $sortField="nombre_academico";
+    public $sortDirection = 'asc';
+
 
     public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$proyecto,$publicaciones,$user_id,$linkedin;
 
@@ -54,7 +57,9 @@ class ListaAcademicos extends Component
             'academicos' => Academicos::where('nombre_academico','like','%' . trim($this->search) . '%')
             ->orWhere('correo','LIKE',"%{$this->search}%")
             ->orWhere('estatus','LIKE',"%{$this->search}%")
+            ->orderBy($this->sortField,$this->sortDirection)
             ->paginate($this->perPage)
+
         ]);
     }
 
