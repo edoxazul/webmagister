@@ -67,7 +67,7 @@
                             Rut Alumno
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                            Carrera
+                            Carrera/Titulo
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                             Año Ingreso
@@ -114,19 +114,19 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
-                                {{$alumno->nombre_pregrado_alumno}}
+                                {{$alumno->carrera_alumno}}
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
-                                {{$alumno->anio_ingreso}}
+                                {{date("d/m/Y", strtotime($alumno->anio_ingreso))}}
                             </div>
                         </td>
 
                         <td class="px-6 py-4 whitespace-nowrap">
 
                             <div class="text-sm text-gray-900">
-                                {{$alumno->estatus_alumno}}
+                                {{$alumno->estado_alumno}}
                             </div>
 
                         </td>
@@ -225,7 +225,7 @@
                                     <x-jet-input id="nombre_alumno" class="block w-full mt-1" type="text"
                                         placeholder="Nombre del alumno"
                                         wire:model.debounce.800ms="nombre_alumno" />
-                                    @error('nombre_alumno') <span class="error">{{ $message }}</span>
+                                    @error('nombre_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3 form-group">
@@ -234,30 +234,28 @@
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <x-jet-input class="block w-full mt-1 text-black" wire:model="rut_alumno" placeholder="12345678-9" id="rut" oninput="checkRut(this)" required="" name="rut_alumno" type="text"/>
-                                    @error('rut_alumno') <span class="error">{{ $message }}</span> @enderror
+                                    @error('rut_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
 
                                 </div>
 
                                 <div class="col-span-6 mt-4 sm:col-span-3">
                                     <div class="flex">
-                                        <x-jet-label for="nombre_pregrado_alumno" value="Carrera" />
+                                        <x-jet-label for="carrera_alumno" value="Carrera/Titulo" />
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
-                                    <x-jet-input id="nombre_pregrado_alumno" class="block w-full mt-1" type="text"
-                                        placeholder="Ej: Carrera del alumno"
-                                        wire:model.debounce.800ms="nombre_pregrado_alumno" />
-                                    @error('nombre_pregrado_alumno') <span class="error">{{ $message }}</span>
+                                    <x-jet-input id="carrera_alumno" class="block w-full mt-1" type="text"
+                                        placeholder="Ej: Carrera o Titulo del alumno"
+                                        wire:model.debounce.800ms="carrera_alumno" />
+                                    @error('carrera_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="col-span-6 mt-4 sm:col-span-3">
                                     <div class="flex">
-                                        <x-jet-label for="nombre_institucion_alumno" value="Institucion" />
-                                        <label for="title" class="px-2 text-red-700">*</label>
+                                        <x-jet-label for="trabajo_tesis" value="Tesis" />
                                     </div>
-                                    <x-jet-input id="nombre_institucion_alumno" class="block w-full mt-1" type="text"
-                                        placeholder="Institución a la que perteneció el alumno"
-                                        wire:model.debounce.800ms="nombre_institucion_alumno" />
-                                    @error('nombre_institucion_alumno') <span class="error">{{ $message }}</span> @enderror
+                                    <x-jet-input id="trabajo_tesis" class="block w-full mt-1" type="text"
+                                        placeholder="Tesis del alumno"
+                                        wire:model.debounce.800ms="trabajo_tesis" />
                                 </div>
 
                                 <div class="col-span-6 mt-4 sm:col-span-3">
@@ -268,7 +266,7 @@
                                     <x-jet-input id="contacto_alumno" class="block w-full mt-1" type="text"
                                         placeholder="Ej: user@email.com"
                                         wire:model.debounce.800ms="contacto_alumno" />
-                                    @error('contacto_alumno') <span class="error">{{ $message }}</span> @enderror
+                                    @error('contacto_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
@@ -278,7 +276,7 @@
                                     <x-jet-input id="anio_ingreso" class="block w-full mt-1 text-black"
                                         type="date" value="\Carbon\Carbon::now()" placeholder="2000/12/31"
                                         wire:model="anio_ingreso" />
-                                    @error('anio_ingreso') <span class="error">{{ $message }}</span>
+                                    @error('anio_ingreso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="col-span-6 mt-4 sm:col-span-3">
@@ -290,11 +288,11 @@
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
-                                        <label for="estatus_alumno" value="estatus_alumno"
+                                        <label for="estado_alumno" value="estado_alumno"
                                             class="block text-sm font-medium text-gray-700">Estado</label>
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
-                                    <select id="estatus_alumno" type="text" wire:model="estatus_alumno"
+                                    <select id="estado_alumno" type="text" wire:model="estado_alumno"
                                         class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
                                         <option class="text-gray-700" value="Regular">Regular</option>
                                         <option class="text-gray-700" value="Graduado">Graduado</option>
@@ -302,7 +300,7 @@
                                         <option class="text-gray-700" value="Eliminado">Eliminado</option>
                                         <option class="text-gray-700" value="Retiro Voluntario">Retiro Voluntario</option>
                                     </select>
-                                    @error('estatus_alumno') <span class="error">{{ $message }}</span> @enderror
+                                    @error('estado_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                 </div>
 
 

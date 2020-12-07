@@ -17,10 +17,9 @@ class CreateAlumnosTable extends Migration
             $table->id();
             $table->string('nombre_alumno');
             $table->integer('rut_alumno')->unique;
-            $table->string('nombre_pregrado_alumno');
-            $table->string('nombre_institucion_alumno');
+            $table->string('carrera_alumno');
             $table->string('contacto_alumno',128)->unique();
-            $table->enum('estatus_alumno', ['Regular', 'Graduado','Egresado','Retiro Voluntario','Eliminado'])->default('Regular');
+            $table->enum('estado_alumno', ['Regular', 'Graduado','Egresado','Retiro Voluntario','Eliminado'])->default('Regular');
             $table->string('razon_eliminacion')->nullable();
             $table->date('anio_ingreso');
             $table->date('anio_graduacion')->nullable();

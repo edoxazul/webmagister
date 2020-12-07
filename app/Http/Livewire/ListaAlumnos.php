@@ -12,11 +12,11 @@ class ListaAlumnos extends Component
 {
     protected $queryString = [
         'search' => ['except' =>''],
-        'perPage'=> ['except' => '5']
+        'perPage'=> ['except' => '10']
     ];
 
     public $search= '';
-    public $perPage= '5';
+    public $perPage= '10';
     public $page='1';
     public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
@@ -24,14 +24,14 @@ class ListaAlumnos extends Component
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
 
-    public $nombre_alumno,$rut_alumno,$nombre_pregrado_alumno,$nombre_institucion_alumno,$contacto_alumno,$estatus_alumno,$anio_ingreso,$user_id,$linkedin,$razon_eliminacion,$anio_graduacion,$trabajo_tesis;
+    public $nombre_alumno,$rut_alumno,$carrera_alumno,$contacto_alumno,$estado_alumno,$anio_ingreso,$user_id,$linkedin,$razon_eliminacion,$anio_graduacion,$trabajo_tesis;
 
     public function render()
     {
         return view('livewire.lista-alumnos',[
             'alumnos' => Alumnos::where('nombre_alumno','like','%' . trim($this->search) . '%')
             ->orWhere('contacto_alumno','LIKE',"%{$this->search}%")
-            ->orWhere('estatus_alumno','LIKE',"%{$this->search}%")
+            ->orWhere('estado_alumno','LIKE',"%{$this->search}%")
             ->paginate($this->perPage)
         ]);
     }
@@ -88,10 +88,9 @@ class ListaAlumnos extends Component
         return [
             'nombre_alumno' => 'required',
             'rut_alumno' => 'required|unique:alumnos|cl_rut',
-            'nombre_pregrado_alumno' => 'required',
-            'nombre_institucion_alumno' => 'required',
+            'carrera_alumno' => 'required',
             'contacto_alumno' => 'required|unique:alumnos',
-            'estatus_alumno' => 'required',
+            'estado_alumno' => 'required',
             'anio_ingreso' => 'required',
 
         ];
@@ -104,10 +103,9 @@ class ListaAlumnos extends Component
         return [
             'nombre_alumno' => $this->nombre_alumno,
             'rut_alumno' => $this->rut_alumno,
-            'nombre_pregrado_alumno'=>$this->nombre_pregrado_alumno,
-            'nombre_institucion_alumno'=>$this->nombre_institucion_alumno,
+            'carrera_alumno'=>$this->carrera_alumno,
             'contacto_alumno'=>$this->contacto_alumno,
-            'estatus_alumno'=>$this->estatus_alumno,
+            'estado_alumno'=>$this->estado_alumno,
             'razon_eliminacion'=>$this->razon_eliminacion,
             'anio_ingreso'=>$this->anio_ingreso,
             'anio_graduacion'=>$this->anio_graduacion,
@@ -159,11 +157,10 @@ class ListaAlumnos extends Component
             [
                 'nombre_alumno' => 'required',
                 'rut_alumno' => 'required|unique:alumnos,rut_alumno,'.$this->modelId.'|cl_rut',
-                'nombre_pregrado_alumno' => 'required',
-                'nombre_institucion_alumno' => 'required',
+                'carrera_alumno' => 'required',
                 'contacto_alumno' => 'required|unique:alumnos,contacto_alumno,'.$this->modelId.'',
                 'anio_ingreso' => 'required',
-                'estatus_alumno' => 'required'
+                'estado_alumno' => 'required'
             ]
         );
         $this->unassignDefaultHomePage();
@@ -187,10 +184,9 @@ class ListaAlumnos extends Component
         $data = Alumnos::find($this->modelId);
         $this->nombre_alumno = $data->nombre_alumno;
         $this->rut_alumno = $data->rut_alumno;
-        $this->nombre_pregrado_alumno = $data->nombre_pregrado_alumno;
-        $this->nombre_institucion_alumno = $data->nombre_institucion_alumno;
+        $this->carrera_alumno = $data->carrera_alumno;
         $this->contacto_alumno = $data->contacto_alumno;
-        $this->estatus_alumno = $data->estatus_alumno;
+        $this->estado_alumno = $data->estado_alumno;
         $this->razon_eliminacion = $data->razon_eliminacion;
         $this->anio_ingreso = $data->anio_ingreso;
         $this->anio_graduacion = $data->anio_graduacion;
@@ -247,12 +243,11 @@ class ListaAlumnos extends Component
         'rut_alumno.required'  => 'El campo rut es obligatorio',
         'rut_alumno.unique' => 'El rut ya existe',
         'rut_alumno.cl_rut' => 'El campo del rut no es valido',
-        'nombre_pregrado_alumno.required'  => 'El campo carrera es obligatorio',
-        'nombre_institucion_alumno.required'  => 'El campo institucion es obligatorio',
+        'carrera_alumno.required'  => 'El campo carrera/titulo es obligatorio',
         'contacto_alumno.required'  => 'El campo correo es obligatorio',
         'contacto_alumno.unique' => 'El correo ya fue registrado anteriormente',
         'anio_ingreso.required'  => 'El campo año de ingreso es obligatorio',
-        'estatus_alumno.required'  => 'El campo estado es obligatorio',
+        'estado_alumno.required'  => 'El campo estado es obligatorio',
     ];
 
     public function eliminado(){

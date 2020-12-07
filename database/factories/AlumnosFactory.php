@@ -25,10 +25,9 @@ class AlumnosFactory extends Factory
         return [
             'nombre_alumno'=>$this->faker->name(),
             'rut_alumno'=>$this->faker->numberBetween(100000000,200000000),
-            'nombre_pregrado_alumno'=>$this->faker->name(),
-            'nombre_institucion_alumno'=>$this->faker->name(),
+            'carrera_alumno'=>$this->faker->name(),
             'contacto_alumno'=>$this->faker->unique()->safeEmail,
-            'estatus_alumno'=>$this->faker->randomElement(['Regular', 'Graduado','Egresado','Retiro Voluntario','Eliminado']),
+            'estado_alumno'=>$this->faker->randomElement(['Regular', 'Graduado','Egresado','Retiro Voluntario','Eliminado']),
             'razon_eliminacion'=>$this->faker->name(),
             'anio_ingreso'=>$this->faker->dateTime($max = 'now'),
             'anio_graduacion'=>$this->faker->dateTimeBetween('+0 days', '+2 years'),
