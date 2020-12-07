@@ -254,7 +254,7 @@ class ListaAlumnos extends Component
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         $alumnos=Alumnos::find($this->modelId);
-        $alumnos->estatus_alumno = 'Eliminado';
+        $alumnos->estado_alumno = 'Eliminado';
         $alumnos->save();
         $this->modalConfirmDeleteVisible = false;
     }
