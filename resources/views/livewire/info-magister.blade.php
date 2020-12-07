@@ -12,17 +12,19 @@
                     <div class="overflow-hidden shadow sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="grid grid-cols-6 gap-6">
-                                @foreach ($infomag as $infomag)
+                                {{-- @foreach ($infomag as $infomag) --}}
                                 <div class="col-span-6 sm:col-span-6">
-                                    <label for="proposito_magister"
-                                        class="block font-medium text-gray-700 text-m">Propósito</label>
+                                    <div class="flex">
+                                    <label for="proposito_magister" class="block font-medium text-gray-700 text-m">Propósito</label>
+                                    <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
                                     <div class="mt-2">
                                         <textarea id="proposito_magister" name="proposito_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             placeholder="Propósito del magíster."
                                             wire:model="proposito_magister"
                                             ></textarea>
-                                                {{$infomag->proposito_magister}}
+                                                {{-- {{$infomag->proposito_magister}} --}}
                                             @error('proposito_magister') <span class="error">{{ $message }}</span> @enderror
                                     </div>
 
@@ -30,8 +32,11 @@
                                     </div>
 
                                 <div class="col-span-6 sm:col-span-6">
-                                    <label for="objetivo_magister"
+                                    <div class="flex">
+                                        <label for="objetivo_magister"
                                         class="block font-medium text-gray-700 text-m">Objetivo</label>
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
                                     <div class="mt-2">
                                         <textarea id="objetivo" name="objetivo" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -45,8 +50,11 @@
                                     </div>
 
                                 <div class="col-span-6 sm:col-span-6">
-                                    <label for="descripcion_magister"
-                                        class="block font-medium text-gray-700 text-m">Descripción</label>
+                                    <div class="flex">
+                                        <label for="descripcion_magister"
+                                            class="block font-medium text-gray-700 text-m">Descripción</label>
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
                                     <div class="mt-2">
                                         <textarea id="descripcion_magister" name="descripcion_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -62,8 +70,11 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
-                                    <label for="perfil_entrada_magister"
-                                        class="block font-medium text-gray-700 text-m">Perfil de entrada</label>
+                                    <div class="flex">
+                                        <label for="perfil_entrada_magister"
+                                            class="block font-medium text-gray-700 text-m">Perfil de entrada</label>
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
                                     <div class="mt-2">
                                         <textarea id="perfil_entrada_magister" name="perfil_entrada_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -79,8 +90,11 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
-                                    <label for="regimen_magister"
+                                    <div class="flex">
+                                        <label for="regimen_magister"
                                         class="block font-medium text-gray-700 text-m">Regimen magíster</label>
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
                                     <div class="mt-2">
                                         <input id="regimen_magister" name="regimen_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -94,8 +108,11 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
-                                    <label for="contacto_magister"
+                                    <div class="flex">
+                                        <label for="contacto_magister"
                                         class="block font-medium text-gray-700 text-m">Información de contacto</label>
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
                                     <div class="mt-2">
                                         <textarea id="contacto_magister" name="contacto_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -110,8 +127,11 @@
                                 </div>
 
                                <div class="col-span-6 sm:col-span-6">
+                                <div class="flex">
                                     <label for="costo_magister"
-                                        class="block font-medium text-gray-700 text-m">Costo magíster</label>
+                                    class="block font-medium text-gray-700 text-m">Costo magíster</label>
+                                    <label for="title" class="px-2 text-red-700">*</label>
+                                </div>
                                     <div class="mt-2">
                                         <textarea id="costo_magister" name="costo_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -126,8 +146,11 @@
                                  </div>
 
                                 <div class="col-span-6 sm:col-span-6">
-                                    <label for="metodos_pagos_magister"
+                                    <div class="flex">
+                                        <label for="metodos_pagos_magister"
                                         class="block font-medium text-gray-700 text-m">Métodos de pago</label>
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
                                     <div class="mt-2">
                                         <textarea id="metodos_pagos_magister" name="metodos_pagos_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -142,8 +165,11 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
-                                    <label for="beneficios_magister"
+                                    <div class="flex">
+                                        <label for="beneficios_magister"
                                         class="block font-medium text-gray-700 text-m">Beneficios y facilidades</label>
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
                                     <div class="mt-2">
                                         <textarea id="beneficios_magister" name="beneficios_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -157,8 +183,11 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
-                                    <label for="arancel_magister"
+                                    <div class="flex">
+                                        <label for="arancel_magister"
                                         class="block font-medium text-gray-700 text-m">Arancel</label>
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
                                     <div class="mt-2">
                                         <textarea id="arancel_magister" name="arancel_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -182,7 +211,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    {{-- @endforeach --}}
                     </div>
                 </div>
             {{-- </form> --}}
