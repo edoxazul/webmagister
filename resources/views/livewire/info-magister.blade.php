@@ -12,16 +12,17 @@
                     <div class="overflow-hidden shadow sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="grid grid-cols-6 gap-6">
-                                @forelse ($infomag as $infomag)
+                                @foreach ($infomag as $infomag)
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="proposito_magister"
                                         class="block font-medium text-gray-700 text-m">Propósito</label>
                                     <div class="mt-2">
                                         <textarea id="proposito_magister" name="proposito_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            {{-- wire:model="proposito_magister" --}}
-                                            placeholder="Propósito del magíster."> {{ $infomag->proposito_magister }}
-                                        </textarea>
+                                            placeholder="Propósito del magíster."
+                                            wire:model="proposito_magister"
+                                            ></textarea>
+                                                {{$infomag->proposito_magister}}
                                             @error('proposito_magister') <span class="error">{{ $message }}</span> @enderror
                                     </div>
 
@@ -112,7 +113,7 @@
                                     <label for="costo_magister"
                                         class="block font-medium text-gray-700 text-m">Costo magíster</label>
                                     <div class="mt-2">
-                                        <input id="costo_magister" name="costo_magister" rows="3"
+                                        <textarea id="costo_magister" name="costo_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="costo_magister"
                                             placeholder="Información referente a los costos del magíster"></textarea>
@@ -168,20 +169,20 @@
 
                                 </div>
 
+
                                 <div class="mt-2">
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <div class="px-4 py-3 text-right bg-white sm:px-6">
-                                        <button wire:click="updateShowModal({{ $infomag->proposito_magister}})" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        <button wire:click="submitForm" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                             Guardar
                                         </button>
                                     </div>
                                 </div>
-                                @empty
                             </div>
                         </div>
-                        @endforelse
+                    @endforeach
                     </div>
                 </div>
             {{-- </form> --}}

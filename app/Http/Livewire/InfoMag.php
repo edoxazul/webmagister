@@ -12,11 +12,8 @@ class InfoMag extends Component
 
     public $modelId;
     public $proposito_magister, $objetivo_magister, $descripcion_magister, $perfil_entrada_magister, $regimen_magister, $contacto_magister, $costo_magister, $metodos_pagos_magister, $beneficios_magister, $arancel_magister;
-
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
-
-    public $first_row;
 
     public function submitForm()
     {
@@ -65,14 +62,6 @@ class InfoMag extends Component
             'infomag'=> InfoMagister::paginate()
         ]);
     }
-
-    // public function getfirstrow($id){
-    //     $first_row = InfoMagister::where('id', '1')
-    //                     ->latest('updated_at')
-    //                     ->first();
-    //     return $first_row;
-    // }
-
     public function rules()
     {
         return [
@@ -125,27 +114,33 @@ class InfoMag extends Component
         }
     }
 
+        /**
+     * The update function.
+     *
+     * @return void
+     */
+
     public function update()
     {
-        // $this->validate();
+        // $this->validate(
+        //     [
+        //     'nombre_academico' => 'required',
+        //     'rut_academico' => 'required|unique:academicos,rut_academico,'.$this->modelId.'|cl_rut',
+        //     'fecha_nacimiento' => 'required',
+        //     'grado_academico' => 'required',
+        //     'correo' => 'required|unique:academicos,correo,'.$this->modelId.'',
+        //     'estatus' => 'required'
+        //     ]
+        // );
+
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         InfoMagister::find($this->modelId)->update($this->modelData());
         $this->modalFormVisible = false;
     }
-
-    // public function update($modelId)
-    // {
-    //     $this->validate();
-    //     $this->unassignDefaultHomePage();
-    //     $this->unassignDefaultNotFoundPage();
-    //     InfoMagister::find($this->modelId)->update($this->modelData()->first());
-    //     $this->modalFormVisible = false;
-    // }
-
     public function updateShowModal($id)
     {
-        // $this->resetValidation();
+        $this->resetValidation();
         $this->reset();
         $this->modelId = $id;
         $this->modalFormVisible = true;
