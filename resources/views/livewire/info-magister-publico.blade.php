@@ -18,7 +18,7 @@
             <h1 class="w-full">Propósito</h1>
                 <p>
                 <h3 style="text-align: justify;">
-                    {{$infomag->proposito_magister}}
+                    {!!  nl2br(e($infomag->proposito_magister)) !!}
                 </h3>
 
     </div>
@@ -27,14 +27,14 @@
             <h1 class="w-full">Objetivo</h1>
                 <p>
                 <h3 style="text-align: justify;">
-                    {{$infomag->objetivo_magister}}</h3>
+                    {!!  nl2br(e($infomag->objetivo_magister)) !!}</h3>
     </div>
 
     <div class="container px-4 mx-auto my-12 md:px-12">
                 <h1 class="w-full">Descripción</h1>
                 <p>
                 <h3 style="text-align: justify;">
-                    {{$infomag->descripcion_magister}}
+                    {!!  nl2br(e($infomag->descripcion_magister)) !!}
                 </h3>
     </div>
 
@@ -42,7 +42,7 @@
         <h1 class="w-full">Perfil de entrada del alumnno</h1>
         <p>
         <h3 style="text-align: justify;">
-            {{$infomag->perfil_entrada_magister}}
+            {!!  nl2br(e($infomag->perfil_entrada_magister)) !!}
         </h3>
 </div>
 
@@ -58,7 +58,7 @@
     <h1 class="w-full">Contacto</h1>
     <p>
     <h3 style="text-align: justify;">
-        {{$infomag->contacto_magister}}
+        {!!  nl2br(e($infomag->contacto_magister)) !!}
     </h3>
 </div>
 
@@ -66,7 +66,7 @@
         <h1 class="w-full">Costo magíster</h1>
         <p>
         <h3 style="text-align: justify;">
-            {{$infomag->costo_magister}}
+            {!!  nl2br(e($infomag->costo_magister)) !!}
         </h3>
     </div>
 
@@ -74,7 +74,7 @@
         <h1 class="w-full">Métodos de pago</h1>
         <p>
         <h3 style="text-align: justify;">
-            {{$infomag->metodos_pagos_magister}}
+            {!!  nl2br(e($infomag->metodos_pagos_magister)) !!}
         </h3>
     </div>
 
@@ -83,7 +83,7 @@
         <h1 class="w-full">Beneficios y facilidades</h1>
         <p>
         <h3 style="text-align: justify;">
-            {{$infomag->beneficios_magister}}
+            {!!  nl2br(e($infomag->beneficios_magister)) !!}
         </h3>
     </div>
 
@@ -91,7 +91,7 @@
         <h1 class="w-full">Aranceles</h1>
         <p>
         <h3 style="text-align: justify;">
-            {{$infomag->arancel_magister}}
+            {!!  nl2br(e($infomag->arancel_magister)) !!}
         </h3>
     </div>
 @endforeach

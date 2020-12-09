@@ -96,11 +96,17 @@
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <div class="mt-2">
-                                        <input id="regimen_magister" name="regimen_magister" rows="3"
+                                        <select id="regimen_magister" type="text" wire:model="regimen_magister"
+                                        class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
+                                        <option class="text-gray-700" value="Diurno">Diurno</option>
+                                        <option class="text-gray-700" value="Vespertino">Vespertino</option>
+                                    </select>
+                                    @error('regimen_magister') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                        {{-- <input id="regimen_magister" name="regimen_magister" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="regimen_magister"
                                             placeholder="Régimen del magíster: Diurno o Vespertino."></textarea>
-                                            @error('regimen_magister') <span class="error">{{ $message }}</span> @enderror
+                                            @error('regimen_magister') <span class="error">{{ $message }}</span> @enderror --}}
                                     </div>
                                 </div>
 
@@ -219,9 +225,14 @@
                                 </button>
                                         <button type="submit"
                                         class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
-                                        wire:click="update" wire:loading.attr="disabled">
+                                        onclick="confirm('¿Está seguro que desea realizar estos cambios?') || event.stopImmediatePropagation()" wire:click="update" wire:loading.attr="disabled">
                                         {{ __('Actualizar') }}
                                     </button>
+                                    {{-- @if (session()->has('message'))
+                                    <div class="alert alert-success">
+                                        {{ session('message') }}
+                                    </div>
+                                    @endif --}}
                                     </div>
                                 </div>
                             </div>

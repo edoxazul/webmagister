@@ -135,6 +135,7 @@ class InfoMag extends Component
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         InfoMagister::find($this->modelId)->update($this->modelData());
+        session()->flash('message', 'Los cambios se han realizado con éxito.');
         // $this->modalFormVisible = false;
 
     }
