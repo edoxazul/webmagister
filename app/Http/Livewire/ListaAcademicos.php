@@ -38,7 +38,24 @@ class ListaAcademicos extends Component
     public $sortDirection = 'asc';
 
 
-    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$proyecto,$publicaciones,$user_id,$linkedin;
+    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$proyecto,$publicaciones,$user_id,$linkedin,$trabajo_tesis_supervisado;
+
+
+    public $updateMode = false;
+    public $inputs = [];
+    public $i = 1;
+
+    public function add($i)
+    {
+        $i = $i + 1;
+        $this->i = $i;
+        array_push($this->inputs ,$i);
+    }
+
+    public function remove($i)
+    {
+        unset($this->inputs[$i]);
+    }
 
     // /**
     //  * The livewire mount function
@@ -135,7 +152,6 @@ class ListaAcademicos extends Component
         $photopath = 'storage/'.$url;
 
 
-
         return [
             'nombre_academico' => $this->nombre_academico,
             'rut_academico' => $this->rut_academico,
@@ -147,9 +163,12 @@ class ListaAcademicos extends Component
             'estatus'=>$this->estatus,
             'profile_photo_path'=>$photopath,
             'linkedin'=>$this->linkedin,
+            'trabajo_tesis_supervisado' =>$this->trabajo_tesis_supervisado,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
         ];
+
+
     }
 
 
@@ -173,6 +192,7 @@ class ListaAcademicos extends Component
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         Academicos::create($this->modelData());
+        $this->inputs = [];
         $this->modalFormVisible = false;
         $this->reset();
     }
@@ -240,8 +260,10 @@ class ListaAcademicos extends Component
         $this->publicaciones = $data->publicaciones;
         $this->estatus = $data->estatus;
         $this->linkedin = $data->linkedin;
+        $this->trabajo_tesis_supervisado = $data->trabajo_tesis_supervisado;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
+
     }
 
 

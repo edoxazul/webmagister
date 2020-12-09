@@ -33,6 +33,7 @@ class AlumnosFactory extends Factory
             'anio_graduacion'=>$this->faker->dateTimeBetween('+0 days', '+2 years'),
             'trabajo_tesis'=>$this->faker->name(),
             'linkedin'=>$this->faker->url,
+            'academico_id'=>$this->faker->numberBetween(1,10)
         ];
     }
 }

@@ -25,6 +25,13 @@ class CreateAlumnosTable extends Migration
             $table->date('anio_graduacion')->nullable();
             $table->string('trabajo_tesis')->nullable();
             $table->string('linkedin')->nullable();
+
+            $table->unsignedBigInteger('academico_id')->nullable();
+
+            $table->foreign('academico_id')->references('id')->on('academicos')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

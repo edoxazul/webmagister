@@ -24,6 +24,11 @@ class Alumnos extends Model
         'linkedin',
     ];
 
+    //Relacion uno a muchos (inversa)
+    public function academico(){
+        return $this->belongsTo(Academicos::class);
+    }
+
 
 
 

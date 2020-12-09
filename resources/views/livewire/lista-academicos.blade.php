@@ -406,6 +406,33 @@
                                         </div>
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
+                                                <x-jet-label for="trabajo_tesis_supervisado[]" value="Trabajos de tesis supervisados" />
+                                                <label for="trabajo_tesis_supervisado[]" class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
+                                            </div>
+                                            <x-jet-input id="trabajo_tesis_supervisado" name="trabajo_tesis_supervisado[]" class="block w-full mt-1" type="text"
+                                                placeholder="Enlace del anteproyecto supervisado" wire:model="trabajo_tesis_supervisado" />
+                                            @error('trabajo_tesis_supervisado') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                            {{-- <div class="col-md-2">
+                                                <button class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'" wire:click.prevent="add({{$i}})">+</button>
+                                            </div> --}}
+                                        </div>
+                                        {{-- @foreach($inputs as $key => $value)
+                                        <div class="add-input">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        <input type="text" class="block w-full mt-1 rounded-md shadow-sm form-form-input" placeholder="Enter Name" wire:model="trabajo_tesis_supervisado.{{ $value }}">
+                                                        @error('name.'.$value) <span class="text-danger error">{{ $message }}</span>@enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button class="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600" wire:click.prevent="remove({{$key}})">remove</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach --}}
+                                        <div class="col-span-6 mt-2 sm:col-span-3">
+                                            <div class="flex">
                                                 <label for="estatus" value="estatus"
                                                     class="block text-sm font-medium text-gray-700">Estado</label>
                                                 <label for="title" class="px-2 text-red-700">*</label>

@@ -12,7 +12,7 @@ class ListaAcademicosPublico extends Component
 {
 
     public $estatus= '';
-    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$grado_academico,$proyecto,$publicaciones,$user_id,$linkedin;
+    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$grado_academico,$proyecto,$publicaciones,$user_id,$linkedin,$trabajo_tesis_supervisado;
 
     public function render()
     {
