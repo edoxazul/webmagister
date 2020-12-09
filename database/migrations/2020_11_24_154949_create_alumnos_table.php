@@ -16,7 +16,7 @@ class CreateAlumnosTable extends Migration
         Schema::create('alumnos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_alumno');
-            $table->integer('rut_alumno')->unique;
+            $table->string('rut_alumno')->unique;
             $table->string('carrera_alumno');
             $table->string('contacto_alumno',128)->unique();
             $table->enum('estado_alumno', ['Regular', 'Graduado','Egresado','Retiro Voluntario','Eliminado'])->default('Regular');
