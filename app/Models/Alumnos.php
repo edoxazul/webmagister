@@ -13,10 +13,9 @@ class Alumnos extends Model
     protected $fillable = [
         'nombre_alumno',
         'rut_alumno',
-        'nombre_pregrado_alumno',
-        'nombre_institucion_alumno',
+        'carrera_alumno',
         'contacto_alumno',
-        'estatus_alumno',
+        'estado_alumno',
         'razon_eliminacion',
         'anio_ingreso',
         'anio_graduacion',
