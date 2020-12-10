@@ -201,7 +201,7 @@ class ListaAlumnos extends Component
         $this->nombre_alumno = $data->nombre_alumno;
         $this->rut_alumno = $data->rut_alumno;
         $this->carrera_alumno = $data->carrera_alumno;
-        $this->contacto_alumno = $data->contaco_alumno;
+        $this->contacto_alumno = $data->contacto_alumno;
         $this->estado_alumno = $data->estado_alumno;
         $this->razon_eliminacion = $data->razon_eliminacion;
         $this->anio_ingreso = $data->anio_ingreso;
