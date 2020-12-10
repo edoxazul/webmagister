@@ -122,15 +122,18 @@
                                 {{date("d/m/Y", strtotime($alumno->anio_ingreso))}}
                             </div>
                         </td>
-
                         <td class="px-6 py-4 whitespace-nowrap">
-
                             <div class="text-sm text-gray-900">
                                 {{$alumno->estado_alumno}}
+                                @if ($alumno->estado_alumno=='Eliminado')
+                                    ({{$alumno->razon_eliminacion}})
+                                @else @if (($alumno->estado_alumno=='Graduado'))
+                                    ({{date("d/m/Y", strtotime($alumno->anio_graduacion))}})
+                                @endif
+
+                                @endif
                             </div>
-
                         </td>
-
 
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
@@ -167,6 +170,19 @@
                                 </span>
                             </td>
                         @endif
+                        @if ($alumno->estado_alumno!='Graduado')
+                            <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                <span class="hidden sm:block">
+                                    <button wire:click="graduadoShowModal({{ $alumno->id }})" wire:loading.attr="disabled" class="inline-flex items-center justify-center w-full px-1 py-1 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path>
+                                        </svg>
+                                    </button>
+                                </span>
+                            </td>
+                        @endif
 
                         </tr>
 
@@ -189,7 +205,7 @@
                     <x-jet-dialog-modal wire:model="modalFormVisible">
                         <x-slot name="title">
                             <div class="mx-auto text-center rounded-md">
-                                @if($modelId)
+                                @if ($modelId)
                                     Actualizar Alumno
                                 @else
                                     Agregar Alumno
@@ -198,110 +214,111 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            {{-- <div>
-                                <label class="block text-sm font-medium text-gray-700">
-                                    Foto
-                                </label>
-                                <div class="flex items-center mt-2">
-                                    <span
-                                        class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
-                                        <svg class="w-full h-full text-gray-300" fill="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                        </svg>
-                                    </span>
-                                    <button type="button"
-                                        class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        Cambiar
-                                    </button>
-                                </div>
-                            </div> --}}
+
                             <div class="grid grid-cols-6 gap-6">
-                                <div class="col-span-6 mt-4 sm:col-span-3">
+                                <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
                                         <x-jet-label for="nombre_alumno" value="Nombre" />
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <x-jet-input id="nombre_alumno" class="block w-full mt-1" type="text"
-                                        placeholder="Nombre del alumno"
-                                        wire:model.debounce.800ms="nombre_alumno" />
-                                    @error('nombre_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>
-                                    @enderror
+                                        placeholder="Nombre del Alumno" wire:model.lazy="nombre_alumno" />
+                                    @error('nombre_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3 form-group">
                                     <div class="flex">
                                         <x-jet-label for="rut_alumno" value="Rut" />
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
-                                    <x-jet-input class="block w-full mt-1 text-black" wire:model="rut_alumno" placeholder="12345678-9" id="rut" oninput="checkRut(this)" required="" name="rut_alumno" type="text"/>
+                                    {{--
+                                    <x-jet-input id="rut_alumno" class="block w-full mt-1" type="text"
+                                        placeholder="12.345.678-9" wire:model="rut_alumno" />
+                                    --}}
+                                    <x-jet-input class="block w-full mt-1 text-black" wire:model.lazy="rut_alumno"
+                                        placeholder="12345678-9" id="rut" oninput="checkRut(this)" required=""
+                                        name="rut_alumno" type="text" />
                                     @error('rut_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
 
                                 </div>
-
-                                <div class="col-span-6 mt-4 sm:col-span-3">
+                                <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
-                                        <x-jet-label for="carrera_alumno" value="Carrera/Titulo" />
+                                        <x-jet-label for="carrera_alumno" value="Carrera del Alumno" />
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <x-jet-input id="carrera_alumno" class="block w-full mt-1" type="text"
-                                        placeholder="Ej: Carrera o Titulo del alumno"
-                                        wire:model.debounce.800ms="carrera_alumno" />
-                                    @error('carrera_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>
-                                    @enderror
+                                        placeholder="Carrera del Alumno" wire:model.lazy="carrera_alumno" />
+                                    @error('carrera_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                 </div>
-                                <div class="col-span-6 mt-4 sm:col-span-3">
+                                <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
-                                        <x-jet-label for="trabajo_tesis" value="Tesis" />
-                                    </div>
-                                    <x-jet-input id="trabajo_tesis" class="block w-full mt-1" type="text"
-                                        placeholder="Tesis del alumno"
-                                        wire:model.debounce.800ms="trabajo_tesis" />
-                                </div>
-
-                                <div class="col-span-6 mt-4 sm:col-span-3">
-                                    <div class="flex">
-                                        <x-jet-label for="contacto_alumno" value="Correo" />
+                                        <x-jet-label for="contacto_alumno" value="Correo del Alumno" />
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <x-jet-input id="contacto_alumno" class="block w-full mt-1" type="text"
-                                        placeholder="Ej: user@email.com"
-                                        wire:model.debounce.800ms="contacto_alumno" />
+                                        placeholder="Ej: user@email.com" wire:model.lazy="contacto_alumno" />
                                     @error('contacto_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
-                                        <x-jet-label for="anio_ingreso" value="Año de Ingreso" />
+                                        <x-jet-label for="estado_alumno" value="Estado del Alumno" />
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
+                                    <select id="estado_alumno" type="text" wire:model.lazy="estado_alumno"
+                                        class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
+                                        <option class="text-gray-700" value="Regular">Regular</option>
+                                        <option class="text-gray-700" value="Egresado">Egresado</option>
+                                        <option class="text-gray-700" value="Graduado">Graduado</option>
+                                        <option class="text-gray-700" value="Eliminado">Eliminado</option>
+                                        <option class="text-gray-700" value="Retiro Voluntario">Retiro Voluntario</option>
+                                    </select>
+                                    @error('estado_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
+                                </div>
+                                <div class="col-span-6 mt-2 sm:col-span-3">
+                                    <div class="flex">
+                                        <x-jet-label for="razon_eliminacion" value="Razon de Eliminacion" />
+                                        <label for="title"
+                                            class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
+                                    </div>
+                                    <x-jet-input id="razon_eliminacion" class="block w-full mt-1" type="text"
+                                        placeholder="" wire:model.lazy="razon_eliminacion" />
+                                </div>
+                                <div class="col-span-6 mt-2 sm:col-span-3">
+                                    <div class="flex">
+                                        <x-jet-label for="anio_ingreso" value="Fecha de Ingreso" />
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <x-jet-input id="anio_ingreso" class="block w-full mt-1 text-black"
                                         type="date" value="\Carbon\Carbon::now()" placeholder="2000/12/31"
-                                        wire:model="anio_ingreso" />
+                                        wire:model.lazy="anio_ingreso" />
                                     @error('anio_ingreso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="col-span-6 mt-4 sm:col-span-3">
-                                    <x-jet-label for="linkedin" value="LinkedIn (opcional)" />
-                                    <x-jet-input id="linkedin" class="block w-full mt-1" type="text"
-                                        placeholder="LinkedIn"
-                                        wire:model.debounce.800ms="linkedin" />
-
+                                <div class="col-span-6 mt-2 sm:col-span-3">
+                                    <div class="flex">
+                                        <x-jet-label for="anio_graduacion" value="Fecha de Graduacion" />
+                                        <label for="title" class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
+                                    </div>
+                                    <x-jet-input id="anio_graduacion" class="block w-full mt-1 text-black"
+                                        type="date" value="\Carbon\Carbon::now()" placeholder="2000/12/31"
+                                        wire:model.lazy="anio_graduacion" />
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
-                                        <label for="estado_alumno" value="estado_alumno"
-                                            class="block text-sm font-medium text-gray-700">Estado</label>
-                                        <label for="title" class="px-2 text-red-700">*</label>
+                                        <x-jet-label for="trabajo_tesis" value="Tesis (opcional)" />
+                                        <label for="title"
+                                            class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
                                     </div>
-                                    <select id="estado_alumno" type="text" wire:model="estado_alumno"
-                                        class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
-                                        <option class="text-gray-700" value="Regular">Regular</option>
-                                        <option class="text-gray-700" value="Graduado">Graduado</option>
-                                        <option class="text-gray-700" value="Egresado">Egresado</option>
-                                        <option class="text-gray-700" value="Eliminado">Eliminado</option>
-                                        <option class="text-gray-700" value="Retiro Voluntario">Retiro Voluntario</option>
-                                    </select>
-                                    @error('estado_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                    <x-jet-input id="trabajo_tesis" class="block w-full mt-1" type="text"
+                                        placeholder="Tesis" wire:model.lazy="trabajo_tesis" />
+                                </div>
+                                <div class="col-span-6 mt-2 sm:col-span-3">
+                                    <div class="flex">
+                                        <x-jet-label for="linkedin" value="LinkedIn" />
+                                        <label for="title"
+                                            class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
+                                    </div>
+                                    <x-jet-input id="linkedin" class="block w-full mt-1" type="text"
+                                        placeholder="LinkedIn" wire:model="linkedin" />
                                 </div>
 
 
@@ -335,6 +352,8 @@
                     </x-jet-dialog-modal>
 
                     <x-delete-alumno/>
+
+                    <x-graduado-alumno/>
 
 
                 </div>

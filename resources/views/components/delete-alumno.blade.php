@@ -5,9 +5,17 @@
             </x-slot>
 
             <x-slot name="content">
-                ¿Esta seguro que quiere eliminar al Alumno?
-
+                <div class="col-span-6 mt-2 sm:col-span-3">
+                    <div class="flex">
+                        <x-jet-label for="razon_eliminacion" value="¿Por que se ha eliminado a este alumno?" />
+                        <label for="title"
+                            class="block px-2 text-sm font-medium text-gray-400"></label>
+                    </div>
+                    <x-jet-input id="razon_eliminacion" class="block w-full mt-1" type="text"
+                        placeholder="" wire:model.lazy="razon_eliminacion" />
+                </div>
             </x-slot>
+
 
             <x-slot name="footer">
                 <x-jet-secondary-button wire:click="$toggle('modalConfirmDeleteVisible')" wire:loading.attr="disabled">

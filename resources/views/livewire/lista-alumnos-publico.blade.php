@@ -14,7 +14,7 @@
                 <span class="flex sm:block">
                     <div
                         class="inline-flex items-center justify-center px-4 py-2 ml-4 rounded-md shadow-sm lg:mt-0 lg:ml-4 form-input">
-                        <select wire:model='estatus_alumno' class="text-sm text-gray-700 outline-none">
+                        <select wire:model='estado_alumno' class="text-sm text-gray-700 outline-none">
                             <option value="Regular">Alumnos Regulares</option>
                             <option value="Egresado">Alumnos Egresados</option>
                             <option value="Retiro Voluntario">Alumnos en Retiro Voluntario</option>
@@ -46,7 +46,7 @@
 
                 @foreach ($alumnos as $alumno)
 
-                    @if ($alumno->estatus_alumno == 'Regular')
+                    @if ($alumno->estado_alumno == 'Regular')
 
                         <div class="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                             <article class="overflow-hidden rounded-lg shadow-lg">
@@ -59,7 +59,7 @@
                                 <header class="flex items-center justify-between p-2 leading-tight md:p-4">
                                     <h1 class="text-lg">
                                         <a class="text-black no-underline hover:underline" href="#">
-                                            {{ $alumno->estatus_alumno }}
+                                            {{ $alumno->estado_alumno }}
                                         </a>
                                     </h1>
                                     <p class="text-sm text-grey-darker">
@@ -95,7 +95,7 @@
                 @foreach ($alumnos as $alumno)
 
 
-                    @if ($alumno->estatus_alumno == 'Egresado')
+                    @if ($alumno->estado_alumno == 'Egresado')
 
                         <div class="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                             <article class="overflow-hidden rounded-lg shadow-lg">
@@ -108,7 +108,7 @@
                                 <header class="flex items-center justify-between p-2 leading-tight md:p-4">
                                     <h1 class="text-lg">
                                         <a class="text-black no-underline hover:underline" href="#">
-                                            {{ $alumno->estatus_alumno }}
+                                            {{ $alumno->estado_alumno }}
                                         </a>
                                     </h1>
                                     <p class="text-sm text-grey-darker">
@@ -144,7 +144,7 @@
                 @foreach ($alumnos as $alumno)
 
 
-                    @if ($alumno->estatus_alumno == 'Retiro Voluntario')
+                    @if ($alumno->estado_alumno == 'Retiro Voluntario')
 
                         <div class="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                             <article class="overflow-hidden rounded-lg shadow-lg">
@@ -157,7 +157,7 @@
                                 <header class="flex items-center justify-between p-2 leading-tight md:p-4">
                                     <h1 class="text-lg">
                                         <a class="text-black no-underline hover:underline" href="#">
-                                            {{ $alumno->estatus_alumno }}
+                                            {{ $alumno->estado_alumno }}
                                         </a>
                                     </h1>
                                     <p class="text-sm text-grey-darker">

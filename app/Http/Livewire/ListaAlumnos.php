@@ -20,11 +20,44 @@ class ListaAlumnos extends Component
     public $page='1';
     public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
+    public $modalConfirmGraduadoVisible = false;
     public $modelId;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
 
-    public $nombre_alumno,$rut_alumno,$carrera_alumno,$contacto_alumno,$estado_alumno,$anio_ingreso,$user_id,$linkedin,$razon_eliminacion,$anio_graduacion,$trabajo_tesis;
+    public $sortField="nombre_alumno";
+    public $sortDirection = 'asc';
+
+
+    public $nombre_alumno,$rut_alumno,$carrera_alumno,$contacto_alumno,$estado_alumno,$razon_eliminacion,$anio_ingreso,$anio_graduacion,$trabajo_tesis,$linkedin;
+
+
+    public $updateMode = false;
+    public $inputs = [];
+    public $i = 1;
+
+    public function add($i)
+    {
+        $i = $i + 1;
+        $this->i = $i;
+        array_push($this->inputs ,$i);
+    }
+
+    public function remove($i)
+    {
+        unset($this->inputs[$i]);
+    }
+
+    // /**
+    //  * The livewire mount function
+    //  *
+    //  * @return void
+    //  */
+    // public function mount()
+    // {
+    //     // Resets the pagination after reloading the page
+    //     $this->resetPage();
+    // }
 
     public function render()
     {
@@ -32,7 +65,9 @@ class ListaAlumnos extends Component
             'alumnos' => Alumnos::where('nombre_alumno','like','%' . trim($this->search) . '%')
             ->orWhere('contacto_alumno','LIKE',"%{$this->search}%")
             ->orWhere('estado_alumno','LIKE',"%{$this->search}%")
+            ->orderBy($this->sortField,$this->sortDirection)
             ->paginate($this->perPage)
+
         ]);
     }
 
@@ -40,49 +75,16 @@ class ListaAlumnos extends Component
     {
         $this->search = '';
         $this->page = '1';
-        $this->perPage = '5';
-
-    }
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    public function crearAlumno()
-    {
-        $this->resetInputFields();
+        $this->perPage = '10';
 
     }
 
 
     /**
-     * The attributes that are mass assignable.
+     * The validation rules
      *
-     * @var array
+     * @return string[]
      */
-    public function resetInputFields()
-    {
-
-
-        $this->nombre_alumno = '';
-        $this->rut_alumno = '';
-        $this->anio_inicio = '';
-
-    }
-
-    public function deleteShowModal($id)
-    {
-        $this->modelId = $id;
-        $this->modalConfirmDeleteVisible = true;
-    }
-
-    public function delete()
-    {
-        Alumnos::destroy($this->modelId);
-        $this->modalConfirmDeleteVisible = false;
-    }
-
     public function rules()
     {
         return [
@@ -92,12 +94,22 @@ class ListaAlumnos extends Component
             'contacto_alumno' => 'required|unique:alumnos',
             'estado_alumno' => 'required',
             'anio_ingreso' => 'required',
-
         ];
+
     }
-    /*
-    para actualizar campos
-    */
+
+    protected  $messages =[
+        'nombre_alumno.required' => 'El campo del nombre es obligatorio',
+        'rut_alumno.required' => 'El campo del rut es obligatorio',
+        'rut_alumno.unique' => 'El rut ya existe',
+        'rut_alumno.cl_rut' => 'El campo del rut no es valido',
+        'carrera_alumno.required' => 'El campo carrera es obligatorio',
+        'contacto_alumno.required' => 'El campo del correo es obligatorio',
+        'contacto_alumno.unique' => 'El correo ya fue registrado anteriormente',
+        'estado_alumno' => 'El estatus es obligatorio',
+        'anio_ingreso.required'=>'La fecha de nacimiento es obligatoria'
+    ];
+
     public function modelData()
     {
         return [
@@ -109,11 +121,13 @@ class ListaAlumnos extends Component
             'razon_eliminacion'=>$this->razon_eliminacion,
             'anio_ingreso'=>$this->anio_ingreso,
             'anio_graduacion'=>$this->anio_graduacion,
-            'trabajo_tesis'=>$this->trabajo_tesis,
+            'trabajo_tesis' =>$this->trabajo_tesis,
             'linkedin'=>$this->linkedin,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
         ];
+
+
     }
 
 
@@ -128,6 +142,7 @@ class ListaAlumnos extends Component
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         Alumnos::create($this->modelData());
+        $this->inputs = [];
         $this->modalFormVisible = false;
         $this->reset();
     }
@@ -159,10 +174,11 @@ class ListaAlumnos extends Component
                 'rut_alumno' => 'required|unique:alumnos,rut_alumno,'.$this->modelId.'|cl_rut',
                 'carrera_alumno' => 'required',
                 'contacto_alumno' => 'required|unique:alumnos,contacto_alumno,'.$this->modelId.'',
+                'estado_alumno' => 'required',
                 'anio_ingreso' => 'required',
-                'estado_alumno' => 'required'
             ]
         );
+
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         Alumnos::find($this->modelId)->update($this->modelData());
@@ -185,7 +201,7 @@ class ListaAlumnos extends Component
         $this->nombre_alumno = $data->nombre_alumno;
         $this->rut_alumno = $data->rut_alumno;
         $this->carrera_alumno = $data->carrera_alumno;
-        $this->contacto_alumno = $data->contacto_alumno;
+        $this->contacto_alumno = $data->contaco_alumno;
         $this->estado_alumno = $data->estado_alumno;
         $this->razon_eliminacion = $data->razon_eliminacion;
         $this->anio_ingreso = $data->anio_ingreso;
@@ -194,6 +210,7 @@ class ListaAlumnos extends Component
         $this->linkedin = $data->linkedin;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
+
     }
 
 
@@ -220,6 +237,49 @@ class ListaAlumnos extends Component
         $this->isSetToDefaultHomePage = null;
     }
 
+
+    public function deleteShowModal($id)
+    {
+        $this->modelId = $id;
+        $this->modalConfirmDeleteVisible = true;
+    }
+
+
+    public function delete()
+    {
+        Alumnos::destroy($this->modelId);
+        $this->modalConfirmDeleteVisible = false;
+    }
+
+    public function eliminado(){
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        $alumnos=Alumnos::find($this->modelId);
+        $alumnos->estado_alumno = 'Eliminado';
+        $alumnos->razon_eliminacion = $this->razon_eliminacion;
+        $alumnos->save();
+        $this->reset();
+        $this->modalConfirmDeleteVisible = false;
+    }
+
+    public function graduadoShowModal($id)
+    {
+        $this->modelId = $id;
+        $this->modalConfirmGraduadoVisible = true;
+    }
+
+    public function graduado(){
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        $alumnos=Alumnos::find($this->modelId);
+        $alumnos->estado_alumno = 'Graduado';
+        $alumnos->anio_graduacion = $this->anio_graduacion;
+        $alumnos->save();
+        $this->reset();
+        $this->modalConfirmGraduadoVisible = false;
+    }
+
+
     private function unassignDefaultHomePage()
     {
         if ($this->isSetToDefaultHomePage != null) {
@@ -236,27 +296,6 @@ class ListaAlumnos extends Component
                 'is_default_not_found' => false,
             ]);
         }
-    }
-
-    protected  $messages =[
-        'nombre_alumno.required'  => 'El campo nombre es obligatorio',
-        'rut_alumno.required'  => 'El campo rut es obligatorio',
-        'rut_alumno.unique' => 'El rut ya existe',
-        'rut_alumno.cl_rut' => 'El campo del rut no es valido',
-        'carrera_alumno.required'  => 'El campo carrera/titulo es obligatorio',
-        'contacto_alumno.required'  => 'El campo correo es obligatorio',
-        'contacto_alumno.unique' => 'El correo ya fue registrado anteriormente',
-        'anio_ingreso.required'  => 'El campo año de ingreso es obligatorio',
-        'estado_alumno.required'  => 'El campo estado es obligatorio',
-    ];
-
-    public function eliminado(){
-        $this->unassignDefaultHomePage();
-        $this->unassignDefaultNotFoundPage();
-        $alumnos=Alumnos::find($this->modelId);
-        $alumnos->estado_alumno = 'Eliminado';
-        $alumnos->save();
-        $this->modalConfirmDeleteVisible = false;
     }
 
 }
