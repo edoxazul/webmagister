@@ -163,21 +163,23 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">
                                                         {{ $academico->estatus }}
+                                                        @if ($academico->estatus=='Eliminado')
+                                                        ({{$academico->razon_eliminacion}})
+                                                        @endif
+
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">
                                                         <a href=" {{ $academico->linkedin }}">
                                                             <img class="w-6 h-6"
-                                                                src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg"
-                                                                alt="">
+                                                                src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                                         </a>
                                                     </div>
                                                 </td>
                                                 <td class="flex px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                                     <span class="hidden sm:block">
-                                                        {{-- Editar
-                                                        --}}
+                                                        {{-- Editar --}}
                                                         <button wire:click="updateShowModal({{ $academico->id }})"
                                                             type="button"
                                                             class="inline-flex items-center justify-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -190,13 +192,8 @@
                                                             </svg>
                                                         </button>
                                                     </span>
-                                                    {{-- <a href="#"
-                                                        class="text-indigo-600 hover:text-indigo-900">Editar</a>
-                                                    --}}
-{{-- Eliminar
-                                                    --}}
+                                                    @if ($academico->estatus!='Eliminado')
                                                     <span class="hidden sm:block">
-
                                                         <button wire:click="deleteShowModal({{ $academico->id }})"
                                                             wire:loading.attr="disabled"
                                                             class="inline-flex items-center justify-center w-full px-1 py-1 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
@@ -209,8 +206,8 @@
                                                             </svg>
                                                         </button>
                                                     </span>
+                                                    @endif
                                                 </td>
-
                                                 <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                                     {{-- Eliminar
                                                     --}}
@@ -227,10 +224,7 @@
                                                                 </path>
                                                             </svg>
                                                         </button> --}}
-
-
-
-                                                    </span>
+                                                    {{-- </span> --}}
                                                 </td>
                                             </tr>
 
@@ -272,7 +266,6 @@
 
                                             <span class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
                                                 {{-- <img class="w-full h-full" id="profile_photo_path" wire:model="profile_photo_path" src="{{ asset($academico->profile_photo_path) }}"> --}}
-
                                                 @if($photo)
                                                 <img class="w-full h-full" src="{{$photo->temporaryUrl() }}">
                                                 @else
@@ -280,16 +273,20 @@
                                                 {{-- <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                                                     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                                                 </svg> --}}
-                                                <img class="w-full h-full" wire:model="photo" src="{{$academico->profile_photo_path }}">
+                                                {{-- <img class="w-full h-full" wire:model="photo" src="{{$academico->profile_photo_path }}"> --}}
                                                 @endif
+                                                {{-- @if($academico->profile_photo_path) --}}
+                                                {{-- <img class="w-full h-full" wire:model="photo" src="{{$academico->profile_photo_path }}"> --}}
+                                                {{-- @endif --}}
                                             </span>
-                                            {{-- <div
+                                            {{-- <div>
                                                 x-data="{ isUploading: false, progress: 0 }"
                                                 x-on:livewire-upload-start="isUploading = true"
                                                 x-on:livewire-upload-finish="isUploading = false"
                                                 x-on:livewire-upload-error="isUploading = false"
                                                 x-on:livewire-upload-progress="progress = $event.detail.progress"
-                                                > --}}
+                                            </div> --}}
+                                            {{-- <img class="w-full h-full" wire:model="profile_photo_path" src="{{$academico->profile_photo_path }}"> --}}
                                             <input type="file" wire:model="photo" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                             @error('photo') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                             <!-- Progress Bar -->
@@ -312,7 +309,7 @@
                                                 placeholder="Nombre del académico" wire:model.lazy="nombre_academico" />
                                             @error('nombre_academico') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                         </div>
-                                        <div class="col-span-6 mt-2 sm:col-span-3 form-group">
+                                        <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
                                                 <x-jet-label for="rut_academico" value="Rut" />
                                                 <label for="title" class="px-2 text-red-700">*</label>
@@ -321,14 +318,14 @@
                                             <x-jet-input id="rut_academico" class="block w-full mt-1" type="text"
                                                 placeholder="12.345.678-9" wire:model="rut_academico" />
                                             --}}
-                                            <x-jet-input class="block w-full mt-1 text-black" wire:model.lazy="rut_academico"
+                                            <x-jet-input class="block w-full mt-2 text-black" wire:model.lazy="rut_academico"
                                                 placeholder="12345678-9" id="rut" oninput="checkRut(this)" required=""
                                                 name="rut_academico" type="text" />
                                             @error('rut_academico') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
 
                                         </div>
 
-                                        <div class="col-span-6 mt-2 sm:col-span-3">
+                                        <div class="col-span-6 mt-2 sm:col-span-3 form-group">
                                             <div class="flex">
                                                 <x-jet-label for="fecha_nacimiento" value="Fecha de Nacimiento" />
                                                 <label for="title" class="px-2 text-red-700">*</label>
@@ -393,7 +390,7 @@
 
 
                                         </div>
-                                        <div class="col-span-6 mt-2 sm:col-span-3">
+                                        <div class="col-span-6 mt-1 sm:col-span-3">
                                             <div class="flex">
                                                 <x-jet-label for="linkedin" value="LinkedIn" />
                                                 <label for="title"
@@ -447,6 +444,7 @@
                                                 <option class="text-gray-700" value="Claustro">Claustro</option>
                                                 <option class="text-gray-700" value="Visitante">Visitante</option>
                                                 <option class="text-gray-700" value="Colaborador">Colaborador</option>
+                                                <option class="text-gray-700" value="Eliminado">Eliminado</option>
                                             </select>
                                             @error('estatus') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
 
@@ -461,6 +459,15 @@
                                             </div> --}}
 
                                         </div>
+                                        {{-- <div class="col-span-6 mt-2 sm:col-span-3">
+                                            <div class="flex">
+                                                <x-jet-label for="razon_eliminacion" value="Razon de Eliminacion" />
+                                                <label for="title"
+                                                    class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
+                                            </div>
+                                            <x-jet-input id="razon_eliminacion" class="block w-full mt-1" type="text"
+                                                placeholder="" wire:model.lazy="razon_eliminacion" />
+                                        </div> --}}
 
                                     </div>
 
@@ -490,10 +497,6 @@
 
                                 </x-slot>
                             </x-jet-dialog-modal>
-
-
-
-
                             {{--
                             <x-create-academico /> --}}
                             <x-delete-academico />

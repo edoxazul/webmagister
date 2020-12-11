@@ -22,14 +22,15 @@ class CreateAcademicosTable extends Migration
             $table->string('correo', 128)->unique();
             $table->string('proyecto')->nullable();
             $table->string('publicaciones')->nullable();
-            $table->enum('estatus', ['Claustro', 'Colaborador','Visitante'])->default('Claustro');
+            $table->enum('estatus', ['Claustro', 'Colaborador','Visitante','Eliminado'])->default('Claustro');
+            $table->string('razon_eliminacion')->nullable();
             $table->foreignId('user_id')->nullable()->index();
             $table->string('profile_photo_path')->nullable();
             // $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             //$table->foreignId('alumno_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('linkedin')->nullable();
             $table->string('trabajo_tesis_supervisado')->nullable();
-            $table->softDeletes();
+            // $table->softDeletes();
             $table->timestamps();
         });
     }

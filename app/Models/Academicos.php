@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 // use App\Models\Alumnos;
 
 /**
@@ -15,10 +15,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Academicos extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
 
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'nombre_academico',
@@ -30,6 +30,7 @@ class Academicos extends Model
         'publicaciones',
         'profile_photo_path',
         'estatus',
+        'razon_eliminacion',
         'user_id',
         'linkedin',
         'trabajo_tesis_supervisado'

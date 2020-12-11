@@ -39,7 +39,7 @@ class ListaAcademicos extends Component
 
 
     public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$proyecto,$publicaciones,$user_id,$linkedin,$trabajo_tesis_supervisado;
-
+    public $razon_eliminacion;
 
     public $updateMode = false;
     public $inputs = [];
@@ -74,6 +74,7 @@ class ListaAcademicos extends Component
             'academicos' => Academicos::where('nombre_academico','like','%' . trim($this->search) . '%')
             ->orWhere('correo','LIKE',"%{$this->search}%")
             ->orWhere('estatus','LIKE',"%{$this->search}%")
+            ->orWhere('rut_academico','LIKE',"%{$this->search}%")
             ->orderBy($this->sortField,$this->sortDirection)
             ->paginate($this->perPage)
 
@@ -161,6 +162,7 @@ class ListaAcademicos extends Component
             'proyecto'=>$this->proyecto,
             'publicaciones'=>$this->publicaciones,
             'estatus'=>$this->estatus,
+            'razon_eliminacion'=>$this->razon_eliminacion,
             'profile_photo_path'=>$photopath,
             'linkedin'=>$this->linkedin,
             'trabajo_tesis_supervisado' =>$this->trabajo_tesis_supervisado,
@@ -192,7 +194,7 @@ class ListaAcademicos extends Component
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         Academicos::create($this->modelData());
-        $this->inputs = [];
+        // $this->inputs = [];
         $this->modalFormVisible = false;
         $this->reset();
     }
@@ -259,6 +261,7 @@ class ListaAcademicos extends Component
         $this->proyecto = $data->proyecto;
         $this->publicaciones = $data->publicaciones;
         $this->estatus = $data->estatus;
+        $this->razon_eliminacion = $data->razon_eliminacion;
         $this->linkedin = $data->linkedin;
         $this->trabajo_tesis_supervisado = $data->trabajo_tesis_supervisado;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
@@ -301,6 +304,17 @@ class ListaAcademicos extends Component
     public function delete()
     {
         Academicos::destroy($this->modelId);
+        $this->modalConfirmDeleteVisible = false;
+    }
+
+    public function eliminado(){
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        $academicos=Academicos::find($this->modelId);
+        $academicos->estatus = 'Eliminado';
+        $academicos->razon_eliminacion = $this->razon_eliminacion;
+        $academicos->save();
+        $this->reset();
         $this->modalConfirmDeleteVisible = false;
     }
 
