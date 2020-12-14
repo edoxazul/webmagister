@@ -8,12 +8,33 @@ use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
 
+use Livewire\WithFileUploads;
+
 class InfoMag extends Component
 {
+    use WithFileUploads;
     public $modelId;
     public $proposito_magister, $objetivo_magister, $descripcion_magister, $perfil_entrada_magister, $regimen_magister, $contacto_magister, $costo_magister, $metodos_pagos_magister, $beneficios_magister, $arancel_magister;
+    // public $files = [];
+    // public $archivos_magister;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
+    // public $name;
+
+
+    // public function upload()
+    // {
+    //     $this->validate([
+    //         'files.*' => 'file|max:1024', // 1MB Max
+    //     ]);
+
+    //     foreach ($this->files as $file) {
+    //         $name = md5($this->file . microtime()).'.'.$this->file->extension();
+    //         $files->storeAs('files', $name);
+    //         InfoMagister::create(['archivo_programa_magister' => $name]);
+    //     }
+
+    // }
 
     public function submitForm()
     {
@@ -27,7 +48,8 @@ class InfoMag extends Component
             'costo_magister' => 'required',
             'metodos_pagos_magister' => 'required',
             'beneficios_magister' => 'required',
-            'arancel_magister' => 'required'
+            'arancel_magister' => 'required',
+            // 'archivos_magister' => 'required'
         ]);
         InfoMagister::create($this->modelData());
         $this->success = '¡Información agregada!';
@@ -50,6 +72,24 @@ class InfoMag extends Component
         //$this->reset();
     }
  */
+
+           // método para tratar de mandar datos a la vista
+
+        public function mount (){
+            $infomag_data= InfoMagister::find(1);
+            $this->modelId = $infomag_data->id;
+            $this->proposito_magister = $infomag_data->proposito_magister;
+            $this->objetivo_magister = $infomag_data->objetivo_magister;
+            $this->descripcion_magister = $infomag_data->descripcion_magister;
+            $this->perfil_entrada_magister = $infomag_data->perfil_entrada_magister;
+            $this->regimen_magister = $infomag_data->regimen_magister;
+            $this->contacto_magister = $infomag_data->contacto_magister;
+            $this->costo_magister = $infomag_data->costo_magister;
+            $this->metodos_pagos_magister = $infomag_data->metodos_pagos_magister;
+            $this->beneficios_magister = $infomag_data->beneficios_magister;
+            $this->arancel_magister = $infomag_data->arancel_magister;
+            // $this->archivos_magister = $infomag_data->archivos_magister;
+        }
 
     public function render()
     {
@@ -75,6 +115,7 @@ class InfoMag extends Component
             'metodos_pagos_magister' => 'required',
             'beneficios_magister' => 'required',
             'arancel_magister' => 'required',
+            // 'archivos_magister' => 'required|mimes:pdf'
         ];
     }
 
@@ -100,6 +141,7 @@ class InfoMag extends Component
             'metodos_pagos_magister'=>$this->metodos_pagos_magister,
             'beneficios_magister'=>$this->beneficios_magister,
             'arancel_magister'=>$this->arancel_magister,
+            // 'archivos_magister' => $this->archivos_magister,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
         ];
@@ -122,22 +164,12 @@ class InfoMag extends Component
 
     public function update()
     {
-        // $this->validate(
-        //     [
-        //     'nombre_academico' => 'required',
-        //     'rut_academico' => 'required|unique:academicos,rut_academico,'.$this->modelId.'|cl_rut',
-        //     'fecha_nacimiento' => 'required',
-        //     'grado_academico' => 'required',
-        //     'correo' => 'required|unique:academicos,correo,'.$this->modelId.'',
-        //     'estatus' => 'required'
-        //     ]
-        // );
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
+        // $this->upload();
         InfoMagister::find($this->modelId)->update($this->modelData());
         session()->flash('message', 'Los cambios se han realizado con éxito.');
         // $this->modalFormVisible = false;
-
     }
 
     public function visualizar($id){
@@ -169,7 +201,7 @@ class InfoMag extends Component
         $this->metodos_pagos_magister = $data->metodos_pagos_magister;
         $this->beneficios_magister = $data->beneficios_magister;
         $this->arancel_magister = $data->arancel_magister;
-
+        // $this->archivos_magister = $data->archivos_magister;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
@@ -185,6 +217,8 @@ class InfoMag extends Component
         'metodos_pagos_magister.required' => 'El campo métodos de pago es obligatorio',
         'beneficios_magister.required' => 'El campo beneficios y facilidades es obligatorio',
         'arancel_magister.required' => 'El campo aranceles es obligatorio',
+        'archivos_magister.required' => 'El campo archivos es obligatorio',
+        // 'archivos_magister.mimes:pdf'=> 'El archivo debe ser en formato PDF',
     ];
 
 /**
@@ -218,6 +252,8 @@ class InfoMag extends Component
             ]);
         }
     }
+
+
 
 
 

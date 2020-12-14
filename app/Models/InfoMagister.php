@@ -21,6 +21,7 @@ class InfoMagister extends Model
         'costo_magister',
         'metodos_pagos_magister',
         'beneficios_magister',
-        'arancel_magister'
+        'arancel_magister',
+        // 'archivos_magister'
     ];
 }

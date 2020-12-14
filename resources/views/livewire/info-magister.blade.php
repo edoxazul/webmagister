@@ -12,8 +12,16 @@
                     <div class="overflow-hidden shadow sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="grid grid-cols-6 gap-6">
-                                @foreach ($infomag as $infomag)
+                                {{-- @foreach ($infomag as $infomag) --}}
                                 <div class="col-span-6 sm:col-span-6">
+                                    {{-- <div class="col-span-2 sm:col-span-6">
+                                     <h2> Para cargar información guardada presionar el botón Cargar Información </h2>
+                                        <button type="submit"
+                                        class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                        wire:click="visualizar({{$infomag->id}})" wire:loading.attr="disabled">
+                                        {{ __('Visualizar') }}
+                                        </button>
+                                    </div> --}}
                                     <div class="flex">
                                     <label for="proposito_magister" class="block font-medium text-gray-700 text-m">Propósito</label>
                                     <label for="title" class="px-2 text-red-700">*</label>
@@ -204,9 +212,21 @@
 
                                 </div>
 
-
                                 <div class="mt-2">
                                 </div>
+
+                                {{-- <div class="col-span-6 sm:col-span-6">
+                                    <div class="flex">
+                                        <label for="archivos_magister"
+                                        class="block font-medium text-gray-700 text-m">Archivos</label>
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
+                                    <div class="mt-2">
+                                        <input type="file" wire:model="files" multiple class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            @error('files.*') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+
+                                </div> --}}
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <div class="px-4 py-3 text-right bg-white sm:px-6">
@@ -218,26 +238,29 @@
                                         wire:click="submitForm" wire:loading.attr="disabled">
                                         {{ __('Crear') }}
                                     </button> --}}
-                                    <button type="submit"
+
+                                    {{-- botón de visualizar --}}
+                                    {{-- <button type="submit"
                                     class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
                                     wire:click="visualizar({{$infomag->id}})" wire:loading.attr="disabled">
                                     {{ __('Visualizar') }}
-                                </button>
+                                </button> --}}
+                                 {{-- botón de actualizar --}}
                                         <button type="submit"
                                         class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
                                         onclick="confirm('¿Está seguro que desea realizar estos cambios?') || event.stopImmediatePropagation()" wire:click="update" wire:loading.attr="disabled">
                                         {{ __('Actualizar') }}
                                     </button>
-                                    {{-- @if (session()->has('message'))
+                                    @if (session()->has('message'))
                                     <div class="alert alert-success">
                                         {{ session('message') }}
                                     </div>
-                                    @endif --}}
+                                    @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    {{-- @endforeach --}}
                     </div>
                 </div>
             {{-- </form> --}}
