@@ -89,7 +89,7 @@ class ListaAlumnos extends Component
     public function rules()
     {
         return [
-            'nombre_alumno' => 'required',
+            'nombre_alumno' => 'required|unique:alumnos',
             'rut_alumno' => 'required|unique:alumnos|cl_rut',
             'carrera_alumno' => 'required',
             'contacto_alumno' => 'required|unique:alumnos',
@@ -101,6 +101,7 @@ class ListaAlumnos extends Component
 
     protected  $messages =[
         'nombre_alumno.required' => 'El campo del nombre es obligatorio',
+        'nombre_alumno.unique' => 'Ya existe ese alumno',
         'rut_alumno.required' => 'El campo del rut es obligatorio',
         'rut_alumno.unique' => 'El rut ya existe',
         'rut_alumno.cl_rut' => 'El campo del rut no es valido',

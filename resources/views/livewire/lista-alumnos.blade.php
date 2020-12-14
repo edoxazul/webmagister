@@ -156,7 +156,7 @@
                                     </svg>
                                 </button>
                             </span>
-                            @if ($alumno->estado_alumno!='Eliminado')
+                            @if ($alumno->estado_alumno!='Eliminado' && $alumno->estado_alumno!='Graduado')
 
                             {{-- Eliminar --}}
                             <span class="hidden sm:block">
@@ -167,9 +167,6 @@
                                     </svg>
                                 </button>
                             </span>
-                            @endif
-                        @if ($alumno->estado_alumno!='Graduado')
-
                             <span class="hidden sm:block">
                                 <button wire:click="graduadoShowModal({{ $alumno->id }})" wire:loading.attr="disabled" class="inline-flex items-center justify-center w-full px-1 py-1 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -179,7 +176,7 @@
                                     </svg>
                                 </button>
                             </span>
-                        @endif
+                            @endif
                         </td>
                         <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
 
@@ -266,6 +263,7 @@
                                     </div>
                                     <select id="estado_alumno" type="text" wire:model="estado_alumno"
                                         class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
+                                        <option class="text-gray-700 font-black" value="">Elige una opción</option>
                                         <option class="text-gray-700" value="Regular">Regular</option>
                                         <option class="text-gray-700" value="Egresado">Egresado</option>
                                         <option class="text-gray-700" value="Graduado">Graduado</option>

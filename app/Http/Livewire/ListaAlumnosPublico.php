@@ -11,6 +11,7 @@ use Livewire\WithPagination;
 class ListaAlumnosPublico extends Component
 {
     public $search= '';
+    public $modalFormVisible = false;
     public $page='1';
     public $nombre_alumno,$rut_alumno,$carrera_alumno,$titulo_alumno,$contacto_alumno,$estado_alumno,$anio_ingreso,$linkedin;
 
@@ -26,7 +27,7 @@ class ListaAlumnosPublico extends Component
     {
         return view('livewire.lista-alumnos-publico',[
             'alumnos' => Alumnos::where('estado_alumno','LIKE',"%{$this->estado_alumno}%")
-            ->paginate()
+            ->paginate(Alumnos::count())
         ])
         ->layout('layouts.guest');
     }
