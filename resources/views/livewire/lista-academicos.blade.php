@@ -117,7 +117,10 @@
                                                                     class="cursor-pointer">
                                                                     <img class="w-10 h-10 rounded-full"
                                                                         alt="Placeholder" class="w-full object-fit"
+
                                                                         src="{{($academico->profile_photo_path)}}"/>
+
+
                                                                 </a>
                                                             </div>
                                                             {{-- <img class="w-10 h-10 rounded-full"
@@ -268,12 +271,18 @@
                                                 {{-- <img class="w-full h-full" id="profile_photo_path" wire:model="profile_photo_path" src="{{ asset($academico->profile_photo_path) }}"> --}}
                                                 @if($photo)
                                                 <img class="w-full h-full" src="{{$photo->temporaryUrl() }}">
-                                                @else
+                                                    @else
                                                 {{-- <img class="w-full h-full" wire:model="profile_photo_path" src="{{$academico->profile_photo_path}}"> --}}
-                                                {{-- <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                                                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                                </svg> --}}
-                                                {{-- <img class="w-full h-full" wire:model="photo" src="{{$academico->profile_photo_path }}"> --}}
+
+                                                    @if($profile_photo_path)
+
+                                                        <img class="w-full h-full" src="{{$profile_photo_path }}">
+                                                        @else
+                                                        <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                                        </svg>
+
+                                                    @endif
                                                 @endif
                                                 {{-- @if($academico->profile_photo_path) --}}
                                                 {{-- <img class="w-full h-full" wire:model="photo" src="{{$academico->profile_photo_path }}"> --}}
