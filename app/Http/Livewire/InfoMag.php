@@ -61,7 +61,7 @@ class InfoMag extends Component
  *
  *
 
-  public function create()
+public function create()
     {
         $this->validate();
         $this->unassignDefaultHomePage();

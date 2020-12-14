@@ -15,7 +15,7 @@
                                 {{-- @foreach ($infomag as $infomag) --}}
                                 <div class="col-span-6 sm:col-span-6">
                                     {{-- <div class="col-span-2 sm:col-span-6">
-                                     <h2> Para cargar información guardada presionar el botón Cargar Información </h2>
+                                    <h2> Para cargar información guardada presionar el botón Cargar Información </h2>
                                         <button type="submit"
                                         class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
                                         wire:click="visualizar({{$infomag->id}})" wire:loading.attr="disabled">
@@ -140,7 +140,7 @@
                                 <div class="mt-2">
                                 </div>
 
-                               <div class="col-span-6 sm:col-span-6">
+                                <div class="col-span-6 sm:col-span-6">
                                 <div class="flex">
                                     <label for="costo_magister"
                                     class="block font-medium text-gray-700 text-m">Costo magíster</label>
@@ -245,14 +245,14 @@
                                     wire:click="visualizar({{$infomag->id}})" wire:loading.attr="disabled">
                                     {{ __('Visualizar') }}
                                 </button> --}}
-                                 {{-- botón de actualizar --}}
+                                {{-- botón de actualizar --}}
                                         <button type="submit"
-                                        class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                        class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
                                         onclick="confirm('¿Está seguro que desea realizar estos cambios?') || event.stopImmediatePropagation()" wire:click="update" wire:loading.attr="disabled">
                                         {{ __('Actualizar') }}
                                     </button>
                                     @if (session()->has('message'))
-                                    <div class="alert alert-success">
+                                    <div class="inline-flex items-center px-4 py-2 pl-4 font-semibold text-blue-900 bg-blue-300 border border-blue-600 rounded">
                                         {{ session('message') }}
                                     </div>
                                     @endif
