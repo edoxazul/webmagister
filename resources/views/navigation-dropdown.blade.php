@@ -128,11 +128,12 @@
                 </x-jet-dropdown>
                 <div class="mt-1 ml-6 rounded-md shadow-sm form-input">
                     <label>
-                        <select class="text-sm text-gray-500 outline-none">
-                            <option>Sistema Magister</option>
-                            <option>Sistema de Actas</option>
-                            <option>Vinculación con el medio</option>
-                            <option value="https://www.google.cl">Disc</option>
+                        <select name="select" id="listaSistemas" class="text-sm text-gray-500 outline-none" onchange="window.open(this.options[this.selectedIndex].value,'_blank')">
+                            <option value="nothing" selected="selected">Elegir Sistema</option>
+                            <option value="http://webmagister.test">Sistema Magister</option>
+                            <option value="http://localhost:3000/">Sistema de Actas</option>
+                            <option value="http://vinculacionvcm.test">Vinculación con el medio</option>
+                            <option value="http://webdisc.test">Disc</option>
                         </select>
                     </label>
                 </div>
@@ -161,12 +162,19 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('academicos') }}" :active="request()->routeIs('academicos')">
-                {{ __('Academicos') }}
+            <x-jet-responsive-nav-link href="{{ route('informacion') }}" :active="request()->routeIs('informacion')">
+                {{ __('Información General') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('noticias') }}" :active="request()->routeIs('noticias')">
                 {{ __('Noticias') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('academicos') }}" :active="request()->routeIs('academicos')">
+                {{ __('Academicos') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('alumnos') }}" :active="request()->routeIs('alumnos')">
+                {{ __('Alumnos') }}
+            </x-jet-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->
