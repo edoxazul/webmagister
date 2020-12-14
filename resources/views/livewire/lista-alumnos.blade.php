@@ -264,7 +264,7 @@
                                         <x-jet-label for="estado_alumno" value="Estado del Alumno" />
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
-                                    <select id="estado_alumno" type="text" wire:model.lazy="estado_alumno"
+                                    <select id="estado_alumno" type="text" wire:model="estado_alumno"
                                         class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
                                         <option class="text-gray-700" value="Regular">Regular</option>
                                         <option class="text-gray-700" value="Egresado">Egresado</option>

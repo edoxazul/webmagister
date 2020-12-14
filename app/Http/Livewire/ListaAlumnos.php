@@ -24,12 +24,13 @@ class ListaAlumnos extends Component
     public $modelId;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
+    public $estado_alumno='Regular';
 
     public $sortField="nombre_alumno";
     public $sortDirection = 'asc';
 
 
-    public $nombre_alumno,$rut_alumno,$carrera_alumno,$contacto_alumno,$estado_alumno,$razon_eliminacion,$anio_ingreso,$anio_graduacion,$trabajo_tesis,$linkedin;
+    public $nombre_alumno,$rut_alumno,$carrera_alumno,$contacto_alumno,$razon_eliminacion,$anio_ingreso,$anio_graduacion,$trabajo_tesis,$linkedin;
 
 
     public $updateMode = false;
@@ -106,7 +107,7 @@ class ListaAlumnos extends Component
         'carrera_alumno.required' => 'El campo carrera es obligatorio',
         'contacto_alumno.required' => 'El campo del correo es obligatorio',
         'contacto_alumno.unique' => 'El correo ya fue registrado anteriormente',
-        'estado_alumno' => 'El estatus es obligatorio',
+        'estado_alumno.required' => 'El estatus es obligatorio',
         'anio_ingreso.required'=>'La fecha de nacimiento es obligatoria'
     ];
 
