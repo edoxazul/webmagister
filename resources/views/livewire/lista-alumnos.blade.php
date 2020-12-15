@@ -272,6 +272,7 @@
                                     </select>
                                     @error('estado_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                 </div>
+                                @if ($estado_alumno=='Eliminado')
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
                                         <x-jet-label for="razon_eliminacion" value="Razon de Eliminacion" />
@@ -280,7 +281,9 @@
                                     </div>
                                     <x-jet-input id="razon_eliminacion" class="block w-full mt-1" type="text"
                                         placeholder="" wire:model.lazy="razon_eliminacion" />
-                                </div>
+                                </div>e
+                                @endif
+
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
                                         <x-jet-label for="anio_ingreso" value="Fecha de Ingreso" />
@@ -292,6 +295,7 @@
                                     @error('anio_ingreso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                @if ($estado_alumno=='Graduado')
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
                                         <x-jet-label for="anio_graduacion" value="Fecha de Graduacion" />
@@ -301,6 +305,8 @@
                                         type="date" value="\Carbon\Carbon::now()" placeholder="2000/12/31"
                                         wire:model.lazy="anio_graduacion" />
                                 </div>
+                                @endif
+
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
                                         <x-jet-label for="trabajo_tesis" value="Tesis (opcional)" />
