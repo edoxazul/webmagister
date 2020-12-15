@@ -111,14 +111,23 @@
                                                     <div class="flex items-center">
                                                         <div x-data={} class="flex-shrink-0 w-10 h-10">
                                                             <div>
+
                                                                 <a {{--
                                                                     @click="$dispatch('img-modal', {imgModalSrc: {{ $academico->profile_photo_path }}'})"
                                                                     --}}
+
                                                                     class="cursor-pointer">
-                                                                    <img class="w-10 h-10 rounded-full"
-                                                                        alt="Placeholder" class="w-full object-fit"
+                                                                    @if($academico->profile_photo_path!=null)
+                                                                    <img class="w-10 h-10 rounded-full object-fit"
 
                                                                         src="{{($academico->profile_photo_path)}}"/>
+                                                                        {{-- src="{{asset('storage/photos' . $academico->profile_photo_path)}}"/> --}}
+                                                                    @else
+                                                                    <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                                                    </svg>
+
+                                                                    @endif
 
 
                                                                 </a>
@@ -284,28 +293,12 @@
 
                                                     @endif
                                                 @endif
-                                                {{-- @if($academico->profile_photo_path) --}}
-                                                {{-- <img class="w-full h-full" wire:model="photo" src="{{$academico->profile_photo_path }}"> --}}
-                                                {{-- @endif --}}
+
                                             </span>
-                                            {{-- <div>
-                                                x-data="{ isUploading: false, progress: 0 }"
-                                                x-on:livewire-upload-start="isUploading = true"
-                                                x-on:livewire-upload-finish="isUploading = false"
-                                                x-on:livewire-upload-error="isUploading = false"
-                                                x-on:livewire-upload-progress="progress = $event.detail.progress"
-                                            </div> --}}
                                             {{-- <img class="w-full h-full" wire:model="profile_photo_path" src="{{$academico->profile_photo_path }}"> --}}
                                             <input type="file" wire:model="photo" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                             @error('photo') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
-                                            <!-- Progress Bar -->
-                                            {{-- <div x-show="isUploading">
-                                                <progress max="100" x-bind:value="progress"></progress>
-                                            </div> --}}
 
-                                            {{-- <button type="button" wire:click.prevent="upload" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                Cambiar
-                                            </button> --}}
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-6 gap-6">

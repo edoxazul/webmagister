@@ -32,7 +32,7 @@ class ListaAcademicos extends Component
     public $estatus ='Claustro';
     public $grado_academico='Magíster';
     public $profile_photo_path;
-    public $photo;
+    public $photo=null;
 
     public $sortField="nombre_academico";
     public $sortDirection = 'asc';
@@ -44,6 +44,7 @@ class ListaAcademicos extends Component
     public $updateMode = false;
     public $inputs = [];
     public $i = 1;
+
 
     public function add($i)
     {
@@ -83,9 +84,9 @@ class ListaAcademicos extends Component
 
     public function upload()
     {
-        $this->validate([
-            'photo' => 'image|max:1024', // 1MB Max
-        ]);
+        // $this->validate([
+        //     'photo' => 'image|max:1024', // 1MB Max
+        // ]);
 
         $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
 
@@ -123,7 +124,7 @@ class ListaAcademicos extends Component
             'grado_academico' => 'required',
             'correo' => 'required|unique:academicos',
             'estatus' => 'required',
-            'photo' => 'image|max:1024'
+            // 'photo' => 'max:1024'
             // 'estatus' => 'required'
 
         ];
@@ -140,18 +141,19 @@ class ListaAcademicos extends Component
         'correo.required' => 'El campo del correo es obligatorio',
         'correo.unique' => 'El correo ya fue registrado anteriormente',
         'estatus.required' => 'El estatus es obligatorio',
-        'photo.image' => 'Debe ingresar una foto',
-        'photo.max:1024' => 'La foto ingresada debe ser menor a 1MB'
+        // 'photo.image' => 'Debe ingresar una foto',
+        // 'photo.max:1024' => 'La foto ingresada debe ser menor a 1MB'
     ];
 
     public function modelData()
     {
+        // $photopath='';
+        if(!empty($this->photo)){
+
         $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
 
-        $url = $this->photo->storeAs('photos', $name,'public');
-
-        $photopath = 'storage/'.$url;
-
+        $profile_photo_path = $this->photo->storeAs('photos',$name,'public');
+        $profile_photo_path = 'storage/'.$profile_photo_path;
 
         return [
             'nombre_academico' => $this->nombre_academico,
@@ -163,12 +165,43 @@ class ListaAcademicos extends Component
             'publicaciones'=>$this->publicaciones,
             'estatus'=>$this->estatus,
             'razon_eliminacion'=>$this->razon_eliminacion,
-            'profile_photo_path'=>$photopath,
+            'profile_photo_path'=>$profile_photo_path,
             'linkedin'=>$this->linkedin,
             'trabajo_tesis_supervisado' =>$this->trabajo_tesis_supervisado,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
         ];
+
+
+
+
+        }else{
+            // $profile_photo_path='';
+            return [
+                'nombre_academico' => $this->nombre_academico,
+                'rut_academico' => $this->rut_academico,
+                'fecha_nacimiento'=>$this->fecha_nacimiento,
+                'grado_academico'=>$this->grado_academico,
+                'correo'=>$this->correo,
+                'proyecto'=>$this->proyecto,
+                'publicaciones'=>$this->publicaciones,
+                'estatus'=>$this->estatus,
+                'razon_eliminacion'=>$this->razon_eliminacion,
+                // 'profile_photo_path'=>$profile_photo_path,
+                'linkedin'=>$this->linkedin,
+                'trabajo_tesis_supervisado' =>$this->trabajo_tesis_supervisado,
+                'is_default_home' => $this->isSetToDefaultHomePage,
+                'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+            ];
+
+
+
+        // $photopath = null;
+
+        }
+
+        // if($name == null){
+
 
 
     }
@@ -188,7 +221,7 @@ class ListaAcademicos extends Component
             // 'grado_academico' => 'required',
             // 'correo' => 'required',
             // 'estatus' => 'required',
-            // 'likedin' => 'required'
+            // 'linkedin' => 'required'
         // ]);
 
         $this->unassignDefaultHomePage();
@@ -197,6 +230,8 @@ class ListaAcademicos extends Component
         // $this->inputs = [];
         $this->modalFormVisible = false;
         $this->reset();
+        // $this->reset($profile_photo_path);
+
     }
 
 
@@ -228,7 +263,7 @@ class ListaAcademicos extends Component
             'grado_academico' => 'required',
             'correo' => 'required|unique:academicos,correo,'.$this->modelId.'',
             'estatus' => 'required',
-            'photo' => 'image:academicos,profile_photo_path,'.$this->modelId.'|max:1024'
+            // 'photo' => 'max:1024'
 
             ]
         );
@@ -243,6 +278,7 @@ class ListaAcademicos extends Component
     {
         $this->resetValidation();
         $this->reset();
+        // $this->reset('photo');
         $this->modelId = $id;
         $this->modalFormVisible = true;
         $this->loadModel();
