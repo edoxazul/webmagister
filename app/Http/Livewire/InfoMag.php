@@ -7,7 +7,6 @@ use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
-
 use Livewire\WithFileUploads;
 
 class InfoMag extends Component
@@ -15,26 +14,14 @@ class InfoMag extends Component
     use WithFileUploads;
     public $modelId;
     public $proposito_magister, $objetivo_magister, $descripcion_magister, $perfil_entrada_magister, $regimen_magister, $contacto_magister, $costo_magister, $metodos_pagos_magister, $beneficios_magister, $arancel_magister;
-    // public $files = [];
-    // public $archivos_magister;
+    public $reglamento_magister;
+    public $programa_magister;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
-    // public $name;
-
-
-    // public function upload()
-    // {
-    //     $this->validate([
-    //         'files.*' => 'file|max:1024', // 1MB Max
-    //     ]);
-
-    //     foreach ($this->files as $file) {
-    //         $name = md5($this->file . microtime()).'.'.$this->file->extension();
-    //         $files->storeAs('files', $name);
-    //         InfoMagister::create(['archivo_programa_magister' => $name]);
-    //     }
-
-    // }
+    public $file;
+    public $file2;
+    public $name;
+    public $name2;
 
     public function submitForm()
     {
@@ -49,7 +36,8 @@ class InfoMag extends Component
             'metodos_pagos_magister' => 'required',
             'beneficios_magister' => 'required',
             'arancel_magister' => 'required',
-            // 'archivos_magister' => 'required'
+            'programa_magister' => 'required',
+            'reglamento_magister' => 'required'
         ]);
         InfoMagister::create($this->modelData());
         $this->success = '¡Información agregada!';
@@ -88,7 +76,8 @@ public function create()
             $this->metodos_pagos_magister = $infomag_data->metodos_pagos_magister;
             $this->beneficios_magister = $infomag_data->beneficios_magister;
             $this->arancel_magister = $infomag_data->arancel_magister;
-            // $this->archivos_magister = $infomag_data->archivos_magister;
+            $this->programa_magister = $infomag_data->programa_magister;
+            $this->reglamento_magister = $infomag_data->reglamento_magister;
         }
 
     public function render()
@@ -102,6 +91,7 @@ public function create()
             'infomag'=> InfoMagister::paginate()
         ]);
     }
+
     public function rules()
     {
         return [
@@ -115,7 +105,9 @@ public function create()
             'metodos_pagos_magister' => 'required',
             'beneficios_magister' => 'required',
             'arancel_magister' => 'required',
-            // 'archivos_magister' => 'required|mimes:pdf'
+            'programa_magister' => 'required|mimes:pdf',
+            'reglamento_magister' => 'required|mimes:pdf',
+            'files' => 'file|max:3024'
         ];
     }
 
@@ -130,6 +122,12 @@ public function create()
 
     public function modelData()
     {
+        //Subida de archivos
+        $name = md5($this->file . microtime()).'.'.$this->file->extension();
+        $name2 = md5($this->file2 . microtime()).'.'.$this->file2->extension();
+        $reglamento_magister= $this->file->storeAs('files',$name,'public');
+        $programa_magister= $this->file2->storeAs('files',$name2,'public');
+        session()->flash('message', 'El archivo ha sido subido exitósamente');
         return [
             'proposito_magister' => $this->proposito_magister,
             'objetivo_magister' => $this->objetivo_magister,
@@ -141,7 +139,8 @@ public function create()
             'metodos_pagos_magister'=>$this->metodos_pagos_magister,
             'beneficios_magister'=>$this->beneficios_magister,
             'arancel_magister'=>$this->arancel_magister,
-            // 'archivos_magister' => $this->archivos_magister,
+            'programa_magister' => $programa_magister,
+            'reglamento_magister' => $reglamento_magister,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
         ];
@@ -166,7 +165,6 @@ public function create()
     {
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
-        // $this->upload();
         InfoMagister::find($this->modelId)->update($this->modelData());
         session()->flash('message', 'Los cambios se han realizado con éxito.');
         // $this->modalFormVisible = false;
@@ -201,7 +199,8 @@ public function create()
         $this->metodos_pagos_magister = $data->metodos_pagos_magister;
         $this->beneficios_magister = $data->beneficios_magister;
         $this->arancel_magister = $data->arancel_magister;
-        // $this->archivos_magister = $data->archivos_magister;
+        $this->programa_magister = $data->programa_magister;
+        $this->reglamento_magister = $data->reglamento_magister;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
@@ -217,8 +216,10 @@ public function create()
         'metodos_pagos_magister.required' => 'El campo métodos de pago es obligatorio',
         'beneficios_magister.required' => 'El campo beneficios y facilidades es obligatorio',
         'arancel_magister.required' => 'El campo aranceles es obligatorio',
-        'archivos_magister.required' => 'El campo archivos es obligatorio',
-        // 'archivos_magister.mimes:pdf'=> 'El archivo debe ser en formato PDF',
+        'programa_magister.required' => 'El campo programa magíster es obligatorio',
+        'reglamento_magister.required' => 'El campo programa magíster es obligatorio',
+        'programa_magister.mimes:pdf'=> 'El archivo debe ser en formato PDF',
+        'reglamento_magister.mimes:pdf'=> 'El archivo debe ser en formato PDF',
     ];
 
 /**

@@ -215,18 +215,32 @@
                                 <div class="mt-2">
                                 </div>
 
-                                {{-- <div class="col-span-6 sm:col-span-6">
+                                <div class="col-span-6 sm:col-span-6">
                                     <div class="flex">
-                                        <label for="archivos_magister"
-                                        class="block font-medium text-gray-700 text-m">Archivos</label>
+                                        <label for="reglamento_magister"
+                                        class="block font-medium text-gray-700 text-m">Reglamento del magíster</label>
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <div class="mt-2">
-                                        <input type="file" wire:model="files" multiple class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            @error('files.*') <span class="error">{{ $message }}</span> @enderror
+                                        <input type="file" wire:model="file" class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        @error('file') <span class="error">{{ $message }}</span> @enderror
                                     </div>
+                                </div>
 
-                                </div> --}}
+                                <div class="mt-2">
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-6">
+                                    <div class="flex">
+                                        <label for="programa_magister"
+                                        class="block font-medium text-gray-700 text-m">Programa del magíster</label>
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
+                                    <div class="mt-2">
+                                        <input type="file" wire:model="file2" class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            @error('file2') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
 
                                 <div class="col-span-6 sm:col-span-6">
                                     <div class="px-4 py-3 text-right bg-white sm:px-6">
@@ -238,13 +252,6 @@
                                         wire:click="submitForm" wire:loading.attr="disabled">
                                         {{ __('Crear') }}
                                     </button> --}}
-
-                                    {{-- botón de visualizar --}}
-                                    {{-- <button type="submit"
-                                    class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
-                                    wire:click="visualizar({{$infomag->id}})" wire:loading.attr="disabled">
-                                    {{ __('Visualizar') }}
-                                </button> --}}
                                 {{-- botón de actualizar --}}
                                         <button type="submit"
                                         class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"

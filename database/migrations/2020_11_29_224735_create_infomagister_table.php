@@ -40,7 +40,8 @@ class CreateInfomagisterTable extends Migration
             $table->longText('metodos_pagos_magister')->require;
             $table->longText('beneficios_magister')->require;
             $table->longText('arancel_magister')->require;
-            // $table->string('archivos_magister')->require;
+            $table->string('programa_magister')->require;
+            $table->string('reglamento_magister')->require;
             $table->timestamps();
         });
     }
