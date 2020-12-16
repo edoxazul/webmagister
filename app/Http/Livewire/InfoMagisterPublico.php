@@ -8,10 +8,13 @@ use App\Models\InfoMag;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Illuminate\Support\Facades\Storage;
 
 class InfoMagisterPublico extends Component
 {
     public $proposito_magister, $objetivo_magister, $descripcion_magister, $perfil_entrada_magister, $regimen_magister, $contacto_magister, $costo_magister, $metodos_pagos_magister, $beneficios_magister, $arancel_magister;
+    public $programa_magister;
+    public $reglamento_magister;
 
     public function render()
     {

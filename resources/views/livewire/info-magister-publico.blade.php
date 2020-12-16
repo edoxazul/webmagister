@@ -94,6 +94,26 @@
             {!!  nl2br(e($infomag->arancel_magister)) !!}
         </h3>
     </div>
+
+    <div class="container px-4 mx-auto my-12 md:px-12">
+        <h1 class="w-full">Programa del magíster</h1>
+        <p>
+            <div>
+                <a href="{{ asset('storage/' . $infomag->programa_magister) }}" target="_blank"
+                class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md hover:bg-orange-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                    > Descargar </a>
+            </div>
+    </div>
+
+    <div class="container px-4 mx-auto my-12 md:px-12">
+        <h1 class="w-full">Reglamento del magíster</h1>
+        <p>
+            <div>
+                <a href="{{ asset('storage/' . $infomag->reglamento_magister) }}" target="_blank"
+                class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md hover:bg-orange-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                    > Descargar </a>
+            </div>
+    </div>
 @endforeach
 
 </div>

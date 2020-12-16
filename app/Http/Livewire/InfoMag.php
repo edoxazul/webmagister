@@ -48,17 +48,6 @@ class InfoMag extends Component
 /***
  *
  *
-
-public function create()
-    {
-        $this->validate();
-        $this->unassignDefaultHomePage();
-        $this->unassignDefaultNotFoundPage();
-        InfoMagister::create($this->modelData());
-       // $this->modalFormVisible = false;
-        $this->success = '¡Información agregada!';
-        //$this->reset();
-    }
  */
 
            // método para tratar de mandar datos a la vista
@@ -82,11 +71,6 @@ public function create()
 
     public function render()
     {
-        //funciona
-        // return view('livewire.info-magister',[
-        //     'infomag'=> InfoMagister::paginate()
-        // ]);
-
         return view('livewire.info-magister',[
             'infomag'=> InfoMagister::paginate()
         ]);
