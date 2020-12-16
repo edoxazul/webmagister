@@ -43,23 +43,26 @@
             <!-- Column -->
             @if ($academicos->count())
 
-                <h1 class="w-full">Profesores Claustro</h1>
+                <h1 class="w-full mb-10">Profesores Claustro</h1>
 
                 @foreach ($academicos as $academico)
 
                     @if ($academico->estatus == 'Claustro')
 
-                        <div class="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+                        <div
+                            class="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                             <article class="overflow-hidden rounded-lg shadow-lg">
 
-                                <a href="#">
-                                    <img alt="Placeholder" class="block w-full h-auto"
+
+                                <a class="cursor-pointer" wire:click="showModal({{ $academico->id }})" wire:loading.attr="disabled">
+                                    <img alt="Placeholder" class="block w-full h-44"
                                         src="https://picsum.photos/600/500/?random">
                                 </a>
 
-                                <header class="flex items-center justify-between p-2 leading-tight md:p-4">
+                                <header
+                                    class="flex items-center justify-between p-2 leading-tight md:p-4">
                                     <h1 class="text-lg">
-                                        <a class="text-black no-underline hover:underline" href="#">
+                                        <a class="text-black no-underline hover:underline">
                                             {{ $academico->nombre_academico }}
                                         </a>
                                     </h1>
@@ -69,32 +72,41 @@
                                 </header>
 
                                 <footer class="flex items-center justify-between p-2 leading-none md:p-4">
-                                    <a class="flex items-center text-black no-underline hover:underline" href="#">
-                                        {{-- <img alt="Placeholder" class="block rounded-full"
-                                            src="https://picsum.photos/32/32/?random"> --}}
+                                    <a class="flex items-center text-black no-underline hover:underline">
 
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                        {{-- <img alt="Placeholder"
+                                            class="block rounded-full" src="https://picsum.photos/32/32/?random"> --}}
+
+
+                                        <svg class="w-6 h-6" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
                                         <p class="ml-2 text-sm">
 
                                             {{ $academico->correo }}
 
                                         </p>
-                                    </a>
+                                        </a>
                                     <a href=" {{ $academico->linkedin }}">
                                         <img class="w-6 h-6"
                                             src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>
-                                </footer>
-                            </article>
+                                    </footer>
+                                </article>
 
                             <!-- END Article -->
+
 
                         </div>
                         <!-- END Column -->
                     @endif
                 @endforeach
 
-                <h1 class="w-full">Profesores Colaboradores</h1>
+                <h1 class="w-full my-10">Profesores Colaboradores</h1>
 
                 @foreach ($academicos as $academico)
 
@@ -104,16 +116,18 @@
                         <div class="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                             <article class="overflow-hidden rounded-lg shadow-lg">
 
-                                <a href="#">
-                                    <img alt="Placeholder" class="block object-cover w-full h-auto"
+                                <a class="cursor-pointer" wire:click="showModal({{ $academico->id }})" wire:loading.attr="disabled">
+
+                                    <img alt="Placeholder" class="block object-cover w-full h-44"
                                         {{-- src="https://picsum.photos/600/400/?random"> --}}
-                                        src="{{$academico->profile_photo_path }}">
+
+                                    src="{{ $academico->profile_photo_path }}">
 
                                 </a>
 
                                 <header class="flex items-center justify-between p-2 leading-tight md:p-4">
                                     <h1 class="text-lg">
-                                        <a class="text-black no-underline hover:underline" href="#">
+                                        <a class="text-black no-underline hover:underline" wire:click="showModal({{ $academico->id }})" wire:loading.attr="disabled">
                                             {{ $academico->nombre_academico }}
 
                                         </a>
@@ -146,7 +160,7 @@
                     @endif
                 @endforeach
 
-                <h1 class="w-full">Profesores Visitantes</h1>
+                <h1 class="w-full my-10">Profesores Visitantes</h1>
 
                 @foreach ($academicos as $academico)
 
@@ -156,8 +170,9 @@
                         <div class="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                             <article class="overflow-hidden rounded-lg shadow-lg">
 
-                                <a href="#">
-                                    <img alt="Placeholder" class="block w-full h-auto"
+                                <a class="cursor-pointer" wire:click="showModal({{ $academico->id }})" wire:loading.attr="disabled">
+
+                                    <img alt="Placeholder" class="block w-full h-44"
                                         src="https://picsum.photos/600/500/?random">
                                 </a>
 
@@ -193,6 +208,82 @@
                     @endif
                 @endforeach
             @endif
+
+
+
+
+            <x-jet-dialog-modal wire:model="modalMostrarVisible">
+                <x-slot name="title">
+                    {{-- Mostrar Académico --}}
+                </x-slot>
+                <x-slot name="content">
+                    <!-- This example requires Tailwind CSS v2.0+ -->
+                    <div class="overflow-hidden bg-gray-800 shadow sm:rounded-lg">
+                        <div class="px-4 py-5 border border-gray-900 sm:px-6">
+                        <h3 class="text-lg font-medium leading-6 text-white">
+                            Información de Interes
+                        </h3>
+                        </div>
+                        <div class="border-t border-gray-200">
+                        <dl>
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500">
+                                Nombre:
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                {{$nombre_academico}}
+                            </dd>
+                            </div>
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500">
+                                Correo:
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                {{$correo}}
+                            </dd>
+                            </div>
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500">
+                                Grado Académico:
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                {{$grado_academico}}
+                            </dd>
+                            </div>
+                            @if ($trabajo_tesis_supervisado)
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Tesis
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{$academico->trabajo_tesis_supervisado}}
+                                </dd>
+                                </div>
+                            @endif
+                            @if ($linkedin)
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Linkedin:
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    <a href=" {{ $academico->linkedin }}">
+                                        <img class="w-6 h-6"
+                                            src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
+                                    </a>
+
+                                </dd>
+                                </div>
+                            @endif
+                        </dl>
+                        </div>
+                    </div>
+                </x-slot>
+                <x-slot name="footer">
+                    <x-jet-secondary-button wire:click="show()" wire:loading.attr="disabled">
+                        Volver
+                    </x-jet-secondary-button>
+                </x-slot>
+            </x-jet-dialog-modal>
         </div>
     </div>
 

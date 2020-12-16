@@ -129,11 +129,11 @@
                 <div class="mt-1 ml-6 rounded-md shadow-sm form-input">
                     <label>
                         <select name="select" id="listaSistemas" class="text-sm text-gray-500 outline-none" onchange="window.open(this.options[this.selectedIndex].value,'_blank')">
-                            <option value="nothing" selected="selected">Elegir Sistema</option>
+                            {{-- <a value="">Elegir Sistema</a> --}}
                             <option value="http://webmagister.test">Sistema Magister</option>
                             <option value="http://localhost:3000/">Sistema de Actas</option>
-                            <option value="http://vinculacionvcm.test">Vinculación con el medio</option>
-                            <option value="http://webdisc.test">Disc</option>
+                            <option value="http://vinculacionvcm.test/login">Vinculación con el medio</option>
+                            <option value="http://webdisc.test/login">Disc</option>
                         </select>
                     </label>
                 </div>
