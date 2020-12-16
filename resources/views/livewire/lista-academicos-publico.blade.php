@@ -221,7 +221,7 @@
                     <div class="overflow-hidden bg-gray-800 shadow sm:rounded-lg">
                         <div class="px-4 py-5 border border-gray-900 sm:px-6">
                         <h3 class="text-lg font-medium leading-6 text-white">
-                            Información de Interes
+                            Información de Interés
                         </h3>
                         </div>
                         <div class="border-t border-gray-200">
@@ -250,10 +250,30 @@
                                 {{$grado_academico}}
                             </dd>
                             </div>
+                            @if ($proyecto)
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Proyecto/Trabajo Destacado
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{$academico->proyecto}}
+                                </dd>
+                                </div>
+                            @endif
+                            @if ($publicaciones)
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Publicaciones
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{$academico->publicaciones}}
+                                </dd>
+                                </div>
+                            @endif
                             @if ($trabajo_tesis_supervisado)
                             <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">
-                                    Tesis
+                                    Trabajo de tesis supervisado
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                     {{$academico->trabajo_tesis_supervisado}}
