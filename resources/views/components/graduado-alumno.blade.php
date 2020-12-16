@@ -7,7 +7,7 @@
             <x-slot name="content">
                 <div class="col-span-6 mt-2 sm:col-span-3">
                     <div class="flex">
-                        <x-jet-label for="anio_graduacion" value="Indique la Fecha de Graduacion" />
+                        <x-jet-label for="anio_graduacion" value="Indique la Fecha de Graduación" />
                         <label for="title" class="block px-2 text-sm font-medium text-gray-400"></label>
                     </div>
                     <x-jet-input id="anio_graduacion" class="block w-full mt-1 text-black"

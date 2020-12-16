@@ -7,7 +7,7 @@
             <x-slot name="content">
                 <div class="col-span-6 mt-2 sm:col-span-3">
                     <div class="flex">
-                        <x-jet-label for="razon_eliminacion" value="¿Por que se ha eliminado a este alumno?" />
+                        <x-jet-label for="razon_eliminacion" value="¿Por qué se ha eliminado a este alumno?" />
                         <label for="title"
                             class="block px-2 text-sm font-medium text-gray-400"></label>
                     </div>
