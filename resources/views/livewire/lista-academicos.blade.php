@@ -12,7 +12,7 @@
 
 
     <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-0">
             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
                 <!-- This example requires Tailwind CSS v2.0+ -->
                 <div class="flex flex-col">
@@ -71,16 +71,20 @@
                                                 Rut Académico
                                             </th>
                                             <th scope="col"
-                                                class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                                                class="px-1 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                                                 Grado Académico
                                             </th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                                                class="px-1 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                                                 Proyecto
                                             </th>
                                             <th scope="col"
-                                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                                                class="px-1 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                                                 Publicación
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                                                Área de especialización
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
@@ -162,16 +166,24 @@
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">
-                                                        {{ $academico->proyecto }}
+                                                    <div class="text-sm text-gray-900" >
+                                                        <a href=" {{ $academico->proyecto }}" target="_blank">
+                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900" >
+                                                        <a href="{{ $academico->publicaciones }}" target="_blank">
+                                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                                        </a>
                                                     </div>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">
-                                                        {{ $academico->publicaciones }}
+                                                        {{ $academico->area_especializacion }}
                                                     </div>
                                                 </td>
-
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">
                                                         {{ $academico->estatus }}
@@ -183,14 +195,14 @@
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="text-sm text-gray-900">
-                                                        <a href=" {{ $academico->linkedin }}">
+                                                        <a href=" {{ $academico->linkedin }}" target="_blank">
                                                             <img class="w-6 h-6"
                                                                 src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                                         </a>
                                                     </div>
                                                 </td>
                                                 <td class="flex px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                                    <span class="hidden sm:block">
+                                                    <span class="block sm:block">
                                                         {{-- Editar --}}
                                                         <button wire:click="updateShowModal({{ $academico->id }})"
                                                             type="button"
@@ -205,7 +217,7 @@
                                                         </button>
                                                     </span>
                                                     @if ($academico->estatus!='Eliminado')
-                                                    <span class="hidden sm:block">
+                                                    <span class="block sm:block">
                                                         <button wire:click="deleteShowModal({{ $academico->id }})"
                                                             wire:loading.attr="disabled"
                                                             class="inline-flex items-center justify-center w-full px-1 py-1 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
@@ -368,6 +380,15 @@
                                             <x-jet-input id="correo" class="block w-full mt-1" type="text"
                                                 placeholder="Ej: user@email.com" wire:model.lazy="correo" />
                                             @error('correo') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                        </div>
+                                        <div class="col-span-6 mt-2 sm:col-span-3">
+                                            <div class="flex">
+                                                <x-jet-label for="area_especializacion" value="Área de especialización" />
+                                                <label for="title" class="px-2 text-red-700">*</label>
+                                            </div>
+                                            <x-jet-input id="correo" class="block w-full mt-1" type="text"
+                                                placeholder="Área de especialización" wire:model.lazy="area_especializacion" />
+                                            @error('area_especializacion') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                         </div>
 
                                         <div class="col-span-6 mt-2 sm:col-span-3">

@@ -29,13 +29,14 @@ class AcademicosFactory extends Factory
             'rut_academico'=>$this->faker->numberBetween(100000000,200000000),
             'fecha_nacimiento'=>$this->faker->dateTime(),
             'grado_academico'=>$this->faker->randomElement(['Bachiller','Licenciado','Magíster','Doctor']),
+            'area_especializacion'=>$this->faker->randomElement(['Robótica','Des. de Software','Ing. de datos']),
             'correo'=>$this->faker->unique()->safeEmail,
-            'proyecto'=>$this->faker->title,
-            'publicaciones'=>$this->faker->title,
+            'proyecto'=>$this->faker->url(),
+            'publicaciones'=>$this->faker->url(),
             'estatus'=>$this->faker->randomElement(['Claustro','Colaborador','Visitante']),
             'profile_photo_path'=>$this->faker->imageUrl($width = 640, $height = 480),
             'linkedin'=>$this->faker->url,
-            'trabajo_tesis_supervisado'=>$this->faker->url,
+            'trabajo_tesis_supervisado'=>$this->faker->url(),
 
         ];
     }

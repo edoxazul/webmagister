@@ -38,7 +38,7 @@ class ListaAcademicos extends Component
     public $sortDirection = 'asc';
 
 
-    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$proyecto,$publicaciones,$user_id,$linkedin,$trabajo_tesis_supervisado;
+    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$area_especializacion,$proyecto,$publicaciones,$user_id,$linkedin,$trabajo_tesis_supervisado;
     public $razon_eliminacion;
 
     public $updateMode = false;
@@ -75,6 +75,7 @@ class ListaAcademicos extends Component
             'academicos' => Academicos::where('nombre_academico','like','%' . trim($this->search) . '%')
             ->orWhere('correo','LIKE',"%{$this->search}%")
             ->orWhere('estatus','LIKE',"%{$this->search}%")
+            ->orWhere('area_especializacion','LIKE',"%{$this->search}%")
             ->orWhere('rut_academico','LIKE',"%{$this->search}%")
             ->orderBy($this->sortField,$this->sortDirection)
             ->paginate($this->perPage)
@@ -160,6 +161,7 @@ class ListaAcademicos extends Component
             'rut_academico' => $this->rut_academico,
             'fecha_nacimiento'=>$this->fecha_nacimiento,
             'grado_academico'=>$this->grado_academico,
+            'area_especializacion'=>$this->area_especializacion,
             'correo'=>$this->correo,
             'proyecto'=>$this->proyecto,
             'publicaciones'=>$this->publicaciones,
@@ -182,6 +184,7 @@ class ListaAcademicos extends Component
                 'rut_academico' => $this->rut_academico,
                 'fecha_nacimiento'=>$this->fecha_nacimiento,
                 'grado_academico'=>$this->grado_academico,
+                'area_especializacion'=>$this->area_especializacion,
                 'correo'=>$this->correo,
                 'proyecto'=>$this->proyecto,
                 'publicaciones'=>$this->publicaciones,
@@ -293,6 +296,7 @@ class ListaAcademicos extends Component
         $this->profile_photo_path = $data->profile_photo_path;
         $this->fecha_nacimiento = $data->fecha_nacimiento;
         $this->grado_academico = $data->grado_academico;
+        $this->area_especializacion = $data->area_especializacion;
         $this->correo = $data->correo;
         $this->proyecto = $data->proyecto;
         $this->publicaciones = $data->publicaciones;

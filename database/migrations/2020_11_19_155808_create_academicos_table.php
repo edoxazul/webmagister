@@ -19,6 +19,7 @@ class CreateAcademicosTable extends Migration
             $table->string('rut_academico')->unique();
             $table->date('fecha_nacimiento');
             $table->enum('grado_academico', ['Bachiller', 'Licenciado','Magíster','Doctor'])->default('Magíster');
+            $table->string('area_especializacion');
             $table->string('correo', 128)->unique();
             $table->string('proyecto')->nullable();
             $table->string('publicaciones')->nullable();

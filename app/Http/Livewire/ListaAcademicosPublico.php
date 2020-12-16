@@ -14,7 +14,7 @@ class ListaAcademicosPublico extends Component
     public $modalMostrarVisible = false;
     public $modelId;
     public $estatus= '';
-    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$grado_academico,$proyecto,$publicaciones,$user_id,$linkedin,$trabajo_tesis_supervisado;
+    public $nombre_academico,$rut_academico,$fecha_nacimiento,$correo,$grado_academico,$area_especializacion,$proyecto,$publicaciones,$user_id,$linkedin,$trabajo_tesis_supervisado;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
 
@@ -53,6 +53,7 @@ class ListaAcademicosPublico extends Component
             'rut_academico' => $this->rut_academico,
             'fecha_nacimiento'=>$this->fecha_nacimiento,
             'grado_academico'=>$this->grado_academico,
+            'area_especializacion' =>$this->area_especializacion,
             'correo'=>$this->correo,
             'proyecto'=>$this->proyecto,
             'publicaciones'=>$this->publicaciones,
@@ -74,6 +75,7 @@ class ListaAcademicosPublico extends Component
         $this->profile_photo_path = $data->profile_photo_path;
         $this->fecha_nacimiento = $data->fecha_nacimiento;
         $this->grado_academico = $data->grado_academico;
+        $this->area_especializacion = $data->area_especializacion;
         $this->correo = $data->correo;
         $this->proyecto = $data->proyecto;
         $this->publicaciones = $data->publicaciones;

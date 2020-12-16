@@ -70,6 +70,14 @@
                                         {{ $academico->estatus }}
                                     </p>
                                 </header>
+                                <content class="flex items-center justify-between p-2 leading-tight md:p-4">
+                                    <h1 class="text-sm">
+                                        <a class="text-black no-underline hover:underline" href="#">
+                                            {{ $academico->area_especializacion }}
+
+                                        </a>
+                                    </h1>
+                                </content>
 
                                 <footer class="flex items-center justify-between p-2 leading-none md:p-4">
                                     <a class="flex items-center text-black no-underline hover:underline">
@@ -91,7 +99,7 @@
 
                                         </p>
                                         </a>
-                                    <a href=" {{ $academico->linkedin }}">
+                                    <a href=" {{ $academico->linkedin }}" target="_blank">
                                         <img class="w-6 h-6"
                                             src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>
@@ -137,16 +145,28 @@
 
                                     </p>
                                 </header>
+                                <content class="flex items-center justify-between p-2 leading-tight md:p-4">
+                                    <h1 class="text-sm">
+                                        <a class="text-black no-underline hover:underline" href="#">
+                                            {{ $academico->area_especializacion }}
 
+                                        </a>
+                                    </h1>
+                                </content>
                                 <footer class="flex items-center justify-between p-2 leading-none md:p-4">
                                     <a class="flex items-center text-black no-underline hover:underline" href="#">
-                                        <img alt="Placeholder" class="block rounded-full"
-                                            src="https://picsum.photos/32/32/?random">
+                                        <svg class="w-6 h-6" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
                                         <p class="ml-2 text-sm">
                                             {{ $academico->correo }}
                                         </p>
                                     </a>
-                                    <a href=" {{ $academico->linkedin }}">
+                                    <a href=" {{ $academico->linkedin }}" target="_blank">
                                         <img class="w-6 h-6"
                                             src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>
@@ -187,16 +207,29 @@
                                         {{ $academico->estatus }}
                                     </p>
                                 </header>
+                                <content class="flex items-center justify-between p-2 leading-tight md:p-4">
+                                    <h1 class="text-sm">
+                                        <a class="text-black no-underline hover:underline" href="#">
+                                            {{ $academico->area_especializacion }}
+
+                                        </a>
+                                    </h1>
+                                </content>
 
                                 <footer class="flex items-center justify-between p-2 leading-none md:p-4">
                                     <a class="flex items-center text-black no-underline hover:underline" href="#">
-                                        <img alt="Placeholder" class="block rounded-full"
-                                            src="https://picsum.photos/32/32/?random">
+                                        <svg class="w-6 h-6" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
                                         <p class="ml-2 text-sm">
                                             {{ $academico->correo }}
                                         </p>
                                     </a>
-                                    <a href=" {{ $academico->linkedin }}">
+                                    <a href=" {{ $academico->linkedin }}" target="_blank">
                                         <img class="w-6 h-6"
                                             src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>
@@ -226,7 +259,7 @@
                         </div>
                         <div class="border-t border-gray-200">
                         <dl>
-                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="px-4 py-3 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
                                 Nombre:
                             </dt>
@@ -234,7 +267,7 @@
                                 {{$nombre_academico}}
                             </dd>
                             </div>
-                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="px-4 py-3 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
                                 Correo:
                             </dt>
@@ -242,7 +275,7 @@
                                 {{$correo}}
                             </dd>
                             </div>
-                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="px-4 py-3 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
                                 Grado Académico:
                             </dt>
@@ -250,43 +283,58 @@
                                 {{$grado_academico}}
                             </dd>
                             </div>
+                            <div class="px-4 py-3 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <dt class="text-sm font-medium text-gray-500">
+                                    Área de Especialización:
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{$area_especializacion}}
+                            </dd>
+                            </div>
                             @if ($proyecto)
-                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="px-4 py-3 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">
-                                    Proyecto/Trabajo Destacado
+                                    Proyecto/Trabajo Destacado:
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {{$academico->proyecto}}
+                                    <a href="{{$academico->proyecto}}" target="_blank">
+                                        {{$academico->proyecto}}
+                                    </a>
+
                                 </dd>
                                 </div>
                             @endif
                             @if ($publicaciones)
-                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="px-4 py-3 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">
-                                    Publicaciones
+                                    Publicaciones:
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    <a href="{{$academico->publicaciones}}" target="_blank">
                                     {{$academico->publicaciones}}
+                                    </a>
                                 </dd>
                                 </div>
                             @endif
                             @if ($trabajo_tesis_supervisado)
-                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="px-4 py-3 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">
-                                    Trabajo de tesis supervisado
+                                    Trabajo de anteproyectos supervisado:
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    <a href="{{$academico->proyecto}}" target="_blank">
                                     {{$academico->trabajo_tesis_supervisado}}
+                                    </a>
                                 </dd>
                                 </div>
                             @endif
                             @if ($linkedin)
-                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="px-4 py-3 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">
                                     Linkedin:
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    <a href=" {{ $academico->linkedin }}">
+                                    <a href=" {{ $academico->linkedin }}" target="_blank">
                                         <img class="w-6 h-6"
                                             src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>
