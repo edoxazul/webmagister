@@ -69,7 +69,7 @@
                                 </header>
 
                                 <footer class="flex items-center justify-between p-2 leading-none md:p-4">
-                                    <a class="flex items-center text-black no-underline hover:underline" href="#">
+                                    <a class="flex items-center text-black no-underline hover:underline" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled">
                                         <img alt="Placeholder" class="block rounded-full"
                                             src="https://picsum.photos/32/32/?random">
                                         <p class="ml-2 text-sm">
@@ -118,7 +118,7 @@
                                 </header>
 
                                 <footer class="flex items-center justify-between p-2 leading-none md:p-4">
-                                    <a class="flex items-center text-black no-underline hover:underline" href="#">
+                                    <a class="flex items-center text-black no-underline hover:underline" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled" href="#">
                                         <img alt="Placeholder" class="block rounded-full"
                                             src="https://picsum.photos/32/32/?random">
                                         <p class="ml-2 text-sm">
@@ -167,7 +167,7 @@
                                 </header>
 
                                 <footer class="flex items-center justify-between p-2 leading-none md:p-4">
-                                    <a class="flex items-center text-black no-underline hover:underline" href="#">
+                                    <a class="flex items-center text-black no-underline hover:underline" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled" href="#">
                                         <img alt="Placeholder" class="block rounded-full"
                                             src="https://picsum.photos/32/32/?random">
                                         <p class="ml-2 text-sm">
@@ -216,7 +216,7 @@
                                 </header>
 
                                 <footer class="flex items-center justify-between p-2 leading-none md:p-4">
-                                    <a class="flex items-center text-black no-underline hover:underline" href="#">
+                                    <a class="flex items-center text-black no-underline hover:underline" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled" href="#">
                                         <img alt="Placeholder" class="block rounded-full"
                                             src="https://picsum.photos/32/32/?random">
                                         <p class="ml-2 text-sm">
@@ -243,14 +243,108 @@
 
             @endif
 
-
-
-
-
-
-
+            <x-jet-dialog-modal wire:model="modalMostrarVisible">
+                <x-slot name="title">
+                    Mostrar Alumno
+                </x-slot>
+                <x-slot name="content">
+                    <!-- This example requires Tailwind CSS v2.0+ -->
+                    <div class="bg-gray-200 shadow overflow-hidden sm:rounded-lg">
+                        <div class="px-4 py-5 sm:px-6 border border-gray-200">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            Información de Interes
+                        </h3>
+                        </div>
+                        <div class="border-t border-gray-200">
+                        <dl>
+                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <dt class="text-sm font-medium text-gray-500">
+                                Nombre:
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                {{$nombre_alumno}}
+                            </dd>
+                            </div>
+                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <dt class="text-sm font-medium text-gray-500">
+                                Rut:
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                {{$rut_alumno}}
+                            </dd>
+                            </div>
+                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <dt class="text-sm font-medium text-gray-500">
+                                Correo:
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                {{$contacto_alumno}}
+                            </dd>
+                            </div>
+                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <dt class="text-sm font-medium text-gray-500">
+                                Carrera:
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                {{$carrera_alumno}}
+                            </dd>
+                            </div>
+                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <dt class="text-sm font-medium text-gray-500">
+                                Estado:
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                {{$estado_alumno}}
+                            </dd>
+                            </div>
+                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <dt class="text-sm font-medium text-gray-500">
+                                Fecha de ingreso
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                {{date("d/m/Y", strtotime($alumno->anio_ingreso))}}
+                            </dd>
+                            </div>
+                            @if ($estado_alumno=='Graduado')
+                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Fecha de Graduacion
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{date("d/m/Y", strtotime($alumno->anio_graduacion))}}
+                                </dd>
+                                </div>
+                            @endif
+                            @if ($trabajo_tesis)
+                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Tesis
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{$alumno->trabajo_tesis}}
+                                </dd>
+                                </div>
+                            @endif
+                            @if ($linkedin)
+                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Linkedin:
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{$alumno->linkedin}}
+                                </dd>
+                                </div>
+                            @endif
+                        </dl>
+                        </div>
+                    </div>
+                </x-slot>
+                <x-slot name="footer">
+                    <x-jet-secondary-button wire:click="show()" wire:loading.attr="disabled">
+                        Volver
+                    </x-jet-secondary-button>
+                </x-slot>
+            </x-jet-dialog-modal>
         </div>
     </div>
-
-
 </div>
