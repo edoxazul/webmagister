@@ -3,7 +3,10 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -29,12 +32,26 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
+        $userreg = User::create([
             'name' => $input['name'],
             'rut' => $input['rut'],
             'rol' => $input['rol'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        $email = $input['email'];
+        $data = ([
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'password' => $input['password'],
+                ]);
+
+        Mail::to($email)->send(new WelcomeMail($data));
+
+        $userreg->save();
+        //flash(‘User has been added!’,’success’)->important();
+        return back();
+
     }
 }
