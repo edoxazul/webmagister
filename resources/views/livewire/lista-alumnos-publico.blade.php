@@ -18,7 +18,6 @@
                             <option value="Regular">Alumnos Regulares</option>
                             <option value="Egresado">Alumnos Egresados</option>
                             <option value="Graduado">Alumnos Graduados</option>
-                            <option value="Retiro Voluntario">Alumnos en Retiro Voluntario</option>
                         </select>
                     </div>
                 </span>
@@ -189,58 +188,6 @@
                     @endif
                 @endforeach
 
-                <h1 class="w-full">Alumnos en Retiro Voluntario</h1>
-
-                @foreach ($alumnos as $alumno)
-
-
-                    @if ($alumno->estado_alumno == 'Retiro Voluntario')
-
-                        <div class="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-                            <article class="overflow-hidden rounded-lg shadow-lg">
-
-                                <a href="#">
-                                    <img alt="Placeholder" class="block w-full h-auto"
-                                        src="https://picsum.photos/600/400/?random">
-                                </a>
-
-                                <header class="flex items-center justify-between p-2 leading-tight md:p-4">
-                                    <h1 class="text-lg">
-                                        <a class="text-black no-underline hover:underline" href="#">
-                                            {{ $alumno->estado_alumno }}
-                                        </a>
-                                    </h1>
-                                    <p class="text-sm text-grey-darker">
-
-                                    </p>
-                                </header>
-
-                                <footer class="flex items-center justify-between p-2 leading-none md:p-4">
-                                    <a class="flex items-center text-black no-underline hover:underline" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled" href="#">
-                                        <img alt="Placeholder" class="block rounded-full"
-                                            src="https://picsum.photos/32/32/?random">
-                                        <p class="ml-2 text-sm">
-                                            {{ $alumno->nombre_alumno }}
-
-                                        </p>
-                                    </a>
-                                    <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                                        <span class="hidden">Like</span>
-                                        <i class="fa fa-heart"></i>
-                                    </a>
-                                </footer>
-                            </article>
-
-                            <!-- END Article -->
-
-                        </div>
-                        <!-- END Column -->
-                    @endif
-                @endforeach
-
-
-
-
             @endif
 
             <x-jet-dialog-modal wire:model="modalMostrarVisible">
@@ -263,14 +210,6 @@
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 {{$nombre_alumno}}
-                            </dd>
-                            </div>
-                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
-                            <dt class="text-sm font-medium text-gray-500">
-                                Rut:
-                            </dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{$rut_alumno}}
                             </dd>
                             </div>
                             <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
@@ -315,13 +254,13 @@
                                 </dd>
                                 </div>
                             @endif
-                            @if ($trabajo_tesis)
+                            @if ($trabajo_anteproyecto)
                             <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
                                 <dt class="text-sm font-medium text-gray-500">
-                                    Tesis
+                                    Ante-Proyecto
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {{$alumno->trabajo_tesis}}
+                                    {{$alumno->trabajo_anteproyecto}}
                                 </dd>
                                 </div>
                             @endif

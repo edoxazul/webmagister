@@ -10,7 +10,7 @@
 
 
     <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-2">
             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
             <!-- This example requires Tailwind CSS v2.0+ -->
             <div class="flex flex-col">
@@ -76,6 +76,9 @@
                             Estado
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                            Informacion Adicional
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                             LinkedIn
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
@@ -126,16 +129,20 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
                                 {{$alumno->estado_alumno}}
+
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">
                                 @if ($alumno->estado_alumno=='Eliminado')
-                                    ({{$alumno->razon_eliminacion}})
+                                    Eliminado por: {{$alumno->razon_eliminacion}}
                                 @else @if (($alumno->estado_alumno=='Graduado'))
-                                    ({{date("d/m/Y", strtotime($alumno->anio_graduacion))}})
+                                    Fecha de Graduacion: {{date("d/m/Y", strtotime($alumno->anio_graduacion))}}
                                 @endif
 
                                 @endif
                             </div>
                         </td>
-
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
                                 <a href=" {{$alumno->linkedin}}">
@@ -309,12 +316,12 @@
 
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
-                                        <x-jet-label for="trabajo_tesis" value="Tesis (opcional)" />
+                                        <x-jet-label for="trabajo_anteproyecto" value="Anteproyecto" />
                                         <label for="title"
                                             class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
                                     </div>
-                                    <x-jet-input id="trabajo_tesis" class="block w-full mt-1" type="text"
-                                        placeholder="Tesis" wire:model.lazy="trabajo_tesis" />
+                                    <x-jet-input id="trabajo_anteproyecto" class="block w-full mt-1" type="text"
+                                        placeholder="anteproyecto" wire:model.lazy="trabajo_anteproyecto" />
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
