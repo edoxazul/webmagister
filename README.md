@@ -26,6 +26,10 @@ El archivo .env se entregará despues.
 
 - php artisan make:livewire nombre_componente
 
+## Para crear un Model
+
+- php artisan make:model Alumnos
+
 ## Para crear una migración
 
 - php artisan make:migration create_nombre_table
