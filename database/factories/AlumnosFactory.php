@@ -25,6 +25,7 @@ class AlumnosFactory extends Factory
         return [
             'nombre_alumno'=>$this->faker->name(),
             'rut_alumno'=>$this->faker->numberBetween(100000000,200000000),
+            'pasaporte'=>$this->faker->unique()->numberBetween(100000000,200000000),
             'carrera_alumno'=>$this->faker->randomElement(['ICCI', 'IECI','IenCI']),
             'contacto_alumno'=>$this->faker->unique()->safeEmail,
             'estado_alumno'=>$this->faker->randomElement(['Regular', 'Graduado','Egresado','Retiro Voluntario','Eliminado']),
@@ -33,6 +34,7 @@ class AlumnosFactory extends Factory
             'anio_graduacion'=>$this->faker->dateTimeBetween('+0 days', '+2 years'),
             'trabajo_anteproyecto'=>$this->faker->name(),
             'linkedin'=>$this->faker->url,
+            'profile_photo_path'=>$this->faker->imageUrl($width = 640, $height = 480),
             'academico_id'=>$this->faker->numberBetween(1,10)
         ];
     }
