@@ -8,6 +8,7 @@ use App\Http\Livewire\InfoMag;
 use App\Http\Livewire\InfoMagisterPublico;
 use App\Http\Livewire\ListaAcademicosPublico;
 use App\Http\Livewire\ListaAlumnosPublico;
+use App\Http\Livewire\SubirArchivos;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 
@@ -50,19 +51,24 @@ Route::post('/register', [RegisteredUserController::class, 'store'])->middleware
 //     return view('academicos');
 // })->name('academicos');
 
+//Módulo Académicos
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/academicos', ListaAcademicos::class)
     ->name('academicos');
-//Noticias
+// Módulo Noticias
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/noticias', ListaNoticias::class)
     ->name('noticias');
-
+// Módulo Alumnos
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/alumnos', ListaAlumnos::class)
     ->name('alumnos');
-
+// Módulo Información General
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/informacion-general', InfoMag::class)
     ->name('informacion');
+// Módulo Carga Archivos (solo administrador)
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/carga-archivos', SubirArchivos::class)
+    ->name('archivos');
 
