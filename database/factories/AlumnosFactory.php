@@ -31,7 +31,7 @@ class AlumnosFactory extends Factory
             'razon_eliminacion'=>$this->faker->name(),
             'anio_ingreso'=>$this->faker->dateTime($max = 'now'),
             'anio_graduacion'=>$this->faker->dateTimeBetween('+0 days', '+2 years'),
-            'trabajo_tesis'=>$this->faker->name(),
+            'trabajo_anteproyecto'=>$this->faker->name(),
             'linkedin'=>$this->faker->url,
             'academico_id'=>$this->faker->numberBetween(1,10)
         ];

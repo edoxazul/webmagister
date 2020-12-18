@@ -30,7 +30,7 @@ class ListaAlumnos extends Component
     public $sortDirection = 'asc';
 
 
-    public $nombre_alumno,$rut_alumno,$carrera_alumno,$contacto_alumno,$razon_eliminacion,$anio_ingreso,$anio_graduacion,$trabajo_tesis,$linkedin;
+    public $nombre_alumno,$rut_alumno,$carrera_alumno,$contacto_alumno,$razon_eliminacion,$anio_ingreso,$anio_graduacion,$trabajo_anteproyecto,$linkedin;
 
 
     public $updateMode = false;
@@ -123,7 +123,7 @@ class ListaAlumnos extends Component
             'razon_eliminacion'=>$this->razon_eliminacion,
             'anio_ingreso'=>$this->anio_ingreso,
             'anio_graduacion'=>$this->anio_graduacion,
-            'trabajo_tesis' =>$this->trabajo_tesis,
+            'trabajo_anteproyecto' =>$this->trabajo_anteproyecto,
             'linkedin'=>$this->linkedin,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
@@ -208,7 +208,7 @@ class ListaAlumnos extends Component
         $this->razon_eliminacion = $data->razon_eliminacion;
         $this->anio_ingreso = $data->anio_ingreso;
         $this->anio_graduacion = $data->anio_graduacion;
-        $this->trabajo_tesis = $data->trabajo_tesis;
+        $this->trabajo_anteproyecto = $data->trabajo_anteproyecto;
         $this->linkedin = $data->linkedin;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;

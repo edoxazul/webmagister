@@ -23,7 +23,7 @@ class CreateAlumnosTable extends Migration
             $table->string('razon_eliminacion')->nullable();
             $table->date('anio_ingreso');
             $table->date('anio_graduacion')->nullable();
-            $table->string('trabajo_tesis')->nullable();
+            $table->string('trabajo_anteproyecto')->nullable();
             $table->string('linkedin')->nullable();
 
             $table->unsignedBigInteger('academico_id')->nullable();
