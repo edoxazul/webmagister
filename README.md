@@ -16,13 +16,27 @@
 
 2. Crear bd local llamada "webmagister" y otra bd local llamada "logindb"
 
-Se esta probando una bases de datos aparte para evitar el paso anterior
+
 
 3. Comprobar funcionamiento
 
 El archivo .env se entregará despues.
 
+## Para crear un componente de livewire
 
+- php artisan make:livewire nombre_componente
+
+## Para crear una migración
+
+- php artisan make:migration create_nombre_table
+
+## Para crear un seeder
+
+- php artisan make:seeder ComponentSeeder
+
+## Para crear un factory
+
+- php artisan make:factory PostFactory
 
 
 
