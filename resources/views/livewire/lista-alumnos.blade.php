@@ -316,7 +316,7 @@
 
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
-                                        <x-jet-label for="trabajo_anteproyecto" value="Anteproyecto (opcional)" />
+                                        <x-jet-label for="trabajo_anteproyecto" value="Anteproyecto" />
                                         <label for="title"
                                             class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
                                     </div>
