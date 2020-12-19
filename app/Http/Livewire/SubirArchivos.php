@@ -4,6 +4,9 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\CargaArchivos;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class SubirArchivos extends Component
 {
@@ -12,12 +15,12 @@ class SubirArchivos extends Component
     public $nombre_archivo, $descripcion_archivo, $enlace_archivo;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
-    // public $archivos = [];
     public $search= '';
     public $perPage= '10';
     public $page='1';
     public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
+    public $files_admin=null;
 
     public function render()
     {
@@ -27,16 +30,12 @@ class SubirArchivos extends Component
         ]);
     }
 
-    public function GuardarArchivos()
-    {
-        $this->validate([
-            'archivos.*' => 'archivo|max:1024', // 1MB Max
-        ]);
-
-        foreach ($this->archivo as $archivos) {
-            $archivos->store('archivos');
-        }
-    }
+    // public function GuardarArchivos()
+    // {
+    //     $name = md5($this->files_admin . microtime()).'.'.$this->files_admin->extension();
+    //     $this->files_admin->storeAs('files_admin', $name);
+    //     CargaArchivos::create(['enlace_archivo' => $name]);
+    // }
 
     public function clear()
     {
@@ -50,19 +49,33 @@ class SubirArchivos extends Component
         return [
             'nombre_archivo' => 'required',
             'descripcion_archivo' => 'required',
-            'enlace_archivo' => 'required',
+            // 'enlace_archivo' => 'required',
         ];
     }
 
     public function modelData()
     {
-        return [
-            'nombre_archivo' => $this->nombre_archivo,
-            'descripcion_archivo' => $this->descripcion_archivo,
-            'enlace_archivo'=>$this->enlace_archivo,
-            'is_default_home' => $this->isSetToDefaultHomePage,
-            'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
-        ];
+        if(!empty($this->files_admin)){
+
+            $name = md5($this->files_admin . microtime()).'.'.$this->files_admin->extension();
+            $enlace_archivo = $this->files_admin->storeAs('files_admin',$name,'public');
+            $enlace_archivo = 'storage/'.$enlace_archivo;
+            return [
+                'nombre_archivo' => $this->nombre_archivo,
+                'descripcion_archivo' => $this->descripcion_archivo,
+                'enlace_archivo'=>$enlace_archivo,
+                'is_default_home' => $this->isSetToDefaultHomePage,
+                'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+            ];
+        }else{
+            return [
+                'nombre_archivo' => $this->nombre_archivo,
+                'descripcion_archivo' => $this->descripcion_archivo,
+                // 'enlace_archivo'=>$this->enlace_archivo,
+                'is_default_home' => $this->isSetToDefaultHomePage,
+                'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+            ];
+        }
     }
 
     public function create()
@@ -109,7 +122,7 @@ class SubirArchivos extends Component
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
-           /**
+   /**
      * Runs everytime the isSetToDefaultHomePage
      * variable is updated.
      *
@@ -119,7 +132,8 @@ class SubirArchivos extends Component
     {
         $this->isSetToDefaultNotFoundPage = null;
     }
-        /**
+
+    /**
      * Runs everytime the isSetToDefaultNotFoundPage
      * variable is updated.
      *
@@ -130,16 +144,33 @@ class SubirArchivos extends Component
         $this->isSetToDefaultHomePage = null;
     }
 
+
     public function deleteShowModal($id)
     {
         $this->modelId = $id;
         $this->modalConfirmDeleteVisible = true;
     }
-
     public function delete()
     {
         CargaArchivos::destroy($this->modelId);
         $this->modalConfirmDeleteVisible = false;
     }
 
+    private function unassignDefaultHomePage()
+    {
+        if ($this->isSetToDefaultHomePage != null) {
+            Academicos::where('is_default_home', true)->update([
+                'is_default_home' => false,
+            ]);
+        }
+    }
+
+    private function unassignDefaultNotFoundPage()
+    {
+        if ($this->isSetToDefaultNotFoundPage != null) {
+            Academicos::where('is_default_not_found', true)->update([
+                'is_default_not_found' => false,
+            ]);
+        }
+    }
 }

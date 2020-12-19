@@ -104,7 +104,7 @@
 
                         <td class="px-20 py-4 font-medium text-center whitespace-nowrap">
                             <div class="text-sm text-gray-900">
-                                <a href=" {{ $archivo->enlace_archivo }}">
+                                <a href=" {{ $archivo->enlace_archivo }} " target="_blank">
                                     <img class="w-8 h-8 text-center"
                                         src="https://www.flaticon.es/svg/static/icons/svg/3921/3921436.svg" alt="">
                                 </a>
@@ -172,11 +172,11 @@
                     @else
                         <div class="px-4 py-3 text-gray-500 bg-white border-t border-gray-200 sm:px-6">
                             No hay resultados para la busqueda "{{ $search }}" en la página {{ $page }} al
-                            mostrar {{ $perPage }} noticias por página
+                            mostrar {{ $perPage }} archivos por página
                         </div>
                         @endif
                         {{--
-                        <x-create-noticia /> --}}
+                        <x-create-archivo /> --}}
                         {{-- Modal Form --}}
                         <x-jet-dialog-modal wire:model="modalFormVisible">
                             <x-slot name="title">
@@ -221,8 +221,8 @@
                                     <div class="col-span-4 mt-2 sm:col-span-3">
                                         <x-jet-label for="enlace_archivo" value="Subir archivo" />
                                         <x-jet-input id="enlace_archivo" class="block w-full mt-1" type="file"
-                                            wire:model.debounce.800ms="enlace_archivo" />
-                                        @error('enlace_archivo') <span class="error">{{ $message }}</span> @enderror
+                                            wire:model="files_admin" />
+                                        @error('file_admin') <span class="error">{{ $message }}</span> @enderror
                                     </div>
 
                                 </div>
@@ -253,7 +253,7 @@
 
                             </x-slot>
                         </x-jet-dialog-modal>
-                        <x-delete-noticia />
+                        <x-delete-archivo />
                     </div>
                 </div>
             </div>
