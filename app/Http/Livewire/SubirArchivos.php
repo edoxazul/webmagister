@@ -49,7 +49,7 @@ class SubirArchivos extends Component
         return [
             'nombre_archivo' => 'required',
             'descripcion_archivo' => 'required',
-            // 'enlace_archivo' => 'required',
+            //'enlace_archivo' => 'required|mimes:pdf,txt,xlsx,xls,pptx,ppt,doc,docx',
         ];
     }
 

@@ -220,9 +220,11 @@
 
                                     <div class="col-span-4 mt-2 sm:col-span-3">
                                         <x-jet-label for="enlace_archivo" value="Subir archivo" />
-                                        <x-jet-input id="enlace_archivo" class="block w-full mt-1" type="file"
+                                        <x-jet-input id="enlace_archivo" class="block w-full mt-1" type="file" accept=".doc,.docx,application/msword,
+                                        application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                                        .pdf,.txt,.xlsx,.xls,.pptx,.ppt"
                                             wire:model="files_admin" />
-                                        @error('file_admin') <span class="error">{{ $message }}</span> @enderror
+                                        @error('enlace_archivo') <span class="error">{{ $message }}</span> @enderror
                                     </div>
 
                                 </div>

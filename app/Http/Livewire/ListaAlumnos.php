@@ -7,9 +7,12 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ListaAlumnos extends Component
 {
+    use WithFileUploads;
+
     protected $queryString = [
         'search' => ['except' =>''],
         'perPage'=> ['except' => '10']
@@ -25,12 +28,13 @@ class ListaAlumnos extends Component
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
     public $estado_alumno='Regular';
+    public $profile_photo_path;
 
     public $sortField="nombre_alumno";
     public $sortDirection = 'asc';
 
 
-    public $nombre_alumno,$rut_alumno,$carrera_alumno,$contacto_alumno,$razon_eliminacion,$anio_ingreso,$anio_graduacion,$trabajo_anteproyecto,$linkedin;
+    public $nombre_alumno,$rut_alumno,$pasaporte,$carrera_alumno,$contacto_alumno,$razon_eliminacion,$anio_ingreso,$anio_graduacion,$trabajo_anteproyecto,$linkedin;
 
 
     public $updateMode = false;
@@ -72,6 +76,15 @@ class ListaAlumnos extends Component
         ]);
     }
 
+    public function upload()
+    {
+        $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
+
+        $this->photo->storeAs('photos', $name);
+
+        Alumnos::create(['profile_photo_path' => $name]);
+    }
+
     public function clear()
     {
         $this->search = '';
@@ -91,6 +104,7 @@ class ListaAlumnos extends Component
         return [
             'nombre_alumno' => 'required|unique:alumnos',
             'rut_alumno' => 'required|unique:alumnos|cl_rut',
+            'pasaporte'=>'unique:alumnos',
             'carrera_alumno' => 'required',
             'contacto_alumno' => 'required|unique:alumnos',
             'estado_alumno' => 'required',
@@ -105,6 +119,7 @@ class ListaAlumnos extends Component
         'rut_alumno.required' => 'El campo del rut es obligatorio',
         'rut_alumno.unique' => 'El rut ya existe',
         'rut_alumno.cl_rut' => 'El campo del rut no es valido',
+        'pasaporte.unique'=>'Ya existe un alumno con ese pasaporte',
         'carrera_alumno.required' => 'El campo carrera es obligatorio',
         'contacto_alumno.required' => 'El campo del correo es obligatorio',
         'contacto_alumno.unique' => 'El correo ya fue registrado anteriormente',
@@ -114,21 +129,47 @@ class ListaAlumnos extends Component
 
     public function modelData()
     {
-        return [
-            'nombre_alumno' => $this->nombre_alumno,
-            'rut_alumno' => $this->rut_alumno,
-            'carrera_alumno'=>$this->carrera_alumno,
-            'contacto_alumno'=>$this->contacto_alumno,
-            'estado_alumno'=>$this->estado_alumno,
-            'razon_eliminacion'=>$this->razon_eliminacion,
-            'anio_ingreso'=>$this->anio_ingreso,
-            'anio_graduacion'=>$this->anio_graduacion,
-            'trabajo_anteproyecto' =>$this->trabajo_anteproyecto,
-            'linkedin'=>$this->linkedin,
-            'is_default_home' => $this->isSetToDefaultHomePage,
-            'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
-        ];
+        if(!empty($this->photo)){
 
+            $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
+
+            $profile_photo_path = $this->photo->storeAs('photos',$name,'public');
+            $profile_photo_path = 'storage/'.$profile_photo_path;
+
+            return [
+                'nombre_alumno' => $this->nombre_alumno,
+                'rut_alumno' => $this->rut_alumno,
+                'pasaporte'=>$this->pasaporte,
+                'carrera_alumno'=>$this->carrera_alumno,
+                'contacto_alumno'=>$this->contacto_alumno,
+                'estado_alumno'=>$this->estado_alumno,
+                'razon_eliminacion'=>$this->razon_eliminacion,
+                'anio_ingreso'=>$this->anio_ingreso,
+                'anio_graduacion'=>$this->anio_graduacion,
+                'trabajo_anteproyecto' =>$this->trabajo_anteproyecto,
+                'linkedin'=>$this->linkedin,
+                'profile_photo_path'=>$this->profile_photo_path,
+                'is_default_home' => $this->isSetToDefaultHomePage,
+                'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+            ];
+        }else{
+            return [
+                'nombre_alumno' => $this->nombre_alumno,
+                'rut_alumno' => $this->rut_alumno,
+                'pasaporte'=>$this->pasaporte,
+                'carrera_alumno'=>$this->carrera_alumno,
+                'contacto_alumno'=>$this->contacto_alumno,
+                'estado_alumno'=>$this->estado_alumno,
+                'razon_eliminacion'=>$this->razon_eliminacion,
+                'anio_ingreso'=>$this->anio_ingreso,
+                'anio_graduacion'=>$this->anio_graduacion,
+                'trabajo_anteproyecto' =>$this->trabajo_anteproyecto,
+                'linkedin'=>$this->linkedin,
+                //'profile_photo_path'=>$this->profile_photo_path,
+                'is_default_home' => $this->isSetToDefaultHomePage,
+                'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+            ];
+        }
 
     }
 
@@ -174,6 +215,7 @@ class ListaAlumnos extends Component
             [
                 'nombre_alumno' => 'required',
                 'rut_alumno' => 'required|unique:alumnos,rut_alumno,'.$this->modelId.'|cl_rut',
+                'pasaporte'=>'unique:alumnos',
                 'carrera_alumno' => 'required',
                 'contacto_alumno' => 'required|unique:alumnos,contacto_alumno,'.$this->modelId.'',
                 'estado_alumno' => 'required',
@@ -202,6 +244,7 @@ class ListaAlumnos extends Component
         $data = Alumnos::find($this->modelId);
         $this->nombre_alumno = $data->nombre_alumno;
         $this->rut_alumno = $data->rut_alumno;
+        $this->pasaporte = $data->pasaporte;
         $this->carrera_alumno = $data->carrera_alumno;
         $this->contacto_alumno = $data->contacto_alumno;
         $this->estado_alumno = $data->estado_alumno;
@@ -210,6 +253,7 @@ class ListaAlumnos extends Component
         $this->anio_graduacion = $data->anio_graduacion;
         $this->trabajo_anteproyecto = $data->trabajo_anteproyecto;
         $this->linkedin = $data->linkedin;
+        $this->profile_photo_path = $data->profile_photo_path;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
 
