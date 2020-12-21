@@ -3,15 +3,16 @@
 namespace App\Http\Livewire;
 use App\Models\Noticias;
 use Livewire\Component;
-
+use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
 class ListaNoticias extends Component
 {
     public $search= '';
-    public $perPage= '5';
+    public $perPage= '10';
     public $page='1';
     public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
     public $modelId;
+    use HasTrixRichText;
 
     public $titulo_noticia,$descripcion_noticia,$autor_noticia,$enlace_noticia,$user_id;
 

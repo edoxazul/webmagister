@@ -30,13 +30,6 @@ class SubirArchivos extends Component
         ]);
     }
 
-    // public function GuardarArchivos()
-    // {
-    //     $name = md5($this->files_admin . microtime()).'.'.$this->files_admin->extension();
-    //     $this->files_admin->storeAs('files_admin', $name);
-    //     CargaArchivos::create(['enlace_archivo' => $name]);
-    // }
-
     public function clear()
     {
         $this->search = '';
@@ -173,4 +166,12 @@ class SubirArchivos extends Component
             ]);
         }
     }
+
+    protected  $messages =[
+        'nombre_archivo.required' => 'El campo nombre es obligatorio',
+        'descripcion_archivo.required' => 'El campo descripción obligatorio',
+        'enlace_archivo.required' => 'El campo subir archivo es obligatorio',
+        // 'enlace_archivo.mimes' => 'Formato de archivo inválido.',
+        // 'enlace_archivo.mimes:pdf,txt,xlsx,xls,pptx,ppt,doc,docx,zip' => 'Formato de archivo inválido.',
+    ];
 }

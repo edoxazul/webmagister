@@ -69,7 +69,7 @@
                                             </th>
                                             <th scope="col"
                                             class="px-3 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
-                                                Año de publicación
+                                                Fecha
                                             </th>
                                             <th scope="col"
                                                 class="px-0 py-1 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
@@ -103,8 +103,10 @@
                         </td>
 
                         <td class="px-20 py-4 font-medium text-center whitespace-nowrap">
-                            <div class="text-sm text-gray-900">
-                                <a href=" {{ $archivo->enlace_archivo }} " target="_blank">
+                            <div class="text-gray-900 text-sm-center">
+                                {{-- <a href=" {{ $archivo->enlace_archivo }} " target="_blank"> --}}
+                                <a href=" {{ $archivo->enlace_archivo }}" download="{{ $archivo->enlace_archivo}}" >
+                                    {{-- <a href="{{ asset('storage/'. $archivo->enlace_archivo) }}" download="{{$archivo->file_original_name}}"></a> --}}
                                     <img class="w-8 h-8 text-center"
                                         src="https://www.flaticon.es/svg/static/icons/svg/3921/3921436.svg" alt="">
                                 </a>
@@ -224,6 +226,7 @@
                                         application/vnd.openxmlformats-officedocument.wordprocessingml.document,
                                         .pdf,.txt,.xlsx,.xls,.pptx,.ppt"
                                             wire:model="files_admin" />
+                                            <div wire:loading wire:target="files_admin">Subiendo archivo...</div>
                                         @error('enlace_archivo') <span class="error">{{ $message }}</span> @enderror
                                     </div>
 
@@ -249,7 +252,7 @@
                                     <button type="submit"
                                         class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
                                         wire:click="create" wire:loading.attr="disabled">
-                                        {{ __('Crear') }}
+                                        {{ __('Subir') }}
                                     </button>
                                 @endif
 

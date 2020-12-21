@@ -1,13 +1,20 @@
+{{-- <head>
+    <link rel="stylesheet" type="text/css" href="trix.css">
+    <script type="text/javascript" src="trix.js"></script>
+  </head> --}}
 <div>
 
     <x-slot name="header">
+        <link rel="stylesheet" type="text/css" href="trix.css">
+        <script type="text/javascript" src="trix.js"></script>
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Noticias') }}
         </h2>
+        @trixassets
     </x-slot>
 
     <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-5">
             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
                 <!-- This example requires Tailwind CSS v2.0+ -->
                 <div class="flex flex-col">
@@ -20,7 +27,6 @@
 
                                     <div class="mt-1 ml-6 rounded-md shadow-sm form-input">
                                         <select wire:model='perPage' class="text-sm text-gray-500 outline-none">
-                                            <option value="5"> 5 por página</option>
                                             <option value="10"> 10 por página</option>
                                             <option value="15"> 15 por página</option>
                                         </select>
@@ -73,9 +79,13 @@
                                                 class="px-3 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
                                                 Autor Noticia
                                             </th>
-                                            <th scope="col"
+                                            {{-- <th scope="col"
                                                 class="px-3 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
                                                 Enlace Noticia
+                                            </th> --}}
+                                            <th scope="col"
+                                                class="px-3 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
+                                                Fecha Publicación
                                             </th>
                                             <th scope="col"
                                                 class="px-3 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
@@ -144,21 +154,40 @@
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        {{-- <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
                                 <a href=" {{ $noticia->enlace_noticia }}">
                                     <img class="w-6 h-6"
                                         src="https://www.flaticon.es/svg/static/icons/svg/376/376007.svg" alt="">
                                 </a>
                             </div>
+                        </td> --}}
+
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">
+                                {{date("d/m/Y", strtotime($noticia->created_at))}}
+                            </div>
                         </td>
 
                         <td class="px-6 py-4 whitespace-nowrap">
-
                             <div class="text-sm text-gray-900">
                                 {{ $noticia->estatus }}
                             </div>
+                        </td>
 
+                        {{-- Visualizar --}}
+
+                        <td class="px-2 py-4 text-sm font-medium text-right whitespace-nowrap">
+                            <span class="hidden sm:block">
+                                <button wire:click="" type="button"
+                                    class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <!-- Heroicon name: pencil -->
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                </button>
+                            </span>
+                            {{-- <a href="#"
+                                class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                            --}}
                         </td>
 
                         <td class="px-2 py-4 text-sm font-medium text-right whitespace-nowrap">
@@ -167,6 +196,7 @@
                                 --}}
                                 {{-- Editar
                                 --}}
+
                                 <button wire:click="updateShowModal({{ $noticia->id }})" type="button"
                                     class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     <!-- Heroicon name: pencil -->
@@ -196,12 +226,9 @@
                                         </path>
                                     </svg>
                                 </button>
-
-
-
                             </span>
                         </td>
-                        </tr>
+                    </tr>
 
 
                         @endforeach
@@ -280,14 +307,12 @@
                                 </div>
 
                                 <div>
+
                                     <div class="mt-4">
                                         <label for="about" class="block text-sm font-medium text-gray-700">
                                             Descripción Noticia
                                         </label>
                                         <div class="mt-4">
-
-
-
                                             {{-- @trix(\App\Models\Noticias::class,'descripcion_noticia') --}}
                                             {{-- <textarea id="about" rows="3"
                                                 class="block w-full mt-1 border-blue-900 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -308,9 +333,9 @@
                                     </div>
                                 </div>
 
+                                {{-- Foto principal --}}
 
-
-                                <div>
+                                {{-- <div>
                                     <div class="mt-4">
                                         <label class="block text-sm font-medium text-gray-700">
                                             Foto Principal
@@ -338,6 +363,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div> --}}
+
+                                <div class="col-span-4 mt-2 sm:col-span-3">
+                                    <x-jet-label for="noticia_photo_path" value="Subir foto portada noticia" />
+                                    <x-jet-input id="noticia_photo_path" class="block w-full mt-1" type="file" accept=".png,.jepg"
+                                        wire:model="" />
+                                        <div wire:loading wire:target="">Subiendo imagen...</div>
+                                    @error('noticia_photo_path') <span class="error">{{ $message }}</span> @enderror
                                 </div>
 
                             </x-slot>
