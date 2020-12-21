@@ -25,6 +25,7 @@ class Academicos extends Model
         'rut_academico',
         'fecha_nacimiento',
         'grado_academico',
+        'area_especializacion',
         'correo',
         'proyecto',
         'publicaciones',

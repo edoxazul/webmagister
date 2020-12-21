@@ -53,6 +53,6 @@ class CreateInfomagisterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('infomagister');
+        Schema::dropIfExists('info_magisters');
     }
 }

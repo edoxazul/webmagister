@@ -1,4 +1,5 @@
 <div>
+
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Noticias') }}
@@ -284,12 +285,30 @@
                                             Descripción Noticia
                                         </label>
                                         <div class="mt-4">
-                                            <textarea id="about" rows="3"
+
+
+
+                                            {{-- @trix(\App\Models\Noticias::class,'descripcion_noticia') --}}
+                                            {{-- <textarea id="about" rows="3"
                                                 class="block w-full mt-1 border-blue-900 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                placeholder="Cuerpo de la noticia"></textarea>
+                                                placeholder="Cuerpo de la noticia"></textarea> --}}
+
+                                                <div x-data="{ trix: @entangle('descripcion_noticia').defer }">
+                                                    <input id="descripcion_noticia" name="descripcion_noticia" type="hidden" />
+                                                     <div wire:ignore>
+                                                         <trix-editor x-model="trix" input="descripcion_noticia">
+                                                         </trix-editor>
+                                                     </div>
+                                                    @error('descripcion_noticia') <span class="error">{{ $message }}</span> @enderror
+                                                </div>
+                                                {{-- @push('scripts')
+                                                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.js"></script>
+                                                @endpush --}}
                                         </div>
                                     </div>
                                 </div>
+
+
 
                                 <div>
                                     <div class="mt-4">
