@@ -247,6 +247,14 @@
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
+                                        <x-jet-label for="pasaporte" value="Pasaporte" />
+                                    </div>
+                                    <x-jet-input id="pasaporte" class="block w-full mt-1" type="text"
+                                        placeholder="Pasaporte" wire:model.lazy="pasaporte" />
+                                    @error('pasaporte') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
+                                </div>
+                                <div class="col-span-6 mt-2 sm:col-span-3">
+                                    <div class="flex">
                                         <x-jet-label for="carrera_alumno" value="Carrera del Alumno" />
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
@@ -270,7 +278,7 @@
                                     </div>
                                     <select id="estado_alumno" type="text" wire:model="estado_alumno"
                                         class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
-                                        <option class="text-gray-700 font-black" value="">Elige una opción</option>
+                                        <option class="font-black text-gray-700" value="">Elige una opción</option>
                                         <option class="text-gray-700" value="Regular">Regular</option>
                                         <option class="text-gray-700" value="Egresado">Egresado</option>
                                         <option class="text-gray-700" value="Graduado">Graduado</option>

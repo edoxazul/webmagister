@@ -29,6 +29,7 @@ class ListaAlumnos extends Component
     public $isSetToDefaultNotFoundPage;
     public $estado_alumno='Regular';
     public $profile_photo_path;
+    public $photo=null;
 
     public $sortField="nombre_alumno";
     public $sortDirection = 'asc';

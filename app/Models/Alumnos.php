@@ -13,6 +13,7 @@ class Alumnos extends Model
     protected $fillable = [
         'nombre_alumno',
         'rut_alumno',
+        'pasaporte',
         'carrera_alumno',
         'contacto_alumno',
         'estado_alumno',
