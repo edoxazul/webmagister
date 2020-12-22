@@ -420,17 +420,17 @@
                                                     class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
                                             </div>
                                             <x-jet-input id="linkedin" class="block w-full mt-1" type="text"
-                                                placeholder="LinkedIn" wire:model="linkedin" />
+                                                placeholder="LinkedIn" wire:model.lazy="linkedin" />
                                             @error('linkedin') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
 
                                         </div>
                                         <div class="col-span-6 mt-2 sm:col-span-3">
                                             <div class="flex">
-                                                <x-jet-label for="trabajo_tesis_supervisado[]" value="Trabajos de tesis supervisados" />
+                                                <x-jet-label for="trabajo_tesis_supervisado[]" value="Anteproyectos supervisados" />
                                                 <label for="trabajo_tesis_supervisado[]" class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
                                             </div>
                                             <x-jet-input id="trabajo_tesis_supervisado" name="trabajo_tesis_supervisado[]" class="block w-full mt-1" type="text"
-                                                placeholder="Enlace del anteproyecto supervisado" wire:model="trabajo_tesis_supervisado" />
+                                                placeholder="Enlace del anteproyecto supervisado" wire:model.lazy="trabajo_tesis_supervisado" />
                                             @error('trabajo_tesis_supervisado') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                             {{-- <div class="col-md-2">
                                                 <button class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'" wire:click.prevent="add({{$i}})">+</button>

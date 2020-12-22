@@ -22,7 +22,13 @@ class InfoMagisterFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'proposito_magister'=>$this->faker->title,
+            'objetivo_magister'=>$this->faker->title,
+            'descripcion_magister'=>$this->faker->title,
+            'perfil_entrada_magister'=>$this->faker->title,
+            'regimen_magister'=>$this->faker->title,
+            'contacto_magister'=>$this->faker->title,
+            'costo_magister'=>$this->faker->title,
         ];
     }
 }
