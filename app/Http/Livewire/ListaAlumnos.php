@@ -77,15 +77,6 @@ class ListaAlumnos extends Component
         ]);
     }
 
-    public function upload()
-    {
-        $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
-
-        $this->photo->storeAs('photos', $name);
-
-        Alumnos::create(['profile_photo_path' => $name]);
-    }
-
     public function clear()
     {
         $this->search = '';
@@ -216,7 +207,7 @@ class ListaAlumnos extends Component
             [
                 'nombre_alumno' => 'required',
                 'rut_alumno' => 'required|unique:alumnos,rut_alumno,'.$this->modelId.'|cl_rut',
-                'pasaporte'=>'unique:alumnos',
+                'pasaporte'=>'unique:alumnos,pasaporte,'.$this->modelId.'',
                 'carrera_alumno' => 'required',
                 'contacto_alumno' => 'required|unique:alumnos,contacto_alumno,'.$this->modelId.'',
                 'estado_alumno' => 'required',

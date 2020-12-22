@@ -20,8 +20,13 @@ class Alumnos extends Model
         'razon_eliminacion',
         'anio_ingreso',
         'anio_graduacion',
+        'profile_photo_path',
         'trabajo_tesis',
         'linkedin',
+    ];
+
+    protected $appends = [
+        'profile_photo_path',
     ];
 
     //Relacion uno a muchos (inversa)

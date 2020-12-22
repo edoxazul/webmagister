@@ -64,7 +64,7 @@
                             Nombre Alumno
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                            Rut Alumno
+                            Rut Alumno/Pasaporte
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                             Carrera/Titulo
@@ -100,7 +100,38 @@
                         <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
+                                <div x-data={} class="flex-shrink-0 w-10 h-10">
+                                    <div>
 
+                                        <a {{--
+                                            @click="$dispatch('img-modal', {imgModalSrc: {{ $alumno->profile_photo_path }}'})"
+                                            --}}
+
+                                            class="cursor-pointer">
+                                            @if($alumno->profile_photo_path!=null)
+                                            <img class="w-10 h-10 rounded-full object-fit"
+
+                                                src="{{($alumno->profile_photo_path)}}"/>
+                                                {{-- src="{{asset('storage/photos' . $alumno->profile_photo_path)}}"/> --}}
+                                            @else
+                                            <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                            </svg>
+
+                                            @endif
+
+
+                                        </a>
+                                    </div>
+                                    {{-- <img class="w-10 h-10 rounded-full"
+                                        src="{{ $alumno->profile_photo_path }}" alt=""> --}}
+
+
+
+                                    {{-- <img class="w-10 h-10 rounded-full"
+                                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60"
+                                        alt=""> --}}
+                                </div>
                             <div class="ml-4">
                                 <div class="text-sm font-medium text-gray-900">
                                 {{$alumno->nombre_alumno}}
@@ -113,7 +144,11 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
+                                @if ($alumno->pasaporte)
+                                {{$alumno->pasaporte}}
+                                @else
                                 {{$alumno->rut_alumno}}
+                                @endif
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
@@ -219,7 +254,37 @@
                         </x-slot>
 
                         <x-slot name="content">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">
+                                    Foto
+                                </label>
+                                <div class="flex items-center mt-2">
 
+                                    <span class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
+                                        {{-- <img class="w-full h-full" id="profile_photo_path" wire:model="profile_photo_path" src="{{ asset($alumno->profile_photo_path) }}"> --}}
+                                        @if($photo)
+                                        <img class="w-full h-full" src="{{$photo->temporaryUrl() }}">
+                                            @else
+                                        {{-- <img class="w-full h-full" wire:model="profile_photo_path" src="{{$alumno->profile_photo_path}}"> --}}
+
+                                            @if($profile_photo_path)
+
+                                                <img class="w-full h-full" src="{{$profile_photo_path }}">
+                                                @else
+                                                <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                                </svg>
+
+                                            @endif
+                                        @endif
+
+                                    </span>
+                                    {{-- <img class="w-full h-full" wire:model="profile_photo_path" src="{{$alumno->profile_photo_path }}"> --}}
+                                    <input type="file" wire:model="photo" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    @error('photo') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+
+                                </div>
+                            </div>
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
@@ -243,14 +308,13 @@
                                         placeholder="12345678-9" id="rut" oninput="checkRut(this)" required=""
                                         name="rut_alumno" type="text" />
                                     @error('rut_alumno') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
-
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
                                         <x-jet-label for="pasaporte" value="Pasaporte" />
                                     </div>
                                     <x-jet-input id="pasaporte" class="block w-full mt-1" type="text"
-                                        placeholder="Pasaporte" wire:model.lazy="pasaporte" />
+                                        placeholder="123456789" wire:model.lazy="pasaporte" />
                                     @error('pasaporte') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3">
