@@ -221,13 +221,24 @@
                                     </div>
 
                                     <div class="col-span-4 mt-2 sm:col-span-3">
+                                        <div
+                                            x-data="{ isUploading: false, progress: 0 }"
+                                            x-on:livewire-upload-start="isUploading = true"
+                                            x-on:livewire-upload-finish="isUploading = false"
+                                            x-on:livewire-upload-error="isUploading = false"
+                                            x-on:livewire-upload-progress="progress = $event.detail.progress">
                                         <x-jet-label for="enlace_archivo" value="Subir archivo" />
                                         <x-jet-input id="enlace_archivo" class="block w-full mt-1" type="file" accept=".doc,.docx,application/msword,
                                         application/vnd.openxmlformats-officedocument.wordprocessingml.document,
                                         .pdf,.txt,.xlsx,.xls,.pptx,.ppt"
                                             wire:model="files_admin" />
-                                            <div wire:loading wire:target="files_admin">Subiendo archivo...</div>
+                                            <div x-show="isUploading">
+                                                <progress max="100" x-bind:value="progress" ></progress>
+                                                {{-- <div wire:loading wire:target="files_admin">Subiendo archivo...</div> --}}
+                                            </div>
+                                            {{-- <div wire:loading wire:target="files_admin">Subiendo archivo...</div> --}}
                                         @error('enlace_archivo') <span class="error">{{ $message }}</span> @enderror
+                                        </div>
                                     </div>
 
                                 </div>

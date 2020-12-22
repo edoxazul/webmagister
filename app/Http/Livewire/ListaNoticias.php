@@ -4,8 +4,15 @@ namespace App\Http\Livewire;
 use App\Models\Noticias;
 use Livewire\Component;
 use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
+use Livewire\WithFileUploads;
+use Illuminate\Validation\Rule;
+use Livewire\WithPagination;
+use Illuminate\Support\Str;
+
+
 class ListaNoticias extends Component
 {
+    use WithFileUploads;
     public $search= '';
     public $perPage= '10';
     public $page='1';
@@ -14,8 +21,9 @@ class ListaNoticias extends Component
     public $modelId;
     use HasTrixRichText;
 
-    public $titulo_noticia,$descripcion_noticia,$autor_noticia,$enlace_noticia,$user_id;
-
+    public $titulo_noticia,$descripcion_noticia,$autor_noticia,$enlace_noticia,$estatus,$user_id;
+    public $noticia_photo_path;
+    public $fotos_noticia=null;
     public function render()
     {
         return view('livewire.lista-noticias',[
@@ -43,7 +51,7 @@ class ListaNoticias extends Component
             'descripcion_noticia' => 'required',
            // 'autor_noticia'=> 'required',
            // 'enlace_noticia' => 'required',
-            'noticia_photo_path' => 'required',
+            // 'noticia_photo_path' => 'required',
             'estatus' => 'required'
 
         ];
@@ -51,16 +59,32 @@ class ListaNoticias extends Component
 
     public function modelData()
     {
-        return [
-            'titulo_noticia' => $this->titulo_noticia,
-            'descripcion_noticia' => $this->descripcion_noticia,
-            'autor_noticia'=>$this->autor_noticia,
-            'enlace_noticia'=>$this->enlace_noticia,
-            'noticia_photo_path'=>$this->noticia_photo_path,
-            'estatus'=>$this->estatus,
-            'is_default_home' => $this->isSetToDefaultHomePage,
-            'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
-        ];
+        if(!empty($this->fotos_noticia)){
+            $name = md5($this->fotos_noticia . microtime()).'.'.$this->fotos_noticia->extension();
+            $noticia_photo_path = $this->fotos_noticia->storeAs('fotos_noticia',$name,'public');
+            $noticia_photo_path = 'storage/'.$noticia_photo_path;
+            return [
+                'titulo_noticia' => $this->titulo_noticia,
+                'descripcion_noticia-trixFields' => $this->descripcion_noticia-trixFields,
+                'autor_noticia'=>$this->autor_noticia,
+                'enlace_noticia'=>$this->enlace_noticia,
+                'noticia_photo_path'=>$noticia_photo_path,
+                'estatus'=>$this->estatus,
+                'is_default_home' => $this->isSetToDefaultHomePage,
+                'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+            ];
+        }else{
+            return [
+                'titulo_noticia' => $this->titulo_noticia,
+                'descripcion_noticia' => $this->descripcion_noticia,
+                'autor_noticia'=>$this->autor_noticia,
+                'enlace_noticia'=>$this->enlace_noticia,
+                // 'noticia_photo_path'=>$noticia_photo_path,
+                'estatus'=>$this->estatus,
+                'is_default_home' => $this->isSetToDefaultHomePage,
+                'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+            ];
+        }
     }
 
     public function create()
@@ -150,4 +174,13 @@ class ListaNoticias extends Component
         Noticias::destroy($this->modelId);
         $this->modalConfirmDeleteVisible = false;
     }
+
+    protected  $messages =[
+        'titulo_noticia.required' => 'El campo título es obligatorio',
+        'descripcion_noticia.required' => 'El campo descripción es obligatorio',
+        'noticia_photo_path.required' => 'El campo foto portada es obligatorio',
+        'estatus.required' => 'El campo estado noticia es obligatorio',
+        // 'enlace_archivo.mimes' => 'Formato de archivo inválido.',
+        // 'enlace_archivo.mimes:pdf,txt,xlsx,xls,pptx,ppt,doc,docx,zip' => 'Formato de archivo inválido.',
+    ];
 }
