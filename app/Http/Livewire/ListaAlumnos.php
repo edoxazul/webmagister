@@ -140,7 +140,7 @@ class ListaAlumnos extends Component
                 'anio_graduacion'=>$this->anio_graduacion,
                 'trabajo_anteproyecto' =>$this->trabajo_anteproyecto,
                 'linkedin'=>$this->linkedin,
-                'profile_photo_path'=>$this->profile_photo_path,
+                'profile_photo_path'=>$profile_photo_path,
                 'is_default_home' => $this->isSetToDefaultHomePage,
                 'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
             ];
