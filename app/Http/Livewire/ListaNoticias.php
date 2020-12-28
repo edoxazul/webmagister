@@ -65,7 +65,10 @@ class ListaNoticias extends Component
             $noticia_photo_path = 'storage/'.$noticia_photo_path;
             return [
                 'titulo_noticia' => $this->titulo_noticia,
-                'descripcion_noticia-trixFields' => $this->descripcion_noticia-trixFields,
+                // 'descripcion_noticia'-trixFields => $this->descripcion_noticia-trixFields,
+                // trixFields('descripcion_noticia') => trixFields($this->descripcion_noticia),
+                // trix_rich_texts('descripcion_noticia')=> trix_rich_texts($this->descripcion_noticia),
+                'descripcion_noticia' => $this->descripcion_noticia,
                 'autor_noticia'=>$this->autor_noticia,
                 'enlace_noticia'=>$this->enlace_noticia,
                 'noticia_photo_path'=>$noticia_photo_path,
@@ -76,6 +79,8 @@ class ListaNoticias extends Component
         }else{
             return [
                 'titulo_noticia' => $this->titulo_noticia,
+                // trixFields('descripcion_noticia') => trixFields($this->descripcion_noticia),
+                // trix_rich_texts('descripcion_noticia')=> trix_rich_texts($this->descripcion_noticia),
                 'descripcion_noticia' => $this->descripcion_noticia,
                 'autor_noticia'=>$this->autor_noticia,
                 'enlace_noticia'=>$this->enlace_noticia,
@@ -136,6 +141,7 @@ class ListaNoticias extends Component
         $this->descripcion_noticia = $data->descripcion_noticia;
         $this->autor_noticia = $data->autor_noticia;
         $this->enlace_noticia = $data->enlace_noticia;
+        $this->noticia_photo_path = $data->noticia_photo_path;
         $this->estatus = $data->estatus;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
@@ -177,7 +183,7 @@ class ListaNoticias extends Component
 
     protected  $messages =[
         'titulo_noticia.required' => 'El campo título es obligatorio',
-        'descripcion_noticia.required' => 'El campo descripción es obligatorio',
+        'descripcion_noticia.required' => 'El campo cuerpo de la noticia es obligatorio',
         'noticia_photo_path.required' => 'El campo foto portada es obligatorio',
         'estatus.required' => 'El campo estado noticia es obligatorio',
         // 'enlace_archivo.mimes' => 'Formato de archivo inválido.',

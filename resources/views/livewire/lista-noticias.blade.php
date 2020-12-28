@@ -7,6 +7,7 @@
     <x-slot name="header">
         <link rel="stylesheet" type="text/css" href="trix.css">
         <script type="text/javascript" src="trix.js"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Noticias') }}
         </h2>
@@ -332,10 +333,25 @@
                                         </label>
                                         <div class="mt-4">
                                             {{-- @trix(\App\Models\Noticias::class,'descripcion_noticia') --}}
-                                        <div wire:ignore>
+
+                                            <textarea class="form-control" id="descripcion_noticia" name="descripcion_noticia"></textarea>
+{{--
+                                            <x-jet-label for= "ckcontent" value = "" />
+                                                <div wire:ignore wire:key="Myid">
+                                                    <div  id ="ckcontent" class="block w-full mt-1">
+
+                                                    </div>
+                                                </div>
+
+                                                <textarea id= "descripcion_notcia" class="hidden">
+
+                                                </textarea> --}}
+
+                                        {{-- <div wire:ignore>
                                             <input id="descripcion_noticia" name="descripcion_noticia" type="hidden" value="">
                                             <trix-editor input="descripcion_noticia" class="wysiwyg-content" wire:key="uniqueKey"></trix-editor>
-                                        </div>
+                                        </div> --}}
+
 
                                             {{-- <div wire:ignore>
                                                 <trix-editor
@@ -374,36 +390,6 @@
 
                                 {{-- Foto principal --}}
 
-                                {{-- <div>
-                                    <div class="mt-4">
-                                        <label class="block text-sm font-medium text-gray-700">
-                                            Foto Principal
-                                        </label>
-                                        <div
-                                            class="flex justify-center px-6 pt-5 pb-6 mt-2 border-2 border-gray-300 border-dashed rounded-md">
-                                            <div class="space-y-1 text-center">
-                                                <svg class="w-12 h-12 mx-auto text-gray-400" stroke="currentColor"
-                                                    fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                                    <path
-                                                        d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                                        stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </svg>
-                                                <p class="text-sm text-gray-600">
-                                                    <button
-                                                        class="font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                        Upload a file
-                                                    </button>
-                                                    or drag and drop
-                                                </p>
-                                                <p class="text-xs text-gray-500">
-                                                    PNG, JPG, GIF up to 10MB
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
-
                                 <div class="col-span-4 mt-2 sm:col-span-3">
                                     <div
                                         x-data="{ isUploading: false, progress: 0 }"
@@ -416,10 +402,8 @@
                                         wire:model="fotos_noticia" />
                                         <div x-show="isUploading">
                                             <progress max="100" x-bind:value="progress" ></progress>
-                                            {{-- <div wire:loading wire:target="files_admin">Subiendo archivo...</div> --}}
                                         </div>
-                                        {{-- <div wire:loading wire:target="files_admin">Subiendo archivo...</div> --}}
-                                    @error('noticia_photo_path') <span class="error">{{ $message }}</span> @enderror
+                                        @error('noticia_photo_path') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
@@ -463,6 +447,19 @@
         console.log(about.getAttribute('value'));
         @this.set('descripcion_noticia', about.getAttribute('value'))
     })
+</script>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#descripcion_noticia' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+CKEDITOR.replace( 'descripcion_noticia' );
 </script>
 
 </div>

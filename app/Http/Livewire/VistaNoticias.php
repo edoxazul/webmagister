@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 
-class ListaNoticiasPublico extends Component
+class VistaNoticias extends Component
 {
     public $modalFormVisible = false;
     public $modalMostrarVisible = false;
@@ -18,17 +18,33 @@ class ListaNoticiasPublico extends Component
     public $isSetToDefaultNotFoundPage;
     public $titulo_noticia,$descripcion_noticia,$autor_noticia,$enlace_noticia,$estatus,$user_id;
     public $noticia_photo_path;
+    public $noticia=null;
 
-    public $data;
+    // public $data_noticia=null;
+
+        public function mount($id){
+            $this->noticia = Noticias::where('id',$id)->first();
+            $this->modelId = $noticia->id;
+            $this->titulo_noticia = $noticia->titulo_noticia;
+            $this->descripcion_noticia = $noticia->descripcion;
+            $this->noticia_photo_path = $noticia->noticia_photo_path;
+         }
 
 
     public function render()
     {
-        return view('livewire.lista-noticias-publico',[
-            'noticias'=> Noticias::paginate()
+        return view('livewire.vista-noticias',[
+            'noticia'=> Noticias::paginate()
         ])
         ->layout('layouts.guest');
+    }
 
+    public function ver($id){
+        $noticia = Noticias::where('id',$id)->first();
+        // if(!noticia){
+        //     abort(404);
+        // }
+        return view('livewire.vista-noticias',['noticia'=>$noticia]);
     }
 
     public function createShowModal()
