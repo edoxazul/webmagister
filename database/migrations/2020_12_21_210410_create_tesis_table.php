@@ -13,7 +13,7 @@ class CreateTesisTable extends Migration
      */
     public function up()
     {
-        Schema::create('tesis', function (Blueprint $table) {
+        Schema::create('teses', function (Blueprint $table) {
             $table->id();
             $table->string('titulo')->require;
             $table->string('autor')->require;
@@ -32,6 +32,6 @@ class CreateTesisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tesis');
+        Schema::dropIfExists('teses');
     }
 }

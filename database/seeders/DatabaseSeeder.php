@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AcademicosTableSeeder::class);
         $this->call(AlumnosTableSeeder::class);
         $this->call(NoticiasTableSeeder::class);
+        //$this->call(TesisTableSeeder::class);
         // $this->call(InfoMagisterTableSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
