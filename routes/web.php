@@ -8,6 +8,7 @@ use App\Http\Livewire\InfoMag;
 use App\Http\Livewire\InfoMagisterPublico;
 use App\Http\Livewire\ListaAcademicosPublico;
 use App\Http\Livewire\ListaAlumnosPublico;
+use App\Http\Livewire\ListaNoticiasPublico;
 use App\Http\Livewire\SubirArchivos;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
@@ -30,10 +31,12 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//Para vistas públicas
 Route::get('/informacion',InfoMagisterPublico::class )->name('infomagisterpublico');
 Route::get('/academic',ListaAcademicosPublico::class )->name('listaacademicospublico');
 Route::get('/alumn',ListaAlumnosPublico::class )->name('listaalumnospublico');
+Route::get('/noticia',ListaNoticiasPublico::class )->name('listanoticiaspublico');
+Route::get('/noticia/{id}', ListaNoticiasPublico::class);
 
 //Administrador
 
