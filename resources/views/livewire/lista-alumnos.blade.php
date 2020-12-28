@@ -102,35 +102,16 @@
                             <div class="flex items-center">
                                 <div x-data={} class="flex-shrink-0 w-10 h-10">
                                     <div>
-
-                                        <a {{--
-                                            @click="$dispatch('img-modal', {imgModalSrc: {{ $alumno->profile_photo_path }}'})"
-                                            --}}
-
-                                            class="cursor-pointer">
+                                        <a class="cursor-pointer">
                                             @if($alumno->profile_photo_path!=null)
-                                            <img class="w-10 h-10 rounded-full object-fit"
-
-                                                src="{{($alumno->profile_photo_path)}}"/>
-                                                {{-- src="{{asset('storage/photos' . $alumno->profile_photo_path)}}"/> --}}
+                                                <img class="w-10 h-10 rounded-full object-fit" src="{{($alumno->profile_photo_path)}}"/>
                                             @else
-                                            <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                            </svg>
-
+                                                <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                                </svg>
                                             @endif
-
-
                                         </a>
                                     </div>
-                                    {{-- <img class="w-10 h-10 rounded-full"
-                                        src="{{ $alumno->profile_photo_path }}" alt=""> --}}
-
-
-
-                                    {{-- <img class="w-10 h-10 rounded-full"
-                                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60"
-                                        alt=""> --}}
                                 </div>
                             <div class="ml-4">
                                 <div class="text-sm font-medium text-gray-900">
@@ -259,30 +240,21 @@
                                     Foto
                                 </label>
                                 <div class="flex items-center mt-2">
-
                                     <span class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
-                                        {{-- <img class="w-full h-full" id="profile_photo_path" wire:model="profile_photo_path" src="{{ asset($alumno->profile_photo_path) }}"> --}}
                                         @if($photo)
-                                        <img class="w-full h-full" src="{{$photo->temporaryUrl() }}">
-                                            @else
-                                        {{-- <img class="w-full h-full" wire:model="profile_photo_path" src="{{$alumno->profile_photo_path}}"> --}}
-
+                                            <img class="w-full h-full" src="{{$photo->temporaryUrl() }}">
+                                        @else
                                             @if($profile_photo_path)
-
                                                 <img class="w-full h-full" src="{{$profile_photo_path }}">
-                                                @else
+                                            @else
                                                 <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                                                     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                                                 </svg>
-
                                             @endif
                                         @endif
-
                                     </span>
-                                    {{-- <img class="w-full h-full" wire:model="profile_photo_path" src="{{$alumno->profile_photo_path }}"> --}}
                                     <input type="file" wire:model="photo" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     @error('photo') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
-
                                 </div>
                             </div>
                             <div class="grid grid-cols-6 gap-6">

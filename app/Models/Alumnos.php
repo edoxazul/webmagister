@@ -35,11 +35,4 @@ class Alumnos extends Model
     }
 
 
-
-
-
-
-
-
-
 }
