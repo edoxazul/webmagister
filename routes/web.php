@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\ListaAcademicos;
 use App\Http\Livewire\ListaAlumnos;
 use App\Http\Livewire\ListaNoticias;
+use App\Http\Livewire\ListaTesis;
 use App\Http\Livewire\InfoMag;
 use App\Http\Livewire\InfoMagisterPublico;
 use App\Http\Livewire\ListaAcademicosPublico;
@@ -39,6 +40,10 @@ Route::get('/alumn',ListaAlumnosPublico::class )->name('listaalumnospublico');
 Route::get('/noticia',ListaNoticiasPublico::class )->name('listanoticiaspublico');
 //Vista específica de una noticia
 Route::get('/ver-noticia/{id}', [VistaNoticias::class,'ver'])->name('ver-noticia');
+// Route::get('/ver-noticia/{id}',function() {
+//     return view('livewire.vista-noticias')
+//     ->layout('layouts.guest');
+// })->name('ver-noticia');
 // Route::get('/ver-noticia/{noticia}',VistaNoticias::class)->name('ver-noticia');
 
 
@@ -78,4 +83,8 @@ Route::middleware(['auth:sanctum', 'verified'])
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/carga-archivos', SubirArchivos::class)
     ->name('archivos');
+//Módulo Tesis/Anteproyectos
+Route::middleware(['auth:sanctum', 'verified'])
+->get('/anteproyectos', ListaTesis::class)
+->name('anteproyectos');
 
