@@ -83,7 +83,9 @@ return [
         public_path('storage/photos') => storage_path('app/photos'),
         public_path('storage/files') => storage_path('app/files'),
         public_path('storage/files_admin') => storage_path('app/files_admin'),
-        public_path('storage/photos_noticia') => storage_path('app/photos_noticia'),
+        public_path('storage/fotos_noticia') => storage_path('app/fotos_noticia'),
+        public_path('ver-noticia/storage/fotos_noticia') => storage_path('app/fotos_noticia'),
+
     ],
 
 ];

@@ -93,7 +93,7 @@ class VistaNoticias extends Component
         // if(!noticia){
         //     abort(404);
         // }
-        return view('livewire.vista-noticias',['noticia'=>$data])->layout('layouts.guest');
+        return view('livewire.vista-noticias',['noticia'=>$data]);
     }
 
     public function createShowModal()

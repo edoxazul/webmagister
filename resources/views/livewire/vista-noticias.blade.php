@@ -32,16 +32,17 @@
 
             <main>
             <div class="flex w-full px-2 mx-auto bg-gray-300 rounded-md max-w-7xl sm:px-6 lg:px-8">
-                <div class="relative flex items-center justify-center w-full h-16">
-                    <h2
-                        class="justify-center w-full text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                <div class="relative flex items-center h-16">
+
+                    <div class="justify-center w-full text-2xl font-bold leading-8 text-gray-900 sm:text-3xl sm:truncate">
                         Noticias Magíster
-                    </h2>
+                    </div>
+
 
                 </div>
 
             </div>
-            </main>
+
 
             <div class="mt-2"> </div>
 
@@ -59,7 +60,7 @@
 
                 <div class="mx-20">
                 {{-- <img src="https://static.politico.com/dims4/default/fcd6d6a/2147483647/resize/1920x/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F22%2F87%2F2259ffd444678054896b9fa32b4d%2Fgettyimages-1221513169.jpg"> --}}
-                <img src="{{ $noticia->noticia_photo_path }}">
+                <img src="{{ asset($noticia->noticia_photo_path) }}">
                 </div>
 
                 <div class="mx-20 text-gray-600 text-normal">
@@ -86,6 +87,9 @@
 
 
         </div>
+
+    </main>
+
 
         @stack('modals')
 

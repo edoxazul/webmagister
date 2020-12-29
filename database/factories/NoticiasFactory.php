@@ -37,7 +37,7 @@ class NoticiasFactory extends Factory
             'caption_foto_noticia'=>$this->faker->text(),
             //Estado de la noticia. Para fines de eliminación. Al eliminar una noticia se cambia el estatus
             // a "no visible"
-           'estado_noticia'=>$this->faker->randomElement(['Visible','No visible']),
+            'estado_noticia'=>$this->faker->randomElement(['Visible','No visible']),
         ];
     }
 }
