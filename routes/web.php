@@ -38,7 +38,9 @@ Route::get('/academic',ListaAcademicosPublico::class )->name('listaacademicospub
 Route::get('/alumn',ListaAlumnosPublico::class )->name('listaalumnospublico');
 Route::get('/noticia',ListaNoticiasPublico::class )->name('listanoticiaspublico');
 //Vista específica de una noticia
-Route::get('/ver-noticia/{id}', VistaNoticias::class,'ver')->name('ver-noticia');
+Route::get('/ver-noticia/{id}', [VistaNoticias::class,'ver'])->name('ver-noticia');
+// Route::get('/ver-noticia/{noticia}',VistaNoticias::class)->name('ver-noticia');
+
 
 //Administrador
 

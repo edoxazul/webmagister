@@ -18,33 +18,78 @@ class VistaNoticias extends Component
     public $isSetToDefaultNotFoundPage;
     public $titulo_noticia,$descripcion_noticia,$autor_noticia,$enlace_noticia,$estatus,$user_id;
     public $noticia_photo_path;
-    public $noticia=null;
+    public $noticia;
 
     // public $data_noticia=null;
 
-        public function mount($id){
-            $this->noticia = Noticias::where('id',$id)->first();
-            $this->modelId = $noticia->id;
-            $this->titulo_noticia = $noticia->titulo_noticia;
-            $this->descripcion_noticia = $noticia->descripcion;
-            $this->noticia_photo_path = $noticia->noticia_photo_path;
-         }
+        // public function mount($id ,Noticias $noticia){
+        //     // $noticia = Noticias::find($id);
+        //     // $this->id = $noticia;
+        //     $this->noticia = Noticias::where('id',$this->modelId)->first();
+        //     // $this->modelId = $noticia->id;
+        //     $this->titulo_noticia = $noticia->titulo_noticia;
+        //     $this->descripcion_noticia = $noticia->descripcion;
+        //     $this->noticia_photo_path = $noticia->noticia_photo_path;
+        // }
 
+        public function mount($id){
+            $this->ver($id);
+            // $this->noticia = $noticia;
+            // $this->noticia = Noticias::all();
+            // $this->noticia = Noticias::find($id);
+            // $this->id = $noticia;
+            // $noticia = Noticias::find($this->modelId);
+            // $this->noticia = Noticias::where('id',$this->modelId)->first();
+
+            // $this->modelId = $noticia->id;
+            // $this->titulo_noticia = $noticia->titulo_noticia;
+            // $this->descripcion_noticia = $noticia->descripcion;
+            // $this->noticia_photo_path = $noticia->noticia_photo_path;
+        }
 
     public function render()
     {
         return view('livewire.vista-noticias',[
-            'noticia'=> Noticias::paginate()
+            'noticia'=> Noticias::paginate(),
+
         ])
         ->layout('layouts.guest');
     }
 
     public function ver($id){
-        $noticia = Noticias::where('id',$id)->first();
+
+        // Get home page if slug is empty
+        if (empty($id)) {
+            $data = Noticias::where('is_default_home', true)->first();
+        } else {
+
+            // Get the page according to the slug value
+            $data = Noticias::where('id', $id)->first();
+
+            // If we can't retrieve anything, let's get the default 404 not found page
+            if (!$data) {
+                $data = Noticias::where('is_default_not_found', true)->first();
+            }
+        }
+
+        $this->modelId = $data->id;
+        $this->titulo_noticia = $data->titulo_noticia;
+        $this->descripcion_noticia = $data->descripcion;
+        $this->noticia_photo_path = $data->noticia_photo_path;
+
+
+
+
+
+
+        // $this->modelId = $id;
+        // $noticia= Noticias::find($this->modelId);
+
+        // $noticia = Noticias::where('id',$this->modelId)->first();
         // if(!noticia){
         //     abort(404);
         // }
-        return view('livewire.vista-noticias',['noticia'=>$noticia]);
+        return view('livewire.vista-noticias',['noticia'=>$data])->layout('layouts.guest');
     }
 
     public function createShowModal()
