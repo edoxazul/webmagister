@@ -19,15 +19,17 @@ class ListaNoticias extends Component
     public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
     public $modelId;
+    public $isSetToDefaultHomePage;
+    public $isSetToDefaultNotFoundPage;
     use HasTrixRichText;
 
-    public $titulo_noticia,$descripcion_noticia,$autor_noticia,$enlace_noticia,$estatus,$user_id;
+    public $titular_noticia,$cuerpo_noticia,$autor_noticia,$estado_noticia,$caption_foto_noticia,$user_id;
     public $noticia_photo_path;
     public $fotos_noticia=null;
     public function render()
     {
         return view('livewire.lista-noticias',[
-            'noticias' => Noticias::where('titulo_noticia','like','%' . trim($this->search) . '%')
+            'noticias' => Noticias::where('titular_noticia','like','%' . trim($this->search) . '%')
             ->paginate($this->perPage)
         ]);
     }
@@ -47,12 +49,13 @@ class ListaNoticias extends Component
     public function rules()
     {
         return [
-            'titulo_noticia' => 'required',
-            'descripcion_noticia' => 'required',
+            'titular_noticia' => 'required',
+            'cuerpo_noticia' => 'required',
            // 'autor_noticia'=> 'required',
            // 'enlace_noticia' => 'required',
             // 'noticia_photo_path' => 'required',
-            'estatus' => 'required'
+            'caption_foto_noticia' => 'required',
+            'estado_noticia' => 'required'
 
         ];
     }
@@ -64,28 +67,28 @@ class ListaNoticias extends Component
             $noticia_photo_path = $this->fotos_noticia->storeAs('fotos_noticia',$name,'public');
             $noticia_photo_path = 'storage/'.$noticia_photo_path;
             return [
-                'titulo_noticia' => $this->titulo_noticia,
+                'titular_noticia' => $this->titular_noticia,
                 // 'descripcion_noticia'-trixFields => $this->descripcion_noticia-trixFields,
                 // trixFields('descripcion_noticia') => trixFields($this->descripcion_noticia),
                 // trix_rich_texts('descripcion_noticia')=> trix_rich_texts($this->descripcion_noticia),
-                'descripcion_noticia' => $this->descripcion_noticia,
+                'cuerpo_noticia' => $this->cuerpo_noticia,
                 'autor_noticia'=>$this->autor_noticia,
-                'enlace_noticia'=>$this->enlace_noticia,
                 'noticia_photo_path'=>$noticia_photo_path,
-                'estatus'=>$this->estatus,
+                'caption_foto_noticia'=>$this->caption_foto_noticia,
+                'estado_noticia'=>$this->estado_noticia,
                 'is_default_home' => $this->isSetToDefaultHomePage,
                 'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
             ];
         }else{
             return [
-                'titulo_noticia' => $this->titulo_noticia,
+                'titular_noticia' => $this->titular_noticia,
                 // trixFields('descripcion_noticia') => trixFields($this->descripcion_noticia),
                 // trix_rich_texts('descripcion_noticia')=> trix_rich_texts($this->descripcion_noticia),
-                'descripcion_noticia' => $this->descripcion_noticia,
+                'cuerpo_noticia' => $this->cuerpo_noticia,
                 'autor_noticia'=>$this->autor_noticia,
-                'enlace_noticia'=>$this->enlace_noticia,
                 // 'noticia_photo_path'=>$noticia_photo_path,
-                'estatus'=>$this->estatus,
+                //'caption_foto_noticia'=>$this->caption_foto_noticia,
+                'estado_noticia'=>$this->estado_noticia,
                 'is_default_home' => $this->isSetToDefaultHomePage,
                 'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
             ];
@@ -137,12 +140,12 @@ class ListaNoticias extends Component
     public function loadModel()
     {
         $data = Noticias::find($this->modelId);
-        $this->titulo_noticia = $data->titulo_noticia;
-        $this->descripcion_noticia = $data->descripcion_noticia;
+        $this->titular_noticia = $data->titular_noticia;
+        $this->cuerpo_noticia = $data->cuerpo_noticia;
         $this->autor_noticia = $data->autor_noticia;
-        $this->enlace_noticia = $data->enlace_noticia;
         $this->noticia_photo_path = $data->noticia_photo_path;
-        $this->estatus = $data->estatus;
+        $this->caption_foto_noticia = $data->caption_foto_noticia;
+        $this->estado_noticia = $data->estado_noticia;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
@@ -182,11 +185,30 @@ class ListaNoticias extends Component
     }
 
     protected  $messages =[
-        'titulo_noticia.required' => 'El campo título es obligatorio',
-        'descripcion_noticia.required' => 'El campo cuerpo de la noticia es obligatorio',
+        'titular_noticia.required' => 'El campo titular es obligatorio',
+        'cuerpo_noticia.required' => 'El campo cuerpo de la noticia es obligatorio',
         'noticia_photo_path.required' => 'El campo foto portada es obligatorio',
-        'estatus.required' => 'El campo estado noticia es obligatorio',
+        'caption_foto_noticia.required' => 'El campo descripción foto es obligatorio',
+        'estado_noticia.required' => 'El campo estado noticia es obligatorio',
         // 'enlace_archivo.mimes' => 'Formato de archivo inválido.',
         // 'enlace_archivo.mimes:pdf,txt,xlsx,xls,pptx,ppt,doc,docx,zip' => 'Formato de archivo inválido.',
     ];
+
+    private function unassignDefaultHomePage()
+    {
+        if ($this->isSetToDefaultHomePage != null) {
+            Noticias::where('is_default_home', true)->update([
+                'is_default_home' => false,
+            ]);
+        }
+    }
+
+    private function unassignDefaultNotFoundPage()
+    {
+        if ($this->isSetToDefaultNotFoundPage != null) {
+            Noticias::where('is_default_not_found', true)->update([
+                'is_default_not_found' => false,
+            ]);
+        }
+    }
 }

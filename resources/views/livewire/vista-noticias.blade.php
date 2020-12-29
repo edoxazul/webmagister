@@ -50,7 +50,7 @@
                 <a href="" class="font-bold tracking-widest text-red-600 ">CORONAVIRUS</a>
                 </div> --}}
                 <div class="w-full px-5 text-4xl font-bold leading-none text-gray-800">
-                    {{ $noticia->titulo_noticia }}
+                    {{ $noticia->titular_noticia }}
                 </div>
 
                 <div class="w-full px-5 pt-2 pb-5 text-gray-500">
@@ -58,24 +58,32 @@
                 </div>
 
                 <div class="mx-20">
-                <img src="https://static.politico.com/dims4/default/fcd6d6a/2147483647/resize/1920x/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F22%2F87%2F2259ffd444678054896b9fa32b4d%2Fgettyimages-1221513169.jpg">
-                {{-- <img src="{{ $noticia->noticia_photo_path }}"> --}}
+                {{-- <img src="https://static.politico.com/dims4/default/fcd6d6a/2147483647/resize/1920x/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F22%2F87%2F2259ffd444678054896b9fa32b4d%2Fgettyimages-1221513169.jpg"> --}}
+                <img src="{{ $noticia->noticia_photo_path }}">
+                </div>
+
+                <div class="mx-20 text-gray-600 text-normal">
+                    {{ $noticia->caption_foto_noticia }}
                 </div>
 
                 <div class="w-full mx-5 text-gray-600 text-normal">
                     <p class="py-3 border-b"></p>
                 </div>
 
-                {{-- <div class="w-full px-5 pt-3 italic font-thin text-gray-600">
-                    By <strong class="text-gray-700">Quint Forgey</strong><br>
-                    07/17/2020 09:57 AM EDT<br>
-                    Updated: 07/17/2020 10:33 AM EDT
-                </div> --}}
-
                 <div class="w-full px-5 mx-auto" style="text-align: justify;">
-                    <p class="my-5"> {!!  nl2br(e($noticia->descripcion_noticia)) !!} </p>
+                    <p class="my-5"> {!!  nl2br(e($noticia->cuerpo_noticia)) !!} </p>
                 </div>
+
+                <div class="flex justify-center w-full px-2 mx-auto bg-gray-300 rounded-md max-w-7xl sm:px-6 lg:px-8">
+                    <a href= "{{ route('listanoticiaspublico') }}" class="justify-center px-3 py-3 text-sm font-medium text-center text-gray-700 rounded-md" > Volver </a>
+                </div>
+
+                <div class="w-full mx-8 text-gray-600 text-normal">
+                    <p class="py-3 border-b"></p>
+                </div>
+
             </div>
+
 
         </div>
 

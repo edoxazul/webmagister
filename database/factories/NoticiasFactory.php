@@ -26,7 +26,7 @@ class NoticiasFactory extends Factory
             //Título de la noticia
             'titular_noticia'=>$this->faker->text(200),
             //Descripción de la noticia
-            'cuerpo_noticia'=>$this->faker->longText(),
+            'cuerpo_noticia'=>$this->faker->text(),
             //Autor de la noticia. No es obligatorio
             'autor_noticia'=>$this->faker->name(),
             //Enlace a una noticia externa, si existe.

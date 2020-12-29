@@ -5,9 +5,11 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Noticias;
 use App\Models\ListaNoticias;
+use App\Models\ListaNoticiasPublico;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
+use WithFileUploads;
 
 class VistaNoticias extends Component
 {
@@ -16,7 +18,7 @@ class VistaNoticias extends Component
     public $modelId;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
-    public $titulo_noticia,$descripcion_noticia,$autor_noticia,$enlace_noticia,$estatus,$user_id;
+    public $titular_noticia,$cuerpo_noticia,$autor_noticia,$estado_noticia,$caption_foto_noticia,$user_id;
     public $noticia_photo_path;
     public $noticia;
 
@@ -73,10 +75,12 @@ class VistaNoticias extends Component
         }
 
         $this->modelId = $data->id;
-        $this->titulo_noticia = $data->titulo_noticia;
-        $this->descripcion_noticia = $data->descripcion;
+        $this->titular_noticia = $data->titular_noticia;
+        $this->cuerpo_noticia = $data->cuerpo_noticia;
+        $this->autor_noticia = $data->autor_noticia;
         $this->noticia_photo_path = $data->noticia_photo_path;
-
+        $this->caption_foto_noticia = $data->caption_foto_noticia;
+        $this->estado_noticia = $data->estado_noticia;
 
 
 
@@ -102,12 +106,12 @@ class VistaNoticias extends Component
     public function loadModel()
     {
         $data = Noticias::find($this->modelId);
-        $this->titulo_noticia = $data->titulo_noticia;
-        $this->descripcion_noticia = $data->descripcion_noticia;
+        $this->titular_noticia = $data->titular_noticia;
+        $this->cuerpo_noticia = $data->cuerpo_noticia;
         $this->autor_noticia = $data->autor_noticia;
-        $this->enlace_noticia = $data->enlace_noticia;
         $this->noticia_photo_path = $data->noticia_photo_path;
-        $this->estatus = $data->estatus;
+        $this->caption_foto_noticia = $data->caption_foto_noticia;
+        $this->estado_noticia = $data->estado_noticia;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
@@ -127,12 +131,12 @@ class VistaNoticias extends Component
     public function modelData()
     {
             return [
-                'titulo_noticia' => $this->titulo_noticia,
-                'descripcion_noticia' => $this->descripcion_noticia,
+                'titular_noticia' => $this->titular_noticia,
+                'cuerpo_noticia' => $this->cuerpo_noticia,
                 'autor_noticia'=>$this->autor_noticia,
-                'enlace_noticia'=>$this->enlace_noticia,
                 'noticia_photo_path'=>$noticia_photo_path,
-                'estatus'=>$this->estatus,
+                'caption_foto_noticia'=>$this->caption_foto_noticia,
+                'estado_noticia'=>$this->estado_noticia,
                 'is_default_home' => $this->isSetToDefaultHomePage,
                 'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
             ];

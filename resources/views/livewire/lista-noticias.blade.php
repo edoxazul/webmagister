@@ -70,27 +70,23 @@
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
-                                                Titulo Noticia
+                                                Titular Noticia
                                             </th>
-                                            {{-- <th scope="col"
+                                            <th scope="col"
                                                 class="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
                                                 Descripción Noticia
-                                            </th> --}}
+                                            </th>
                                             <th scope="col"
                                                 class="px-3 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
                                                 Autor Noticia
                                             </th>
-                                            {{-- <th scope="col"
-                                                class="px-3 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
-                                                Enlace Noticia
-                                            </th> --}}
                                             <th scope="col"
                                                 class="px-3 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
                                                 Fecha Publicación
                                             </th>
                                             <th scope="col"
                                                 class="px-3 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
-                                                Estatus Noticia
+                                                Estado Noticia
                                             </th>
                                             <th scope="col"
                                                 class="px-1 py-1 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
@@ -139,30 +135,21 @@
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900">
-                                                            {{ $noticia->titulo_noticia }}
+                                                            {{ $noticia->titular_noticia }}
                                                         </div>
                                                     </div>
                         </div>
                         </td>
-                        {{-- <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
-                                {{ $noticia->descripcion_noticia }}
+                                {{ Str::limit($noticia->cuerpo_noticia,200)}}
                             </div>
-                        </td> --}}
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
                                 {{ $noticia->autor_noticia }}
                             </div>
                         </td>
-
-                        {{-- <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">
-                                <a href=" {{ $noticia->enlace_noticia }}">
-                                    <img class="w-6 h-6"
-                                        src="https://www.flaticon.es/svg/static/icons/svg/376/376007.svg" alt="">
-                                </a>
-                            </div>
-                        </td> --}}
 
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
@@ -172,7 +159,7 @@
 
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
-                                {{ $noticia->estatus }}
+                                {{ $noticia->estado_noticia }}
                             </div>
                         </td>
 
@@ -277,38 +264,56 @@
                                 </div> --}}
                                 <div class="grid grid-cols-6 gap-3">
                                     <div class="col-span-6 mt-2 sm:col-span-3">
-                                        <x-jet-label for="titulo_noticia" value="Título" />
-                                        <x-jet-input id="titulo_noticia" class="block w-full mt-1" type="text"
-                                            wire:model.debounce.800ms="titulo_noticia" />
-                                        @error('titulo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                        <div class="flex">
+                                            <x-jet-label for="titular_noticia" value="Titular Noticia" />
+                                            <label for="title" class="px-2 text-red-700">*</label>
+                                        </div>
+                                        <x-jet-input id="titular_noticia" class="block w-full mt-1" type="text"
+                                            wire:model.debounce.800ms="titular_noticia" />
+                                        @error('titular_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="col-span-6 mt-2 sm:col-span-3">
-                                        <x-jet-label for="autor_noticia" value="Autor (Opcional)" />
+                                        <div class="flex">
+                                            <x-jet-label for="autor_noticia" value="Autor (Opcional)" />
+                                            {{-- <label for="title" class="px-2 text-red-700">*</label> --}}
+                                        </div>
                                         <x-jet-input id="autor_noticia" class="block w-full mt-1" type="text"
                                             wire:model.debounce.800ms="autor_noticia" />
-                                        @error('autor_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                        {{-- @error('autor_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror --}}
                                     </div>
 
-                                    <div class="col-span-6 mt-2 sm:col-span-3">
+                                    {{-- <div class="col-span-6 mt-2 sm:col-span-3">
                                         <x-jet-label for="enlace_noticia" value="Enlace Noticia (Opcional)" />
                                         <x-jet-input id="enlace_noticia" class="block w-full mt-1" type="text"
                                             wire:model.debounce.800ms="enlace_noticia" />
+                                    </div> --}}
+
+                                {{-- Caption de la foto principal --}}
+
+                                <div class="col-span-6 mt-2 sm:col-span-3">
+                                    <div class="flex">
+                                        <x-jet-label for="caption_foto_noticia" value="Descripción foto principal" />
+                                        <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
+                                    <x-jet-input id="caption_foto_noticia" class="block w-full mt-1" type="text"
+                                        wire:model.debounce.800ms="caption_foto_noticia" />
+                                    @error('caption_foto_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                </div>
 
                                     {{-- Estado noticia --}}
 
                                     <div class="col-span-6 mt-2 sm:col-span-3">
                                         <div class="flex">
-                                            <x-jet-label for="estatus" value="Estado Noticia" />
+                                            <x-jet-label for="estado_noticia" value="Estado Noticia" />
                                             <label for="title" class="px-2 text-red-700">*</label>
                                         </div>
-                                        <select id="estatus" type="text" wire:model.lazy="estatus"
+                                        <select id="estado_noticia" type="text" wire:model.lazy="estado_noticia"
                                             class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
                                             <option class="text-gray-700" value="Seleccionar Opción">Seleccionar opción</option>
                                             <option class="text-gray-700" value="Visible">Visible</option>
                                             <option class="text-gray-700" value="No Visible">No Visible</option>
                                         </select>
-                                        @error('estatus') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
+                                        @error('estado_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                     </div>
 
                                     {{-- <div class="col-span-6 mt-2 sm:col-span-3">
@@ -323,6 +328,28 @@
                                         @error('estatus') <span class="error">{{ $message }}</span> @enderror
                                     </div> --}}
 
+                                 {{-- Foto principal --}}
+
+                                <div class="col-span-4 mt-2 sm:col-span-3">
+                                    <div
+                                        x-data="{ isUploading: false, progress: 0 }"
+                                        x-on:livewire-upload-start="isUploading = true"
+                                        x-on:livewire-upload-finish="isUploading = false"
+                                        x-on:livewire-upload-error="isUploading = false"
+                                        x-on:livewire-upload-progress="progress = $event.detail.progress">
+                                        <div class="flex">
+                                            <x-jet-label for="noticia_photo_path" value="Subir foto de portada"  />
+                                            <label for="title" class="px-2 text-red-700">*</label>
+                                        </div>
+                                    <x-jet-input id="noticia_photo_path" class="block w-full mt-1" type="file"
+                                        wire:model="fotos_noticia" />
+                                        <div x-show="isUploading">
+                                            <progress max="100" x-bind:value="progress" ></progress>
+                                        </div>
+                                        @error('noticia_photo_path') <span class="error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+
                                 </div>
 
                                 <div>
@@ -332,9 +359,15 @@
                                             Cuerpo Noticia
                                         </label>
                                         <div class="mt-4">
+                                            <textarea id="cuerpo_noticia" name="cuerpo_noticia" rows="3"
+                                            class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                            wire:model="cuerpo_noticia"
+                                            placeholder="Cuerpo de la noticia."></textarea>
+                                            @error('cuerpo_noticia') <span class="error">{{ $message }}</span> @enderror
+
                                             {{-- @trix(\App\Models\Noticias::class,'descripcion_noticia') --}}
 
-                                            <textarea class="form-control" id="descripcion_noticia" name="descripcion_noticia"></textarea>
+                                            {{-- <textarea class="form-control" id="cuerpo_noticia" name="cuerpo_noticia"></textarea> --}}
 {{--
                                             <x-jet-label for= "ckcontent" value = "" />
                                                 <div wire:ignore wire:key="Myid">
@@ -384,28 +417,13 @@
                                                 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.js"></script>
                                                 @endpush --}}
                                         </div>
-                                        @error('descripcion_noticia') <span class="error">{{ $message }}</span> @enderror
+                                        @error('cuerpo_noticia') <span class="error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
 
-                                {{-- Foto principal --}}
 
-                                <div class="col-span-4 mt-2 sm:col-span-3">
-                                    <div
-                                        x-data="{ isUploading: false, progress: 0 }"
-                                        x-on:livewire-upload-start="isUploading = true"
-                                        x-on:livewire-upload-finish="isUploading = false"
-                                        x-on:livewire-upload-error="isUploading = false"
-                                        x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                    <x-jet-label for="noticia_photo_path" value="Subir foto de portada" />
-                                    <x-jet-input id="noticia_photo_path" class="block w-full mt-1" type="file"
-                                        wire:model="fotos_noticia" />
-                                        <div x-show="isUploading">
-                                            <progress max="100" x-bind:value="progress" ></progress>
-                                        </div>
-                                        @error('noticia_photo_path') <span class="error">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
+
+
 
                             </x-slot>
 
