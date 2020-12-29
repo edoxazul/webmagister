@@ -14,12 +14,13 @@ class Noticias extends Model
     protected $guarded = [];
 
     protected $fillable = [
-        'titulo_noticia',
-        'descripcion_noticia',
+        'titular_noticia',
+        'cuerpo_noticia',
         'autor_noticia',
-        'enlace_noticia',
+        // 'enlace_noticia',
         'noticia_photo_path',
-        'estatus'
+        'caption_foto_noticia',
+        'estado_noticia'
     ];
 
 }

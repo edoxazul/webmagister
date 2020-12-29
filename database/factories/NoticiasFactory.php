@@ -24,18 +24,20 @@ class NoticiasFactory extends Factory
     {
         return [
             //Título de la noticia
-            'titulo_noticia'=>$this->faker->text(200),
+            'titular_noticia'=>$this->faker->text(200),
             //Descripción de la noticia
-            'descripcion_noticia'=>$this->faker->text(),
+            'cuerpo_noticia'=>$this->faker->longText(),
             //Autor de la noticia. No es obligatorio
             'autor_noticia'=>$this->faker->name(),
             //Enlace a una noticia externa, si existe.
-            'enlace_noticia'=>$this->faker->url,
+            // 'enlace_noticia'=>$this->faker->url,
             //Foto de la noticia
             'noticia_photo_path'=>$this->faker->imageUrl($width = 640, $height = 480),
+            //Texto descriptivo de la foto
+            'caption_foto_noticia'=>$this->faker->text(),
             //Estado de la noticia. Para fines de eliminación. Al eliminar una noticia se cambia el estatus
             // a "no visible"
-           'estatus'=>$this->faker->randomElement(['Visible','No visible']),
+           'estado_noticia'=>$this->faker->randomElement(['Visible','No visible']),
         ];
     }
 }
