@@ -233,13 +233,13 @@
                                         <x-jet-label for="nombre_archivo" value="Nombre del archivo" />
                                         <x-jet-input id="nombre_archivo" class="block w-full mt-1" type="text"
                                             wire:model.debounce.800ms="nombre_archivo" />
-                                        @error('nombre_archivo') <span class="error">{{ $message }}</span> @enderror
+                                        @error('nombre_archivo') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="col-span-4 mt-2 sm:col-span-3">
                                         <x-jet-label for="descripcion_archivo" value="Descripción del archivo" />
                                         <x-jet-input id="descripcion_archivo" class="block w-full mt-1" type="text"
                                             wire:model.debounce.800ms="descripcion_archivo" />
-                                        @error('descripcion_archivo') <span class="error">{{ $message }}</span> @enderror
+                                        @error('descripcion_archivo') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                     </div>
 
                                     <div class="col-span-4 mt-2 sm:col-span-3">
@@ -259,7 +259,7 @@
                                                 {{-- <div wire:loading wire:target="files_admin">Subiendo archivo...</div> --}}
                                             </div>
                                             {{-- <div wire:loading wire:target="files_admin">Subiendo archivo...</div> --}}
-                                        @error('enlace_archivo') <span class="error">{{ $message }}</span> @enderror
+                                        @error('enlace_archivo') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
 

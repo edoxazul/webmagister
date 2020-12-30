@@ -200,19 +200,19 @@
                                     <x-jet-label for="titulo" value="Titulo Anteproyecto" />
                                     <x-jet-input id="titulo" class="block w-full mt-1" type="text"
                                         wire:model.lazy="titulo" />
-                                    @error('titulo') <span class="error">{{ $message }}</span> @enderror
+                                    @error('titulo') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-span-4 mt-2 sm:col-span-3">
                                     <x-jet-label for="autor" value="Autor" />
                                     <x-jet-input id="autor" class="block w-full mt-1" type="text"
                                         wire:model.lazy="autor" />
-                                    @error('autor') <span class="error">{{ $message }}</span> @enderror
+                                    @error('autor') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-span-4 mt-2 sm:col-span-3">
-                                    <x-jet-label for="tutor" value="Autor" />
+                                    <x-jet-label for="tutor" value="Tutor" />
                                     <x-jet-input id="tutor" class="block w-full mt-1" type="text"
                                         wire:model.lazy="tutor" />
-                                    @error('tutor') <span class="error">{{ $message }}</span> @enderror
+                                    @error('tutor') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
@@ -251,7 +251,7 @@
                                 <button type="submit"
                                     class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
                                     wire:click="create" wire:loading.attr="disabled">
-                                    {{ __('Subir') }}
+                                    {{ __('Crear') }}
                                 </button>
                             @endif
 

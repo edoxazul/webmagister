@@ -28,6 +28,8 @@ class ListaTesis extends Component
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
     public $estatus ='Aprobado';
+    public $sortField="titulo";
+    public $sortDirection = 'asc';
 
     public $titulo,$autor,$tutor;
 
@@ -37,6 +39,8 @@ class ListaTesis extends Component
             'tesis' => Tesis::where('titulo','like','%' . trim($this->search) . '%')
             ->orWhere('autor','LIKE',"%{$this->search}%")
             ->orWhere('tutor','LIKE',"%{$this->search}%")
+            ->orWhere('estatus','LIKE',"%{$this->search}%")
+            ->orderBy($this->sortField,$this->sortDirection)
             ->paginate($this->perPage)
 
         ]);
@@ -49,6 +53,33 @@ class ListaTesis extends Component
         $this->perPage = '10';
 
     }
+
+    /**
+     * The validation rules
+     *
+     * @return string[]
+     */
+    public function rules()
+    {
+        return [
+            'titulo' => 'required',
+            'autor' => 'required',
+            'tutor' => 'required',
+            'estatus' => 'required',
+
+
+        ];
+
+    }
+
+    protected  $messages =[
+        'titulo.required' => 'El campo del título es obligatorio',
+        'autor.required' => 'El campo del autor es obligatorio',
+        'tutor.unique' => 'El campo del tutor es obligatorio',
+        'estatus.required' => 'El estatus es obligatorio',
+        // 'photo.image' => 'Debe ingresar una foto',
+        // 'photo.max:1024' => 'La foto ingresada debe ser menor a 1MB'
+    ];
 
     public function modelData()
     {

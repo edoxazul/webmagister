@@ -196,15 +196,15 @@
                 </x-slot>
                 <x-slot name="content">
                     <!-- This example requires Tailwind CSS v2.0+ -->
-                    <div class="bg-gray-200 shadow overflow-hidden sm:rounded-lg">
-                        <div class="px-4 py-5 sm:px-6 border border-gray-200">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                    <div class="overflow-hidden bg-gray-200 shadow sm:rounded-lg">
+                        <div class="px-4 py-5 border border-gray-200 sm:px-6">
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">
                             Información de Interes
                         </h3>
                         </div>
                         <div class="border-t border-gray-200">
                         <dl>
-                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
                                 Nombre:
                             </dt>
@@ -212,7 +212,7 @@
                                 {{$nombre_alumno}}
                             </dd>
                             </div>
-                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
                                 Correo:
                             </dt>
@@ -220,7 +220,7 @@
                                 {{$contacto_alumno}}
                             </dd>
                             </div>
-                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
                                 Carrera:
                             </dt>
@@ -228,7 +228,7 @@
                                 {{$carrera_alumno}}
                             </dd>
                             </div>
-                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
                                 Estado:
                             </dt>
@@ -236,7 +236,7 @@
                                 {{$estado_alumno}}
                             </dd>
                             </div>
-                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
                                 Fecha de ingreso
                             </dt>
@@ -245,7 +245,7 @@
                             </dd>
                             </div>
                             @if ($estado_alumno=='Graduado')
-                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">
                                     Fecha de Graduación
                                 </dt>
@@ -265,7 +265,7 @@
                                 </div>
                             @endif
                             @if ($linkedin)
-                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">
                                     Linkedin:
                                 </dt>
