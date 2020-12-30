@@ -73,8 +73,8 @@ class ListaTesis extends Component
             'autor' => 'required',
             'tutor' => 'required',
             'estatus' => 'required',
-            'anteprotecto_path'=>'required',
-            'resumentesis_path' => 'required',
+            'file'=>'required',
+            'file2' => 'required',
 
 
         ];
@@ -86,7 +86,9 @@ class ListaTesis extends Component
         'autor.required' => 'El campo del autor es obligatorio',
         'tutor.unique' => 'El campo del tutor es obligatorio',
         'estatus.required' => 'El estatus es obligatorio',
-        'anteproyecto_path.required' => 'El campo subir anteproyecto es obligatorio',
+        'file.required' => 'El campo subir anteproyecto es obligatorio',
+        'file2.required' => 'El campo subir resumen es obligatorio',
+
         // 'photo.image' => 'Debe ingresar una foto',
         // 'photo.max:1024' => 'La foto ingresada debe ser menor a 1MB'
     ];
@@ -146,6 +148,8 @@ class ListaTesis extends Component
             'autor'=>'required',
             'tutor' => 'required',
             'estatus' => 'required',
+            'file'=>'required',
+            'file2' => 'required',
             // 'photo' => 'max:1024'
 
             ]

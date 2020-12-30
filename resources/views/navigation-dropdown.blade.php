@@ -11,50 +11,50 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden px-0 space-x-2 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden px-0 space-x-2 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('informacion') }}" :active="request()->routeIs('informacion')">
                         {{ __('Información General') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden px-0 space-x-2 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('noticias') }}" :active="request()->routeIs('noticias')">
                         {{ __('Noticias') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden px-0 space-x-2 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('anteproyectos') }}" :active="request()->routeIs('anteproyectos')">
                         {{ __('Anteproyectos') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden px-0 space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('curricular') }}" :active="request()->routeIs('curricular')">
                         {{ __('Estructura Curricular') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden px-0 space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('academicos') }}" :active="request()->routeIs('academicos')">
                         {{ __('Académicos') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden px-0 space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('alumnos') }}" :active="request()->routeIs('alumnos')">
                         {{ __('Alumnos') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden px-0 space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('archivos') }}" :active="request()->routeIs('archivos')">
-                        {{ __('Carga de Archivos') }}
+                        {{ __('Subir Archivos') }}
                     </x-jet-nav-link>
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden sm:px-0 sm:flex sm:items-center sm:ml-20">
                 <x-jet-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -141,7 +141,8 @@
                         </form>
                     </x-slot>
                 </x-jet-dropdown>
-                <div class="mt-1 ml-6 rounded-md shadow-sm form-input">
+
+                <div class="mt-1 ml-20 rounded-md shadow-sm form-input">
                     <label>
                         <select name="select" id="listaSistemas" class="text-sm text-gray-500 outline-none" onchange="window.open(this.options[this.selectedIndex].value,'_blank')">
                             {{-- <a value="">Elegir Sistema</a> --}}
@@ -152,6 +153,7 @@
                         </select>
                     </label>
                 </div>
+
             </div>
 
 
