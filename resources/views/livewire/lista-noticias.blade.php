@@ -255,24 +255,7 @@
                                 </x-slot>
 
                             <x-slot name="content">
-                                {{-- <div>
-                                    <label class="block text-sm font-medium text-gray-700">
-                                        Foto
-                                    </label>
-                                    <div class="flex items-center mt-2">
-                                        <span class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
-                                            <svg class="w-full h-full text-gray-300" fill="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path
-                                                    d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                            </svg>
-                                        </span>
-                                        <button type="button"
-                                            class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            Cambiar
-                                        </button>
-                                    </div>
-                                </div> --}}
+
                                 <div class="grid grid-cols-6 gap-3">
                                     <div class="col-span-6 mt-2 sm:col-span-3">
                                         <div class="flex">
@@ -292,12 +275,6 @@
                                             wire:model.debounce.800ms="autor_noticia" />
                                         {{-- @error('autor_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror --}}
                                     </div>
-
-                                    {{-- <div class="col-span-6 mt-2 sm:col-span-3">
-                                        <x-jet-label for="enlace_noticia" value="Enlace Noticia (Opcional)" />
-                                        <x-jet-input id="enlace_noticia" class="block w-full mt-1" type="text"
-                                            wire:model.debounce.800ms="enlace_noticia" />
-                                    </div> --}}
 
                                 {{-- Caption de la foto principal --}}
 
@@ -320,28 +297,59 @@
                                         </div>
                                         <select id="estado_noticia" type="text" wire:model.lazy="estado_noticia"
                                             class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
-                                            <option class="text-gray-700" value="Seleccionar Opción">Seleccionar opción</option>
+                                            <option class="font-black text-gray-700" value="">Elige una opción</option>
                                             <option class="text-gray-700" value="Visible">Visible</option>
                                             <option class="text-gray-700" value="No Visible">No Visible</option>
                                         </select>
                                         @error('estado_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                     </div>
 
-                                    {{-- <div class="col-span-6 mt-2 sm:col-span-3">
-                                        <label for="country"
-                                            class="block text-sm font-medium text-gray-700">Estado Noticia</label>
-                                        <select id="country"
-                                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                            <option>Seleccionar opción</option>
-                                            <option>Visible</option>
-                                            <option>No visible</option>
-                                        </select>
-                                        @error('estatus') <span class="error">{{ $message }}</span> @enderror
-                                    </div> --}}
 
                                  {{-- Foto principal --}}
 
-                                <div class="col-span-4 mt-2 sm:col-span-3">
+                                 <div class="col-span-4 mt-2 sm:col-span-6">
+                                     <div
+                                     x-data="{ isUploading: false, progress: 0 }"
+                                     x-on:livewire-upload-start="isUploading = true"
+                                     x-on:livewire-upload-finish="isUploading = false"
+                                     x-on:livewire-upload-error="isUploading = false"
+                                     x-on:livewire-upload-progress="progress = $event.detail.progress">
+                                    {{-- <label class="block text-sm font-medium text-gray-700">
+                                        Foto Portada
+                                    </label> --}}
+                                    <div class="flex">
+                                        <x-jet-label for="noticia_photo_path" value="Foto Portada" />
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
+                                    <div class="flex items-center mt-2">
+                                        <span class="inline-block w-12 h-12 overflow-hidden bg-gray-100 squared-full">
+                                            @if($fotos_noticia)
+                                            <img class="w-full h-full" src="{{$fotos_noticia->temporaryUrl() }}">
+                                                @else
+                                                @if($noticia_photo_path)
+                                                    <img class="w-full h-full" src="{{$noticia_photo_path }}">
+                                                    @else
+                                                    <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                                    </svg>
+                                                @endif
+                                            @endif
+                                        </span>
+                                        <input type="file" wire:model="fotos_noticia" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        {{-- <div x-show="isUploading">
+                                            <progress max="100" x-bind:value="progress" ></progress>
+                                        </div>
+                                        @error('noticia_photo_path') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror --}}
+                                    </div>
+                                    <div x-show="isUploading">
+                                        <progress max="100" x-bind:value="progress" ></progress>
+                                    </div>
+                                    @error('noticia_photo_path') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                    </div>
+                                 </div>
+
+
+                                {{-- <div class="col-span-4 mt-2 sm:col-span-3">
                                     <div
                                         x-data="{ isUploading: false, progress: 0 }"
                                         x-on:livewire-upload-start="isUploading = true"
@@ -359,7 +367,9 @@
                                         </div>
                                         @error('noticia_photo_path') <span class="error">{{ $message }}</span> @enderror
                                     </div>
-                                </div>
+                                </div> --}}
+
+
 
                                 </div>
 

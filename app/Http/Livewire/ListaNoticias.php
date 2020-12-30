@@ -13,6 +13,10 @@ use Illuminate\Support\Str;
 class ListaNoticias extends Component
 {
     use WithFileUploads;
+    protected $queryString = [
+        'search' => ['except' =>''],
+        'perPage'=> ['except' => '10']
+    ];
     public $search= '';
     public $perPage= '10';
     public $page='1';
@@ -20,16 +24,23 @@ class ListaNoticias extends Component
     public $modalConfirmDeleteVisible = false;
     public $modelId;
     public $isSetToDefaultHomePage;
+    public $sortField="titular_noticia";
+    public $sortDirection = 'asc';
     public $isSetToDefaultNotFoundPage;
     use HasTrixRichText;
 
-    public $titular_noticia,$cuerpo_noticia,$autor_noticia,$estado_noticia,$caption_foto_noticia,$user_id;
+    public $titular_noticia,$cuerpo_noticia,$caption_foto_noticia,$user_id;
+    public $autor_noticia='Anónimo';
+    public $estado_noticia;
     public $noticia_photo_path;
     public $fotos_noticia=null;
     public function render()
     {
         return view('livewire.lista-noticias',[
             'noticias' => Noticias::where('titular_noticia','like','%' . trim($this->search) . '%')
+            ->orWhere('autor_noticia','LIKE',"%{$this->search}%")
+            ->orWhere('estado_noticia','LIKE',"%{$this->search}%")
+            ->orderBy($this->sortField,$this->sortDirection)
             ->paginate($this->perPage)
         ]);
     }
@@ -210,5 +221,15 @@ class ListaNoticias extends Component
                 'is_default_not_found' => false,
             ]);
         }
+    }
+
+    public function eliminado(){
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        $tesis=Noticias::find($this->modelId);
+        $tesis->estado_noticia = 'No Visible';
+        $tesis->save();
+        $this->reset();
+        $this->modalConfirmDeleteVisible = false;
     }
 }
