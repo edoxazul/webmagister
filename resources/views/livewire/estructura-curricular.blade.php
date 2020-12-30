@@ -12,15 +12,15 @@
             <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                    @if ($curricular->count())
+                    @if ($curriculars->count())
                     <table class="min-w-full divide-y divide-gray-200">
                     <thead>
                         <tr>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                            Nombre curso
+                            Malla
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                            Descripción Curso
+                            Profundizacion
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                             Opciones
@@ -37,20 +37,20 @@
 
 
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($cursos as $curso)
+                        @foreach ($curriculars as $curricular)
                         <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                             <div class="ml-4">
                                 <div class="text-sm font-medium text-gray-900">
-                                {{$curso->nombre_curso}}
+                                {{$curricular->malla}}
                                 </div>
                             </div>
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
-                                {{$curso->descripcion_curso}}
+                                {{$curricular->profundizacion}}
                             </div>
                         </td>
                         <td class="flex px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
@@ -93,7 +93,7 @@
                     </div>
                     @else
                     <div class="px-4 py-3 text-gray-500 bg-white border-t border-gray-200 sm:px-6">
-                        No hay resultados para la busqueda "{{$search}}" en la página {{$page}} al mostrar {{$perPage}} cursos por página
+                        No existe estructura curricular.
                     </div>
                     @endif
                 <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
@@ -109,6 +109,7 @@
                         @if($search !== '')
                         <button wire:click="clear" class="block mt-1 ml-6 rounded-md shadow-sm form-input"> X </button>
                         @endif
+                        @if (!$curriculars->count())
                         <span class="hidden sm:block">
                             <button wire:click="createCursoShowModal"
                             type="button"
@@ -119,6 +120,8 @@
                                 </svg>
                             </button>
                         </span>
+                        @endif
+
 
 
                     </div>

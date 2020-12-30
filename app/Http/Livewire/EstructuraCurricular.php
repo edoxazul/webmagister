@@ -53,7 +53,7 @@ class EstructuraCurricular extends Component
             ->orWhere('descripcion_curso','LIKE',"%{$this->search}%")
             ->orderBy($this->sortField,$this->sortDirection)
             ->paginate($this->perPage),
-            'curricular'=>Curricular::paginate(3),
+            'curriculars'=>Curricular::paginate(3),
         ]);
     }
 
