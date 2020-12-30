@@ -12,14 +12,93 @@
             <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                    @if ($curricular->count())
+                    <table class="min-w-full divide-y divide-gray-200">
+                    <thead>
+                        <tr>
+                        <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                            Nombre curso
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                            Descripción Curso
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                            Opciones
+                        </th>
+                        <th scope="col" class="px-2 py-3 bg-gray-50">
+                            <span class="sr-only">Editar</span>
+                        </th>
+                        {{-- <th scope="col" class="px-6 py-3 bg-gray-50">
+                            <span class="sr-only">Eliminar</span>
+                        </th> --}}
+                        {{-- </th> --}}
+                        </tr>
+                    </thead>
+
+
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach ($cursos as $curso)
+                        <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                            <div class="ml-4">
+                                <div class="text-sm font-medium text-gray-900">
+                                {{$curso->nombre_curso}}
+                                </div>
+                            </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">
+                                {{$curso->descripcion_curso}}
+                            </div>
+                        </td>
+                        <td class="flex px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                            <span class="hidden sm:block">
+                                {{-- Editar --}}
+                                <button
+                                wire:click="updateCursoShowModal({{ $curso->id }})"
+                                type="button"
+                                class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <!-- Heroicon name: pencil -->
+                                    <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                    </svg>
+                                </button>
+                            </span>
+                            {{-- Eliminar --}}
+                            <span class="hidden sm:block">
+                                <button wire:click="deleteCursoShowModal({{ $curso->id }})" wire:loading.attr="disabled" class="inline-flex items-center justify-center w-full px-1 py-1 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+
+                        </td>
+
+                        </tr>
+
+
+                        @endforeach
+
+                        <!-- More rows... -->
+                    </tbody>
+                    </table>
+                    <div class="px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
+                    {{$cursos->links()}}
+                    </div>
+                    @else
+                    <div class="px-4 py-3 text-gray-500 bg-white border-t border-gray-200 sm:px-6">
+                        No hay resultados para la busqueda "{{$search}}" en la página {{$page}} al mostrar {{$perPage}} cursos por página
+                    </div>
+                    @endif
                 <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                     <div class="flex px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
-                        <input
-                        wire:model='search'
-                        class="w-full mt-1 rounded-md shadow-sm form-input"
-                        type="text"
-                        placeholder="Buscar...">
-
+                        <input wire:model='search' class="w-full mt-1 rounded-md shadow-sm form-input" type="text" placeholder="Buscar...">
                         <div class="mt-1 ml-6 rounded-md shadow-sm form-input">
                             <select wire:model='perPage' class="text-sm text-gray-500 outline-none">
                             <option value="5"> 5 por página</option>

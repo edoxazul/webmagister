@@ -13,9 +13,8 @@ class CreateCurricularTable extends Migration
      */
     public function up()
     {
-        Schema::create('curricular', function (Blueprint $table) {
+        Schema::create('curriculars', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo_curricular');
             $table->string('malla');
             $table->text('profundizacion');
             $table->timestamps();
@@ -29,6 +28,6 @@ class CreateCurricularTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('curricular');
+        Schema::dropIfExists('curriculars');
     }
 }

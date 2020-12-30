@@ -53,6 +53,7 @@ class EstructuraCurricular extends Component
             ->orWhere('descripcion_curso','LIKE',"%{$this->search}%")
             ->orderBy($this->sortField,$this->sortDirection)
             ->paginate($this->perPage),
+            'curricular'=>Curricular::paginate(3),
         ]);
     }
 
@@ -61,17 +62,6 @@ class EstructuraCurricular extends Component
         $this->search = '';
         $this->page = '1';
         $this->perPage = '10';
-
-    }
-
-    public function rules()
-    {
-        return [
-            'nombre_curso' => 'required|unique:cursos',
-            'descripcion_curso' => 'required',
-            'enlace_curso'=>'required',
-            'archivo_curso'=>'required',
-        ];
 
     }
 
@@ -94,7 +84,14 @@ class EstructuraCurricular extends Component
 
     public function createCurso()
     {
-        $this->validate();
+        $this->validate(
+            [
+                'nombre_curso' => 'required|unique:cursos',
+                'descripcion_curso' => 'required',
+                'enlace_curso'=>'required',
+                'archivo_curso'=>'required',
+            ]
+        );
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         Cursos::create($this->modelDataCurso());
@@ -133,11 +130,11 @@ class EstructuraCurricular extends Component
         // $this->reset('photo');
         $this->modelId = $id;
         $this->modalCursoFormVisible = true;
-        $this->loadModel();
+        $this->loadModelCurso();
     }
 
 
-    public function loadModel()
+    public function loadModelCurso()
     {
         $data = Cursos::find($this->modelId);
         $this->nombre_curso = $data->nombre_curso;
