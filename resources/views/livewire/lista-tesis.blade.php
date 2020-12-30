@@ -197,19 +197,28 @@
                         <x-slot name="content">
                             <div class="grid grid-cols-6 gap-6 center">
                                 <div class="col-span-4 mt-2 sm:col-span-3">
+                                    <div class="flex">
                                     <x-jet-label for="titulo" value="Titulo Anteproyecto" />
+                                    <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
                                     <x-jet-input id="titulo" class="block w-full mt-1" type="text"
                                         wire:model.lazy="titulo" />
                                     @error('titulo') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-span-4 mt-2 sm:col-span-3">
+                                    <div class="flex">
                                     <x-jet-label for="autor" value="Autor" />
+                                    <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
                                     <x-jet-input id="autor" class="block w-full mt-1" type="text"
                                         wire:model.lazy="autor" />
                                     @error('autor') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-span-4 mt-2 sm:col-span-3">
+                                    <div class="flex">
                                     <x-jet-label for="tutor" value="Tutor" />
+                                    <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
                                     <x-jet-input id="tutor" class="block w-full mt-1" type="text"
                                         wire:model.lazy="tutor" />
                                     @error('tutor') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
@@ -237,7 +246,10 @@
                                     x-on:livewire-upload-finish="isUploading = false"
                                     x-on:livewire-upload-error="isUploading = false"
                                     x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                <x-jet-label for="file" value="Subir Anteproyecto" />
+                                <div class="flex">
+                                <x-jet-label for="file" value="Subir Anteproyecto (PDF o Word)" />
+                                <label for="title" class="px-2 text-red-700">*</label>
+                                </div>
                                 <x-jet-input id="file" class="block w-full mt-1" type="file" accept=".doc,.docx,application/msword,
                                 application/vnd.openxmlformats-officedocument.wordprocessingml.document,
                                 .pdf,.txt,.xlsx,.xls,.pptx,.ppt"
@@ -257,7 +269,10 @@
                                     x-on:livewire-upload-finish="isUploading = false"
                                     x-on:livewire-upload-error="isUploading = false"
                                     x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                <x-jet-label for="file2" value="Subir Resumen de Tesis" />
+                                <div class="flex">
+                                <x-jet-label for="file2" value="Subir Resumen de Tesis (PDF o Word)" />
+                                <label for="title" class="px-2 text-red-700">*</label>
+                                </div>
                                 <x-jet-input id="file2" class="block w-full mt-1" type="file" accept=".doc,.docx,application/msword,
                                 application/vnd.openxmlformats-officedocument.wordprocessingml.document,
                                 .pdf,.txt,.xlsx,.xls,.pptx,.ppt"
