@@ -148,6 +148,7 @@
                                     </svg>
                                 </button>
                             </span>
+                            @if ($anteproyecto->estatus!='Eliminado')
                             {{-- Eliminar --}}
                             <span class="hidden sm:block">
                                 <button wire:click="deleteShowModal({{ $anteproyecto->id }})" wire:loading.attr="disabled" class="inline-flex items-center justify-center w-full px-1 py-1 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
@@ -157,6 +158,7 @@
                                     </svg>
                                 </button>
                             </span>
+                            @endif
                         </td>
 
                         <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
@@ -203,12 +205,30 @@
                                 <div class="col-span-4 mt-2 sm:col-span-3">
                                     <x-jet-label for="autor" value="Autor" />
                                     <x-jet-input id="autor" class="block w-full mt-1" type="text"
-                                        wire:model.lazy="descripcion_archivo" />
+                                        wire:model.lazy="autor" />
                                     @error('autor') <span class="error">{{ $message }}</span> @enderror
                                 </div>
-
-
-
+                                <div class="col-span-4 mt-2 sm:col-span-3">
+                                    <x-jet-label for="tutor" value="Autor" />
+                                    <x-jet-input id="tutor" class="block w-full mt-1" type="text"
+                                        wire:model.lazy="tutor" />
+                                    @error('tutor') <span class="error">{{ $message }}</span> @enderror
+                                </div>
+                                <div class="col-span-6 mt-2 sm:col-span-3">
+                                    <div class="flex">
+                                        <x-jet-label for="estatus" value="Estado del Anteproyecto" />
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
+                                    <select id="estatus" type="text" wire:model="estatus"
+                                        class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
+                                        <option class="font-black text-gray-700" value="">Elige una opción</option>
+                                        <option class="text-gray-700" value="Aprobado">Aprobado</option>
+                                        <option class="text-gray-700" value="En Formulacion">En Formulación</option>
+                                        <option class="text-gray-700" value="Rechazado">Rechazado</option>
+                                        <option class="text-gray-700" value="Eliminado">Eliminado</option>
+                                    </select>
+                                    @error('estatus') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
+                                </div>
                             </div>
 
 

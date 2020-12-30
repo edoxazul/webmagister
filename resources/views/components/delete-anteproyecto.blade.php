@@ -5,7 +5,6 @@
 
     <x-slot name="content">
         ¿Esta seguro que quiere eliminar el anteproyecto?
-
     </x-slot>
 
     <x-slot name="footer">
@@ -13,7 +12,7 @@
             Cancelar
         </x-jet-secondary-button>
 
-        <button wire:click="delete" wire:loading.attr="disabled"
+        <button wire:click="eliminado" wire:loading.attr="disabled"
             class="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600">
             Eliminar
         </button>

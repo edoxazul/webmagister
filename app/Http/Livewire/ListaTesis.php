@@ -27,6 +27,9 @@ class ListaTesis extends Component
     public $modelId;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
+    public $estatus ='Aprobado';
+
+    public $titulo,$autor,$tutor;
 
     public function render()
     {
@@ -47,6 +50,18 @@ class ListaTesis extends Component
 
     }
 
+    public function modelData()
+    {
+
+        return [
+            'titulo' => $this->titulo,
+            'autor'=>$this->autor,
+            'tutor' => $this->tutor,
+            'estatus' =>$this->estatus,
+            'is_default_home' => $this->isSetToDefaultHomePage,
+            'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+        ];
+    }
 
 
 
@@ -74,6 +89,27 @@ class ListaTesis extends Component
         $this->reset();
         $this->modalFormVisible = true;
     }
+
+
+    public function update()
+    {
+        $this->validate(
+            [
+            'titulo' => 'required',
+            'autor'=>'required',
+            'tutor' => 'required',
+            'estatus' => 'required',
+            // 'photo' => 'max:1024'
+
+            ]
+        );
+
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        Tesis::find($this->modelId)->update($this->modelData());
+        $this->modalFormVisible = false;
+    }
+
 
     public function updateShowModal($id)
     {
@@ -130,6 +166,34 @@ class ListaTesis extends Component
     public function delete()
     {
         Tesis::destroy($this->modelId);
+        $this->modalConfirmDeleteVisible = false;
+    }
+
+    private function unassignDefaultHomePage()
+    {
+        if ($this->isSetToDefaultHomePage != null) {
+            Tesis::where('is_default_home', true)->update([
+                'is_default_home' => false,
+            ]);
+        }
+    }
+
+    private function unassignDefaultNotFoundPage()
+    {
+        if ($this->isSetToDefaultNotFoundPage != null) {
+            Tesis::where('is_default_not_found', true)->update([
+                'is_default_not_found' => false,
+            ]);
+        }
+    }
+
+    public function eliminado(){
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        $tesis=Tesis::find($this->modelId);
+        $tesis->estatus = 'Eliminado';
+        $tesis->save();
+        $this->reset();
         $this->modalConfirmDeleteVisible = false;
     }
 

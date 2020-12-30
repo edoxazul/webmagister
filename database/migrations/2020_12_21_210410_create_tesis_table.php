@@ -20,7 +20,7 @@ class CreateTesisTable extends Migration
             $table->string('tutor')->require;
             $table->string('anteproyecto_path')->require;
             $table->longText('resumentesis_path')->require;
-            $table->enum('estatus',['En Formulacion','Aprobado','Rechazado'])->default('Aprobado');
+            $table->enum('estatus',['En Formulacion','Aprobado','Rechazado','Eliminado'])->default('Aprobado');
             $table->timestamps();
         });
     }
