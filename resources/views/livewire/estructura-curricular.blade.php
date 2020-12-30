@@ -159,7 +159,7 @@
                                             Descripcion del Curso
                                         </label>
                                         <label for="title" class="px-2 text-red-700">*</label>
-                                        <div class="mt-4">
+
                                             <textarea id="descripcion_curso" name="descripcion_curso" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="descripcion_curso"
@@ -167,7 +167,6 @@
                                             @error('descripcion_curso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
-                                </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
                                         <x-jet-label for="enlace_curso" value="Enlace del Curso" />
@@ -186,6 +185,7 @@
                                         placeholder="Archivo del Curso" wire:model.lazy="archivo_curso" />
                                     @error('archivo_curso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                 </div>
+                            </div>
                         </x-slot>
 
                         <x-slot name="footer">
