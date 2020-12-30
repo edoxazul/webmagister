@@ -109,7 +109,7 @@
                         <td class="py-4 font-medium text-center px-15 whitespace-nowrap">
                             <div class="text-gray-900 text-sm-center">
                                 {{-- <a href=" {{ $archivo->enlace_archivo }} " target="_blank"> --}}
-                                <a href=" {{ $anteproyecto->anteproyecto_path }}" download="{{ $anteproyecto->anteproyecto_path}}" >
+                                <a href=" {{ asset('storage/'.$anteproyecto->anteproyecto_path) }}" download="{{ asset('storage/'.$anteproyecto->anteproyecto_path)}}" >
                                     {{-- <a href="{{ asset('storage/'. $archivo->enlace_archivo) }}" download="{{$archivo->file_original_name}}"></a> --}}
                                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
@@ -121,7 +121,7 @@
                         <td class="py-4 font-medium text-center px-15 whitespace-nowrap">
                             <div class="text-gray-900 text-sm-center">
                                 {{-- <a href=" {{ $archivo->enlace_archivo }} " target="_blank"> --}}
-                                <a href=" {{ $anteproyecto->resumentesis_path }}" download="{{ $anteproyecto->resumentesis_path}}" >
+                                <a href=" {{ asset('storage/'.$anteproyecto->resumentesis_path) }}" download="{{ asset('storage/'.$anteproyecto->resumentesis_path)}}" >
                                     {{-- <a href="{{ asset('storage/'. $archivo->enlace_archivo) }}" download="{{$archivo->file_original_name}}"></a> --}}
                                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
@@ -230,6 +230,46 @@
                                     @error('estatus') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                 </div>
                             </div>
+                            <div class="col-span-4 mt-2 sm:col-span-3">
+                                <div
+                                    x-data="{ isUploading: false, progress: 0 }"
+                                    x-on:livewire-upload-start="isUploading = true"
+                                    x-on:livewire-upload-finish="isUploading = false"
+                                    x-on:livewire-upload-error="isUploading = false"
+                                    x-on:livewire-upload-progress="progress = $event.detail.progress">
+                                <x-jet-label for="file" value="Subir Anteproyecto" />
+                                <x-jet-input id="file" class="block w-full mt-1" type="file" accept=".doc,.docx,application/msword,
+                                application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                                .pdf,.txt,.xlsx,.xls,.pptx,.ppt"
+                                    wire:model="file" />
+                                    <div x-show="isUploading">
+                                        <progress max="100" x-bind:value="progress" ></progress>
+                                        {{-- <div wire:loading wire:target="files_admin">Subiendo archivo...</div> --}}
+                                    </div>
+                                    {{-- <div wire:loading wire:target="files_admin">Subiendo archivo...</div> --}}
+                                @error('file') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            <div class="col-span-4 mt-2 sm:col-span-3">
+                                <div
+                                    x-data="{ isUploading: false, progress: 0 }"
+                                    x-on:livewire-upload-start="isUploading = true"
+                                    x-on:livewire-upload-finish="isUploading = false"
+                                    x-on:livewire-upload-error="isUploading = false"
+                                    x-on:livewire-upload-progress="progress = $event.detail.progress">
+                                <x-jet-label for="file2" value="Subir Resumen de Tesis" />
+                                <x-jet-input id="file2" class="block w-full mt-1" type="file" accept=".doc,.docx,application/msword,
+                                application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+                                .pdf,.txt,.xlsx,.xls,.pptx,.ppt"
+                                    wire:model="file2" />
+                                    <div x-show="isUploading">
+                                        <progress max="100" x-bind:value="progress" ></progress>
+                                        {{-- <div wire:loading wire:target="files_admin">Subiendo archivo...</div> --}}
+                                    </div>
+                                    {{-- <div wire:loading wire:target="files_admin">Subiendo archivo...</div> --}}
+                                @error('file2') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
 
 
                         </x-slot>
@@ -257,8 +297,6 @@
 
                         </x-slot>
                     </x-jet-dialog-modal>
-
-
                     <x-delete-anteproyecto />
 
                 </div>
@@ -268,14 +306,6 @@
 
             </div>
         </div>
-
-
-
-
-
-
-
-
 
 
 </div>

@@ -6,12 +6,15 @@ use App\Models\Tesis;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+
 
 
 use Livewire\Component;
 
 class ListaTesis extends Component
 {
+    use WithFileUploads;
 
     protected $queryString = [
         'search' => ['except' =>''],
@@ -30,8 +33,12 @@ class ListaTesis extends Component
     public $estatus ='Aprobado';
     public $sortField="titulo";
     public $sortDirection = 'asc';
+    public $file;
+    public $file2;
+    public $name;
+    public $name2;
 
-    public $titulo,$autor,$tutor;
+    public $titulo,$autor,$tutor,$anteproyecto_path,$resumentesis_path;
 
     public function render()
     {
@@ -66,6 +73,8 @@ class ListaTesis extends Component
             'autor' => 'required',
             'tutor' => 'required',
             'estatus' => 'required',
+            'anteprotecto_path'=>'required',
+            'resumentesis_path' => 'required',
 
 
         ];
@@ -77,18 +86,25 @@ class ListaTesis extends Component
         'autor.required' => 'El campo del autor es obligatorio',
         'tutor.unique' => 'El campo del tutor es obligatorio',
         'estatus.required' => 'El estatus es obligatorio',
+        'anteproyecto_path.required' => 'El campo subir anteproyecto es obligatorio',
         // 'photo.image' => 'Debe ingresar una foto',
         // 'photo.max:1024' => 'La foto ingresada debe ser menor a 1MB'
     ];
 
     public function modelData()
     {
+        $name = md5($this->file . microtime()).'.'.$this->file->extension();
+        $name2 = md5($this->file2 . microtime()).'.'.$this->file2->extension();
+        $anteproyecto_path= $this->file->storeAs('files',$name,'public');
+        $resumentesis_path= $this->file2->storeAs('files',$name2,'public');
 
         return [
             'titulo' => $this->titulo,
             'autor'=>$this->autor,
             'tutor' => $this->tutor,
             'estatus' =>$this->estatus,
+            'anteproyecto_path'=> $anteproyecto_path,
+            'resumentesis_path'=> $resumentesis_path,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
         ];
@@ -158,6 +174,8 @@ class ListaTesis extends Component
         $this->autor = $data->autor;
         $this->tutor = $data->tutor;
         $this->estatus = $data->estatus;
+        $this->anteproyecto_path = $data->anteproyecto_path;
+        $this->resumentesis_path = $data->resumentesis_path;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
 

@@ -152,7 +152,7 @@ class SubirArchivos extends Component
     private function unassignDefaultHomePage()
     {
         if ($this->isSetToDefaultHomePage != null) {
-            Academicos::where('is_default_home', true)->update([
+            CargaArchivos::where('is_default_home', true)->update([
                 'is_default_home' => false,
             ]);
         }
@@ -161,7 +161,7 @@ class SubirArchivos extends Component
     private function unassignDefaultNotFoundPage()
     {
         if ($this->isSetToDefaultNotFoundPage != null) {
-            Academicos::where('is_default_not_found', true)->update([
+            CargaArchivos::where('is_default_not_found', true)->update([
                 'is_default_not_found' => false,
             ]);
         }
