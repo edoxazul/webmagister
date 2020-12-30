@@ -15,6 +15,7 @@ class CreateCurricularTable extends Migration
     {
         Schema::create('curricular', function (Blueprint $table) {
             $table->id();
+            $table->string('titulo_curricular');
             $table->string('malla');
             $table->text('profundizacion');
             $table->timestamps();

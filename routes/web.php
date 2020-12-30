@@ -12,6 +12,7 @@ use App\Http\Livewire\ListaAlumnosPublico;
 use App\Http\Livewire\ListaNoticiasPublico;
 use App\Http\Livewire\VistaNoticias;
 use App\Http\Livewire\SubirArchivos;
+use App\Http\Livewire\EstructuraCurricular;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 
@@ -88,3 +89,6 @@ Route::middleware(['auth:sanctum', 'verified'])
 ->get('/anteproyectos', ListaTesis::class)
 ->name('anteproyectos');
 
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/estructura-curricular', EstructuraCurricular::class)
+    ->name('curricular');

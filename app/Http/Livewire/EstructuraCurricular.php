@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Curricular;
+use App\Models\Cursos;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -18,13 +19,16 @@ class EstructuraCurricular extends Component
     public $search= '';
     public $perPage= '10';
     public $page='1';
-    public $modalFormVisible = false;
-    public $modalConfirmDeleteVisible = false;
+    public $modalCursoFormVisible = false;
+    public $modalCursoConfirmDeleteVisible = false;
     public $modelId;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
 
-    public $malla,$profundizacion,$nombre_curso,$descripcion_curso;
+    public $sortField="nombre_curso";
+    public $sortDirection = 'asc';
+
+    public $malla,$profundizacion,$nombre_curso,$descripcion_curso,$enlace_curso,$archivo_curso;
 
     public $inputs = [];
     public $i = 1;
@@ -45,7 +49,10 @@ class EstructuraCurricular extends Component
     public function render()
     {
         return view('livewire.estructura-curricular',[
-
+            'cursos' => Cursos::where('nombre_curso','like','%' . trim($this->search) . '%')
+            ->orWhere('descripcion_curso','LIKE',"%{$this->search}%")
+            ->orderBy($this->sortField,$this->sortDirection)
+            ->paginate($this->perPage),
         ]);
     }
 
@@ -60,30 +67,98 @@ class EstructuraCurricular extends Component
     public function rules()
     {
         return [
-            'malla' => 'required|image',
-            'profundizacion' => 'required',
             'nombre_curso' => 'required|unique:cursos',
             'descripcion_curso' => 'required',
+            'enlace_curso'=>'required',
+            'archivo_curso'=>'required',
         ];
 
     }
 
     protected  $messages =[
-        'malla.required' => 'El campo malla es obligatorio',
-        'malla.image' => 'El campo malla debe ser una imagen',
-        'profundizacion.required' => 'El campo profundizacion es obligatorio',
         'nombre_curso.required' => 'El campo nombre curso es obligatorio',
         'nombre_curso.unique' => 'el curso ya existe',
-        'descripcion_curso.required' => 'El campo descripcion curso es obligatorio',
+        'descripcion_curso.required'=>'El campo descripcion curso es obligatorio',
+        'enlace_curso.required' => 'El campo enlace curso es obligatorio',
+        'archivo_curso.required' => 'El campo archivo curso es obligatorio',
     ];
 
-    public function modelData(){
+    public function modelDataCurso(){
         return [
-            'malla' => $this->malla,
-            'profundizacion' => $this->profundizacion,
             'nombre_curso'=>$this->nombre_curso,
-            'descripcion'=>$this->descripcion,
+            'descripcion_curso'=>$this->descripcion_curso,
+            'enlace_curso'=>$this->enlace_curso,
+            'archivo_curso'=>$this->archivo_curso,
         ];
+    }
+
+    public function createCurso()
+    {
+        $this->validate();
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        Cursos::create($this->modelDataCurso());
+        $this->modalCursoFormVisible = false;
+        $this->reset();
+    }
+
+    public function createCursoShowModal()
+    {
+        $this->resetValidation();
+        $this->reset();
+        $this->modalCursoFormVisible = true;
+    }
+
+    public function updateCurso()
+    {
+        $this->validate(
+            [
+            'nombre_curso' => 'required|unique:cursos,nombre_curso,'.$this->modelId.'',
+            'descripcion_curso' => 'required',
+            'enlace_curso'=>'required',
+            'archivo_curso'=>'required',
+            ]
+        );
+
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        Cursos::find($this->modelId)->update($this->modelDataCurso());
+        $this->modalCursoFormVisible = false;
+    }
+
+    public function updateCursoShowModal($id)
+    {
+        $this->resetValidation();
+        $this->reset();
+        // $this->reset('photo');
+        $this->modelId = $id;
+        $this->modalCursoFormVisible = true;
+        $this->loadModel();
+    }
+
+
+    public function loadModel()
+    {
+        $data = Cursos::find($this->modelId);
+        $this->nombre_curso = $data->nombre_curso;
+        $this->descripcion_curso = $data->descripcion_curso;
+        $this->enlace_curso = $data->enlace_curso;
+        $this->archivo_curso = $data->archivo_curso;
+        $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
+        $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
+    }
+
+    public function deleteCursoShowModal($id)
+    {
+        $this->modelId = $id;
+        $this->modalCursoConfirmDeleteVisible = true;
+    }
+
+
+    public function deleteCurso()
+    {
+        Cursos::destroy($this->modelId);
+        $this->modalCursoConfirmDeleteVisible = false;
     }
 
     public function updatedIsSetToDefaultHomePage()
