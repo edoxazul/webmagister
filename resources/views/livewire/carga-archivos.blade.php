@@ -39,7 +39,7 @@
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
+                                                d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                                                 </path>
                                             </svg>
                                         </button>
@@ -74,12 +74,9 @@
                                             <th scope="col"
                                                 class="px-0 py-1 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
                                                 Opciones
+                                            </th>
                                             <th scope="col" class="px-2 py-3 bg-gray-50">
                                                 <span class="sr-only">Editar</span>
-                                            </th>
-                                            <th scope="col" class="px-2 py-3 bg-gray-50">
-                                                <span class="sr-only">Eliminar</span>
-                                            </th>
                                             </th>
                                         </tr>
                                     </thead>
@@ -107,8 +104,12 @@
                                 {{-- <a href=" {{ $archivo->enlace_archivo }} " target="_blank"> --}}
                                 <a href=" {{ $archivo->enlace_archivo }}" download="{{ $archivo->enlace_archivo}}" >
                                     {{-- <a href="{{ asset('storage/'. $archivo->enlace_archivo) }}" download="{{$archivo->file_original_name}}"></a> --}}
-                                    <img class="w-8 h-8 text-center"
-                                        src="https://www.flaticon.es/svg/static/icons/svg/3921/3921436.svg" alt="">
+                                    {{-- <img class="w-8 h-8 text-center"
+                                        src="https://www.flaticon.es/svg/static/icons/svg/3921/3921436.svg" alt=""> --}}
+                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                            </path>
+                                        </svg>
                                 </a>
                             </div>
                         </td>
@@ -119,16 +120,10 @@
                             </div>
                         </td>
 
-
-                        <td class="px-0 py-4 text-sm font-medium text-right whitespace-nowrap ">
+                        {{-- <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap ">
                             <span class="hidden sm:block">
-                                {{-- Editar
-                                --}}
-                                {{-- Editar
-                                --}}
                                 <button wire:click="updateShowModal({{ $archivo->id }})" type="button"
                                     class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    <!-- Heroicon name: pencil -->
                                     <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path
@@ -136,14 +131,6 @@
                                     </svg>
                                 </button>
                             </span>
-                            {{-- <a href="#"
-                                class="text-indigo-600 hover:text-indigo-900">Editar</a>
-                            --}}
-                        </td>
-
-                        <td class="px-0 py-4 text-sm font-medium text-right whitespace-nowrap">
-                            {{-- Eliminar
-                            --}}
                             <span class="hidden sm:block">
 
                                 <button wire:click="deleteShowModal({{ $archivo->id }})" wire:loading.attr="disabled"
@@ -155,12 +142,37 @@
                                         </path>
                                     </svg>
                                 </button>
-
-
-
+                            </span>
+                        </td> --}}
+                        <td class="flex px-0 py-4 text-sm font-medium text-right whitespace-nowrap">
+                            <span class="hidden sm:block">
+                                {{-- Editar --}}
+                                <button
+                                wire:click="updateShowModal({{ $archivo->id }})"
+                                type="button"
+                                class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <!-- Heroicon name: pencil -->
+                                    <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                    </svg>
+                                </button>
+                            </span>
+                            {{-- Eliminar --}}
+                            <span class="hidden sm:block">
+                                <button wire:click="deleteShowModal({{ $archivo->id }})" wire:loading.attr="disabled" class="inline-flex items-center justify-center w-full px-1 py-1 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                        </path>
+                                    </svg>
+                                </button>
                             </span>
                         </td>
-                        </tr>
+
+                        <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+
+                        </td>
+
+                </tr>
 
 
                         @endforeach
@@ -178,14 +190,24 @@
                         </div>
                         @endif
                         {{--
-                        <x-create-archivo /> --}}
                         {{-- Modal Form --}}
-                        <x-jet-dialog-modal wire:model="modalFormVisible">
+                        {{-- <x-jet-dialog-modal wire:model="modalFormVisible">
                             <x-slot name="title">
                                 <div class="mx-auto text-center rounded-md">
                                     Subir un nuevo archivo
                                 </div>
-                            </x-slot>
+                            </x-slot> --}}
+
+                            <x-jet-dialog-modal wire:model="modalFormVisible">
+                                <x-slot name="title">
+                                    <div class="mx-auto text-center rounded-md">
+                                        @if ($modelId)
+                                            Actualizar Archivo
+                                        @else
+                                            Subir Archivo
+                                        @endif
+                                    </div>
+                                </x-slot>
 
                             <x-slot name="content">
                                 {{-- <div>

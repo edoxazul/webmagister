@@ -36,8 +36,7 @@
                                         <button wire:click="clear"
                                             class="block mt-1 ml-6 rounded-md shadow-sm form-input"> X </button>
                                     @endif
-                                    {{-- Agregar Noticia
-                                    --}}
+                                    {{-- Agregar Noticia--}}
 
 
                                     <span class="hidden sm:block">
@@ -48,7 +47,7 @@
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z">
+                                                d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                                                 </path>
                                             </svg>
                                         </button>
@@ -89,15 +88,15 @@
                                                 Estado Noticia
                                             </th>
                                             <th scope="col"
-                                                class="px-1 py-1 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
+                                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                                                 Opciones
                                             <th scope="col" class="px-2 py-3 bg-gray-50">
                                                 <span class="sr-only">Editar</span>
                                             </th>
-                                            <th scope="col" class="px-2 py-3 bg-gray-50">
+                                            {{-- <th scope="col" class="px-2 py-3 bg-gray-50">
                                                 <span class="sr-only">Eliminar</span>
                                             </th>
-                                            </th>
+                                            </th> --}}
                                         </tr>
                                     </thead>
 
@@ -165,7 +164,8 @@
 
                         {{-- Visualizar --}}
 
-                        <td class="px-2 py-4 text-sm font-medium text-right whitespace-nowrap">
+                    <td class="flex px-2 text-sm font-medium text-right py-15 whitespace-nowrap">
+                    {{-- class="px-2 py-4 text-sm font-medium text-right whitespace-nowrap"> --}}
                             <span class="hidden sm:block">
                                 <button wire:click="" type="button"
                                     class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -173,20 +173,11 @@
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                                 </button>
                             </span>
-                            {{-- <a href="#"
-                                class="text-indigo-600 hover:text-indigo-900">Editar</a>
-                            --}}
-                        </td>
-
-                        <td class="px-2 py-4 text-sm font-medium text-right whitespace-nowrap">
+                        {{-- <td class="px-2 py-4 text-sm font-medium text-right whitespace-nowrap"> --}}
                             <span class="hidden sm:block">
-                                {{-- Editar
-                                --}}
-                                {{-- Editar
-                                --}}
-
+                                {{-- Editar--}}
                                 <button wire:click="updateShowModal({{ $noticia->id }})" type="button"
-                                    class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-1 sm:w-auto sm:text-sm">
                                     <!-- Heroicon name: pencil -->
                                     <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -198,15 +189,14 @@
                             {{-- <a href="#"
                                 class="text-indigo-600 hover:text-indigo-900">Editar</a>
                             --}}
-                        </td>
+                        {{-- </td> --}}
 
-                        <td class="px-2 py-4 text-sm font-medium text-right whitespace-nowrap">
-                            {{-- Eliminar
-                            --}}
+                        {{-- <td class="px-2 py-4 text-sm font-medium text-right whitespace-nowrap"> --}}
+                            {{-- Eliminar--}}
                             <span class="hidden sm:block">
 
                                 <button wire:click="deleteShowModal({{ $noticia->id }})" wire:loading.attr="disabled"
-                                    class="inline-flex items-center justify-center w-full px-1 py-1 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                    class="inline-flex items-center justify-center w-full px-1 py-1 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-1 sm:w-auto sm:text-sm">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -215,6 +205,7 @@
                                     </svg>
                                 </button>
                             </span>
+                        {{-- </td> --}}
                         </td>
                     </tr>
 
@@ -233,15 +224,24 @@
                             mostrar {{ $perPage }} noticias por página
                         </div>
                         @endif
-                        {{--
-                        <x-create-noticia /> --}}
                         {{-- Modal Form --}}
-                        <x-jet-dialog-modal wire:model="modalFormVisible">
+                        {{-- <x-jet-dialog-modal wire:model="modalFormVisible">
                             <x-slot name="title">
                                 <div class="mx-auto text-center rounded-md">
                                     Agregar Noticia
                                 </div>
-                            </x-slot>
+                            </x-slot> --}}
+
+                            <x-jet-dialog-modal wire:model="modalFormVisible">
+                                <x-slot name="title">
+                                    <div class="mx-auto text-center rounded-md">
+                                        @if ($modelId)
+                                            Actualizar Noticia
+                                        @else
+                                            Agregar Noticia
+                                        @endif
+                                    </div>
+                                </x-slot>
 
                             <x-slot name="content">
                                 {{-- <div>
