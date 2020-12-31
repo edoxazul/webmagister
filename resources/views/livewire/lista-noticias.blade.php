@@ -376,9 +376,13 @@
                                 <div>
 
                                     <div class="mt-4">
-                                        <label for="about" class="block text-sm font-medium text-gray-700">
+                                        <div class="flex">
+                                            <x-jet-label for="cuerpo_noticia" value="Cuerpo Noticia" />
+                                            <label for="title" class="px-2 text-red-700">*</label>
+                                        </div>
+                                        {{-- <label for="about" class="block text-sm font-medium text-gray-700">
                                             Cuerpo Noticia
-                                        </label>
+                                        </label> --}}
                                         <div class="mt-4">
                                             <textarea id="cuerpo_noticia" name="cuerpo_noticia" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"

@@ -11,6 +11,10 @@ use Illuminate\Validation\Rule;
 class SubirArchivos extends Component
 {
     use WithFileUploads;
+    protected $queryString = [
+        'search' => ['except' =>''],
+        'perPage'=> ['except' => '10']
+    ];
     public $modelId;
     public $nombre_archivo, $descripcion_archivo, $enlace_archivo;
     public $isSetToDefaultHomePage;
@@ -21,11 +25,14 @@ class SubirArchivos extends Component
     public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
     public $files_admin=null;
+    public $sortField="nombre_archivo";
+    public $sortDirection = 'asc';
 
     public function render()
     {
         return view('livewire.carga-archivos', [
             'archivos' => CargaArchivos::where('nombre_archivo','like','%' . trim($this->search) . '%')
+            ->orderBy($this->sortField,$this->sortDirection)
             ->paginate($this->perPage)
         ]);
     }

@@ -93,11 +93,11 @@
                                                     </div>
                         </div>
                         </td>
-                        <td class="px-6 py-4 font-medium text-center whitespace-nowrap">
-                            <div class="text-sm text-gray-900">
-                                {{ $archivo->descripcion_archivo }}
-                            </div>
-                        </td>
+                                            <td class="px-6 py-4 font-medium text-center whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">
+                                                    {{ $archivo->descripcion_archivo }}
+                                                </div>
+                                            </td>
 
                         <td class="px-20 py-4 font-medium text-center whitespace-nowrap">
                             <div class="text-gray-900 text-sm-center">
@@ -230,13 +230,19 @@
                                 </div> --}}
                                 <div class="grid grid-cols-3 gap-2 center">
                                     <div class="col-span-4 mt-2 sm:col-span-3">
-                                        <x-jet-label for="nombre_archivo" value="Nombre del archivo" />
+                                        <div class="flex">
+                                            <x-jet-label for="nombre_archivo" value="Nombre del archivo" />
+                                            <label for="title" class="px-2 text-red-700">*</label>
+                                        </div>
                                         <x-jet-input id="nombre_archivo" class="block w-full mt-1" type="text"
                                             wire:model.debounce.800ms="nombre_archivo" />
                                         @error('nombre_archivo') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="col-span-4 mt-2 sm:col-span-3">
-                                        <x-jet-label for="descripcion_archivo" value="Descripción del archivo" />
+                                        <div class="flex">
+                                            <x-jet-label for="descripcion_archivo" value="Descripción del archivo" />
+                                            <label for="title" class="px-2 text-red-700">*</label>
+                                        </div>
                                         <x-jet-input id="descripcion_archivo" class="block w-full mt-1" type="text"
                                             wire:model.debounce.800ms="descripcion_archivo" />
                                         @error('descripcion_archivo') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
@@ -249,7 +255,10 @@
                                             x-on:livewire-upload-finish="isUploading = false"
                                             x-on:livewire-upload-error="isUploading = false"
                                             x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                        <x-jet-label for="enlace_archivo" value="Subir archivo" />
+                                            <div class="flex">
+                                                <x-jet-label for="enlace_archivo" value="Subir archivo" />
+                                                <label for="title" class="px-2 text-red-700">*</label>
+                                            </div>
                                         <x-jet-input id="enlace_archivo" class="block w-full mt-1" type="file" accept=".doc,.docx,application/msword,
                                         application/vnd.openxmlformats-officedocument.wordprocessingml.document,
                                         .pdf,.txt,.xlsx,.xls,.pptx,.ppt"

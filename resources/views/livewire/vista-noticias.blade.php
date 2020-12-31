@@ -88,8 +88,8 @@
 
             </div>
 
-            <div class="flex justify-center w-full px-2 mx-auto bg-gray-300 rounded-md max-w-7xl sm:px-6 lg:px-8">
-                <a href= "{{ route('listanoticiaspublico') }}" class="justify-center px-3 py-3 text-sm font-medium text-center text-gray-700 rounded-md" > Volver </a>
+            <div class="flex justify-center w-full px-2 mx-auto bg-gray-800 rounded-md max-w-7xl sm:px-6 lg:px-8">
+                <a href= "{{ route('listanoticiaspublico') }}" class="justify-center px-3 py-3 text-sm font-medium text-center text-white rounded-md" > Volver </a>
             </div>
 
             <div class="w-full mx-8 text-gray-600 text-normal">
