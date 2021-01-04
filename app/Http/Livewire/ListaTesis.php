@@ -26,7 +26,6 @@ class ListaTesis extends Component
     public $page='1';
     public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
-    public $modalConfirmGraduadoVisible = false;
     public $modelId;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;

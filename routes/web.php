@@ -10,6 +10,7 @@ use App\Http\Livewire\InfoMagisterPublico;
 use App\Http\Livewire\ListaAcademicosPublico;
 use App\Http\Livewire\ListaAlumnosPublico;
 use App\Http\Livewire\ListaNoticiasPublico;
+use App\Http\Livewire\ListaTesisPublico;
 use App\Http\Livewire\VistaNoticias;
 use App\Http\Livewire\SubirArchivos;
 use App\Http\Livewire\EstructuraCurricular;
@@ -39,6 +40,7 @@ Route::get('/informacion',InfoMagisterPublico::class )->name('infomagisterpublic
 Route::get('/academic',ListaAcademicosPublico::class )->name('listaacademicospublico');
 Route::get('/alumn',ListaAlumnosPublico::class )->name('listaalumnospublico');
 Route::get('/noticia',ListaNoticiasPublico::class )->name('listanoticiaspublico');
+Route::get('/anteproyecto',ListaTesisPublico::class )->name('listatesispublico');
 //Vista específica de una noticia
 Route::get('/ver-noticia/{id}', [VistaNoticias::class,'ver'])->name('ver-noticia');
 // Route::get('/ver-noticia/{id}',function() {
