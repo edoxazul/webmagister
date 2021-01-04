@@ -19,11 +19,19 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" type="text/css" href="trix.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@1.2.3/dist/trix.css">
+
         @livewireStyles
 
 
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
+        <script src="https://unpkg.com/moment"></script>
+        <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+        <script src="https://unpkg.com/trix@1.2.3/dist/trix.js"></script>
+        <script type="text/javascript" src="trix.js"></script>
     </head>
 
     <body class="font-sans antialiased">
@@ -75,7 +83,10 @@
                 </div>
 
                 <div class="w-full px-5 mx-auto" style="text-align: justify;">
+
                     <p class="my-5"> {!!  nl2br(e($noticia->cuerpo_noticia)) !!} </p>
+                    {{-- <input id="cuerpo_noticia" value= "{!!  nl2br(e($noticia->cuerpo_noticia)) !!}" type="hidden" name="cuerpo_noticia"> --}}
+
                 </div>
 
                 <div class="w-full mx-8 text-gray-600 text-normal">

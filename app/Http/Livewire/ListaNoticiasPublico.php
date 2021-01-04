@@ -17,7 +17,17 @@ class ListaNoticiasPublico extends Component
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
     public $titular_noticia,$cuerpo_noticia,$autor_noticia,$estado_noticia,$caption_foto_noticia,$user_id;
+    public $created_at;
     public $noticia_photo_path;
+    public $sortField="created_at";
+    public $sortDirection = 'desc';
+    protected $queryString = [
+        'search' => ['except' =>''],
+        'perPage'=> ['except' => '20']
+    ];
+    public $search= '';
+    public $perPage= '20';
+    public $page='1';
 
     public $data;
 
@@ -25,7 +35,10 @@ class ListaNoticiasPublico extends Component
     public function render()
     {
         return view('livewire.lista-noticias-publico',[
-            'noticias'=> Noticias::paginate()
+            // 'noticias'=> Noticias::paginate()
+            'noticias' => Noticias::where('created_at','like','%' . trim($this->search) . '%')
+            ->orderBy($this->sortField,$this->sortDirection)
+            ->paginate($this->perPage)
         ])
         ->layout('layouts.guest');
 
