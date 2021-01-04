@@ -11,6 +11,10 @@ class Curricular extends Model
 
     protected $fillable = [
         'malla',
-        'supervisado',
+        'profundizacion',
+    ];
+
+    protected $appends = [
+        'malla',
     ];
 }

@@ -21,6 +21,8 @@ class EstructuraCurricular extends Component
     public $page='1';
     public $modalCursoFormVisible = false;
     public $modalCursoConfirmDeleteVisible = false;
+    public $modalCurricularFormVisible = false;
+    public $modalCurricularConfirmDeleteVisible = false;
     public $modelId;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
@@ -29,6 +31,8 @@ class EstructuraCurricular extends Component
     public $sortDirection = 'asc';
 
     public $malla,$profundizacion,$nombre_curso,$descripcion_curso,$enlace_curso,$archivo_curso;
+    public $photo=null;
+    public $files_admin=null;
 
     public $inputs = [];
     public $i = 1;
@@ -53,7 +57,7 @@ class EstructuraCurricular extends Component
             ->orWhere('descripcion_curso','LIKE',"%{$this->search}%")
             ->orderBy($this->sortField,$this->sortDirection)
             ->paginate($this->perPage),
-            'curriculars'=>Curricular::paginate(3),
+            'curriculars'=>Curricular::paginate(1),
         ]);
     }
 
@@ -66,6 +70,8 @@ class EstructuraCurricular extends Component
     }
 
     protected  $messages =[
+        'malla.required'=>'El campo malla es obligatorio',
+        'profundizacion.required'=>'El campo profundizacion es obligatorio',
         'nombre_curso.required' => 'El campo nombre curso es obligatorio',
         'nombre_curso.unique' => 'el curso ya existe',
         'descripcion_curso.required'=>'El campo descripcion curso es obligatorio',
@@ -74,12 +80,41 @@ class EstructuraCurricular extends Component
     ];
 
     public function modelDataCurso(){
-        return [
-            'nombre_curso'=>$this->nombre_curso,
-            'descripcion_curso'=>$this->descripcion_curso,
-            'enlace_curso'=>$this->enlace_curso,
-            'archivo_curso'=>$this->archivo_curso,
-        ];
+        if(!empty($this->files_admin)){
+            $name = md5($this->files_admin . microtime()).'.'.$this->files_admin->extension();
+            $enlace_curso = $this->files_admin->storeAs('cursos',$name,'public');
+            $enlace_curso = 'storage/'.$enlace_curso;
+
+            return [
+                'nombre_curso'=>$this->nombre_curso,
+                'descripcion_curso'=>$this->descripcion_curso,
+                'enlace_curso'=>$enlace_curso,
+                'archivo_curso'=>$enlace_curso,
+            ];
+        }else{
+            return [
+                'nombre_curso'=>$this->nombre_curso,
+                'descripcion_curso'=>$this->descripcion_curso,
+            ];
+        }
+
+    }
+
+    public function modelDataCurricular(){
+        if(!empty($this->photo)){
+            $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
+            $malla = $this->photo->storeAs('photos',$name,'public');
+            $malla = 'storage/'.$malla;
+            return [
+                'malla'=>$malla,
+                'profundizacion'=>$this->profundizacion,
+            ];
+        }else{
+            return [
+                'profundizacion'=>$this->profundizacion,
+            ];
+        }
+
     }
 
     public function createCurso()
@@ -88,14 +123,26 @@ class EstructuraCurricular extends Component
             [
                 'nombre_curso' => 'required|unique:cursos',
                 'descripcion_curso' => 'required',
-                'enlace_curso'=>'required',
-                'archivo_curso'=>'required',
             ]
         );
         $this->unassignDefaultHomePage();
         $this->unassignDefaultNotFoundPage();
         Cursos::create($this->modelDataCurso());
         $this->modalCursoFormVisible = false;
+        $this->reset();
+    }
+
+    public function createCurricular()
+    {
+        $this->validate(
+            [
+                'profundizacion' => 'required',
+            ]
+        );
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        Curricular::create($this->modelDataCurricular());
+        $this->modalCurricularFormVisible = false;
         $this->reset();
     }
 
@@ -106,14 +153,19 @@ class EstructuraCurricular extends Component
         $this->modalCursoFormVisible = true;
     }
 
+    public function createCurricularShowModal()
+    {
+        $this->resetValidation();
+        $this->reset();
+        $this->modalCurricularFormVisible = true;
+    }
+
     public function updateCurso()
     {
         $this->validate(
             [
             'nombre_curso' => 'required|unique:cursos,nombre_curso,'.$this->modelId.'',
             'descripcion_curso' => 'required',
-            'enlace_curso'=>'required',
-            'archivo_curso'=>'required',
             ]
         );
 
@@ -121,6 +173,20 @@ class EstructuraCurricular extends Component
         $this->unassignDefaultNotFoundPage();
         Cursos::find($this->modelId)->update($this->modelDataCurso());
         $this->modalCursoFormVisible = false;
+    }
+
+    public function updateCurricular()
+    {
+        $this->validate(
+            [
+            'profundizacion' => 'required',
+            ]
+        );
+
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        Curricular::find($this->modelId)->update($this->modelDataCurricular());
+        $this->modalCurricularFormVisible = false;
     }
 
     public function updateCursoShowModal($id)
@@ -133,6 +199,15 @@ class EstructuraCurricular extends Component
         $this->loadModelCurso();
     }
 
+    public function updateCurricularShowModal($id)
+    {
+        $this->resetValidation();
+        $this->reset();
+        // $this->reset('photo');
+        $this->modelId = $id;
+        $this->modalCurricularFormVisible = true;
+        $this->loadModelCurricular();
+    }
 
     public function loadModelCurso()
     {
@@ -145,17 +220,37 @@ class EstructuraCurricular extends Component
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
 
+    public function loadModelCurricular()
+    {
+        $data = Curricular::find($this->modelId);
+        $this->malla = $data->malla;
+        $this->profundizacion = $data->profundizacion;
+        $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
+        $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
+    }
+
     public function deleteCursoShowModal($id)
     {
         $this->modelId = $id;
         $this->modalCursoConfirmDeleteVisible = true;
     }
 
+    public function deleteCurricularShowModal($id)
+    {
+        $this->modelId = $id;
+        $this->modalCurricularConfirmDeleteVisible = true;
+    }
 
     public function deleteCurso()
     {
         Cursos::destroy($this->modelId);
         $this->modalCursoConfirmDeleteVisible = false;
+    }
+
+    public function deleteCurricular()
+    {
+        Curricular::destroy($this->modelId);
+        $this->modalCurricularConfirmDeleteVisible = false;
     }
 
     public function updatedIsSetToDefaultHomePage()
