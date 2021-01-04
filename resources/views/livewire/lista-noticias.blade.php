@@ -5,9 +5,16 @@
 <div>
 
     <x-slot name="header">
+        {{-- @livewireStyles --}}
         <link rel="stylesheet" type="text/css" href="trix.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@1.2.3/dist/trix.css">
+        {{-- @livewireScripts --}}
+        <script src="https://unpkg.com/moment"></script>
+        <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+        <script src="https://unpkg.com/trix@1.2.3/dist/trix.js"></script>
         <script type="text/javascript" src="trix.js"></script>
-        <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
+        {{-- <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script> --}}
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Noticias') }}
         </h2>
@@ -380,66 +387,22 @@
                                             <x-jet-label for="cuerpo_noticia" value="Cuerpo Noticia" />
                                             <label for="title" class="px-2 text-red-700">*</label>
                                         </div>
-                                        {{-- <label for="about" class="block text-sm font-medium text-gray-700">
-                                            Cuerpo Noticia
-                                        </label> --}}
                                         <div class="mt-4">
                                             <textarea id="cuerpo_noticia" name="cuerpo_noticia" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="cuerpo_noticia"
                                             placeholder="Cuerpo de la noticia."></textarea>
 
-                                            {{-- @trix(\App\Models\Noticias::class,'descripcion_noticia') --}}
+                                            {{-- Lo de abajo es el código del trix. Por ahora está documentado pero supuestamente funciona --}}
 
-                                            {{-- <textarea class="form-control" id="cuerpo_noticia" name="cuerpo_noticia"></textarea> --}}
-{{--
-                                            <x-jet-label for= "ckcontent" value = "" />
-                                                <div wire:ignore wire:key="Myid">
-                                                    <div  id ="ckcontent" class="block w-full mt-1">
-
-                                                    </div>
+                                            <!-- top-most div don't attach livewire-->
+                                            {{-- <div>
+                                                <div class="mb-4" wire:model.debounce.365ms="cuerpo_noticia" wire:ignore>
+                                                    <input id="cuerpo_noticia" value="El contenido de su noticia aquí" type="hidden" name="cuerpo_noticia">
+                                                    <trix-editor input="cuerpo_noticia"></trix-editor>
+                                                    @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                                 </div>
-
-                                                <textarea id= "descripcion_notcia" class="hidden">
-
-                                                </textarea> --}}
-
-                                        {{-- <div wire:ignore>
-                                            <input id="descripcion_noticia" name="descripcion_noticia" type="hidden" value="">
-                                            <trix-editor input="descripcion_noticia" class="wysiwyg-content" wire:key="uniqueKey"></trix-editor>
-                                        </div> --}}
-
-
-                                            {{-- <div wire:ignore>
-                                                <trix-editor
-                                                    class="formatted-content"
-                                                    x-data
-                                                    x-on:trix-change="$dispatch('input', event.target.value)"
-                                                    wire:model.debounce.1000ms="descripcion_noticia"
-                                                    wire:key="uniqueKey"
-                                                ></trix-editor>
                                             </div> --}}
-
-                                            {{-- <textarea id="about" rows="3"
-                                                class="block w-full mt-1 border-blue-900 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                placeholder="Cuerpo de la noticia"></textarea> --}}
-
-                                                {{-- Esto estaba sin comentarios antes  --}}
-{{--
-                                                <div x-data="{ trix: @entangle('descripcion_noticia').defer }">
-                                                    <input id="descripcion_noticia" name="descripcion_noticia" type="hidden" />
-                                                     <div wire:ignore>
-                                                         <trix-editor x-model="trix" input="descripcion_noticia" wire:key="uniqueKey">
-                                                         </trix-editor>
-                                                     </div>
-                                                    @error('descripcion_noticia') <span class="error">{{ $message }}</span> @enderror
-                                                </div> --}}
-
-                                              {{-- Esto estaba sin comentarios antes. Aquí termina  --}}
-
-                                                {{-- @push('scripts')
-                                                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.js"></script>
-                                                @endpush --}}
                                         </div>
                                         @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                     </div>
