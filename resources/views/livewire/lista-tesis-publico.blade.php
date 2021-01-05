@@ -29,7 +29,13 @@
                                         Tutor
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        Status
+                                        Estado
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                        Anteproyecto
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                        Resumen Tesis
                                     </th>
                                     <th scope="col" class="relative px-6 py-3">
                                         <span class="sr-only">Edit</span>
@@ -58,6 +64,30 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="text-sm text-gray-900"> {{ $anteproyecto->estatus }}</span>
+                                        </td>
+                                        <td class="py-4 px-15 whitespace-nowrap">
+                                            <div class="text-gray-900 text-sm-center">
+                                                {{-- <a href=" {{ $archivo->enlace_archivo }} " target="_blank"> --}}
+                                                <a href=" {{ asset('storage/'.$anteproyecto->anteproyecto_path) }}" download="{{ asset('storage/'.$anteproyecto->anteproyecto_path)}}" >
+                                                    {{-- <a href="{{ asset('storage/'. $archivo->enlace_archivo) }}" download="{{$archivo->file_original_name}}"></a> --}}
+                                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                        </path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-15 whitespace-nowrap">
+                                            <div class="text-gray-900 text-sm-center">
+                                                {{-- <a href=" {{ $archivo->enlace_archivo }} " target="_blank"> --}}
+                                                <a href=" {{ asset('storage/'.$anteproyecto->resumentesis_path) }}" download="{{ asset('storage/'.$anteproyecto->resumentesis_path)}}" >
+                                                    {{-- <a href="{{ asset('storage/'. $archivo->enlace_archivo) }}" download="{{$archivo->file_original_name}}"></a> --}}
+                                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                        </path>
+                                                    </svg>
+                                                </a>
+                                            </div>
                                         </td>
                                         <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                         </td>
