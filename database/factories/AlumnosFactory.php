@@ -34,7 +34,6 @@ class AlumnosFactory extends Factory
             'trabajo_anteproyecto'=>$this->faker->name(),
             'linkedin'=>$this->faker->url,
             'profile_photo_path'=>$this->faker->imageUrl($width = 640, $height = 480),
-            'academico_id'=>$this->faker->numberBetween(1,10)
         ];
     }
 }

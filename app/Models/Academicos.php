@@ -49,10 +49,12 @@ class Academicos extends Model
     ];
 
     //Relacion uno a muchos
-    public function alumnos() {
-        return $this->hasMany(Alumnos::class);
+    // public function alumnos() {
+    //     return $this->hasMany(Alumnos::class);
+    // }
+
+    public function teses(){
+        return $this->belongsToMany(Tesis::class);
     }
-
-
 
 }

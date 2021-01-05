@@ -30,8 +30,12 @@ class Alumnos extends Model
     ];
 
     //Relacion uno a muchos (inversa)
-    public function academico(){
-        return $this->belongsTo(Academicos::class);
+    // public function academico(){
+    //     return $this->belongsTo(Academicos::class);
+    // }
+
+    public function teses(){
+        return $this->belongsToMany(Tesis::class);
     }
 
 

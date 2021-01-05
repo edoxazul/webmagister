@@ -18,4 +18,15 @@ class Tesis extends Model
         'resumentesis_path',
         'estatus'
     ];
+
+    public function academicos(){
+        return $this->belongsToMany(Academicos::class);
+    }
+
+    public function alumnos(){
+        return $this->belongsToMany(Alumnos::class);
+    }
+
+
+
 }
