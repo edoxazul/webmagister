@@ -232,6 +232,69 @@
                     </div>
                     @endif
 
+                    <x-jet-dialog-modal wire:model="modalCurricularFormVisible">
+                        <x-slot name="title">
+                            <div class="mx-auto text-center rounded-md">
+                                @if ($modelId)
+                                    Actualizar Estructura Curricular
+                                @else
+                                    Agregar Estructura Curricular
+                                @endif
+                            </div>
+                        </x-slot>
+                        <x-slot name="content">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">
+                                    Malla Curricular
+                                </label>
+                                <div class="flex items-center mt-2">
+                                    <input type="file" accept="image/*" wire:model="malla" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    @error('malla') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-6 gap-6">
+                                <div>
+                                    <div class="mt-4">
+                                        <label for="about" class="block text-sm font-medium text-gray-700">
+                                            Profundizacion
+                                        </label>
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                            <textarea id="profundizacion" name="profundizacion" rows="3"
+                                            class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                            wire:model="profundizacion"
+                                            placeholder="Profundizacion"></textarea>
+                                            @error('profundizacion') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </x-slot>
+
+                        <x-slot name="footer">
+                            <x-jet-secondary-button wire:click="$toggle('modalCurricularFormVisible')"
+                                wire:loading.attr="disabled">
+                                {{ __('Cancelar') }}
+                            </x-jet-secondary-button>
+
+                            @if ($modelId)
+                                <button type="submit"
+                                    class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                    wire:click="updateCurricular" wire:loading.attr="disabled">
+                                    {{ __('Actualizar') }}
+                                </button>
+                            @else
+
+                                <button type="submit"
+                                    class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                    wire:click="createCurricular" wire:loading.attr="disabled">
+                                    {{ __('Crear') }}
+                                </button>
+                            @endif
+
+
+                        </x-slot>
+                    </x-jet-dialog-modal>
+
+
                     <x-jet-dialog-modal wire:model="modalCursoFormVisible">
                         <x-slot name="title">
                             <div class="mx-auto text-center rounded-md">
@@ -276,7 +339,7 @@
                                         x-on:livewire-upload-progress="progress = $event.detail.progress">
                                     <x-jet-label for="enlace_curso" value="Subir archivo" />
                                     <x-jet-input id="enlace_curso" class="block w-full mt-1" type="file" accept=".pdf"
-                                            wire:model="files_admin" />
+                                            wire:model="enlace_curso" />
                                             <div x-show="isUploading">
                                                 <progress max="100" x-bind:value="progress" ></progress>
                                             </div>
@@ -303,81 +366,6 @@
                                 <button type="submit"
                                     class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
                                     wire:click="createCurso" wire:loading.attr="disabled">
-                                    {{ __('Crear') }}
-                                </button>
-                            @endif
-
-
-                        </x-slot>
-                    </x-jet-dialog-modal>
-
-                    <x-jet-dialog-modal wire:model="modalCurricularFormVisible">
-                        <x-slot name="title">
-                            <div class="mx-auto text-center rounded-md">
-                                @if ($modelId)
-                                    Actualizar Estructura Curricular
-                                @else
-                                    Agregar Estructura Curricular
-                                @endif
-                            </div>
-                        </x-slot>
-                        <x-slot name="content">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700">
-                                    Malla Curricular
-                                </label>
-                                <div class="flex items-center mt-2">
-                                    <span class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
-                                        @if($photo)
-                                        <img class="w-full h-full" src="{{$photo->temporaryUrl() }}">
-                                            @else
-                                            @if($malla)
-                                                <img class="w-full h-full" src="{{$malla }}">
-                                                @else
-                                                <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                                                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                                </svg>
-                                            @endif
-                                        @endif
-                                    </span>
-                                    <input type="file" wire:model="photo" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    @error('malla') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-6 gap-6">
-                                <div>
-                                    <div class="mt-4">
-                                        <label for="about" class="block text-sm font-medium text-gray-700">
-                                            Profundizacion
-                                        </label>
-                                        <label for="title" class="px-2 text-red-700">*</label>
-                                            <textarea id="profundizacion" name="profundizacion" rows="3"
-                                            class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            wire:model="profundizacion"
-                                            placeholder="Profundizacion"></textarea>
-                                            @error('profundizacion') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </x-slot>
-
-                        <x-slot name="footer">
-                            <x-jet-secondary-button wire:click="$toggle('modalCurricularFormVisible')"
-                                wire:loading.attr="disabled">
-                                {{ __('Cancelar') }}
-                            </x-jet-secondary-button>
-
-                            @if ($modelId)
-                                <button type="submit"
-                                    class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
-                                    wire:click="updateCurricular" wire:loading.attr="disabled">
-                                    {{ __('Actualizar') }}
-                                </button>
-                            @else
-
-                                <button type="submit"
-                                    class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
-                                    wire:click="createCurricular" wire:loading.attr="disabled">
                                     {{ __('Crear') }}
                                 </button>
                             @endif

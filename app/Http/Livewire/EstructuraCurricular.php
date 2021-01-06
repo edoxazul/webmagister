@@ -30,7 +30,8 @@ class EstructuraCurricular extends Component
     public $sortField="nombre_curso";
     public $sortDirection = 'asc';
 
-    public $malla,$profundizacion,$nombre_curso,$descripcion_curso,$enlace_curso,$archivo_curso;
+    public $malla,$profundizacion,$nombre_curso,$descripcion_curso,$enlace_curso;
+    //public $archivo_curso;
     public $photo=null;
     public $files_admin=null;
 
@@ -76,20 +77,20 @@ class EstructuraCurricular extends Component
         'nombre_curso.unique' => 'el curso ya existe',
         'descripcion_curso.required'=>'El campo descripcion curso es obligatorio',
         'enlace_curso.required' => 'El campo enlace curso es obligatorio',
-        'archivo_curso.required' => 'El campo archivo curso es obligatorio',
+        //'archivo_curso.required' => 'El campo archivo curso es obligatorio',
     ];
 
     public function modelDataCurso(){
-        if(!empty($this->files_admin)){
-            $name = md5($this->files_admin . microtime()).'.'.$this->files_admin->extension();
-            $enlace_curso = $this->files_admin->storeAs('cursos',$name,'public');
+        if(!empty($this->enlace_curso)){
+            $name = md5($this->enlace_curso . microtime()).'.'.$this->enlace_curso->extension();
+            $enlace_curso = $this->enlace_curso->storeAs('cursos',$name,'public');
             $enlace_curso = 'storage/'.$enlace_curso;
 
             return [
                 'nombre_curso'=>$this->nombre_curso,
                 'descripcion_curso'=>$this->descripcion_curso,
                 'enlace_curso'=>$enlace_curso,
-                'archivo_curso'=>$enlace_curso,
+                //'archivo_curso'=>$enlace_curso,
             ];
         }else{
             return [
@@ -101,9 +102,9 @@ class EstructuraCurricular extends Component
     }
 
     public function modelDataCurricular(){
-        if(!empty($this->photo)){
-            $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
-            $malla = $this->photo->storeAs('photos',$name,'public');
+        if(!empty($this->malla)){
+            $name = md5($this->malla . microtime()).'.'.$this->malla->extension();
+            $malla = $this->malla->storeAs('photos',$name,'public');
             $malla = 'storage/'.$malla;
             return [
                 'malla'=>$malla,
@@ -123,7 +124,7 @@ class EstructuraCurricular extends Component
             [
                 'nombre_curso' => 'required|unique:cursos',
                 'descripcion_curso' => 'required',
-                'enlace_curso'=>'mimes:pdf',
+                'enlace_curso'=>'required|mimes:pdf',
             ]
         );
         $this->unassignDefaultHomePage();
@@ -137,7 +138,7 @@ class EstructuraCurricular extends Component
     {
         $this->validate(
             [
-                'malla'=>'image',
+                'malla'=>'required|image',
                 'profundizacion' => 'required',
             ]
         );
@@ -168,6 +169,7 @@ class EstructuraCurricular extends Component
             [
             'nombre_curso' => 'required|unique:cursos,nombre_curso,'.$this->modelId.'',
             'descripcion_curso' => 'required',
+            'enlace_curso'=>'required|mimes:pdf',
             ]
         );
 
@@ -181,6 +183,7 @@ class EstructuraCurricular extends Component
     {
         $this->validate(
             [
+            'malla'=>'required|image',
             'profundizacion' => 'required',
             ]
         );
@@ -217,7 +220,7 @@ class EstructuraCurricular extends Component
         $this->nombre_curso = $data->nombre_curso;
         $this->descripcion_curso = $data->descripcion_curso;
         $this->enlace_curso = $data->enlace_curso;
-        $this->archivo_curso = $data->archivo_curso;
+        //$this->archivo_curso = $data->archivo_curso;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }

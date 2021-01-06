@@ -27,7 +27,6 @@ class CursosFactory extends Factory
             'nombre_curso'=>$nombre,
             'descripcion_curso'=>$this->faker->sentence(),
             'enlace_curso'=>$this->faker->url(),
-            'archivo_curso'=>$nombre
         ];
     }
 }
