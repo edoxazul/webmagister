@@ -21,6 +21,11 @@
                         {{ __('Información General') }}
                     </x-jet-nav-link>
                 </div>
+                <div class="hidden px-0 space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('curricular') }}" :active="request()->routeIs('curricular')">
+                        {{ __('Estructura Curricular') }}
+                    </x-jet-nav-link>
+                </div>
                 <div class="hidden px-0 space-x-2 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('noticias') }}" :active="request()->routeIs('noticias')">
                         {{ __('Noticias') }}
@@ -29,11 +34,6 @@
                 <div class="hidden px-0 space-x-2 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('anteproyectos') }}" :active="request()->routeIs('anteproyectos')">
                         {{ __('Anteproyectos') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden px-0 space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('curricular') }}" :active="request()->routeIs('curricular')">
-                        {{ __('Estructura Curricular') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden px-0 space-x-8 sm:-my-px sm:ml-10 sm:flex">
