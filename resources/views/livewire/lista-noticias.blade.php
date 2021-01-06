@@ -7,18 +7,26 @@
     <x-slot name="header">
         {{-- @livewireStyles --}}
         <link rel="stylesheet" type="text/css" href="trix.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
-        <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@1.2.3/dist/trix.css">
+        {{-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@1.2.3/dist/trix.css"> --}}
+        <link rel="stylesheet" href="/css/main.css?1607134092767489000">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.css" integrity="sha512-CWdvnJD7uGtuypLLe5rLU3eUAkbzBR3Bm1SFPEaRfvXXI2v2H5Y0057EMTzNuGGRIznt8+128QIDQ8RqmHbAdg==" crossorigin="anonymous">
         {{-- @livewireScripts --}}
-        <script src="https://unpkg.com/moment"></script>
+        {{-- <script src="https://unpkg.com/moment"></script>
         <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
         <script src="https://unpkg.com/trix@1.2.3/dist/trix.js"></script>
+        <script src="js/attachments.js"></script>
+        <script type="text/javascript" src="trix.js"></script> --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.js" integrity="sha512-/1nVu72YEESEbcmhE/EvjH/RxTg62EKvYWLG3NdeZibTCuEtW5M4z3aypcvsoZw03FAopi94y04GhuqRU9p+CQ==" crossorigin="anonymous"></script>
+        <script src="/js/attachments.js?1607134092767489000"></script>
         <script type="text/javascript" src="trix.js"></script>
-        {{-- <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script> --}}
+        <script>
+          Trix.config.attachments.preview.caption = { name: false, size: false }
+        </script>
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Noticias') }}
         </h2>
-        @trixassets
+        {{-- @trixassets --}}
     </x-slot>
 
     <div class="py-12">
@@ -124,16 +132,6 @@
                                                                         src="{{ $noticia->noticia_photo_path }}">
                                                                 </a>
                                                             </div>
-                                                            {{-- <img
-                                                                class="w-10 h-10 rounded-full"
-                                                                src="{{ $academico->profile_photo_path }}" alt="">
-                                                            --}}
-
-
-                                                            {{-- <img
-                                                                class="w-10 h-10 rounded-full"
-                                                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60"
-                                                                alt=""> --}}
                                                         </div>
                                                     </div>
                                                 </td>
@@ -147,9 +145,10 @@
                         </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">
+                            {{-- <div class="text-sm text-gray-900">
                                 {{ Str::limit($noticia->cuerpo_noticia,200)}}
-                            </div>
+                            </div> --}}
+                            <div class="trix-content"> {{ Str::limit($noticia->cuerpo_noticia,200)}}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
@@ -162,12 +161,6 @@
                                 {{date("d/m/Y", strtotime($noticia->created_at))}}
                             </div>
                         </td>
-
-                        {{-- <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">
-                                {{ $noticia->estado_noticia }}
-                            </div>
-                        </td> --}}
 
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
@@ -355,29 +348,6 @@
                                     </div>
                                  </div>
 
-
-                                {{-- <div class="col-span-4 mt-2 sm:col-span-3">
-                                    <div
-                                        x-data="{ isUploading: false, progress: 0 }"
-                                        x-on:livewire-upload-start="isUploading = true"
-                                        x-on:livewire-upload-finish="isUploading = false"
-                                        x-on:livewire-upload-error="isUploading = false"
-                                        x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                        <div class="flex">
-                                            <x-jet-label for="noticia_photo_path" value="Subir foto de portada"  />
-                                            <label for="title" class="px-2 text-red-700">*</label>
-                                        </div>
-                                    <x-jet-input id="noticia_photo_path" class="block w-full mt-1" type="file"
-                                        wire:model="fotos_noticia" />
-                                        <div x-show="isUploading">
-                                            <progress max="100" x-bind:value="progress" ></progress>
-                                        </div>
-                                        @error('noticia_photo_path') <span class="error">{{ $message }}</span> @enderror
-                                    </div>
-                                </div> --}}
-
-
-
                                 </div>
 
                                 <div>
@@ -388,23 +358,31 @@
                                             <label for="title" class="px-2 text-red-700">*</label>
                                         </div>
                                         <div class="mt-4">
-                                            <textarea id="cuerpo_noticia" name="cuerpo_noticia" rows="3"
+                                            {{-- <textarea id="cuerpo_noticia" name="cuerpo_noticia" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="cuerpo_noticia"
-                                            placeholder="Cuerpo de la noticia."></textarea>
+                                            placeholder="Cuerpo de la noticia."></textarea> --}}
 
                                             {{-- Lo de abajo es el código del trix. Por ahora está documentado pero supuestamente funciona --}}
 
                                             <!-- top-most div don't attach livewire-->
                                             {{-- <div> --}}
-                                                {{-- <div class="mb-4" wire:model.debounce.365ms="cuerpo_noticia" wire:ignore>
+                                                <div class="mb-4" wire:model.debounce.365ms="cuerpo_noticia" wire:ignore wire:key="uniqueKey">
                                                     <input id="cuerpo_noticia" value="El contenido de su noticia aquí" type="hidden" name="cuerpo_noticia">
                                                     <trix-editor input="cuerpo_noticia"></trix-editor>
                                                     @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
-                                                </div> --}}
+
+                                                    <script>
+                                                        var cuerpo = document.getElementById("cuerpo_noticia")
+
+                                                        addEventListener("trix-change", function(event) {
+                                                            console.log(cuerpo.getAttribute('value'));
+                                                            @this.set('cuerpo_noticia', cuerpo.getAttribute('value'))
+                                                        })
+                                                    </script>
+                                                </div>
                                             {{-- </div> --}}
-                                        </div>
-                                        @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                        {{-- @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror --}}
                                     </div>
                                 </div>
 
@@ -446,25 +424,5 @@
     </div>
 </div>
 </div>
-{{-- <script>
-    var descripcion_noticia = document.getElementById("descripcion_noticia")
-    addEventListener("trix-change", function(event) {
-        console.log(about.getAttribute('value'));
-        @this.set('descripcion_noticia', about.getAttribute('value'))
-    })
-</script>
-
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#descripcion_noticia' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
-
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-<script>
-CKEDITOR.replace( 'descripcion_noticia' );
-</script> --}}
 
 </div>

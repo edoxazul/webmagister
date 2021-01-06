@@ -32,6 +32,8 @@
         <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
         <script src="https://unpkg.com/trix@1.2.3/dist/trix.js"></script>
         <script type="text/javascript" src="trix.js"></script>
+
+        @livewireScripts
     </head>
 
     <body class="font-sans antialiased">
@@ -84,9 +86,8 @@
 
                 <div class="w-full px-5 mx-auto" style="text-align: justify;">
 
-                    <p class="my-5"> {!!  nl2br(e($noticia->cuerpo_noticia)) !!} </p>
-                    {{-- <input id="cuerpo_noticia" value= "{!!  nl2br(e($noticia->cuerpo_noticia)) !!}" type="hidden" name="cuerpo_noticia"> --}}
-
+                    {{-- <p class="my-5"> {!!  nl2br(e($noticia->cuerpo_noticia)) !!} </p> --}}
+                    <div class="trix-content">{{ $noticia->cuerpo_noticia }}</div>
                 </div>
 
                 <div class="w-full mx-8 text-gray-600 text-normal">

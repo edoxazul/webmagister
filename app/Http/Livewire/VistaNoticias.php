@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use WithFileUploads;
+use HasTrixRichText;
 
 class VistaNoticias extends Component
 {
