@@ -21,7 +21,7 @@
                                                     <div class="p-10">
                                                             <p class="text-sm text-gray-500 bg-white"> {{ $noticia->autor_noticia }} |  {{date("d/m/Y", strtotime($noticia->created_at))}}</p>
                                                             <h1 class="py-2 text-2xl font-bold text-blue-800">{{ $noticia->titular_noticia }}</h1>
-                                                            <p class="text-sm text-black bg-white">{{ Str::limit($noticia->cuerpo_noticia,200)}}</p>
+                                                            <p class="text-sm text-black bg-white">{!! Str::limit($noticia->cuerpo_noticia,200) !!}</p>
                                                             {{-- @livewire('vista-noticias', ['noticia' => $noticia], key($user->id)) --}}
                                                             <a href="{{ route('ver-noticia', ['id'=>$noticia->id])}}" target="_blank" class="inline-block px-3 px-6 py-2 mt-4 text-white bg-orange-500 rounded">Leer más</a>
                                                     </div>

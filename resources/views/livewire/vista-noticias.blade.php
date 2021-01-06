@@ -87,7 +87,7 @@
                 <div class="w-full px-5 mx-auto" style="text-align: justify;">
 
                     {{-- <p class="my-5"> {!!  nl2br(e($noticia->cuerpo_noticia)) !!} </p> --}}
-                    <div class="trix-content">{{ $noticia->cuerpo_noticia }}</div>
+                    <div class="trix-content">{!! $noticia->cuerpo_noticia !!}</div>
                 </div>
 
                 <div class="w-full mx-8 text-gray-600 text-normal">

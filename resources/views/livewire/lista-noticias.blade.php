@@ -148,7 +148,7 @@
                             {{-- <div class="text-sm text-gray-900">
                                 {{ Str::limit($noticia->cuerpo_noticia,200)}}
                             </div> --}}
-                            <div class="trix-content"> {{ Str::limit($noticia->cuerpo_noticia,200)}}</div>
+                            <div class="trix-content"> {!! Str::limit($noticia->cuerpo_noticia,200) !!}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
@@ -368,8 +368,8 @@
                                             <!-- top-most div don't attach livewire-->
                                             {{-- <div> --}}
                                                 <div class="mb-4" wire:model.debounce.365ms="cuerpo_noticia" wire:ignore wire:key="uniqueKey">
-                                                    <input id="cuerpo_noticia" value="El contenido de su noticia aquí" type="hidden" name="cuerpo_noticia">
-                                                    <trix-editor input="cuerpo_noticia"></trix-editor>
+                                                    <input id="cuerpo_noticia" type="hidden" name="cuerpo_noticia">
+                                                    <trix-editor input="cuerpo_noticia" placeholder= "Escriba aquí su noticia"></trix-editor>
                                                     @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
 
                                                     <script>
