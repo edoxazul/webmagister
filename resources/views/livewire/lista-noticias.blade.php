@@ -148,7 +148,9 @@
                             {{-- <div class="text-sm text-gray-900">
                                 {{ Str::limit($noticia->cuerpo_noticia,200)}}
                             </div> --}}
+                            <center>
                             <div class="trix-content"> {!! Str::limit($noticia->cuerpo_noticia,200) !!}</div>
+                            <center>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
@@ -426,3 +428,31 @@
 </div>
 
 </div>
+
+<script>
+    function uploadTrixImage(attachment){
+        @this.upload(
+            'newFiles',
+            attachment.file,
+
+            function(uploadedUrl){
+                // console.log(uploadedUrl);
+                const eventName = 'myapp:trix-upload-completed:${btoa(uploadedUrl)}';
+                const listener = function (event){
+                    attachment.setAttributes(event.detail);
+                    window.removeEventListener(eventName, listener);
+                };
+
+                window.addEventListener(eventName, listener);
+
+                @this.call('completeUpload',uploadedUrl, eventName);
+            }
+        );
+
+        function () {}
+
+        function (event) {
+            attachment.setUploadProgress(event.detail.progress);
+        }
+    }
+</script>

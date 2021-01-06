@@ -34,6 +34,9 @@ class ListaNoticias extends Component
     public $estado_noticia;
     public $noticia_photo_path;
     public $fotos_noticia=null;
+
+    public $newFiles=[];
+
     public function render()
     {
         return view('livewire.lista-noticias',[
@@ -231,5 +234,21 @@ class ListaNoticias extends Component
         $tesis->save();
         $this->reset();
         $this->modalConfirmDeleteVisible = false;
+    }
+
+    public function completeUpload(string $uploadedUrl,string $eventName){
+        foreach($this->newFiles as $file){
+            if ($file->getFilename() == $uploadedUrl){
+                $newFileName = $file->store('/','post-attachments');
+                $url = Storage::disk('post-attachments')->url($newFileName);
+
+                $this->dispatchBrowserEvent($eventName, [
+                    'url'=> $url,
+                    'href'=> $url,
+                    ]);
+
+                return;
+            }
+        }
     }
 }
