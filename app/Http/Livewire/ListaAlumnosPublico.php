@@ -16,7 +16,7 @@ class ListaAlumnosPublico extends Component
     public $modelId;
     public $page='1';
     public $nombre_alumno,$rut_alumno,$pasaporte,$carrera_alumno,$contacto_alumno,$estado_alumno,$razon_eliminacion,$anio_ingreso,$anio_graduacion,$trabajo_anteproyecto,$linkedin;
-
+    public $profile_photo_path;
     // public function render()
     // {
     //     return view('livewire.lista-alumnos-publico',[
@@ -64,7 +64,7 @@ class ListaAlumnosPublico extends Component
             'anio_graduacion'=>$this->anio_graduacion,
             'trabajo_anteproyecto' =>$this->trabajo_anteproyecto,
             'linkedin'=>$this->linkedin,
-            'profile_photo_path'=>$profile_photo_path,
+            'profile_photo_path'=>$this->profile_photo_path,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
         ];
@@ -87,6 +87,6 @@ class ListaAlumnosPublico extends Component
         $this->profile_photo_path = $data->profile_photo_path;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
-
     }
+
 }

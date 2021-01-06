@@ -123,6 +123,7 @@ class EstructuraCurricular extends Component
             [
                 'nombre_curso' => 'required|unique:cursos',
                 'descripcion_curso' => 'required',
+                'enlace_curso'=>'mimes:pdf',
             ]
         );
         $this->unassignDefaultHomePage();
@@ -136,6 +137,7 @@ class EstructuraCurricular extends Component
     {
         $this->validate(
             [
+                'malla'=>'image',
                 'profundizacion' => 'required',
             ]
         );

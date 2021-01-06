@@ -14,6 +14,7 @@ use App\Http\Livewire\ListaTesisPublico;
 use App\Http\Livewire\VistaNoticias;
 use App\Http\Livewire\SubirArchivos;
 use App\Http\Livewire\EstructuraCurricular;
+use App\Http\Livewire\EstructuraCurricularPublico;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 
 
@@ -41,6 +42,7 @@ Route::get('/academic',ListaAcademicosPublico::class )->name('listaacademicospub
 Route::get('/alumn',ListaAlumnosPublico::class )->name('listaalumnospublico');
 Route::get('/noticia',ListaNoticiasPublico::class )->name('listanoticiaspublico');
 Route::get('/anteproyecto',ListaTesisPublico::class )->name('listatesispublico');
+Route::get('/estructura',EstructuraCurricularPublico::class )->name('curricularpublico');
 //Vista específica de una noticia
 Route::get('/ver-noticia/{id}', [VistaNoticias::class,'ver'])->name('ver-noticia');
 // Route::get('/ver-noticia/{id}',function() {

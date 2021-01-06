@@ -50,6 +50,8 @@
                             General</a>
                         <a href="{{ route('listanoticiaspublico') }}"
                             class="px-3 py-2 text-sm font-medium text-white rounded-md hover:text-white hover:bg-gray-700">Noticias</a>
+                        <a href="{{ route('curricularpublico') }}"
+                            class="px-3 py-2 text-sm font-medium text-white rounded-md hover:text-white hover:bg-gray-700">Estructura Curricular</a>
                         <a href="{{ route('listaacademicospublico') }}"
                             class="px-3 py-2 text-sm font-medium text-white rounded-md hover:text-white hover:bg-gray-700">Cuerpo
                             Academico</a>
