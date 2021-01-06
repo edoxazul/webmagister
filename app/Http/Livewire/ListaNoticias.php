@@ -9,7 +9,6 @@ use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
 
-
 class ListaNoticias extends Component
 {
     use WithFileUploads;
@@ -35,6 +34,7 @@ class ListaNoticias extends Component
     public $noticia_photo_path;
     public $fotos_noticia=null;
 
+    /** @var array \Livewire\TemporaryUploadedFile[] */
     public $newFiles=[];
 
     public function render()
