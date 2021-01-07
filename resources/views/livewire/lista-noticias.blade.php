@@ -430,6 +430,7 @@
 
 </div>
 
+{{-- Scripts para utilizar archivos adjuntos en el editor Trix --}}
 <script>
     function uploadTrixImage(attachment){
         @this.upload(
@@ -437,7 +438,6 @@
             attachment.file,
 
             function(uploadedUrl){
-                // console.log(uploadedUrl);
                 const eventName = 'myapp:trix-upload-completed:${btoa(uploadedUrl)}';
                 const listener = function (event){
                     attachment.setAttributes(event.detail);
@@ -449,8 +449,6 @@
                 @this.call('completeUpload',uploadedUrl, eventName);
             }
         );
-
-        function () {}
 
         function (event) {
             attachment.setUploadProgress(event.detail.progress);
