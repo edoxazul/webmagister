@@ -9,7 +9,6 @@ use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
 class Noticias extends Model
 {
     use HasFactory;
-    use HasTrixRichText;
 
     protected $guarded = [];
 

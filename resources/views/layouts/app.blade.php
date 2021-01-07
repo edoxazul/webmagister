@@ -25,12 +25,9 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
-    <script src="https://unpkg.com/moment"></script>
-    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-    <script src="https://unpkg.com/trix@1.2.3/dist/trix.js"></script>
     {{-- <script src="{{ asset('js/app.js') }} defer"></script>
     --}}
-    @trixassets
+
 
 
 </head>
@@ -55,6 +52,9 @@
     @stack('modals')
 
     @livewireScripts
+    <script src="https://unpkg.com/moment"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <script src="https://unpkg.com/trix@1.2.3/dist/trix.js"></script>
 
 </body>
 

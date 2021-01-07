@@ -26,7 +26,6 @@ class ListaNoticias extends Component
     public $sortField="titular_noticia";
     public $sortDirection = 'asc';
     public $isSetToDefaultNotFoundPage;
-    use HasTrixRichText;
 
     public $titular_noticia,$cuerpo_noticia,$caption_foto_noticia,$user_id;
     public $autor_noticia='Anónimo';
