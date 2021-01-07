@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 use App\Models\Noticias;
 use Livewire\Component;
-use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
@@ -203,8 +202,6 @@ class ListaNoticias extends Component
         'noticia_photo_path.required' => 'El campo foto portada es obligatorio',
         'caption_foto_noticia.required' => 'El campo descripción foto es obligatorio',
         'estado_noticia.required' => 'El campo estado noticia es obligatorio',
-        // 'enlace_archivo.mimes' => 'Formato de archivo inválido.',
-        // 'enlace_archivo.mimes:pdf,txt,xlsx,xls,pptx,ppt,doc,docx,zip' => 'Formato de archivo inválido.',
     ];
 
     private function unassignDefaultHomePage()

@@ -1,3 +1,12 @@
+<link rel="stylesheet" type="text/css" href="trix.css">
+<link rel="stylesheet" href="/css/main.css?1607134092767489000">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.css" integrity="sha512-CWdvnJD7uGtuypLLe5rLU3eUAkbzBR3Bm1SFPEaRfvXXI2v2H5Y0057EMTzNuGGRIznt8+128QIDQ8RqmHbAdg==" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.js" integrity="sha512-/1nVu72YEESEbcmhE/EvjH/RxTg62EKvYWLG3NdeZibTCuEtW5M4z3aypcvsoZw03FAopi94y04GhuqRU9p+CQ==" crossorigin="anonymous"></script>
+<script src="/js/attachments.js?1607134092767489000"></script>
+<script type="text/javascript" src="trix.js"></script>
+<script>
+  Trix.config.attachments.preview.caption = { name: false, size: false }
+</script>
 <div>
     <div class="flex w-full px-2 mx-auto bg-gray-300 rounded-md max-w-7xl sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-center w-full h-16">
