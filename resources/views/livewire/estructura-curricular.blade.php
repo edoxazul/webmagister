@@ -57,12 +57,25 @@
                             <span class="hidden sm:block">
                                 {{-- Editar --}}
                                 <button
-                                wire:click="updateCurricularShowModal({{ $curricular->id }})"
+                                wire:click="updateProfundizacionShowModal({{ $curricular->id }})"
                                 type="button"
                                 class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     <!-- Heroicon name: pencil -->
                                     <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                    </svg>
+                                </button>
+                            </span>
+                            <span class="hidden sm:block">
+                                {{-- Editar --}}
+                                <button
+                                wire:click="updateMallaShowModal({{ $curricular->id }})"
+                                type="button"
+                                class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <!-- Heroicon name: pencil -->
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
+                                        </path>
                                     </svg>
                                 </button>
                             </span>
@@ -192,7 +205,7 @@
                             <span class="hidden sm:block">
                                 {{-- Editar --}}
                                 <button
-                                wire:click="updateCursoShowModal({{ $curso->id }})"
+                                wire:click="updateInfoCursoShowModal({{ $curso->id }})"
                                 type="button"
                                 class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     <!-- Heroicon name: pencil -->
@@ -200,6 +213,20 @@
                                         <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                                     </svg>
                                 </button>
+
+                            </span>
+                            <span class="hidden sm:block">
+                                {{-- Editar --}}
+                                <button
+                                wire:click="updateEnlaceShowModal({{ $curso->id }})"
+                                type="button"
+                                class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <!-- Heroicon name: pencil -->
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                </button>
+
                             </span>
                             {{-- Eliminar --}}
                             <span class="hidden sm:block">
@@ -235,11 +262,7 @@
                     <x-jet-dialog-modal wire:model="modalCurricularFormVisible">
                         <x-slot name="title">
                             <div class="mx-auto text-center rounded-md">
-                                @if ($modelId)
-                                    Actualizar Estructura Curricular
-                                @else
-                                    Agregar Estructura Curricular
-                                @endif
+                                Agregar Estructura Curricular
                             </div>
                         </x-slot>
                         <x-slot name="content">
@@ -274,35 +297,80 @@
                                 wire:loading.attr="disabled">
                                 {{ __('Cancelar') }}
                             </x-jet-secondary-button>
-
-                            @if ($modelId)
-                                <button type="submit"
-                                    class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
-                                    wire:click="updateCurricular" wire:loading.attr="disabled">
-                                    {{ __('Actualizar') }}
-                                </button>
-                            @else
-
-                                <button type="submit"
-                                    class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
-                                    wire:click="createCurricular" wire:loading.attr="disabled">
-                                    {{ __('Crear') }}
-                                </button>
-                            @endif
-
-
+                            <button type="submit"
+                                class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                wire:click="createCurricular" wire:loading.attr="disabled">
+                                {{ __('Crear') }}
+                            </button>
                         </x-slot>
                     </x-jet-dialog-modal>
 
 
+                    <x-jet-dialog-modal wire:model="modalMallaFormVisible">
+                        <x-slot name="title">
+                            <div class="mx-auto text-center rounded-md">
+                                Actualizar Malla
+                            </div>
+                        </x-slot>
+                        <x-slot name="content">
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="flex items-center mt-2">
+                                    <input type="file" accept="image/*" wire:model="malla" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    @error('malla') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+                        </x-slot>
+
+                        <x-slot name="footer">
+                            <x-jet-secondary-button wire:click="$toggle('modalMallaFormVisible')"
+                                wire:loading.attr="disabled">
+                                {{ __('Cancelar') }}
+                            </x-jet-secondary-button>
+                            <button type="submit"
+                                class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                wire:click="updateMalla" wire:loading.attr="disabled">
+                                {{ __('Actualizar') }}
+                            </button>
+                        </x-slot>
+                    </x-jet-dialog-modal>
+
+                    <x-jet-dialog-modal wire:model="modalProfundizacionFormVisible">
+                        <x-slot name="title">
+                            <div class="mx-auto text-center rounded-md">
+                                Actualizar Profundizacion
+                            </div>
+                        </x-slot>
+                        <x-slot name="content">
+                            <div class="mt-4">
+                                <label for="about" class="block text-sm font-medium text-gray-700">
+                                    Profundizacion
+                                </label>
+                                <label for="title" class="px-2 text-red-700">*</label>
+                                    <textarea id="profundizacion" name="profundizacion" rows="3"
+                                    class="block w-96 px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    wire:model="profundizacion"
+                                    placeholder="Profundizacion"></textarea>
+                                    @error('profundizacion') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                            </div>
+                        </x-slot>
+
+                        <x-slot name="footer">
+                            <x-jet-secondary-button wire:click="$toggle('modalProfundizacionFormVisible')"
+                                wire:loading.attr="disabled">
+                                {{ __('Cancelar') }}
+                            </x-jet-secondary-button>
+                            <button type="submit"
+                                class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                wire:click="updateProfundizacion" wire:loading.attr="disabled">
+                                {{ __('Actualizar') }}
+                            </button>
+                        </x-slot>
+                    </x-jet-dialog-modal>
+
                     <x-jet-dialog-modal wire:model="modalCursoFormVisible">
                         <x-slot name="title">
                             <div class="mx-auto text-center rounded-md">
-                                @if ($modelId)
-                                    Actualizar Curso
-                                @else
-                                    Agregar Curso
-                                @endif
+                                Agregar Curso
                             </div>
                         </x-slot>
                         <x-slot name="content">
@@ -354,23 +422,98 @@
                                 wire:loading.attr="disabled">
                                 {{ __('Cancelar') }}
                             </x-jet-secondary-button>
+                            <button type="submit"
+                                class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                wire:click="createCurso" wire:loading.attr="disabled">
+                                {{ __('Crear') }}
+                            </button>
+                        </x-slot>
+                    </x-jet-dialog-modal>
 
-                            @if ($modelId)
-                                <button type="submit"
+                    <x-jet-dialog-modal wire:model="modalInfoCursoFormVisible">
+                        <x-slot name="title">
+                            <div class="mx-auto text-center rounded-md">
+                                Actualizar Curso
+                            </div>
+                        </x-slot>
+                        <x-slot name="content">
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 mt-2 sm:col-span-3">
+                                    <div class="flex">
+                                        <x-jet-label for="nombre_curso" value="Nombre del Curso" />
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
+                                    <x-jet-input id="nombre_curso" class="block w-full mt-1" type="text"
+                                        placeholder="Nombre del Curso" wire:model.lazy="nombre_curso" />
+                                    @error('nombre_curso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
+                                </div>
+                                <div>
+                                    <div class="mt-4">
+                                        <label for="about" class="block text-sm font-medium text-gray-700">
+                                            Descripcion del Curso
+                                        </label>
+                                        <label for="title" class="px-2 text-red-700">*</label>
+
+                                            <textarea id="descripcion_curso" name="descripcion_curso" rows="3"
+                                            class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                            wire:model="descripcion_curso"
+                                            placeholder="Descripcion"></textarea>
+                                            @error('descripcion_curso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </x-slot>
+
+                        <x-slot name="footer">
+                            <x-jet-secondary-button wire:click="$toggle('modalInfoCursoFormVisible')"
+                                wire:loading.attr="disabled">
+                                {{ __('Cancelar') }}
+                            </x-jet-secondary-button>
+                            <button type="submit"
                                     class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
-                                    wire:click="updateCurso" wire:loading.attr="disabled">
+                                    wire:click="updateInfoCurso" wire:loading.attr="disabled">
                                     {{ __('Actualizar') }}
-                                </button>
-                            @else
+                            </button>
+                        </x-slot>
+                    </x-jet-dialog-modal>
 
-                                <button type="submit"
+                    <x-jet-dialog-modal wire:model="modalEnlaceFormVisible">
+                        <x-slot name="title">
+                            <div class="mx-auto text-center rounded-md">
+                                Actualizar Curso
+                            </div>
+                        </x-slot>
+                        <x-slot name="content">
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-4 mt-2 sm:col-span-3">
+                                    <div
+                                        x-data="{ isUploading: false, progress: 0 }"
+                                        x-on:livewire-upload-start="isUploading = true"
+                                        x-on:livewire-upload-finish="isUploading = false"
+                                        x-on:livewire-upload-error="isUploading = false"
+                                        x-on:livewire-upload-progress="progress = $event.detail.progress">
+                                    <x-jet-label for="enlace_curso" value="Subir archivo" />
+                                    <x-jet-input id="enlace_curso" class="block w-full mt-1" type="file" accept=".pdf"
+                                            wire:model="enlace_curso" />
+                                            <div x-show="isUploading">
+                                                <progress max="100" x-bind:value="progress" ></progress>
+                                            </div>
+                                    @error('enlace_curso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </x-slot>
+
+                        <x-slot name="footer">
+                            <x-jet-secondary-button wire:click="$toggle('modalEnlaceFormVisible')"
+                                wire:loading.attr="disabled">
+                                {{ __('Cancelar') }}
+                            </x-jet-secondary-button>
+                            <button type="submit"
                                     class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
-                                    wire:click="createCurso" wire:loading.attr="disabled">
-                                    {{ __('Crear') }}
-                                </button>
-                            @endif
-
-
+                                    wire:click="updateEnlace" wire:loading.attr="disabled">
+                                    {{ __('Actualizar') }}
+                            </button>
                         </x-slot>
                     </x-jet-dialog-modal>
 
