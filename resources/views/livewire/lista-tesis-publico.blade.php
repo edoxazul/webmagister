@@ -6,7 +6,20 @@
             <h2 class="justify-center w-full text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
                 Anteproyectos
             </h2>
+            {{-- Busqueda  --}}
+            <input
+            wire:model='search'
+            class="w-full mt-1 rounded-md shadow-sm form-input"
+            type="text"
+            placeholder="Buscar...">
+
+            @if($search !== '')
+            <button wire:click="clear" class="block mt-1 ml-6 rounded-md shadow-sm form-input"> X </button>
+            @endif
         </div>
+
+
+
     </div>
 
     <div class="container px-4 mx-auto my-12 md:px-12">

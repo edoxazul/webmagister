@@ -12,6 +12,12 @@ use Livewire\Component;
 
 class ListaTesisPublico extends Component
 {
+    public $search= '';
+
+    protected $queryString = [
+        'search' => ['except' =>'']
+    ];
+
 
     public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
@@ -19,6 +25,8 @@ class ListaTesisPublico extends Component
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
     public $estatus= '';
+    public $sortField="titulo";
+    public $sortDirection = 'asc';
 
 
     public $titulo,$autor,$tutor,$anteproyecto_path,$resumentesis_path;
@@ -27,10 +35,22 @@ class ListaTesisPublico extends Component
     public function render()
     {
         return view('livewire.lista-tesis-publico',[
-            'tesis' => Tesis::where('estatus','LIKE',"%{$this->estatus}%")
+            'tesis' => Tesis::where('titulo','like','%' . trim($this->search) . '%')
+            ->orWhere('autor','LIKE',"%{$this->search}%")
+            ->orWhere('tutor','LIKE',"%{$this->search}%")
+            ->orWhere('estatus','LIKE',"%{$this->search}%")
+            ->orderBy($this->sortField,$this->sortDirection)
             ->paginate()
         ])
         ->layout('layouts.guest');
+    }
+
+    public function clear()
+    {
+        $this->search = '';
+        $this->page = '1';
+        $this->perPage = '10';
+
     }
 
 
