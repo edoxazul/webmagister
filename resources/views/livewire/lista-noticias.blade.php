@@ -372,7 +372,7 @@
                                                 <div class="mb-4" wire:model.debounce.365ms="cuerpo_noticia" wire:ignore wire:key="uniqueKey">
                                                     <input id="cuerpo_noticia" type="hidden" name="cuerpo_noticia">
                                                     {{-- <trix-editor input="cuerpo_noticia" placeholder= "Escriba aquí su noticia" trix-attachment-add="console.log($event.attachment)"></trix-editor> --}}
-                                                    <trix-editor input="cuerpo_noticia" placeholder= "Escriba aquí su noticia"></trix-editor>
+                                                    <trix-editor wire:model="cuerpo_noticia" input="cuerpo_noticia" placeholder= "Escriba aquí su noticia"></trix-editor>
                                                     @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
 
                                                     <script>
