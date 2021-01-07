@@ -299,9 +299,9 @@
                                         </div>
                                         <select id="estado_noticia" type="text" wire:model.lazy="estado_noticia"
                                             class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
-                                            <option class="font-black text-gray-700" value="">Elige una opción</option>
+                                            {{-- <option class="font-black text-gray-700" value="">Elige una opción</option> --}}
                                             <option class="text-gray-700" value="Visible">Visible</option>
-                                            <option class="text-gray-700" value="No Visible">No Visible</option>
+                                            <option class="text-gray-700" value="No visible">No Visible</option>
                                         </select>
                                         @error('estado_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                     </div>
@@ -348,7 +348,7 @@
                                     </div>
                                     @error('noticia_photo_path') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                     </div>
-                                 </div>
+                                </div>
 
                                 </div>
 
@@ -368,7 +368,7 @@
                                             {{-- Lo de abajo es el código del trix. Por ahora está documentado pero supuestamente funciona --}}
 
                                             <!-- top-most div don't attach livewire-->
-                                            {{-- <div> --}}
+                                            <div>
                                                 <div class="mb-4" wire:model.debounce.365ms="cuerpo_noticia" wire:ignore wire:key="uniqueKey">
                                                     <input id="cuerpo_noticia" type="hidden" name="cuerpo_noticia">
                                                     {{-- <trix-editor input="cuerpo_noticia" placeholder= "Escriba aquí su noticia" trix-attachment-add="console.log($event.attachment)"></trix-editor> --}}
@@ -384,9 +384,10 @@
                                                         })
                                                     </script>
                                                 </div>
-                                            {{-- </div> --}}
+                                            </div>
                                         {{-- @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror --}}
                                     </div>
+                                </div>
                                 </div>
 
 
@@ -426,9 +427,8 @@
 
     </div>
 </div>
-</div>
 
-</div>
+
 
 {{-- Scripts para utilizar archivos adjuntos en el editor Trix --}}
 <script>
