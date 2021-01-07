@@ -57,6 +57,7 @@
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     @foreach ($tesis as $anteproyecto)
+                                    @if ($anteproyecto->estatus != 'Rechazado')
 
 
                                     <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
@@ -105,6 +106,7 @@
                                         <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                         </td>
                                     </tr>
+                                    @endif
                                     @endforeach
                                     </tbody>
                                 </table>
