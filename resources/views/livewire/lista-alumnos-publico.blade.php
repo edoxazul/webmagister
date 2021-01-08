@@ -42,7 +42,10 @@
             <!-- Column -->
             @if ($alumnos->count())
 
+            @if($estado_alumno != 'Egresado' && $estado_alumno != 'Graduado')
+
             <h1 class="w-full">Alumnos Regulares</h1>
+            @endif
 
                 @foreach ($alumnos as $alumno)
 
@@ -90,7 +93,11 @@
                     @endif
                 @endforeach
 
+            @if($estado_alumno != 'Regular' && $estado_alumno != 'Graduado')
+
+
                 <h1 class="w-full">Alumnos Egresados</h1>
+            @endif
 
                 @foreach ($alumnos as $alumno)
 
@@ -138,8 +145,11 @@
                         <!-- END Column -->
                     @endif
                 @endforeach
+            @if($estado_alumno != 'Regular' && $estado_alumno != 'Egresado')
+
 
                 <h1 class="w-full">Alumnos Graduados</h1>
+            @endif
 
                 @foreach ($alumnos as $alumno)
 
@@ -255,7 +265,7 @@
                                 </div>
                             @endif
                             @if ($trabajo_anteproyecto)
-                            <div class="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border border-gray-200">
+                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">
                                     Ante-Proyecto
                                 </dt>
