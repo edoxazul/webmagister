@@ -16,12 +16,12 @@
                                 <img src="{{$curricular->malla}}" alt="">
                             </div>
                         </div>
-                        <div class="py-12 px-6 max-w-xl lg:max-w-5xl lg:w-1/2">
-                            <h2 class="text-3xl text-gray-800 font-bold">Build Your New <span class="text-indigo-600">Idea</span></h2>
+                        <div class="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
+                            <h2 class="text-3xl font-bold text-gray-800">Build Your New <span class="text-indigo-600">Idea</span></h2>
                             <p class="mt-4 text-gray-600">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem modi reprehenderit vitae exercitationem aliquid dolores ullam temporibus enim expedita aperiam mollitia iure consectetur dicta tenetur, porro consequuntur saepe accusantium consequatur.</p>
-                            <div class="mt-8">
-                                <a href="#" class="bg-gray-900 text-gray-100 px-5 py-3 font-semibold rounded">Start Now</a>
-                            </div>
+                            {{-- <div class="mt-8">
+                                <a href="#" class="px-5 py-3 font-semibold text-gray-100 bg-gray-900 rounded">Start Now</a>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,11 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">{{ $curricular->profundizacion }} </div>
+                                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                        Líneas de profundización
+                                                <div class="text-sm font-medium text-gray-900"> {!!  nl2br(e($curricular->profundizacion)) !!}
+                                                </th>
+                                                </div>
                                                 </div>
                                             </div>
                                             </td>
