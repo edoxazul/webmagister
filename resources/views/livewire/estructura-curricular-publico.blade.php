@@ -8,21 +8,16 @@
     </div>
     @if ($curriculars->count())
         @foreach ($curriculars as $curricular)
-            <div>
-                <div class="bg-gray-100 lg:py-12 lg:flex lg:justify-center">
-                    <div class="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg">
-                        <div class="lg:w-1/2">
-                            <div class="h-64 bg-cover lg:rounded-lg lg:h-full">
-                                <img src="{{$curricular->malla}}" alt="">
-                            </div>
-                        </div>
-                        <div class="py-12 px-6 max-w-xl lg:max-w-5xl lg:w-1/2">
-                            <h2 class="text-3xl text-gray-800 font-bold">Build Your New <span class="text-indigo-600">Idea</span></h2>
-                            <p class="mt-4 text-gray-600">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem modi reprehenderit vitae exercitationem aliquid dolores ullam temporibus enim expedita aperiam mollitia iure consectetur dicta tenetur, porro consequuntur saepe accusantium consequatur.</p>
-                            <div class="mt-8">
-                                <a href="#" class="bg-gray-900 text-gray-100 px-5 py-3 font-semibold rounded">Start Now</a>
-                            </div>
-                        </div>
+            <div class="m-auto px-0 py-8 max-w-xl">
+                <div class="bg-white shadow-2xl" >
+                    <div>
+                        <img src={{$curricular->malla}}>
+                    </div>
+                    <div class="px-4 py-2 mt-2 bg-white">
+                        <h2 class="font-bold text-2xl text-gray-800">Profundización</h2>
+                            <p class="sm:text-sm text-xs text-gray-700 px-2 mr-1 my-3">
+                                {{$curricular->profundizacion}}
+                            </p>
                     </div>
                 </div>
             </div>
@@ -30,43 +25,6 @@
     @else
         No existe Estructura Corricular
     @endif
-
-    <div class="container px-4 mx-auto my-12 md:px-12">
-        @if ($curriculars->count())
-            <div class="flex flex-col mt-6">
-                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                        <div class="overflow-hidden border-b border-gray-200 rounded-md shadow-md">
-                            <table class="min-w-full overflow-x-scroll divide-y divide-gray-200">
-                                @foreach ($curriculars as $curricular)
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        <img src="{{$curricular->malla}}" alt="">
-                                    </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                        <tr class="transition-all hover:bg-gray-100 hover:shadow-lg">
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">{{ $curricular->profundizacion }} </div>
-                                                </div>
-                                            </div>
-                                            </td>
-                                        </tr>
-                                </tbody>
-                                @endforeach
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @else
-            No existe Estructura Corricular
-        @endif
-    </div>
 
     <div class="container px-4 mx-auto my-12 md:px-12">
             @if ($cursos->count())
