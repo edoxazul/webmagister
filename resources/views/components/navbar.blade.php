@@ -42,7 +42,7 @@
                     --}}
                 </div>
                 <div class="hidden sm:block sm:ml-6">
-                    <div class="flex space-x-4">
+                    <div class="flex space-x-0">
                         <a href="/"
                             class="px-3 py-2 text-sm font-medium text-white rounded-md hover:text-white hover:bg-gray-700">Inicio</a>
                         <a href="{{ route('infomagisterpublico') }}"
@@ -68,7 +68,7 @@
 
                 @if (Route::has('login'))
                     @auth
-                    {{-- <div class="hidden px-1 bg-gray-900 sm:flex sm:-my-px sm:ml-10 "> --}}
+                    <div class="hidden px-1 bg-gray-900 sm:flex sm:-my-px sm:ml-10 ">
                         <a class="items-center justify-center px-4 py-2 ml-4 text-base font-medium text-white bg-gray-700 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-gray-900"
                             href="{{ url('/dashboard') }}">Dashboard</a>
 
@@ -78,6 +78,7 @@
                             Registrar Usuario
                         </a>
                         @endif
+                    </div>
                     @else
                     <div class="hidden space-x-4 bg-gray-900 sm:flex sm:-my-px sm:ml-10 ">
                         <a class="inline-flex items-center justify-center px-4 py-2 ml-4 text-base font-medium text-white bg-gray-700 border border-transparent rounded-md shadow-sm whitespace-nowrap hover:bg-gray-900"
