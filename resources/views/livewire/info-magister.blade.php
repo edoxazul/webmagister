@@ -222,8 +222,20 @@
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <div class="mt-2">
+                                        <div
+                                        x-data="{ isUploading: false, progress: 0 }"
+                                        x-on:livewire-upload-start="isUploading = true"
+                                        x-on:livewire-upload-finish="isUploading = false"
+                                        x-on:livewire-upload-error="isUploading = false"
+                                        x-on:livewire-upload-progress="progress = $event.detail.progress">
                                         <input type="file" wire:model="file" class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        @error('file') <span class="error">{{ $message }}</span> @enderror
+                                            <div x-show="isUploading">
+                                                <progress max="100" x-bind:value="progress" ></progress>
+                                            </div>
+                                            @error('file') <span class="error">{{ $message }}</span> @enderror
+                                        </div>
+                                        {{-- <input type="file" wire:model="file" class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        @error('file') <span class="error">{{ $message }}</span> @enderror --}}
                                     </div>
                                 </div>
 
@@ -237,8 +249,19 @@
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <div class="mt-2">
+                                        x-data="{ isUploading: false, progress: 0 }"
+                                        x-on:livewire-upload-start="isUploading = true"
+                                        x-on:livewire-upload-finish="isUploading = false"
+                                        x-on:livewire-upload-error="isUploading = false"
+                                        x-on:livewire-upload-progress="progress = $event.detail.progress">
                                         <input type="file" wire:model="file2" class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            <div x-show="isUploading">
+                                                <progress max="100" x-bind:value="progress" ></progress>
+                                            </div>
                                             @error('file2') <span class="error">{{ $message }}</span> @enderror
+                                        </div>
+                                        {{-- <input type="file" wire:model="file2" class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            @error('file2') <span class="error">{{ $message }}</span> @enderror --}}
                                     </div>
                                 </div>
 

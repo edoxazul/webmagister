@@ -8,15 +8,15 @@
     </div>
     @if ($curriculars->count())
         @foreach ($curriculars as $curricular)
-            <div class="m-auto px-0 py-8 max-w-xl">
+            <div class="max-w-xl px-0 py-8 m-auto">
                 <div class="bg-white shadow-2xl" >
                     <div>
                         <img src={{$curricular->malla}}>
                     </div>
                     <div class="px-4 py-2 mt-2 bg-white">
-                        <h2 class="font-bold text-2xl text-gray-800">Profundización</h2>
-                            <p class="sm:text-sm text-xs text-gray-700 px-2 mr-1 my-3">
-                                {{$curricular->profundizacion}}
+                        <h2 class="text-2xl font-bold text-gray-800">Líneas de Profundización</h2>
+                            <p class="px-2 my-3 mr-1 text-xs text-gray-700 sm:text-sm">
+                                {!!  nl2br(e($curricular->profundizacion)) !!}
                             </p>
                     </div>
                 </div>
