@@ -88,7 +88,7 @@
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
-                                                Descripción Noticia
+                                                Cuerpo Noticia
                                             </th>
                                             <th scope="col"
                                                 class="px-3 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
@@ -190,10 +190,11 @@
                                 </button>
                             </span>
 
-                            {{-- <span class="hidden sm:block"> --}}
-                                {{-- Editar Trix--}}
-                                {{-- <button
-                                wire:click="updateTrixEditor({{ $noticia->id }})"
+                            {{-- Editar Trix--}}
+
+                            <span class="hidden sm:block">
+                                <button
+                                wire:click="updateTrixEditorShowModal({{ $noticia->id }})"
                                 type="button"
                                 class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     <!-- Heroicon name: pencil -->
@@ -201,8 +202,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                     </svg>
                                 </button>
-
-                            </span> --}}
+                            </span>
 
                             {{-- Eliminar--}}
                             <span class="hidden sm:block">
@@ -433,24 +433,26 @@
 
                         {{-- Actualizar Noticia --}}
 
-                        {{-- <x-jet-dialog-modal wire:model="modalTrixEditorFormVisible">
-                            <x-slot name="title">
-                                <div class="mx-auto text-center rounded-md">
-                                    Actualizar Curso
-                                </div>
-                            </x-slot>
+                    <x-jet-dialog-modal wire:model="modalTrixEditorFormVisible">
+                        <div class="grid grid-cols-6 gap-3">
+                            <div class="col-span-6 mt-2 sm:col-span-3">
+                                <x-slot name="title">
+                                    <div class="mx-auto text-center rounded-md">
+                                        Actualizar Cuerpo Noticia
+                                    </div>
+                                </x-slot>
                             <x-slot name="content">
-                                <div class="grid grid-cols-6 gap-6">
+                                <div class="grid grid-cols-1 gap-1">
                                     <div class="mt-4">
                                         <div class="flex">
                                             <x-jet-label for="cuerpo_noticia" value="Cuerpo Noticia" />
                                             <label for="title" class="px-2 text-red-700">*</label>
                                         </div>
                                         <div class="mt-4">
-                                            {{-- Lo de abajo es el código del trix. Por ahora está documentado pero supuestamente funciona --}}
-                                                {{-- <div class="mb-4" wire:model.debounce.365ms="cuerpo_noticia" wire:ignore wire:key="uniqueKey">
-                                                    <input id="cuerpo_noticia" type="hidden" name="cuerpo_noticia" value=" {{ $noticia->cuerpo_noticia }} " >
-                                                    <trix-editor input="cuerpo_noticia" placeholder= "Escriba aquí su noticia" @trix-attachment-add="console.log($event.attachment)"></trix-editor>
+                                             {{-- Lo de abajo es el código del trix. Por ahora está documentado pero supuestamente funciona --}}
+                                                <div class="mb-4" wire:model.debounce.365ms="cuerpo_noticia" wire:ignore wire:key="uniqueKey">
+                                                    <input id="cuerpo_noticia" type="hidden" name="cuerpo_noticia"  >
+                                                    <trix-editor input="cuerpo_noticia" @trix-attachment-add="console.log($event.attachment)"> {!! $noticia->cuerpo_noticia!!}</trix-editor>
                                                     @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
 
                                                     <script>
@@ -465,9 +467,11 @@
                                     </div>
                                 </div>
                                 </div>
-                            </x-slot> --}}
+                            </x-slot>
+                            </div>
+                        </div>
 
-                            {{-- <x-slot name="footer">
+                            <x-slot name="footer">
                                 <x-jet-secondary-button wire:click="$toggle('modalTrixEditorFormVisible')"
                                     wire:loading.attr="disabled">
                                     {{ __('Cancelar') }}
@@ -478,7 +482,7 @@
                                         {{ __('Actualizar') }}
                                 </button>
                             </x-slot>
-                        </x-jet-dialog-modal> --}} --}}
+                        </x-jet-dialog-modal>
                         {{-- aquí termina --}}
                         <x-delete-noticia />
                     </div>

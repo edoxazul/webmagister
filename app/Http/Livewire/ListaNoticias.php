@@ -165,6 +165,43 @@ class ListaNoticias extends Component
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
 
+    public function modelDataTrixEditor(){
+        return [
+            'cuerpo_noticia'=>$this->cuerpo_noticia,
+        ];
+    }
+
+    public function loadModelTrixEditor()
+    {
+        $data_trix = Noticias::find($this->modelId);
+        $this->cuerpo_noticia = $data_trix->cuerpo_noticia;
+        $this->isSetToDefaultHomePage = !$data_trix->is_default_home ? null : true;
+        $this->isSetToDefaultNotFoundPage = !$data_trix->is_default_not_found ? null : true;
+    }
+
+    public function updateTrixEditor()
+    {
+        $this->validate(
+            [
+            'cuerpo_noticia'=>'required',
+            ]
+        );
+
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        Noticias::find($this->modelId)->update($this->modelDataTrixEditor());
+        $this->modalTrixEditorFormVisible = false;
+    }
+
+    public function updateTrixEditorShowModal($id)
+    {
+        $this->resetValidation();
+        $this->reset();
+        $this->modelId = $id;
+        $this->modalTrixEditorFormVisible = true;
+        $this->loadModelTrixEditor();
+    }
+
        /**
      * Runs everytime the isSetToDefaultHomePage
      * variable is updated.
@@ -251,23 +288,5 @@ class ListaNoticias extends Component
         }
     }
 
-    public function modelDataTrixEditor(){
-        return [
-            'cuerpo_noticia'=>$this->cuerpo_noticia,
-        ];
-    }
 
-    public function updateTrixEditor()
-    {
-        $this->validate(
-            [
-            'cuerpo_noticia'=>'required',
-            ]
-        );
-
-        $this->unassignDefaultHomePage();
-        $this->unassignDefaultNotFoundPage();
-        Noticias::find($this->modelId)->update($this->modelDataTrixEditor());
-        $this->modalTrixEditorFormVisible = false;
-    }
 }
