@@ -107,6 +107,7 @@ class InfoMag extends Component
     public function modelData()
     {
         //Subida de archivos
+        if(!empty($this->file && $this->file2)){
         $name = md5($this->file . microtime()).'.'.$this->file->extension();
         $name2 = md5($this->file2 . microtime()).'.'.$this->file2->extension();
         $reglamento_magister= $this->file->storeAs('files',$name,'public');
@@ -127,7 +128,74 @@ class InfoMag extends Component
             'reglamento_magister' => $reglamento_magister,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+
         ];
+        }elseif(!empty($this->file) && empty($this->file2)){
+        $name = md5($this->file . microtime()).'.'.$this->file->extension();
+        // $name2 = md5($this->file2 . microtime()).'.'.$this->file2->extension();
+        $reglamento_magister= $this->file->storeAs('files',$name,'public');
+        // $programa_magister= $this->file2->storeAs('files',$name2,'public');
+            return [
+                'proposito_magister' => $this->proposito_magister,
+                'objetivo_magister' => $this->objetivo_magister,
+                'descripcion_magister'=>$this->descripcion_magister,
+                'perfil_entrada_magister'=>$this->perfil_entrada_magister,
+                'regimen_magister'=>$this->regimen_magister,
+                'contacto_magister'=>$this->contacto_magister,
+                'costo_magister'=>$this->costo_magister,
+                'metodos_pagos_magister'=>$this->metodos_pagos_magister,
+                'beneficios_magister'=>$this->beneficios_magister,
+                'arancel_magister'=>$this->arancel_magister,
+                // 'programa_magister' => $programa_magister,
+                'reglamento_magister' => $reglamento_magister,
+                'is_default_home' => $this->isSetToDefaultHomePage,
+                'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+
+            ];
+        }elseif(empty($this->file) && !empty($this->file2)){
+        // $name = md5($this->file . microtime()).'.'.$this->file->extension();
+        $name2 = md5($this->file2 . microtime()).'.'.$this->file2->extension();
+        // $reglamento_magister= $this->file->storeAs('files',$name,'public');
+        $programa_magister= $this->file2->storeAs('files',$name2,'public');
+
+
+
+            return [
+                'proposito_magister' => $this->proposito_magister,
+                'objetivo_magister' => $this->objetivo_magister,
+                'descripcion_magister'=>$this->descripcion_magister,
+                'perfil_entrada_magister'=>$this->perfil_entrada_magister,
+                'regimen_magister'=>$this->regimen_magister,
+                'contacto_magister'=>$this->contacto_magister,
+                'costo_magister'=>$this->costo_magister,
+                'metodos_pagos_magister'=>$this->metodos_pagos_magister,
+                'beneficios_magister'=>$this->beneficios_magister,
+                'arancel_magister'=>$this->arancel_magister,
+                'programa_magister' => $programa_magister,
+                // 'reglamento_magister' => $reglamento_magister,
+                'is_default_home' => $this->isSetToDefaultHomePage,
+                'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+
+            ];
+        }else{
+            return [
+                'proposito_magister' => $this->proposito_magister,
+                'objetivo_magister' => $this->objetivo_magister,
+                'descripcion_magister'=>$this->descripcion_magister,
+                'perfil_entrada_magister'=>$this->perfil_entrada_magister,
+                'regimen_magister'=>$this->regimen_magister,
+                'contacto_magister'=>$this->contacto_magister,
+                'costo_magister'=>$this->costo_magister,
+                'metodos_pagos_magister'=>$this->metodos_pagos_magister,
+                'beneficios_magister'=>$this->beneficios_magister,
+                'arancel_magister'=>$this->arancel_magister,
+                // 'programa_magister' => $programa_magister,
+                // 'reglamento_magister' => $reglamento_magister,
+                'is_default_home' => $this->isSetToDefaultHomePage,
+                'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
+
+            ];
+        }
     }
 
     private function unassignDefaultNotFoundPage()
