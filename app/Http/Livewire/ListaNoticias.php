@@ -32,6 +32,9 @@ class ListaNoticias extends Component
     public $noticia_photo_path;
     public $fotos_noticia=null;
 
+    public $modalTrixEditorFormVisible = false;
+
+
     /** @var array \Livewire\TemporaryUploadedFile[] */
     public $newFiles=[];
 
@@ -246,5 +249,25 @@ class ListaNoticias extends Component
                 return;
             }
         }
+    }
+
+    public function modelDataTrixEditor(){
+        return [
+            'cuerpo_noticia'=>$this->cuerpo_noticia,
+        ];
+    }
+
+    public function updateTrixEditor()
+    {
+        $this->validate(
+            [
+            'cuerpo_noticia'=>'required',
+            ]
+        );
+
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        Noticias::find($this->modelId)->update($this->modelDataTrixEditor());
+        $this->modalTrixEditorFormVisible = false;
     }
 }

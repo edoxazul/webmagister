@@ -177,16 +177,6 @@
                         {{-- Visualizar --}}
 
                     <td class="flex px-2 text-sm font-medium text-right py-15 whitespace-nowrap">
-                    {{-- class="px-2 py-4 text-sm font-medium text-right whitespace-nowrap"> --}}
-                            {{-- <span class="hidden sm:block">
-                                <button wire:click="viewShowModal({{ $noticia->id }})" type="button"
-                                    class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    <!-- Heroicon name: pencil -->
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                                </button>
-                            </span> --}}
-
-                        {{-- <td class="px-2 py-4 text-sm font-medium text-right whitespace-nowrap"> --}}
                             <span class="hidden sm:block">
                                 {{-- Editar--}}
                                 <button wire:click="updateShowModal({{ $noticia->id }})" type="button"
@@ -199,15 +189,23 @@
                                     </svg>
                                 </button>
                             </span>
-                            {{-- <a href="#"
-                                class="text-indigo-600 hover:text-indigo-900">Editar</a>
-                            --}}
-                        {{-- </td> --}}
 
-                        {{-- <td class="px-2 py-4 text-sm font-medium text-right whitespace-nowrap"> --}}
+                            {{-- <span class="hidden sm:block"> --}}
+                                {{-- Editar Trix--}}
+                                {{-- <button
+                                wire:click="updateTrixEditor({{ $noticia->id }})"
+                                type="button"
+                                class="inline-flex items-center px-1 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <!-- Heroicon name: pencil -->
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                </button>
+
+                            </span> --}}
+
                             {{-- Eliminar--}}
                             <span class="hidden sm:block">
-
                                 <button wire:click="deleteShowModal({{ $noticia->id }})" wire:loading.attr="disabled"
                                     class="inline-flex items-center justify-center w-full px-1 py-1 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-1 sm:w-auto sm:text-sm">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -218,7 +216,24 @@
                                     </svg>
                                 </button>
                             </span>
-                        {{-- </td> --}}
+                        </td>
+                        <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
+                            {{-- Eliminar
+                            --}}
+                            {{-- <span class="hidden sm:block">
+
+                                <button wire:click="deleteShowModal({{ $academico->id }})"
+                                    wire:loading.attr="disabled"
+                                    class="inline-flex items-center justify-center w-full px-1 py-1 text-base font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                        </path>
+                                    </svg>
+                                </button> --}}
+                            {{-- </span> --}}
                         </td>
                     </tr>
 
@@ -386,13 +401,9 @@
                                                 </div>
                                             </div>
                                         {{-- @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror --}}
-                                    </div>
+                                     </div>
                                 </div>
                                 </div>
-
-
-
-
 
                             </x-slot>
 
@@ -419,6 +430,56 @@
 
                             </x-slot>
                         </x-jet-dialog-modal>
+
+                        {{-- Actualizar Noticia --}}
+
+                        {{-- <x-jet-dialog-modal wire:model="modalTrixEditorFormVisible">
+                            <x-slot name="title">
+                                <div class="mx-auto text-center rounded-md">
+                                    Actualizar Curso
+                                </div>
+                            </x-slot>
+                            <x-slot name="content">
+                                <div class="grid grid-cols-6 gap-6">
+                                    <div class="mt-4">
+                                        <div class="flex">
+                                            <x-jet-label for="cuerpo_noticia" value="Cuerpo Noticia" />
+                                            <label for="title" class="px-2 text-red-700">*</label>
+                                        </div>
+                                        <div class="mt-4">
+                                            {{-- Lo de abajo es el código del trix. Por ahora está documentado pero supuestamente funciona --}}
+                                                {{-- <div class="mb-4" wire:model.debounce.365ms="cuerpo_noticia" wire:ignore wire:key="uniqueKey">
+                                                    <input id="cuerpo_noticia" type="hidden" name="cuerpo_noticia" value=" {{ $noticia->cuerpo_noticia }} " >
+                                                    <trix-editor input="cuerpo_noticia" placeholder= "Escriba aquí su noticia" @trix-attachment-add="console.log($event.attachment)"></trix-editor>
+                                                    @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+
+                                                    <script>
+                                                        var cuerpo = document.getElementById("cuerpo_noticia")
+
+                                                        addEventListener("trix-change", function(event) {
+                                                            console.log(cuerpo.getAttribute('value'));
+                                                            @this.set('cuerpo_noticia', cuerpo.getAttribute('value'))
+                                                        })
+                                                    </script>
+                                                </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </x-slot> --}}
+
+                            {{-- <x-slot name="footer">
+                                <x-jet-secondary-button wire:click="$toggle('modalTrixEditorFormVisible')"
+                                    wire:loading.attr="disabled">
+                                    {{ __('Cancelar') }}
+                                </x-jet-secondary-button>
+                                <button type="submit"
+                                        class="inline-flex items-center px-4 py-2 ml-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-green-600 border border-transparent rounded-md hover:bg-green-400 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25'"
+                                        wire:click="updateTrixEditor" wire:loading.attr="disabled">
+                                        {{ __('Actualizar') }}
+                                </button>
+                            </x-slot>
+                        </x-jet-dialog-modal> --}} --}}
+                        {{-- aquí termina --}}
                         <x-delete-noticia />
                     </div>
                 </div>
