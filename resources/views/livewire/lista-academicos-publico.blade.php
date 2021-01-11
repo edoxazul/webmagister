@@ -43,7 +43,10 @@
             <!-- Column -->
             @if ($academicos->count())
 
-                <h1 class="w-full mb-10">Profesores Claustro</h1>
+            @if($estatus != 'Colaborador' && $estatus != 'Visitante')
+
+                <h1 class="w-full mb-10 ">Profesores Claustro</h1>
+            @endif
 
                 @foreach ($academicos as $academico)
 
@@ -56,7 +59,8 @@
 
                                 <a class="cursor-pointer" wire:click="showModal({{ $academico->id }})" wire:loading.attr="disabled">
                                     <img alt="Placeholder" class="block w-full h-44"
-                                        src="https://picsum.photos/600/500/?random">
+                                        {{-- src="https://picsum.photos/600/500/?random"> --}}
+                                        src="{{ $academico->profile_photo_path }}">
                                 </a>
 
                                 <header
@@ -114,7 +118,11 @@
                     @endif
                 @endforeach
 
+            @if($estatus != 'Claustro' && $estatus != 'Visitante')
+
+
                 <h1 class="w-full my-10">Profesores Colaboradores</h1>
+            @endif
 
                 @foreach ($academicos as $academico)
 
@@ -180,7 +188,13 @@
                     @endif
                 @endforeach
 
+            @if($estatus != 'Claustro' && $estatus != 'Colaborador')
+
+
                 <h1 class="w-full my-10">Profesores Visitantes</h1>
+
+
+            @endif
 
                 @foreach ($academicos as $academico)
 
@@ -193,7 +207,8 @@
                                 <a class="cursor-pointer" wire:click="showModal({{ $academico->id }})" wire:loading.attr="disabled">
 
                                     <img alt="Placeholder" class="block w-full h-44"
-                                        src="https://picsum.photos/600/500/?random">
+                                        {{-- src="https://picsum.photos/600/500/?random"> --}}
+                                        src="{{ $academico->profile_photo_path }}">
                                 </a>
 
                                 <header class="flex items-center justify-between p-2 leading-tight md:p-4">
@@ -241,6 +256,7 @@
                     @endif
                 @endforeach
             @endif
+        </div>
 
 
 
@@ -352,8 +368,9 @@
                     </x-jet-secondary-button>
                 </x-slot>
             </x-jet-dialog-modal>
-        </div>
     </div>
-
-
 </div>
+
+
+
+

@@ -17,10 +17,10 @@
                     <thead>
                         <tr>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                            Malla
+                            Malla Curricular
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                            Profundizacion
+                            Líneas de Profundizacion
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                             Opciones
@@ -50,7 +50,8 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
-                                {{$curricular->profundizacion}}
+                                {{-- {{$curricular->profundizacion}} --}}
+                                {!!  nl2br(e($curricular->profundizacion)) !!}
                             </div>
                         </td>
                         <td class="flex px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
@@ -159,7 +160,7 @@
                             Descripción Curso
                         </th>
                         <th scope="col" class="px-3 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
-                            Descargar Archivo
+                            Descargar Programa de Curso
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                             Opciones
@@ -270,18 +271,20 @@
                                 <label class="block text-sm font-medium text-gray-700">
                                     Malla Curricular
                                 </label>
+
                                 <div class="flex items-center mt-2">
                                     <input type="file" accept="image/*" wire:model="malla" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     @error('malla') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                 </div>
                             </div>
                             <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 sm:col-span-6">
                                 <div>
                                     <div class="mt-4">
                                         <label for="about" class="block text-sm font-medium text-gray-700">
-                                            Profundizacion
+                                            Líneas de Profundizacion
                                         </label>
-                                        <label for="title" class="px-2 text-red-700">*</label>
+                                        <label for="title" class="px-6 py-6 text-red-700">*</label>
                                             <textarea id="profundizacion" name="profundizacion" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="profundizacion"
@@ -289,6 +292,7 @@
                                             @error('profundizacion') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
+                            </div>
                             </div>
                         </x-slot>
 
@@ -309,17 +313,36 @@
                     <x-jet-dialog-modal wire:model="modalMallaFormVisible">
                         <x-slot name="title">
                             <div class="mx-auto text-center rounded-md">
-                                Actualizar Malla
+                                Actualizar Malla Curricular
                             </div>
                         </x-slot>
                         <x-slot name="content">
                             <div class="grid grid-cols-6 gap-6">
-                                <div class="flex items-center mt-2">
+                                {{-- <div class="flex items-center mt-2">
                                     <input type="file" accept="image/*" wire:model="malla" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                     @error('malla') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                 </div>
+                            </div> --}}
+
+                            <div
+                            x-data="{ isUploading: false, progress: 0 }"
+                            x-on:livewire-upload-start="isUploading = true"
+                            x-on:livewire-upload-finish="isUploading = false"
+                            x-on:livewire-upload-error="isUploading = false"
+                            x-on:livewire-upload-progress="progress = $event.detail.progress">
+                            <input type="file" accept="image/*" wire:model="malla" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                <div x-show="isUploading">
+                                    <progress max="100" x-bind:value="progress" ></progress>
+                                </div>
+                                @error('malla') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                             </div>
+
+                        </div>
+
+
                         </x-slot>
+
+
 
                         <x-slot name="footer">
                             <x-jet-secondary-button wire:click="$toggle('modalMallaFormVisible')"
@@ -337,22 +360,24 @@
                     <x-jet-dialog-modal wire:model="modalProfundizacionFormVisible">
                         <x-slot name="title">
                             <div class="mx-auto text-center rounded-md">
-                                Actualizar Profundizacion
+                                Actualizar Línea de Profundizacion
                             </div>
                         </x-slot>
+                        <div class="col-span-6 sm:col-span-6">
                         <x-slot name="content">
                             <div class="mt-4">
                                 <label for="about" class="block text-sm font-medium text-gray-700">
-                                    Profundizacion
+                                    Líneas de Profundizacion
                                 </label>
                                 <label for="title" class="px-2 text-red-700">*</label>
                                     <textarea id="profundizacion" name="profundizacion" rows="3"
-                                    class="block w-96 px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    class="block px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm w-96 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     wire:model="profundizacion"
                                     placeholder="Profundizacion"></textarea>
                                     @error('profundizacion') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                             </div>
                         </x-slot>
+                        </div>
 
                         <x-slot name="footer">
                             <x-jet-secondary-button wire:click="$toggle('modalProfundizacionFormVisible')"
@@ -374,7 +399,7 @@
                             </div>
                         </x-slot>
                         <x-slot name="content">
-                            <div class="grid grid-cols-6 gap-6">
+                            <div class="grid grid-cols-3 gap-3">
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
                                         <x-jet-label for="nombre_curso" value="Nombre del Curso" />
@@ -384,7 +409,7 @@
                                         placeholder="Nombre del Curso" wire:model.lazy="nombre_curso" />
                                     @error('nombre_curso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                 </div>
-                                <div>
+                                <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="mt-4">
                                         <label for="about" class="block text-sm font-medium text-gray-700">
                                             Descripcion del Curso
@@ -405,7 +430,7 @@
                                         x-on:livewire-upload-finish="isUploading = false"
                                         x-on:livewire-upload-error="isUploading = false"
                                         x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                    <x-jet-label for="enlace_curso" value="Subir archivo" />
+                                    <x-jet-label for="enlace_curso" value="Subir programa del curso" />
                                     <x-jet-input id="enlace_curso" class="block w-full mt-1" type="file" accept=".pdf"
                                             wire:model="enlace_curso" />
                                             <div x-show="isUploading">
@@ -437,7 +462,7 @@
                             </div>
                         </x-slot>
                         <x-slot name="content">
-                            <div class="grid grid-cols-6 gap-6">
+                            <div class="grid grid-cols-3 gap-3">
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
                                         <x-jet-label for="nombre_curso" value="Nombre del Curso" />
@@ -447,7 +472,7 @@
                                         placeholder="Nombre del Curso" wire:model.lazy="nombre_curso" />
                                     @error('nombre_curso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                 </div>
-                                <div>
+                                <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="mt-4">
                                         <label for="about" class="block text-sm font-medium text-gray-700">
                                             Descripcion del Curso
@@ -492,7 +517,7 @@
                                         x-on:livewire-upload-finish="isUploading = false"
                                         x-on:livewire-upload-error="isUploading = false"
                                         x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                    <x-jet-label for="enlace_curso" value="Subir archivo" />
+                                    <x-jet-label for="enlace_curso" value="Subir programa del curso" />
                                     <x-jet-input id="enlace_curso" class="block w-full mt-1" type="file" accept=".pdf"
                                             wire:model="enlace_curso" />
                                             <div x-show="isUploading">
