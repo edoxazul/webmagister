@@ -249,6 +249,7 @@
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <div class="mt-2">
+                                        <div
                                         x-data="{ isUploading: false, progress: 0 }"
                                         x-on:livewire-upload-start="isUploading = true"
                                         x-on:livewire-upload-finish="isUploading = false"
