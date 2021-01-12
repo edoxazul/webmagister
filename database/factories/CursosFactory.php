@@ -26,7 +26,9 @@ class CursosFactory extends Factory
         return [
             'nombre_curso'=>$nombre,
             'descripcion_curso'=>$this->faker->sentence(),
+            'caracter'=>$this->faker->randomElement(['Obligatorio','Electivo']),
             'enlace_curso'=>$this->faker->url(),
+            'archivo_curso'=>$nombre,
         ];
     }
 }

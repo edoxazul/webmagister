@@ -17,7 +17,9 @@ class CreateCursosTable extends Migration
             $table->id();
             $table->string('nombre_curso')->unique();
             $table->text('descripcion_curso');
+            $table->string('caracter');
             $table->string('enlace_curso');
+            $table->string('archivo_curso');
             $table->timestamps();
         });
     }

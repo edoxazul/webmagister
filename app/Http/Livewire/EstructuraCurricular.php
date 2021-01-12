@@ -35,7 +35,7 @@ class EstructuraCurricular extends Component
     public $sortDirection = 'asc';
 
     public $malla,$profundizacion,$nombre_curso,$descripcion_curso,$enlace_curso;
-    //public $archivo_curso;
+    public $archivo_curso;
     public $photo=null;
     public $files_admin=null;
 
@@ -80,6 +80,7 @@ class EstructuraCurricular extends Component
         'nombre_curso.required' => 'El campo nombre curso es obligatorio',
         'nombre_curso.unique' => 'el curso ya existe',
         'descripcion_curso.required'=>'El campo descripcion curso es obligatorio',
+        'caracter.required'=>'El campo caracter es obligatorio',
         'enlace_curso.required' => 'El campo enlace curso es obligatorio',
         //'archivo_curso.required' => 'El campo archivo curso es obligatorio',
     ];
@@ -88,11 +89,13 @@ class EstructuraCurricular extends Component
         $name = md5($this->enlace_curso . microtime()).'.'.$this->enlace_curso->extension();
         $enlace_curso = $this->enlace_curso->storeAs('cursos',$name,'public');
         $enlace_curso = 'storage/'.$enlace_curso;
+
+        $archivo_curso=$this->enlace_curso->getClientOriginalName();
         return [
             'nombre_curso'=>$this->nombre_curso,
             'descripcion_curso'=>$this->descripcion_curso,
             'enlace_curso'=>$enlace_curso,
-            //'archivo_curso'=>$enlace_curso,
+            'archivo_curso'=>$archivo_curso,
         ];
     }
 
@@ -145,6 +148,7 @@ class EstructuraCurricular extends Component
             [
                 'nombre_curso' => 'required|unique:cursos',
                 'descripcion_curso' => 'required',
+                'caracter'=>'required',
                 'enlace_curso'=>'required|mimes:pdf',
             ]
         );
@@ -190,6 +194,7 @@ class EstructuraCurricular extends Component
             [
             'nombre_curso' => 'required|unique:cursos,nombre_curso,'.$this->modelId.'',
             'descripcion_curso' => 'required',
+            'caracter'=>'required',
             'enlace_curso'=>'required|mimes:pdf',
             ]
         );
@@ -206,6 +211,7 @@ class EstructuraCurricular extends Component
             [
             'nombre_curso' => 'required|unique:cursos,nombre_curso,'.$this->modelId.'',
             'descripcion_curso' => 'required',
+            'caracter'=>'required',
             ]
         );
 

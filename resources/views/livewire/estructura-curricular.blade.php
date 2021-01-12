@@ -195,7 +195,7 @@
                         </td>
                         <td class="px-20 py-4 font-medium text-center whitespace-nowrap">
                             <div class="text-gray-900 text-sm-center">
-                                <a href=" {{ $curso->enlace_curso }}" download="{{ $curso->enlace_curso}}" >
+                                <a href=" {{ $curso->enlace_curso }}" download="{{ $curso->archivo_curso}}" >
                                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                     </svg>
@@ -422,13 +422,24 @@
                                         </label> --}}
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
-
                                             <textarea id="descripcion_curso" name="descripcion_curso" rows="3"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="descripcion_curso"
                                             placeholder="Descripcion"></textarea>
                                             @error('descripcion_curso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
-
+                                </div>
+                                <div class="col-span-6 mt-2 sm:col-span-3">
+                                    <div class="flex">
+                                        <x-jet-label for="caracter" value="Caracter del Curso" />
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
+                                    <select id="caracter" type="text" wire:model="caracter"
+                                        class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
+                                        <option class="font-black text-gray-700" value="">Elige una opción</option>
+                                        <option class="text-gray-700" value="Obligatorio">Obligatorio</option>
+                                        <option class="text-gray-700" value="Electivo">Electivo</option>
+                                    </select>
+                                    @error('caracter') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="col-span-4 mt-2 sm:col-span-3">
                                     <div
@@ -494,6 +505,19 @@
                                             placeholder="Descripcion"></textarea>
                                             @error('descripcion_curso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                     </div>
+                                </div>
+                                <div class="col-span-6 mt-2 sm:col-span-3">
+                                    <div class="flex">
+                                        <x-jet-label for="caracter" value="Caracter del Curso" />
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
+                                    <select id="caracter" type="text" wire:model="caracter"
+                                        class="block w-full px-3 py-2 text-gray-700 border rounded-md shadow-sm outline-none">
+                                        <option class="font-black text-gray-700" value="">Elige una opción</option>
+                                        <option class="text-gray-700" value="Obligatorio">Obligatorio</option>
+                                        <option class="text-gray-700" value="Electivo">Electivo</option>
+                                    </select>
+                                    @error('caracter') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                 </div>
                         </x-slot>
 
