@@ -277,14 +277,16 @@
                                     @error('malla') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                 </div>
                             </div>
-                            <div class="grid grid-cols-6 gap-6">
-                                <div class="col-span-6 sm:col-span-6">
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="col-span-2 sm:col-span-6">
                                 <div>
-                                    <div class="mt-4">
-                                        <label for="about" class="block text-sm font-medium text-gray-700">
-                                            Líneas de Profundizacion
-                                        </label>
-                                        <label for="title" class="px-6 py-6 text-red-700">*</label>
+                                    <div class="flex">
+                                        <x-jet-label for="about" value="Lineas de Profundización" />
+                                        {{-- <label for="about" class="block text-sm font-medium text-gray-700">
+                                            Descripcion del Curso
+                                        </label> --}}
+                                        <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
                                             <textarea id="profundizacion" name="profundizacion" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="profundizacion"
@@ -363,15 +365,18 @@
                                 Actualizar Línea de Profundizacion
                             </div>
                         </x-slot>
-                        <div class="col-span-6 sm:col-span-6">
                         <x-slot name="content">
-                            <div class="mt-4">
-                                <label for="about" class="block text-sm font-medium text-gray-700">
-                                    Líneas de Profundizacion
-                                </label>
+                        <div class="col-span-6 sm:col-span-6">
+
+                            <div class="flex">
+                                <x-jet-label for="about" value="Descripción del Curso" />
+                                {{-- <label for="about" class="block text-sm font-medium text-gray-700">
+                                    Descripcion del Curso
+                                </label> --}}
                                 <label for="title" class="px-2 text-red-700">*</label>
+                            </div>
                                     <textarea id="profundizacion" name="profundizacion" rows="3"
-                                    class="block px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm w-96 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     wire:model="profundizacion"
                                     placeholder="Profundizacion"></textarea>
                                     @error('profundizacion') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
@@ -399,7 +404,7 @@
                             </div>
                         </x-slot>
                         <x-slot name="content">
-                            <div class="grid grid-cols-3 gap-3">
+                            <div class="grid grid-cols-2 gap-2">
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
                                         <x-jet-label for="nombre_curso" value="Nombre del Curso" />
@@ -409,20 +414,22 @@
                                         placeholder="Nombre del Curso" wire:model.lazy="nombre_curso" />
                                     @error('nombre_curso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                 </div>
-                                <div class="col-span-6 mt-2 sm:col-span-3">
-                                    <div class="mt-4">
-                                        <label for="about" class="block text-sm font-medium text-gray-700">
+                                <div class="col-span-4 mt-2 sm:col-span-3">
+                                    <div class="flex">
+                                        <x-jet-label for="about" value="Descripción del Curso" />
+                                        {{-- <label for="about" class="block text-sm font-medium text-gray-700">
                                             Descripcion del Curso
-                                        </label>
+                                        </label> --}}
                                         <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
 
                                             <textarea id="descripcion_curso" name="descripcion_curso" rows="3"
-                                            class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             wire:model="descripcion_curso"
                                             placeholder="Descripcion"></textarea>
                                             @error('descripcion_curso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
-                                        </div>
-                                    </div>
+
+                                </div>
                                 <div class="col-span-4 mt-2 sm:col-span-3">
                                     <div
                                         x-data="{ isUploading: false, progress: 0 }"
@@ -473,11 +480,13 @@
                                     @error('nombre_curso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3">
-                                    <div class="mt-4">
-                                        <label for="about" class="block text-sm font-medium text-gray-700">
+                                    <div class="flex">
+                                        <x-jet-label for="about" value="Descripción del Curso" />
+                                        {{-- <label for="about" class="block text-sm font-medium text-gray-700">
                                             Descripcion del Curso
-                                        </label>
+                                        </label> --}}
                                         <label for="title" class="px-2 text-red-700">*</label>
+                                    </div>
 
                                             <textarea id="descripcion_curso" name="descripcion_curso" rows="3"
                                             class="block w-full px-3 py-2 mt-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -486,7 +495,6 @@
                                             @error('descripcion_curso') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                            </div>
                         </x-slot>
 
                         <x-slot name="footer">
