@@ -54,7 +54,10 @@
                         <div class="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                             <article class="overflow-hidden rounded-lg shadow-lg">
 
-                                <a href="#">
+
+
+                                <a class="cursor-pointer" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled">
+
                                     <img alt="Placeholder" class="block w-full h-auto"
                                         src="https://picsum.photos/600/400/?random">
                                 </a>
@@ -107,7 +110,8 @@
                         <div class="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                             <article class="overflow-hidden rounded-lg shadow-lg">
 
-                                <a href="#">
+                                <a class="cursor-pointer" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled">
+
                                     <img alt="Placeholder" class="block w-full h-auto"
                                         src="https://picsum.photos/600/400/?random">
                                 </a>
@@ -159,7 +163,8 @@
                         <div class="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                             <article class="overflow-hidden rounded-lg shadow-lg">
 
-                                <a href="#">
+                                <a class="cursor-pointer" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled">
+
                                     <img alt="Placeholder" class="block w-full h-auto"
                                         src="https://picsum.photos/600/400/?random">
                                 </a>
@@ -202,14 +207,14 @@
 
             <x-jet-dialog-modal wire:model="modalMostrarVisible">
                 <x-slot name="title">
-                    Mostrar Alumno
+                    {{-- Detalle del Alumno --}}
                 </x-slot>
                 <x-slot name="content">
                     <!-- This example requires Tailwind CSS v2.0+ -->
-                    <div class="overflow-hidden bg-gray-200 shadow sm:rounded-lg">
+                    <div class="overflow-hidden bg-gray-800 shadow sm:rounded-lg">
                         <div class="px-4 py-5 border border-gray-200 sm:px-6">
-                        <h3 class="text-lg font-medium leading-6 text-gray-900">
-                            Información de Interes
+                        <h3 class="text-lg font-medium leading-6 text-white">
+                            Información de Interés
                         </h3>
                         </div>
                         <div class="border-t border-gray-200">
@@ -232,20 +237,20 @@
                             </div>
                             <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
-                                Carrera:
+                                Carrera/Título:
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 {{$carrera_alumno}}
                             </dd>
                             </div>
-                            <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            {{-- <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
                                 Estado:
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 {{$estado_alumno}}
                             </dd>
-                            </div>
+                            </div> --}}
                             <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
                                 Fecha de ingreso
@@ -267,7 +272,7 @@
                             @if ($trabajo_anteproyecto)
                             <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">
-                                    Ante-Proyecto
+                                    Anteproyecto
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                     {{$alumno->trabajo_anteproyecto}}
@@ -280,7 +285,10 @@
                                     Linkedin:
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {{$alumno->linkedin}}
+                                    <a href=" {{ $alumno->linkedin }}" target="_blank">
+                                        <img class="w-6 h-6"
+                                            src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
+                                    </a>
                                 </dd>
                                 </div>
                             @endif

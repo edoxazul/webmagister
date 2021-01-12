@@ -15,9 +15,9 @@
                     <div
                         class="inline-flex items-center justify-center px-4 py-2 ml-4 rounded-md shadow-sm lg:mt-0 lg:ml-4 form-input">
                         <select wire:model='estatus' class="text-sm text-gray-700 outline-none">
-                            <option value="Claustro">Claustro</option>
-                            <option value="Colaborador">Colaborador</option>
-                            <option value="Visitante">Visitante</option>
+                            <option value="Claustro">Profesores Claustro</option>
+                            <option value="Colaborador">Profesores Colaboradores</option>
+                            <option value="Visitante">Profesores Visitantes</option>
                         </select>
                     </div>
                 </span>
