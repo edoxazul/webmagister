@@ -22,11 +22,7 @@
                 </div>
             </div>
         @endforeach
-    @else
-        No existe Estructura Corricular
-    @endif
-
-    <div class="container px-4 mx-auto my-12 md:px-12">
+        <div class="container px-4 mx-auto my-12 md:px-12">
             @if ($cursos->count())
 
                 <div class="flex flex-col mt-6">
@@ -87,4 +83,13 @@
 
             @endif
     </div>
+    @else
+        <div class="text-center font-bold text-2xl text-gray-800">
+            <p>
+                No existe Estructura Corricular
+            </p>
+        </div>
+    @endif
+
+
 </div>
