@@ -39,6 +39,9 @@
                                         Descripción del Curso
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                        Caracter del Curso
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                         Descargar Programa
                                     </th>
                                     <th scope="col" class="relative px-6 py-3">
@@ -59,11 +62,14 @@
                                         </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">{{ $curso->descripcion_curso }}</div>
+                                            <div class="text-sm text-gray-900">{{ $curso->descripcion_curso }}</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">{{ $curso->caracter }}</div>
                                         </td>
                                         <td class="px-20 py-4 font-medium text-center whitespace-nowrap">
                                             <div class="text-gray-900 text-sm-center">
-                                                <a href=" {{ $curso->enlace_curso }}" download="{{ $curso->enlace_curso}}" >
+                                                <a href=" {{ $curso->enlace_curso }}" download="{{ $curso->archivo_curso}}" >
                                                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                                     </svg>

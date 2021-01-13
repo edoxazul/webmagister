@@ -154,10 +154,13 @@
                     <thead>
                         <tr>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                            Nombre curso
+                            Nombre del curso
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                            Descripción Curso
+                            Descripción del Curso
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                            Caracter del Curso
                         </th>
                         <th scope="col" class="px-3 py-3 text-xs font-medium tracking-wider text-center text-gray-500 uppercase bg-gray-50">
                             Descargar Programa de Curso
@@ -191,6 +194,11 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
                                 {{$curso->descripcion_curso}}
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">
+                                {{$curso->caracter}}
                             </div>
                         </td>
                         <td class="px-20 py-4 font-medium text-center whitespace-nowrap">

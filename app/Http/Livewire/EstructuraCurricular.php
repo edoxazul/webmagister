@@ -34,7 +34,7 @@ class EstructuraCurricular extends Component
     public $sortField="nombre_curso";
     public $sortDirection = 'asc';
 
-    public $malla,$profundizacion,$nombre_curso,$descripcion_curso,$enlace_curso;
+    public $malla,$profundizacion,$nombre_curso,$descripcion_curso,$caracter,$enlace_curso;
     public $archivo_curso;
     public $photo=null;
     public $files_admin=null;
@@ -89,11 +89,11 @@ class EstructuraCurricular extends Component
         $name = md5($this->enlace_curso . microtime()).'.'.$this->enlace_curso->extension();
         $enlace_curso = $this->enlace_curso->storeAs('cursos',$name,'public');
         $enlace_curso = 'storage/'.$enlace_curso;
-
         $archivo_curso=$this->enlace_curso->getClientOriginalName();
         return [
             'nombre_curso'=>$this->nombre_curso,
             'descripcion_curso'=>$this->descripcion_curso,
+            'caracter'=>$this->caracter,
             'enlace_curso'=>$enlace_curso,
             'archivo_curso'=>$archivo_curso,
         ];
@@ -103,7 +103,7 @@ class EstructuraCurricular extends Component
         return [
             'nombre_curso'=>$this->nombre_curso,
             'descripcion_curso'=>$this->descripcion_curso,
-            //'archivo_curso'=>$enlace_curso,
+            'caracter'=>$this->caracter,
         ];
     }
 
@@ -343,8 +343,9 @@ class EstructuraCurricular extends Component
         $data = Cursos::find($this->modelId);
         $this->nombre_curso = $data->nombre_curso;
         $this->descripcion_curso = $data->descripcion_curso;
+        $this->caracter = $data->caracter;
         $this->enlace_curso = $data->enlace_curso;
-        //$this->archivo_curso = $data->archivo_curso;
+        $this->archivo_curso = $data->archivo_curso;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }

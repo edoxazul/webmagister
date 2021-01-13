@@ -10,6 +10,7 @@ class Cursos extends Model
     protected $fillable = [
         'nombre_curso',
         'descripcion_curso',
+        'caracter',
         'enlace_curso',
         'archivo_curso',
     ];
