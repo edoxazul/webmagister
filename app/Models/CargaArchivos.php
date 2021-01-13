@@ -12,5 +12,6 @@ class CargaArchivos extends Model
         'nombre_archivo',
         'descripcion_archivo',
         'enlace_archivo',
+        'archivo'
     ];
 }

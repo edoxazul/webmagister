@@ -18,6 +18,7 @@ class CreateCargaarchivosTable extends Migration
             $table->string('nombre_archivo');
             $table->string('descripcion_archivo');
             $table->string('enlace_archivo');
+            $table->string('archivo');
             $table->timestamps();
         });
     }

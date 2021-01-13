@@ -102,7 +102,7 @@
                         <td class="px-20 py-4 font-medium text-center whitespace-nowrap">
                             <div class="text-gray-900 text-sm-center">
                                 {{-- <a href=" {{ $archivo->enlace_archivo }} " target="_blank"> --}}
-                                <a href=" {{ $archivo->enlace_archivo }}" download="{{ $archivo->enlace_archivo}}" >
+                                <a href=" {{ $archivo->enlace_archivo }}" download="{{ $archivo->archivo}}" >
                                     {{-- <a href="{{ asset('storage/'. $archivo->enlace_archivo) }}" download="{{$archivo->file_original_name}}"></a> --}}
                                     {{-- <img class="w-8 h-8 text-center"
                                         src="https://www.flaticon.es/svg/static/icons/svg/3921/3921436.svg" alt=""> --}}
