@@ -75,6 +75,9 @@
                             Estado
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                            Año de Aprobación
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                             Opciones
                         </th>
                         <th scope="col" class="px-2 py-3 bg-gray-50">
@@ -133,6 +136,13 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
                                 {{$anteproyecto->estatus}}
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">
+                                @if ($anteproyecto->estatus=='Aprobado')
+                                {{date("d/m/Y", strtotime($anteproyecto->anio_aprobacion))}}
+                                @endif
                             </div>
                         </td>
                         <td class="flex px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
@@ -221,6 +231,15 @@
                                     </div>
                                     <x-jet-input id="tutor" class="block w-full mt-1" type="text"
                                         wire:model.lazy="tutor" />
+                                        {{-- <select class="mx-2 border border-black rounded" name="academico_id">
+                                            @foreach ($academicos as $academico)
+                                                <option value="{{$academico->id}}">{{$academico->nombre}}</option>
+                                            @endforeach
+                                        </select> --}}
+                                    {{-- @livewire('dropdown-academicos') --}}
+
+
+
                                     @error('tutor') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3">
@@ -237,6 +256,17 @@
                                         <option class="text-gray-700" value="Eliminado">Eliminado</option>
                                     </select>
                                     @error('estatus') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
+                                </div>
+                                <div class="col-span-6 mt-2 sm:col-span-3">
+                                    <div class="flex">
+                                        <x-jet-label for="anio_aprobacion" value="Fecha de Aprobación" />
+                                        {{-- <label for="title" class="px-2 text-red-700">*</label> --}}
+                                    </div>
+                                    <x-jet-input id="anio_ingreso" class="block w-full mt-1 text-black"
+                                        type="date" value="\Carbon\Carbon::now()" placeholder="2000/12/31"
+                                        wire:model.lazy="anio_aprobacion" />
+                                    @error('anio_aprobacion') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-span-4 mt-2 sm:col-span-3">
