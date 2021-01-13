@@ -16,7 +16,7 @@ class SubirArchivos extends Component
         'perPage'=> ['except' => '10']
     ];
     public $modelId;
-    public $nombre_archivo, $descripcion_archivo, $enlace_archivo;
+    public $nombre_archivo, $descripcion_archivo, $enlace_archivo, $archivo;
     public $created_at;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
@@ -63,10 +63,12 @@ class SubirArchivos extends Component
             $name = md5($this->files_admin . microtime()).'.'.$this->files_admin->extension();
             $enlace_archivo = $this->files_admin->storeAs('files_admin',$name,'public');
             $enlace_archivo = 'storage/'.$enlace_archivo;
+            $archivo = $this->files_admin->getClientOriginalName();
             return [
                 'nombre_archivo' => $this->nombre_archivo,
                 'descripcion_archivo' => $this->descripcion_archivo,
                 'enlace_archivo'=>$enlace_archivo,
+                'archivo' => $archivo,
                 'is_default_home' => $this->isSetToDefaultHomePage,
                 'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
             ];
@@ -122,6 +124,7 @@ class SubirArchivos extends Component
         $this->nombre_archivo = $data->nombre_archivo;
         $this->descripcion_archivo = $data->descripcion_archivo;
         $this->enlace_archivo = $data->enlace_archivo;
+        $this->archivo = $data->archivo;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
     }
