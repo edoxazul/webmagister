@@ -39,6 +39,7 @@ class ListaTesisPublico extends Component
             ->orWhere('autor','LIKE',"%{$this->search}%")
             ->orWhere('tutor','LIKE',"%{$this->search}%")
             ->orWhere('estatus','LIKE',"%{$this->search}%")
+            ->orWhere('anio_aprobacion','LIKE',"%{$this->search}%")
             ->orderBy($this->sortField,$this->sortDirection)
             ->paginate()
         ])

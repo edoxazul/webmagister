@@ -138,10 +138,10 @@
                                 {{$anteproyecto->estatus}}
                             </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-8 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
                                 @if ($anteproyecto->estatus=='Aprobado')
-                                {{date("d/m/Y", strtotime($anteproyecto->anio_aprobacion))}}
+                                {{date("Y", strtotime($anteproyecto->anio_aprobacion))}}
                                 @endif
                             </div>
                         </td>

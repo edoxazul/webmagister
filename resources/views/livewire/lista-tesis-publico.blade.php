@@ -45,6 +45,9 @@
                                         Estado
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                        Año de Aprobación
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                         Anteproyecto
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
@@ -73,7 +76,13 @@
                                             <div class="text-sm text-gray-900">{{ $anteproyecto->tutor }}</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="text-sm text-gray-900"> {{ $anteproyecto->estatus }}</span>
+                                            <div class="text-sm text-gray-900">{{ $anteproyecto->estatus }}</div>
+                                        </td>
+                                        <td class="px-8 py-4 whitespace-nowrap">
+                                        <span class="text-sm text-gray-900">
+                                            @if ($anteproyecto->estatus=='Aprobado')
+                                            {{date("Y", strtotime($anteproyecto->anio_aprobacion))}}
+                                            @endif</span>
                                         </td>
                                         <td class="py-4 px-15 whitespace-nowrap">
                                             <div class="text-gray-900 text-sm-center">
