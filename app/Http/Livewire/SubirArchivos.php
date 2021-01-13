@@ -17,6 +17,7 @@ class SubirArchivos extends Component
     ];
     public $modelId;
     public $nombre_archivo, $descripcion_archivo, $enlace_archivo;
+    public $created_at;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
     public $search= '';
@@ -25,13 +26,15 @@ class SubirArchivos extends Component
     public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
     public $files_admin=null;
-    public $sortField="nombre_archivo";
-    public $sortDirection = 'asc';
+    public $sortField="created_at";
+    public $sortDirection = 'desc';
 
     public function render()
     {
         return view('livewire.carga-archivos', [
-            'archivos' => CargaArchivos::where('nombre_archivo','like','%' . trim($this->search) . '%')
+            'archivos' => CargaArchivos::where('created_at','like','%' . trim($this->search) . '%')
+            ->orWhere('nombre_archivo','LIKE',"%{$this->search}%")
+            ->orWhere('descripcion_archivo','LIKE',"%{$this->search}%")
             ->orderBy($this->sortField,$this->sortDirection)
             ->paginate($this->perPage)
         ]);
