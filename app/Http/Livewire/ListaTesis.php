@@ -36,8 +36,11 @@ class ListaTesis extends Component
     public $file2;
     public $name;
     public $name2;
+    public $academicos;
 
-    public $titulo,$autor,$tutor,$anteproyecto_path,$resumentesis_path;
+    public $titulo,$autor,$tutor,$anio_aprobacion,$anteproyecto_path,$resumentesis_path;
+
+
 
     public function render()
     {
@@ -51,6 +54,8 @@ class ListaTesis extends Component
 
         ]);
     }
+
+
 
     public function clear()
     {
@@ -104,6 +109,7 @@ class ListaTesis extends Component
             'autor'=>$this->autor,
             'tutor' => $this->tutor,
             'estatus' =>$this->estatus,
+            'anio_aprobacion'=>$this->anio_aprobacion,
             'anteproyecto_path'=> $anteproyecto_path,
             'resumentesis_path'=> $resumentesis_path,
             'is_default_home' => $this->isSetToDefaultHomePage,
@@ -177,6 +183,7 @@ class ListaTesis extends Component
         $this->autor = $data->autor;
         $this->tutor = $data->tutor;
         $this->estatus = $data->estatus;
+        $this->anio_aprobacion = $data->anio_aprobacion;
         $this->anteproyecto_path = $data->anteproyecto_path;
         $this->resumentesis_path = $data->resumentesis_path;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;

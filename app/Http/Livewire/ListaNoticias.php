@@ -28,7 +28,7 @@ class ListaNoticias extends Component
 
     public $titular_noticia,$cuerpo_noticia,$caption_foto_noticia,$user_id;
     public $autor_noticia='Anónimo';
-    public $estado_noticia;
+    public $estado_noticia='No visible';
     public $noticia_photo_path;
     public $fotos_noticia=null;
 

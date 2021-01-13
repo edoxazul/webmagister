@@ -14,6 +14,7 @@ class Tesis extends Model
         'titulo',
         'autor',
         'tutor',
+        'anio_aprobacion',
         'anteproyecto_path',
         'resumentesis_path',
         'estatus'

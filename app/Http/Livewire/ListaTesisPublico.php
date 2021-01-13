@@ -29,7 +29,7 @@ class ListaTesisPublico extends Component
     public $sortDirection = 'asc';
 
 
-    public $titulo,$autor,$tutor,$anteproyecto_path,$resumentesis_path;
+    public $titulo,$autor,$tutor,$anio_aprobacion,$anteproyecto_path,$resumentesis_path;
 
 
     public function render()

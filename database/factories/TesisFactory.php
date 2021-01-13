@@ -26,6 +26,7 @@ class TesisFactory extends Factory
             'titulo'=>$this->faker->text(20),
             'autor'=>$this->faker->name(),
             'tutor'=>$this->faker->name(),
+            'anio_aprobacion'=>$this->faker->dateTimeBetween('+0 days', '+2 years'),
             'anteproyecto_path'=>$this->faker->url(),
             'resumentesis_path'=>$this->faker->url(),
             'estatus'=>$this->faker->randomElement(['En Formulacion','Aprobado','Rechazado']),

@@ -18,6 +18,7 @@ class CreateTesisTable extends Migration
             $table->string('titulo')->require;
             $table->string('autor')->require;
             $table->string('tutor')->require;
+            $table->date('anio_aprobacion')->nullable();
             $table->string('anteproyecto_path')->require;
             $table->longText('resumentesis_path')->require;
             $table->enum('estatus',['En Formulacion','Aprobado','Rechazado','Eliminado'])->default('Aprobado');
