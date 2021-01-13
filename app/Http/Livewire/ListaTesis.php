@@ -107,8 +107,11 @@ class ListaTesis extends Component
         $name2 = md5($this->file2 . microtime()).'.'.$this->file2->extension();
         $anteproyecto_path= $this->file->storeAs('files',$name,'public');
         $resumentesis_path= $this->file2->storeAs('files',$name2,'public');
+        $anteproyecto_path = 'storage/'.$anteproyecto_path;
+        $resumentesis_path = 'storage/'.$resumentesis_path;
+        $archivo_anteproyecto=$this->file->getClientOriginalName();
+        $archivo_resumentesis=$this->file2->getClientOriginalName();
 
-        // $archivo_anteproyecto=$this->anteproyecto_path->getClientOriginalName();
 
         return [
             'titulo' => $this->titulo,
@@ -118,6 +121,8 @@ class ListaTesis extends Component
             'anio_aprobacion'=>$this->anio_aprobacion,
             'anteproyecto_path'=> $anteproyecto_path,
             'resumentesis_path'=> $resumentesis_path,
+            'archivo_anteproyecto'=> $archivo_anteproyecto,
+            'archivo_resumentesis' =>$archivo_resumentesis,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
         ];
@@ -209,6 +214,8 @@ class ListaTesis extends Component
         $this->anio_aprobacion = $data->anio_aprobacion;
         $this->anteproyecto_path = $data->anteproyecto_path;
         $this->resumentesis_path = $data->resumentesis_path;
+        $this->archivo_anteproyecto = $data->archivo_anteproyecto;
+        $this->archivo_resumentesis = $data->archivo_resumentesis;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
 

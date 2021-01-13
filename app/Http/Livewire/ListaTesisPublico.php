@@ -66,6 +66,8 @@ class ListaTesisPublico extends Component
             'estatus' =>$this->estatus,
             'anteproyecto_path'=> $anteproyecto_path,
             'resumentesis_path'=> $resumentesis_path,
+            'archivo_anteproyecto' => $archivo_anteproyecto,
+            'archivo_resumentesis' => $archivo_resumentesis,
             'is_default_home' => $this->isSetToDefaultHomePage,
             'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
         ];
@@ -92,6 +94,8 @@ class ListaTesisPublico extends Component
         $this->estatus = $data->estatus;
         $this->anteproyecto_path = $data->anteproyecto_path;
         $this->resumentesis_path = $data->resumentesis_path;
+        $this->archivo_anteproyecto = $data->archivo_anteproyecto;
+        $this->archivo_resumentesis = $data->archivo_resumentesis;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
 
