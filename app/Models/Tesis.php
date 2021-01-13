@@ -17,6 +17,8 @@ class Tesis extends Model
         'anio_aprobacion',
         'anteproyecto_path',
         'resumentesis_path',
+        'archivo_anteproyecto',
+        'archivo_resumentesis',
         'estatus'
     ];
 
