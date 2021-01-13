@@ -30,6 +30,8 @@ class ListaTesisPublico extends Component
 
 
     public $titulo,$autor,$tutor,$anio_aprobacion,$anteproyecto_path,$resumentesis_path;
+    public $archivo_anteproyecto;
+    public $archivo_resumentesis;
 
 
     public function render()

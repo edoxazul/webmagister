@@ -40,6 +40,8 @@ class ListaTesis extends Component
     public $academicos;
 
     public $titulo,$autor,$tutor,$anio_aprobacion,$anteproyecto_path,$resumentesis_path;
+    public $archivo_anteproyecto;
+    public $archivo_resumentesis;
 
 
 
@@ -105,6 +107,8 @@ class ListaTesis extends Component
         $name2 = md5($this->file2 . microtime()).'.'.$this->file2->extension();
         $anteproyecto_path= $this->file->storeAs('files',$name,'public');
         $resumentesis_path= $this->file2->storeAs('files',$name2,'public');
+
+        // $archivo_anteproyecto=$this->anteproyecto_path->getClientOriginalName();
 
         return [
             'titulo' => $this->titulo,
