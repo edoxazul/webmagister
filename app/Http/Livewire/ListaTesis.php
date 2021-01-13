@@ -26,6 +26,7 @@ class ListaTesis extends Component
     public $page='1';
     public $modalFormVisible = false;
     public $modalConfirmDeleteVisible = false;
+    public $modalConfirmAprobadoVisible = false;
     public $modelId;
     public $isSetToDefaultHomePage;
     public $isSetToDefaultNotFoundPage;
@@ -175,6 +176,23 @@ class ListaTesis extends Component
         $this->modelId = $id;
         $this->modalFormVisible = true;
         $this->loadModel();
+    }
+
+    public function aprobadoShowModal($id)
+    {
+        $this->modelId = $id;
+        $this->modalConfirmAprobadoVisible = true;
+    }
+
+    public function aprobado(){
+        $this->unassignDefaultHomePage();
+        $this->unassignDefaultNotFoundPage();
+        $anteproyecto=Tesis::find($this->modelId);
+        $anteproyecto->estatus = 'Aprobado';
+        $anteproyecto->anio_aprobacion = $this->anio_aprobacion;
+        $anteproyecto->save();
+        $this->reset();
+        $this->modalConfirmAprobadoVisible = false;
     }
 
     public function loadModel()
