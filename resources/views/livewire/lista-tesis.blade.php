@@ -57,7 +57,7 @@
                     <thead>
                         <tr>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                            Titulo Anteproyecto
+                            Título Anteproyecto
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                             Autor
@@ -216,7 +216,7 @@
                             <div class="grid grid-cols-6 gap-6 center">
                                 <div class="col-span-4 mt-2 sm:col-span-3">
                                     <div class="flex">
-                                    <x-jet-label for="titulo" value="Titulo Anteproyecto" />
+                                    <x-jet-label for="titulo" value="Título Anteproyecto" />
                                     <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <x-jet-input id="titulo" class="block w-full mt-1" type="text"
@@ -290,7 +290,7 @@
                                 </div>
                                 <x-jet-input id="file" class="block w-full mt-1" type="file" accept=".doc,.docx,application/msword,
                                 application/vnd.openxmlformats-officedocument.wordprocessingml.document,
-                                .pdf,.txt"
+                                .pdf"
                                     wire:model="file" />
                                     <div x-show="isUploading">
                                         <progress max="100" x-bind:value="progress" ></progress>
@@ -313,7 +313,7 @@
                                 </div>
                                 <x-jet-input id="file2" class="block w-full mt-1" type="file" accept=".doc,.docx,application/msword,
                                 application/vnd.openxmlformats-officedocument.wordprocessingml.document,
-                                .pdf,.txt,.xlsx,.xls,.pptx,.ppt"
+                                .pdf"
                                     wire:model="file2" />
                                     <div x-show="isUploading">
                                         <progress max="100" x-bind:value="progress" ></progress>
