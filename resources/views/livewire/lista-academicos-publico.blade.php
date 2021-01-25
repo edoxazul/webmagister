@@ -300,6 +300,14 @@
                             </dd>
                             </div>
                             <div class="px-4 py-3 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Estado:
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{$academico->estatus}}
+                                </dd>
+                                </div>
+                            <div class="px-4 py-3 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">
                                     Área de Especialización:
                             </dt>
@@ -313,8 +321,8 @@
                                     Proyecto/Trabajo Destacado:
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    <a href="{{$academico->proyecto}}" target="_blank">
-                                        {{$academico->proyecto}}
+                                    <a href="{{$proyecto}}" target="_blank">
+                                        {{$proyecto}}
                                     </a>
 
                                 </dd>
@@ -326,8 +334,8 @@
                                     Publicaciones:
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    <a href="{{$academico->publicaciones}}" target="_blank">
-                                    {{$academico->publicaciones}}
+                                    <a href="{{$publicaciones}}" target="_blank">
+                                    {{$publicaciones}}
                                     </a>
                                 </dd>
                                 </div>
@@ -338,8 +346,8 @@
                                     Trabajo de anteproyectos supervisado:
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    <a href="{{$academico->proyecto}}" target="_blank">
-                                    {{$academico->trabajo_tesis_supervisado}}
+                                    <a href="{{$trabajo_tesis_supervisado}}" target="_blank">
+                                    {{$trabajo_tesis_supervisado}}
                                     </a>
                                 </dd>
                                 </div>
@@ -350,7 +358,7 @@
                                     Linkedin:
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    <a href=" {{ $academico->linkedin }}" target="_blank">
+                                    <a href=" {{ $linkedin }}" target="_blank">
                                         <img class="w-6 h-6"
                                             src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>

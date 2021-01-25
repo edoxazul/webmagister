@@ -13,6 +13,7 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
 {
+
     use PasswordValidationRules;
 
     /**
@@ -54,4 +55,27 @@ class CreateNewUser implements CreatesNewUsers
         return back();
 
     }
+    /**
+    * Get the error messages for the defined validation rules.
+    *
+    * @return array
+    */
+    public function messages()
+    {
+        return [
+            'name.required' => 'Ingrese el nombre',
+            'rut.required' => 'Ingrese el rut',
+            'rol.required' => 'Elija el rol',
+            'email.required' => 'Ingrese el email',
+            'email.unique' => 'Este email ya existe',
+
+        ];
+    }
+
+
+
+
+
+
+
 }

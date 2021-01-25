@@ -30,12 +30,12 @@ class ListaAlumnos extends Component
     public $estado_alumno='Regular';
     public $profile_photo_path;
     public $photo=null;
-
+    public $pasaporte = NULL;
     public $sortField="nombre_alumno";
     public $sortDirection = 'asc';
 
 
-    public $nombre_alumno,$rut_alumno,$pasaporte,$carrera_alumno,$contacto_alumno,$razon_eliminacion,$anio_ingreso,$anio_graduacion,$trabajo_anteproyecto,$linkedin;
+    public $nombre_alumno,$rut_alumno,$carrera_alumno,$contacto_alumno,$razon_eliminacion,$anio_ingreso,$anio_graduacion,$trabajo_anteproyecto,$linkedin;
 
 
     public $updateMode = false;
@@ -96,7 +96,7 @@ class ListaAlumnos extends Component
         return [
             'nombre_alumno' => 'required|unique:alumnos',
             'rut_alumno' => 'required|unique:alumnos|cl_rut',
-            'pasaporte'=>'unique:alumnos',
+            // 'pasaporte'=>'unique:alumnos',
             'carrera_alumno' => 'required',
             'contacto_alumno' => 'required|unique:alumnos',
             'estado_alumno' => 'required',
@@ -121,6 +121,20 @@ class ListaAlumnos extends Component
 
     public function modelData()
     {
+
+        // if(!empty($pasaporte)){
+
+        //     return[
+        //         'pasaporte' =>$this->pasaporte,
+        //     ];
+
+        // }else{
+        //     return[
+        //         'pasaporte' =>$this->pasaporte = NULL,
+        //     ];
+        // }
+
+
         if(!empty($this->photo)){
 
             $name = md5($this->photo . microtime()).'.'.$this->photo->extension();
@@ -144,6 +158,7 @@ class ListaAlumnos extends Component
                 'is_default_home' => $this->isSetToDefaultHomePage,
                 'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
             ];
+
         }else{
             return [
                 'nombre_alumno' => $this->nombre_alumno,
@@ -160,6 +175,7 @@ class ListaAlumnos extends Component
                 'is_default_home' => $this->isSetToDefaultHomePage,
                 'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
             ];
+
         }
 
     }
@@ -206,7 +222,7 @@ class ListaAlumnos extends Component
             [
                 'nombre_alumno' => 'required',
                 'rut_alumno' => 'required|unique:alumnos,rut_alumno,'.$this->modelId.'|cl_rut',
-                'pasaporte'=>'unique:alumnos,pasaporte,'.$this->modelId.'',
+                'pasaporte'=>'sometimes|unique:alumnos,pasaporte,'.$this->modelId.'',
                 'carrera_alumno' => 'required',
                 'contacto_alumno' => 'required|unique:alumnos,contacto_alumno,'.$this->modelId.'',
                 'estado_alumno' => 'required',

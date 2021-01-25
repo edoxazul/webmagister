@@ -16,7 +16,7 @@
 
             <div class="mt-4">
                 <x-jet-label for="rut" value="{{ __('Rut') }}" />
-                <x-jet-input id="rut" class="block w-full mt-1" type="rut" name="rut" :value="old('rut')" placeholder="Ej: 12345678-9" required oninput="checkRut(this)"/>
+                <x-jet-input id="rut" class="block w-full mt-1" type="rut" name="rut" :value="old('rut')" placeholder="Ej: 12345678-9" required autofocus autocomplete="rut" oninput="checkRut(this)"/>
             </div>
 
 
@@ -63,7 +63,7 @@
                 </a>
 
                 <x-jet-button class="ml-4">
-                    {{ __('Register') }}
+                    {{ __('Registrar') }}
                 </x-jet-button>
             </div>
         </form>

@@ -6,23 +6,26 @@
 
     <x-slot name="header">
         {{-- @livewireStyles --}}
-        <link rel="stylesheet" type="text/css" href="trix.css">
+        {{-- <link rel="stylesheet" type="text/css" href="trix.css"> --}}
         {{-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@1.2.3/dist/trix.css"> --}}
-        <link rel="stylesheet" href="/css/main.css?1607134092767489000">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.css" integrity="sha512-CWdvnJD7uGtuypLLe5rLU3eUAkbzBR3Bm1SFPEaRfvXXI2v2H5Y0057EMTzNuGGRIznt8+128QIDQ8RqmHbAdg==" crossorigin="anonymous">
+        {{-- <link rel="stylesheet" href="/css/main.css?1607134092767489000"> --}}
+        {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.css" integrity="sha512-CWdvnJD7uGtuypLLe5rLU3eUAkbzBR3Bm1SFPEaRfvXXI2v2H5Y0057EMTzNuGGRIznt8+128QIDQ8RqmHbAdg==" crossorigin="anonymous"> --}}
         {{-- @livewireScripts --}}
         {{-- <script src="https://unpkg.com/moment"></script>
         <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
         <script src="https://unpkg.com/trix@1.2.3/dist/trix.js"></script>
         <script src="js/attachments.js"></script>
         <script type="text/javascript" src="trix.js"></script> --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.js" integrity="sha512-/1nVu72YEESEbcmhE/EvjH/RxTg62EKvYWLG3NdeZibTCuEtW5M4z3aypcvsoZw03FAopi94y04GhuqRU9p+CQ==" crossorigin="anonymous"></script>
-        <script src="/js/attachments.js?1607134092767489000"></script>
-        <script type="text/javascript" src="trix.js"></script>
-        <script>
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.js" integrity="sha512-/1nVu72YEESEbcmhE/EvjH/RxTg62EKvYWLG3NdeZibTCuEtW5M4z3aypcvsoZw03FAopi94y04GhuqRU9p+CQ==" crossorigin="anonymous"></script> --}}
+        {{-- <script src="/js/attachments.js?1607134092767489000"></script> --}}
+        {{-- <script type="text/javascript" src="trix.js"></script> --}}
+        {{-- <script>
           Trix.config.attachments.preview.caption = { name: false, size: false }
-        </script>
+        </script> --}}
+
+
+
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Noticias') }}
         </h2>
@@ -192,7 +195,7 @@
 
                             {{-- Editar Trix--}}
 
-                            <span class="hidden sm:block">
+                            {{-- <span class="hidden sm:block">
                                 <button
                                 wire:click="updateTrixEditorShowModal({{ $noticia->id }})"
                                 type="button"
@@ -202,7 +205,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                     </svg>
                                 </button>
-                            </span>
+                            </span> --}}
 
                             {{-- Eliminar--}}
                             <span class="hidden sm:block">
@@ -280,7 +283,7 @@
                                             <label for="title" class="px-2 text-red-700">*</label>
                                         </div>
                                         <x-jet-input id="titular_noticia" class="block w-full mt-1" type="text"
-                                            wire:model.debounce.800ms="titular_noticia" />
+                                            wire:model.lazy="titular_noticia" />
                                         @error('titular_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="col-span-6 mt-2 sm:col-span-3">
@@ -289,7 +292,7 @@
                                             {{-- <label for="title" class="px-2 text-red-700">*</label> --}}
                                         </div>
                                         <x-jet-input id="autor_noticia" class="block w-full mt-1" type="text"
-                                            wire:model.debounce.800ms="autor_noticia" />
+                                            wire:model.lazy="autor_noticia" />
                                         {{-- @error('autor_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror --}}
                                     </div>
 
@@ -301,7 +304,7 @@
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <x-jet-input id="caption_foto_noticia" class="block w-full mt-1" type="text"
-                                        wire:model.debounce.800ms="caption_foto_noticia" />
+                                        wire:model.lazy="caption_foto_noticia" />
                                     @error('caption_foto_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
                                 </div>
 
@@ -383,25 +386,51 @@
                                             {{-- Lo de abajo es el código del trix. Por ahora está documentado pero supuestamente funciona --}}
 
                                             <!-- top-most div don't attach livewire-->
-                                            <div>
-                                                <div class="mb-4" wire:model.debounce.365ms="cuerpo_noticia" wire:ignore wire:key="uniqueKey">
+                                            {{-- <div class="">
+                                                <div class="mb-4" wire:ignore wire:key="uniqueKey">
                                                     <input id="cuerpo_noticia" type="hidden" name="cuerpo_noticia">
-                                                    <trix-editor input="cuerpo_noticia" placeholder= "Escriba aquí su noticia" @trix-attachment-add="console.log($event.attachment)"></trix-editor>
+                                                    <trix-editor wire:model.lazy="cuerpo_noticia" input="cuerpo_noticia" placeholder= "Escriba aquí su noticia" @trix-attachment-add="console.log($event.attachment)"></trix-editor> --}}
                                                     {{-- <trix-editor input="cuerpo_noticia" placeholder= "Escriba aquí su noticia"></trix-editor> --}}
-                                                    @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                                    {{-- @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror --}}
 
-                                                    <script>
+                                                    {{-- <script>
                                                         var cuerpo = document.getElementById("cuerpo_noticia")
-
                                                         addEventListener("trix-change", function(event) {
                                                             console.log(cuerpo.getAttribute('value'));
                                                             @this.set('cuerpo_noticia', cuerpo.getAttribute('value'))
                                                         })
-                                                    </script>
-                                                </div>
-                                            </div>
+                                                    </script> --}}
+                                                {{-- </div>
+                                            </div> --}}
                                         {{-- @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror --}}
-                                     </div>
+
+                                        <div class="">
+
+                                            <div class="mt-1 bg-white">
+
+                                                <div class="body-content" wire:ignore wire:key="uniqueKey">
+                                                    <input id="cuerpo_noticia" type="hidden" name="cuerpo_noticia">
+
+                                                    <trix-editor class="trix-content" x-ref='trix'
+                                                    {{-- x-on:trix-change="$dispatch('input', event.target.value)" --}}
+                                                    input="cuerpo_noticia" wire:model.debounce.9999999999999ms='cuerpo_noticia' @trix-attachment-add></trix-editor>
+
+                                                </div>
+                                                <script>
+                                                        var cuerpo = document.getElementById("cuerpo")
+                                                        addEventListener("trix-change", function(event) {
+                                                            console.log(cuerpo.getAttribute('value'));
+                                                            @this.set('cuerpo_noticia', cuerpo.getAttribute('value'))
+                                                        })
+                                                </script>
+                                            </div>
+                                        </div>
+                                        @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span>@enderror
+
+
+
+
+                                    </div>
                                 </div>
                                 </div>
 
@@ -449,23 +478,57 @@
                                             <label for="title" class="px-2 text-red-700">*</label>
                                         </div>
                                         <div class="mt-4">
-                                             {{-- Lo de abajo es el código del trix. Por ahora está documentado pero supuestamente funciona --}}
-                                                <div class="mb-4" wire:model.debounce.365ms="cuerpo_noticia" wire:ignore wire:key="uniqueKey">
-                                                    <input id="cuerpo_noticia" type="hidden" name="cuerpo_noticia"  >
-                                                    <trix-editor input="cuerpo_noticia" @trix-attachment-add="console.log($event.attachment)"> {!! $noticia->cuerpo_noticia!!}</trix-editor>
-                                                    @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
+                                            {{-- Lo de abajo es el código del trix. Por ahora está documentado pero supuestamente funciona --}}
+                                            {{-- <div class="mb-4"  wire:ignore wire:key="uniqueKey">
+                                                <input wire:model.debounce.365ms="cuerpo_noticia" id="cuerpo_noticia" type="hidden" name="cuerpo_noticia"  >
+                                                <trix-editor input="cuerpo_noticia" @trix-attachment-add="console.log($event.attachment)"> {!! $cuerpo_noticia!!}</trix-editor>
+                                                @error('cuerpo_noticia') <span class="px-2 text-red-700 bg-red-200 rounded-full error">{{ $message }}</span> @enderror
 
-                                                    <script>
-                                                        var cuerpo = document.getElementById("cuerpo_noticia")
+                                                <script>
+                                                    var cuerpo = document.getElementById("cuerpo_noticia")
+                                                    addEventListener("trix-change", function(event) {
+                                                        console.log(cuerpo.getAttribute('value'));
+                                                        @this.set('cuerpo_noticia', cuerpo.getAttribute('value'))
+                                                    })
+                                                </script>
+                                            </div> --}}
+                                            {{-- <x-input.rich-text wire:model.lazy="cuerpo_noticia" id="cuerpo_noticia" :initial-value="$cuerpo_noticia"/> --}}
 
-                                                        addEventListener("trix-change", function(event) {
-                                                            console.log(cuerpo.getAttribute('value'));
-                                                            @this.set('cuerpo_noticia', cuerpo.getAttribute('value'))
-                                                        })
-                                                    </script>
+                                            {{-- <div class="">
+                                                <input id="cuerpo_noticia" type="hidden" name="cuerpo_noticia" wire:model.defer="cuerpo_noticia">
+                                                <div class="editor" wire:ignore>
+                                                    <trix-editor
+                                                        input="cuerpo_noticia"
+                                                        class="w-full h-64 overflow-x-scroll formatted-content"
+                                                        x-data
+                                                        x-on:trix-change="$dispatch('input', event.target.value)"
+                                                        wire:model.defer="cuerpo_noticia"
+                                                        wire:key="cuerpo_noticia"
+                                                    ></trix-editor>
                                                 </div>
+                                                <x-jet-input-error for="cuerpo_noticia" class="mt-2"/>
+                                            </div> --}}
+                                            {{-- <div class="">
+
+                                                <div class="mt-1 bg-white">
+                                                    <div class="body-content" wire:ignore>
+                                                        <input id="cuerpo_noticia" type="hidden" name="cuerpo_noticia">
+                                            <trix-editor
+                                            class="trix-content"
+                                            x-data
+                                            x-on:trix-change="$dispatch('cuerpo_noticia', event.target.value)"
+                                            wire:model.debounce.100000ms='cuerpo_noticia'
+                                            wire:key="cuerpo_noticia"></trix-editor>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @error('cuerpo_noticia') <span class="error">{{ $message }}</span>@enderror --}}
+
+
+
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                             </x-slot>
                             </div>

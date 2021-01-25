@@ -58,35 +58,56 @@
 
                                 <a class="cursor-pointer" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled">
 
-                                    <img alt="Placeholder" class="block w-full h-auto"
-                                        src="https://picsum.photos/600/400/?random">
+                                    <img alt="Placeholder" class="block w-full h-44"
+                                        {{-- src="https://picsum.photos/600/400/?random"> --}}
+                                        src="{{ $alumno->profile_photo_path }}">
+
                                 </a>
 
                                 <header class="flex items-center justify-between p-2 leading-tight md:p-4">
                                     <h1 class="text-lg">
                                         <a class="text-black no-underline hover:underline" href="#">
-                                            {{ $alumno->estado_alumno }}
+                                            {{ $alumno->nombre_alumno }}
                                         </a>
                                     </h1>
                                     <p class="text-sm text-grey-darker">
 
                                     </p>
                                 </header>
+                                <content class="flex items-center justify-between p-2 leading-tight md:p-4">
+                                    <h1 class="text-sm">
+                                        <a class="text-black no-underline hover:underline" href="#">
+                                            {{ $alumno->estado_alumno }}
+
+                                        </a>
+                                    </h1>
+                                </content>
 
                                 <footer class="flex items-center justify-between p-2 leading-none md:p-4">
-                                    <a class="flex items-center text-black no-underline hover:underline" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled">
-                                        <img alt="Placeholder" class="block rounded-full"
-                                            src="https://picsum.photos/32/32/?random">
+                                    <a class="flex items-center text-black no-underline hover:underline">
+
+                                        {{-- <img alt="Placeholder"
+                                            class="block rounded-full" src="https://picsum.photos/32/32/?random"> --}}
+
+
+                                        <svg class="w-6 h-6" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
                                         <p class="ml-2 text-sm">
-                                            {{ $alumno->nombre_alumno }}
+
+                                            {{ $alumno->contacto_alumno }}
 
                                         </p>
+                                        </a>
+                                    <a href=" {{ $alumno->linkedin }}" target="_blank">
+                                        <img class="w-6 h-6"
+                                            src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>
-                                    <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                                        <span class="hidden">Like</span>
-                                        <i class="fa fa-heart"></i>
-                                    </a>
-                                </footer>
+                                    </footer>
                             </article>
 
                             <!-- END Article -->
@@ -112,35 +133,56 @@
 
                                 <a class="cursor-pointer" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled">
 
-                                    <img alt="Placeholder" class="block w-full h-auto"
-                                        src="https://picsum.photos/600/400/?random">
+                                    <img alt="Placeholder" class="block w-full h-44"
+                                        {{-- src="https://picsum.photos/600/400/?random"> --}}
+                                        src="{{ $alumno->profile_photo_path }}">
+
                                 </a>
 
                                 <header class="flex items-center justify-between p-2 leading-tight md:p-4">
                                     <h1 class="text-lg">
                                         <a class="text-black no-underline hover:underline" href="#">
-                                            {{ $alumno->estado_alumno }}
+                                            {{ $alumno->nombre_alumno }}
                                         </a>
                                     </h1>
                                     <p class="text-sm text-grey-darker">
 
                                     </p>
                                 </header>
+                                <content class="flex items-center justify-between p-2 leading-tight md:p-4">
+                                    <h1 class="text-sm">
+                                        <a class="text-black no-underline hover:underline" href="#">
+                                            {{ $alumno->estado_alumno }}
+
+                                        </a>
+                                    </h1>
+                                </content>
 
                                 <footer class="flex items-center justify-between p-2 leading-none md:p-4">
-                                    <a class="flex items-center text-black no-underline hover:underline" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled" href="#">
-                                        <img alt="Placeholder" class="block rounded-full"
-                                            src="https://picsum.photos/32/32/?random">
+                                    <a class="flex items-center text-black no-underline hover:underline">
+
+                                        {{-- <img alt="Placeholder"
+                                            class="block rounded-full" src="https://picsum.photos/32/32/?random"> --}}
+
+
+                                        <svg class="w-6 h-6" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
                                         <p class="ml-2 text-sm">
-                                            {{ $alumno->nombre_alumno }}
+
+                                            {{ $alumno->contacto_alumno }}
 
                                         </p>
+                                        </a>
+                                    <a href=" {{ $alumno->linkedin }}" target="_blank">
+                                        <img class="w-6 h-6"
+                                            src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>
-                                    <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                                        <span class="hidden">Like</span>
-                                        <i class="fa fa-heart"></i>
-                                    </a>
-                                </footer>
+                                    </footer>
                             </article>
 
                             <!-- END Article -->
@@ -165,35 +207,56 @@
 
                                 <a class="cursor-pointer" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled">
 
-                                    <img alt="Placeholder" class="block w-full h-auto"
-                                        src="https://picsum.photos/600/400/?random">
+                                    <img alt="Placeholder" class="block w-full h-44"
+                                        {{-- src="https://picsum.photos/600/400/?random"> --}}
+                                        src="{{ $alumno->profile_photo_path }}">
+
                                 </a>
 
                                 <header class="flex items-center justify-between p-2 leading-tight md:p-4">
                                     <h1 class="text-lg">
                                         <a class="text-black no-underline hover:underline" href="#">
-                                            {{ $alumno->estado_alumno }}
+                                            {{ $alumno->nombre_alumno }}
                                         </a>
                                     </h1>
                                     <p class="text-sm text-grey-darker">
 
                                     </p>
                                 </header>
+                                <content class="flex items-center justify-between p-2 leading-tight md:p-4">
+                                    <h1 class="text-sm">
+                                        <a class="text-black no-underline hover:underline" href="#">
+                                            {{ $alumno->estado_alumno }}
+
+                                        </a>
+                                    </h1>
+                                </content>
 
                                 <footer class="flex items-center justify-between p-2 leading-none md:p-4">
-                                    <a class="flex items-center text-black no-underline hover:underline" wire:click="showModal({{ $alumno->id }})" wire:loading.attr="disabled" href="#">
-                                        <img alt="Placeholder" class="block rounded-full"
-                                            src="https://picsum.photos/32/32/?random">
+                                    <a class="flex items-center text-black no-underline hover:underline">
+
+                                        {{-- <img alt="Placeholder"
+                                            class="block rounded-full" src="https://picsum.photos/32/32/?random"> --}}
+
+
+                                        <svg class="w-6 h-6" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
                                         <p class="ml-2 text-sm">
-                                            {{ $alumno->nombre_alumno }}
+
+                                            {{ $alumno->contacto_alumno }}
 
                                         </p>
+                                        </a>
+                                    <a href=" {{ $alumno->linkedin }}" target="_blank">
+                                        <img class="w-6 h-6"
+                                            src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>
-                                    <a class="no-underline text-grey-darker hover:text-red-dark" href="#">
-                                        <span class="hidden">Like</span>
-                                        <i class="fa fa-heart"></i>
-                                    </a>
-                                </footer>
+                                    </footer>
                             </article>
 
                             <!-- END Article -->
@@ -204,6 +267,7 @@
                 @endforeach
 
             @endif
+        </div>
 
             <x-jet-dialog-modal wire:model="modalMostrarVisible">
                 <x-slot name="title">
@@ -256,16 +320,16 @@
                                 Fecha de ingreso
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{date("d/m/Y", strtotime($alumno->anio_ingreso))}}
+                                {{date("d/m/Y", strtotime($anio_ingreso))}}
                             </dd>
                             </div>
-                            @if ($estado_alumno=='Graduado')
+                            @if ($estado_alumno!= 'Regular' && $estado_alumno !='Egresado')
                             <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">
                                     Fecha de Graduación
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {{date("d/m/Y", strtotime($alumno->anio_graduacion))}}
+                                    {{date("d/m/Y", strtotime($anio_graduacion))}}
                                 </dd>
                                 </div>
                             @endif
@@ -275,7 +339,12 @@
                                     Anteproyecto
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    {{$alumno->trabajo_anteproyecto}}
+                                    <a href="{{$trabajo_anteproyecto}}" target="_blank">
+
+                                    {{$trabajo_anteproyecto}}
+
+                                    </a>
+
                                 </dd>
                                 </div>
                             @endif
@@ -285,7 +354,7 @@
                                     Linkedin:
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                    <a href=" {{ $alumno->linkedin }}" target="_blank">
+                                    <a href=" {{ $linkedin }}" target="_blank">
                                         <img class="w-6 h-6"
                                             src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>
@@ -302,6 +371,6 @@
                     </x-jet-secondary-button>
                 </x-slot>
             </x-jet-dialog-modal>
-        </div>
+
     </div>
 </div>
