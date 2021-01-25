@@ -34,6 +34,7 @@ class AcademicosFactory extends Factory
             'estatus'=>$this->faker->randomElement(['Claustro','Colaborador','Visitante']),
             'profile_photo_path'=>$this->faker->imageUrl($width = 640, $height = 480),
             'linkedin'=>$this->faker->url,
+            'web'=>$this->faker->url,
             'trabajo_tesis_supervisado'=>$this->faker->url(),
 
         ];

@@ -110,12 +110,16 @@
             <a href="{{ route('infomagisterpublico') }}"
                 class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Información
                 General</a>
-                <a href="{{ route('listanoticiaspublico') }}"
+            <a href="{{ route('curricularpublico') }}"
+                class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Estructura Curricular</a>
+            <a href="{{ route('listanoticiaspublico') }}"
                 class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Noticias</a>
             <a href="{{ route('listaacademicospublico') }}"
                 class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Cuerpo Académico</a>
             <a href="{{ route('listaalumnospublico') }}"
                 class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Alumnos</a>
+            <a href="{{ route('listatesispublico') }}"
+                class="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700">Tesis</a>
             @auth
                 <a class="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md"
                     href="{{ url('/dashboard') }}">

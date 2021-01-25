@@ -34,6 +34,7 @@ class Academicos extends Model
         'razon_eliminacion',
         'user_id',
         'linkedin',
+        'web',
         'trabajo_tesis_supervisado'
     ];
 
