@@ -103,10 +103,12 @@
 
                                         </p>
                                         </a>
+                                        @if($alumno->linkedin)
                                     <a href=" {{ $alumno->linkedin }}" target="_blank">
                                         <img class="w-6 h-6"
                                             src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>
+                                    @endif
                                     </footer>
                             </article>
 
@@ -178,10 +180,12 @@
 
                                         </p>
                                         </a>
-                                    <a href=" {{ $alumno->linkedin }}" target="_blank">
-                                        <img class="w-6 h-6"
-                                            src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
-                                    </a>
+                                        @if($alumno->linkedin)
+                                        <a href=" {{ $alumno->linkedin }}" target="_blank">
+                                            <img class="w-6 h-6"
+                                                src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
+                                        </a>
+                                        @endif
                                     </footer>
                             </article>
 
@@ -252,10 +256,12 @@
 
                                         </p>
                                         </a>
-                                    <a href=" {{ $alumno->linkedin }}" target="_blank">
-                                        <img class="w-6 h-6"
-                                            src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
-                                    </a>
+                                        @if($alumno->linkedin)
+                                        <a href=" {{ $alumno->linkedin }}" target="_blank">
+                                            <img class="w-6 h-6"
+                                                src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
+                                        </a>
+                                        @endif
                                     </footer>
                             </article>
 
@@ -336,7 +342,7 @@
                             @if ($trabajo_anteproyecto)
                             <div class="px-4 py-5 bg-gray-100 border border-gray-200 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">
-                                    Anteproyecto
+                                    Proyecto de Tesis:
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                     <a href="{{$trabajo_anteproyecto}}" target="_blank">

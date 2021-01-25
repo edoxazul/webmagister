@@ -33,7 +33,7 @@
                                 <thead class="bg-gray-50">
                                     <tr>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        Titulo Anteproyecto
+                                        Titulo Proyecto de Tesis
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                         Autor
@@ -48,7 +48,7 @@
                                         Año de Aprobación
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        Anteproyecto
+                                        Proyecto de Tesis
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                         Resumen Tesis

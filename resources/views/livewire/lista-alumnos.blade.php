@@ -161,9 +161,11 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">
+                                @if ($alumno->linkedin)
                                 <a href=" {{$alumno->linkedin}}">
                                 <img class="w-6 h-6" src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                 </a>
+                                @endif
                             </div>
                         </td>
                         <td class="flex px-6 py-4 text-sm font-medium text-right whitespace-nowrap">

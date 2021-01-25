@@ -103,10 +103,12 @@
 
                                         </p>
                                         </a>
+                                        @if($academico->linkedin)
                                     <a href=" {{ $academico->linkedin }}" target="_blank">
                                         <img class="w-6 h-6"
                                             src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>
+                                    @endif
                                     </footer>
                                 </article>
 
@@ -174,10 +176,12 @@
                                             {{ $academico->correo }}
                                         </p>
                                     </a>
+                                    @if($academico->linkedin)
                                     <a href=" {{ $academico->linkedin }}" target="_blank">
                                         <img class="w-6 h-6"
                                             src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>
+                                    @endif
                                 </footer>
                             </article>
 
@@ -244,10 +248,12 @@
                                             {{ $academico->correo }}
                                         </p>
                                     </a>
+                                    @if($academico->linkedin)
                                     <a href=" {{ $academico->linkedin }}" target="_blank">
                                         <img class="w-6 h-6"
                                             src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
                                     </a>
+                                    @endif
                                 </footer>
                             </article>
                             <!-- END Article -->

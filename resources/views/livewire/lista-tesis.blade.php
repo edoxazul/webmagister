@@ -57,7 +57,7 @@
                     <thead>
                         <tr>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                            Título Anteproyecto
+                            Título Proyecto de Tesis
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                             Autor
@@ -66,7 +66,7 @@
                             Tutor
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
-                            Anteproyecto
+                            Proyecto de Tesis
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                             Resumen Tesis
@@ -216,7 +216,7 @@
                             <div class="grid grid-cols-6 gap-6 center">
                                 <div class="col-span-4 mt-2 sm:col-span-3">
                                     <div class="flex">
-                                    <x-jet-label for="titulo" value="Título Anteproyecto" />
+                                    <x-jet-label for="titulo" value="Título del Proyecto de Tesis" />
                                     <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <x-jet-input id="titulo" class="block w-full mt-1" type="text"
@@ -252,7 +252,7 @@
                                 </div>
                                 <div class="col-span-6 mt-2 sm:col-span-3">
                                     <div class="flex">
-                                        <x-jet-label for="estatus" value="Estado del Anteproyecto" />
+                                        <x-jet-label for="estatus" value="Estado del Proyecto de Tesis" />
                                         <label for="title" class="px-2 text-red-700">*</label>
                                     </div>
                                     <select id="estatus" type="text" wire:model="estatus"
@@ -285,7 +285,7 @@
                                     x-on:livewire-upload-error="isUploading = false"
                                     x-on:livewire-upload-progress="progress = $event.detail.progress">
                                 <div class="flex">
-                                <x-jet-label for="file" value="Subir Anteproyecto (PDF o Word)" />
+                                <x-jet-label for="file" value="Subir Proyecto de Tesis (PDF o Word)" />
                                 <label for="title" class="px-2 text-red-700">*</label>
                                 </div>
                                 <x-jet-input id="file" class="block w-full mt-1" type="file" accept=".doc,.docx,application/msword,
