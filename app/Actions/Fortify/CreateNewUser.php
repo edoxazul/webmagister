@@ -52,7 +52,7 @@ class CreateNewUser implements CreatesNewUsers
 
         $userreg->save();
         //flash(‘User has been added!’,’success’)->important();
-        return back();
+        return $userreg;
 
     }
     /**
