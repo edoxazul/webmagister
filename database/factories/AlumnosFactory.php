@@ -34,6 +34,7 @@ class AlumnosFactory extends Factory
             'anio_graduacion'=>$this->faker->dateTimeBetween('+0 days', '+2 years'),
             'trabajo_anteproyecto'=>$this->faker->name(),
             'linkedin'=>$this->faker->url,
+            'web'=>$this->faker->url,
             'profile_photo_path'=>$this->faker->imageUrl($width = 640, $height = 480),
         ];
     }

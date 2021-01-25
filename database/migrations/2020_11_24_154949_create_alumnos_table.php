@@ -26,6 +26,7 @@ class CreateAlumnosTable extends Migration
             $table->date('anio_graduacion')->nullable();
             $table->string('trabajo_anteproyecto')->nullable();
             $table->string('linkedin')->nullable();
+            $table->string('web')->nullable();
             $table->string('profile_photo_path')->nullable();
             $table->timestamps();
         });

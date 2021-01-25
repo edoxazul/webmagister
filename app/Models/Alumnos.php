@@ -23,6 +23,7 @@ class Alumnos extends Model
         'profile_photo_path',
         'trabajo_tesis',
         'linkedin',
+        'web',
     ];
 
     protected $appends = [
