@@ -10,7 +10,7 @@
 
 
     <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-2">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-1">
             <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
             <!-- This example requires Tailwind CSS v2.0+ -->
             <div class="flex flex-col">
@@ -80,6 +80,9 @@
                         </th>
                         <th scope="col" class="px-3 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                             LinkedIn
+                        </th>
+                        <th scope="col" class="px-2 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
+                            Web
                         </th>
                         <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase bg-gray-50">
                             Opciones
@@ -164,6 +167,15 @@
                                 @if ($alumno->linkedin)
                                 <a href=" {{$alumno->linkedin}}">
                                 <img class="w-6 h-6" src="https://www.flaticon.es/svg/static/icons/svg/174/174857.svg" alt="">
+                                </a>
+                                @endif
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">
+                                @if($alumno->web)
+                                <a href=" {{ $alumno->web }}" target="_blank">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                                 </a>
                                 @endif
                             </div>
@@ -377,6 +389,15 @@
                                     </div>
                                     <x-jet-input id="linkedin" class="block w-full mt-1" type="text"
                                         placeholder="LinkedIn" wire:model="linkedin" />
+                                </div>
+                                <div class="col-span-6 mt-2 sm:col-span-3">
+                                    <div class="flex">
+                                        <x-jet-label for="web" value="Página Web" />
+                                        <label for="title"
+                                            class="block px-2 text-sm font-medium text-gray-400">(Opcional)</label>
+                                    </div>
+                                    <x-jet-input id="web" class="block w-full mt-1" type="text"
+                                        placeholder="Página Web" wire:model="web" />
                                 </div>
 
 

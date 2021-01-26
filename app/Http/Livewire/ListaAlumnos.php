@@ -35,7 +35,7 @@ class ListaAlumnos extends Component
     public $sortDirection = 'asc';
 
 
-    public $nombre_alumno,$rut_alumno,$carrera_alumno,$contacto_alumno,$razon_eliminacion,$anio_ingreso,$anio_graduacion,$trabajo_anteproyecto,$linkedin;
+    public $nombre_alumno,$rut_alumno,$carrera_alumno,$contacto_alumno,$razon_eliminacion,$anio_ingreso,$anio_graduacion,$trabajo_anteproyecto,$linkedin,$web;
 
 
     public $updateMode = false;
@@ -154,6 +154,7 @@ class ListaAlumnos extends Component
                 'anio_graduacion'=>$this->anio_graduacion,
                 'trabajo_anteproyecto' =>$this->trabajo_anteproyecto,
                 'linkedin'=>$this->linkedin,
+                'web'=>$this->web,
                 'profile_photo_path'=>$profile_photo_path,
                 'is_default_home' => $this->isSetToDefaultHomePage,
                 'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
@@ -172,6 +173,7 @@ class ListaAlumnos extends Component
                 'anio_graduacion'=>$this->anio_graduacion,
                 'trabajo_anteproyecto' =>$this->trabajo_anteproyecto,
                 'linkedin'=>$this->linkedin,
+                'web'=>$this->web,
                 'is_default_home' => $this->isSetToDefaultHomePage,
                 'is_default_not_found' => $this->isSetToDefaultNotFoundPage,
             ];
@@ -261,6 +263,7 @@ class ListaAlumnos extends Component
         $this->trabajo_anteproyecto = $data->trabajo_anteproyecto;
         $this->linkedin = $data->linkedin;
         $this->profile_photo_path = $data->profile_photo_path;
+        $this->web = $data->web;
         $this->isSetToDefaultHomePage = !$data->is_default_home ? null : true;
         $this->isSetToDefaultNotFoundPage = !$data->is_default_not_found ? null : true;
 
